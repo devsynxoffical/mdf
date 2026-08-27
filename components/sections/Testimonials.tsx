@@ -30,7 +30,7 @@ function VideoCard({
           className="absolute inset-0"
           style={{
             background: `radial-gradient(90% 90% at ${20 + seed * 25}% 20%, rgba(${
-              seed % 2 ? "63,224,176" : "224,163,64"
+              seed % 2 ? "142,123,255" : "63,224,176"
             },0.08), transparent), #121826`,
           }}
         />
@@ -81,10 +81,10 @@ export default function Testimonials() {
   return (
     <section className="mx-auto max-w-[1200px] px-6 py-32 md:px-12">
       <RiseIn>
-        <p className="eyebrow">What Clients Say</p>
+        <p className="bracket-label">What Clients Say</p>
       </RiseIn>
       <RiseIn delay={80}>
-        <h2 className="mt-5 font-display text-[clamp(30px,3.6vw,48px)] font-semibold tracking-display text-bone">
+        <h2 className="mt-5 font-display text-[clamp(30px,3.6vw,48px)] font-light tracking-display text-bone">
           The system, in their words.
         </h2>
       </RiseIn>

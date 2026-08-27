@@ -46,7 +46,7 @@ export default function BigNumber() {
 
         <div ref={ref} className="mt-8" aria-label="$1,520,000">
           <p
-            className="tabular font-display font-bold text-brass leading-[0.85] whitespace-nowrap"
+            className="tabular font-display font-light text-brass leading-[0.85] whitespace-nowrap"
             style={{
               fontSize: "clamp(56px, 12vw, 200px)",
               letterSpacing: "-0.04em",

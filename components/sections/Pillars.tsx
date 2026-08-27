@@ -85,10 +85,10 @@ export default function Pillars() {
       {/* Intro */}
       <div className="max-w-[760px]">
         <RiseIn>
-          <p className="eyebrow">The System</p>
+          <p className="bracket-label">The System</p>
         </RiseIn>
         <RiseIn delay={80}>
-          <h2 className="mt-5 max-w-[20ch] font-display text-[clamp(34px,4vw,56px)] font-semibold leading-[1.05] tracking-display text-bone">
+          <h2 className="mt-5 max-w-[20ch] font-display text-[clamp(34px,4vw,56px)] font-light leading-[1.05] tracking-display text-bone">
             A multi-layered growth framework, not a funnel-building service.
           </h2>
         </RiseIn>
@@ -183,12 +183,12 @@ export default function Pillars() {
               >
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute -top-2 left-0 font-display text-[96px] font-semibold leading-none"
-                  style={{ color: "rgba(224,163,64,0.14)" }}
+                  className="pointer-events-none absolute -top-2 left-0 font-display text-[96px] font-light leading-none"
+                  style={{ color: "rgba(63,224,176,0.14)" }}
                 >
                   {p.num}
                 </span>
-                <h3 className="relative mt-10 max-w-[18ch] font-display text-[28px] md:text-[34px] font-semibold text-bone">
+                <h3 className="relative mt-10 max-w-[18ch] font-display text-[28px] md:text-[34px] font-light text-bone">
                   {p.title}
                 </h3>
                 <p className="mt-5 max-w-[44ch] font-body text-[17px] leading-[1.6] text-mute">

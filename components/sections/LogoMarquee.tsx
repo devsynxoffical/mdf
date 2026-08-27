@@ -33,7 +33,7 @@ function Row({ items, direction }: { items: string[]; direction: "left" | "right
         {doubled.map((name, i) => (
           <span
             key={i}
-            className="h-8 shrink-0 whitespace-nowrap font-display text-[22px] font-semibold leading-8 text-mute opacity-45 grayscale transition-all duration-200 hover:text-bone hover:opacity-100 hover:grayscale-0"
+            className="h-8 shrink-0 whitespace-nowrap font-display text-[22px] font-normal leading-8 text-mute opacity-45 grayscale transition-all duration-200 hover:text-bone hover:opacity-100 hover:grayscale-0"
             aria-hidden={i >= items.length}
           >
             {name}
@@ -59,7 +59,7 @@ export default function LogoMarquee() {
   return (
     <section className="py-[120px]">
       <RiseIn>
-        <p className="eyebrow mb-10 text-center">
+        <p className="bracket-label mb-10 text-center">
           Trusted by 2CC winners and high-ticket service providers
         </p>
       </RiseIn>

@@ -7,8 +7,8 @@
  * all viewports to keep the shared canvas budget for the funnel itself.)
  */
 
-const STROKE = "#8A6224";
-const ACCENT = "#3FE0B0";
+const STROKE = "#6B5BD6";
+const ACCENT = "#8E7BFF";
 
 function Frame({ children }: { children: React.ReactNode }) {
   return (

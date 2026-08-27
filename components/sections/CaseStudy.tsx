@@ -50,7 +50,7 @@ export default function CaseStudy() {
         </p>
       </RiseIn>
       <RiseIn delay={80}>
-        <h2 className="mt-5 font-display text-[clamp(30px,4vw,52px)] font-semibold tracking-display text-bone">
+        <h2 className="mt-5 font-display text-[clamp(30px,4vw,52px)] font-light tracking-display text-bone">
           13,630 sales. $847,307 collected. 3.32 ROAS.
         </h2>
       </RiseIn>
@@ -91,9 +91,9 @@ export default function CaseStudy() {
           ref={afterRef}
           className="h-full rounded-[20px] p-10 transition-all"
           style={{
-            border: "1px solid rgba(224,163,64,0.25)",
+            border: "1px solid rgba(63,224,176,0.25)",
             background:
-              "radial-gradient(120% 80% at 0% 0%, rgba(224,163,64,0.10), transparent 60%), #121826",
+              "radial-gradient(120% 80% at 0% 0%, rgba(63,224,176,0.10), transparent 60%), #121826",
             opacity: afterIn ? 1 : 0,
             transform: afterIn ? "translateY(0)" : "translateY(32px)",
             transitionDuration: "800ms",
@@ -133,7 +133,7 @@ export default function CaseStudy() {
           { label: "Sales", node: <Counter value={13630} delay={300} /> },
         ].map((s, i) => (
           <RiseIn key={s.label} delay={i * 100} className="text-center">
-            <span className="font-display text-[32px] md:text-[44px] font-semibold text-brass">
+            <span className="font-display text-[32px] md:text-[44px] font-light text-brass">
               {s.node}
             </span>
             <p className="mt-2 font-mono text-[11px] uppercase tracking-eyebrow text-mute">
@@ -150,7 +150,7 @@ export default function CaseStudy() {
         </p>
         <button
           className="group relative block w-full overflow-hidden rounded-[20px]"
-          style={{ border: "1px solid rgba(224,163,64,0.25)", aspectRatio: "16/9" }}
+          style={{ border: "1px solid rgba(63,224,176,0.25)", aspectRatio: "16/9" }}
           aria-label="Play case study video"
         >
           <span
@@ -158,7 +158,7 @@ export default function CaseStudy() {
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(80% 100% at 50% 0%, rgba(63,224,176,0.06), transparent), radial-gradient(90% 90% at 50% 100%, rgba(224,163,64,0.10), transparent), #121826",
+                "radial-gradient(80% 100% at 50% 0%, rgba(142,123,255,0.06), transparent), radial-gradient(90% 90% at 50% 100%, rgba(63,224,176,0.10), transparent), #121826",
             }}
           />
           <span aria-hidden className="absolute inset-0 bg-ink/40 transition-colors duration-250 group-hover:bg-ink/25" />

@@ -7,7 +7,7 @@
  */
 export default function GalleryCard({ seed, label }: { seed: number; label: string }) {
   const heroH = 60 + (seed % 3) * 14;
-  const accent = seed % 2 === 0 ? "#E0A340" : "#3FE0B0";
+  const accent = seed % 2 === 0 ? "#3FE0B0" : "#8E7BFF";
   return (
     <svg viewBox="0 0 300 400" className="h-full w-full" aria-hidden>
       <rect width="300" height="400" rx="12" fill="#121826" />

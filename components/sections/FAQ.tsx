@@ -33,10 +33,10 @@ export default function FAQ() {
   return (
     <section id="faq" className="mx-auto max-w-[860px] px-6 py-32">
       <RiseIn>
-        <p className="eyebrow">Questions</p>
+        <p className="bracket-label">Questions</p>
       </RiseIn>
       <RiseIn delay={80}>
-        <h2 className="mt-4 font-display text-[clamp(30px,3.4vw,44px)] font-semibold text-bone">
+        <h2 className="mt-4 font-display text-[clamp(30px,3.4vw,44px)] font-light text-bone">
           Before you book the call
         </h2>
       </RiseIn>

@@ -23,7 +23,7 @@ export default function Founder() {
               className="absolute -left-10 -top-10 h-[120%] w-[120%] opacity-60"
               aria-hidden
             >
-              <g fill="none" stroke="#8A6224" strokeWidth="0.8">
+              <g fill="none" stroke="#6B5BD6" strokeWidth="0.8">
                 {Array.from({ length: 12 }).map((_, i) => {
                   const a = (i / 12) * 180;
                   return (
@@ -58,7 +58,7 @@ export default function Founder() {
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(160deg, #121826 0%, #07090E 55%), radial-gradient(60% 50% at 70% 30%, rgba(224,163,64,0.25), transparent)",
+                    "linear-gradient(160deg, #121826 0%, #07090E 55%), radial-gradient(60% 50% at 70% 30%, rgba(63,224,176,0.25), transparent)",
                   backgroundBlendMode: "screen",
                 }}
               />
@@ -68,8 +68,8 @@ export default function Founder() {
                 <circle cx="200" cy="180" r="70" fill="#121826" />
                 <path d="M80 500 Q90 330 200 320 Q310 330 320 500 Z" fill="#121826" />
                 {/* brass rim light on the right edge */}
-                <path d="M258 130 Q276 175 262 228" stroke="#E0A340" strokeWidth="3" fill="none" opacity="0.7" />
-                <path d="M300 340 Q316 410 318 500" stroke="#E0A340" strokeWidth="3" fill="none" opacity="0.5" />
+                <path d="M258 130 Q276 175 262 228" stroke="#3FE0B0" strokeWidth="3" fill="none" opacity="0.7" />
+                <path d="M300 340 Q316 410 318 500" stroke="#3FE0B0" strokeWidth="3" fill="none" opacity="0.5" />
                 <text x="200" y="470" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="12" fill="#7C879B">
                   PORTRAIT — GAURAV KAPOOR
                 </text>
@@ -81,10 +81,10 @@ export default function Founder() {
         {/* Content */}
         <div>
           <RiseIn>
-            <p className="eyebrow">Who Builds It</p>
+            <p className="bracket-label">Who Builds It</p>
           </RiseIn>
           <RiseIn delay={80}>
-            <h2 className="mt-4 font-display text-[clamp(32px,3.5vw,44px)] font-bold text-bone">
+            <h2 className="mt-4 font-display text-[clamp(32px,3.5vw,44px)] font-light text-bone">
               Gaurav Kapoor
             </h2>
           </RiseIn>
@@ -111,7 +111,7 @@ export default function Founder() {
                 delay={i * 100}
                 className="rounded-2xl border border-bone/[0.08] p-6"
               >
-                <span className="font-display text-[30px] md:text-s40 font-semibold text-brass">
+                <span className="font-display text-[30px] md:text-s40 font-light text-brass">
                   <Counter value={c.value} prefix={c.prefix} suffix={c.suffix} delay={i * 100} />
                 </span>
                 <p className="mt-1.5 font-mono text-[11px] uppercase tracking-eyebrow text-mute">
@@ -124,7 +124,7 @@ export default function Founder() {
           <RiseIn delay={200}>
             <a
               href="#book"
-              className="mt-10 block rounded-full bg-brass px-8 py-[18px] text-center font-body text-s16 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(224,163,64,0.35)]"
+              className="mt-10 block rounded-full bg-brass px-8 py-[18px] text-center font-body text-s16 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(63,224,176,0.35)]"
             >
               Get my Million Dollar Funnel
             </a>

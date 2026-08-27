@@ -14,14 +14,31 @@ import {
 } from "./funnelMath";
 
 const COL_MUTE = new THREE.Color("#7C879B");
-const COL_SIGNAL = new THREE.Color("#3FE0B0");
-const COL_BRASS = new THREE.Color("#E0A340");
-const COL_BRASS_LO = new THREE.Color("#8A6224");
+const COL_VIOLET = new THREE.Color("#8E7BFF");
+const COL_MINT = new THREE.Color("#3FE0B0");
+const COL_LATTICE = new THREE.Color("#4A3F8C"); // dim violet wireframe
 const COL_BONE = new THREE.Color("#F2EFE8");
+
+// Where the orb / galaxy live: centered in the hero camera's view.
+const ORB_CENTER = new THREE.Vector3(0, 5.0, 0);
+// The galaxy disc is tilted toward the camera so the spiral reads.
+const GAL_TILT = 1.15;
+
+/** Morph weights for the three particle states, from page scroll progress. */
+function morphWeights(p: number) {
+  const s1 = THREE.MathUtils.smoothstep(p, 0.03, 0.07); // orb → galaxy
+  const s2 = THREE.MathUtils.smoothstep(p, 0.1, 0.16); // galaxy → funnel flow
+  return {
+    orb: (1 - s1) * (1 - s2),
+    gal: s1 * (1 - s2),
+    flow: s2,
+  };
+}
 
 /* ------------------------------------------------------------------ */
 /* Lattice: 24 concentric ring tubes + 48 vertical ribs, merged into   */
-/* a single mesh (one draw call).                                      */
+/* a single mesh. Hidden during the orb/galaxy phases, fades in as the */
+/* particles gather into the funnel.                                   */
 /* ------------------------------------------------------------------ */
 function useLatticeGeometry() {
   return useMemo(() => {
@@ -29,7 +46,6 @@ function useLatticeGeometry() {
 
     const RINGS = 24;
     for (let i = 0; i < RINGS; i++) {
-      // denser toward the top: bias ring placement upward
       const t = Math.pow(i / (RINGS - 1), 1.25);
       const y = FUNNEL_TOP - t * (FUNNEL_TOP - FUNNEL_BOTTOM);
       const r = funnelRadius(y);
@@ -61,39 +77,85 @@ function useLatticeGeometry() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Particles                                                           */
+/* Particles: one instanced mesh, three states blended by scroll.      */
 /* ------------------------------------------------------------------ */
 type ParticleSeeds = {
+  // flow (funnel journey)
   angle0: Float32Array;
   radialFrac: Float32Array;
   speed: Float32Array;
   offset: Float32Array;
   survives: Uint8Array;
   dropY: Float32Array;
+  // orb (breathing cloud)
+  orbDirX: Float32Array;
+  orbDirY: Float32Array;
+  orbDirZ: Float32Array;
+  orbR: Float32Array;
+  phase: Float32Array;
+  // galaxy (spiral disc)
+  galR: Float32Array;
+  galA: Float32Array;
+  galY: Float32Array;
+  // colour personality in the orb/galaxy phases: 0 = mint … 1 = violet
+  tint: Float32Array;
 };
 
 function makeSeeds(count: number): ParticleSeeds {
-  const angle0 = new Float32Array(count);
-  const radialFrac = new Float32Array(count);
-  const speed = new Float32Array(count);
-  const offset = new Float32Array(count);
-  const survives = new Uint8Array(count);
-  const dropY = new Float32Array(count);
-  // deterministic-ish PRNG so SSR/CSR don't fight (canvas is client-only anyway)
+  const f = () => new Float32Array(count);
+  const seeds: ParticleSeeds = {
+    angle0: f(),
+    radialFrac: f(),
+    speed: f(),
+    offset: f(),
+    survives: new Uint8Array(count),
+    dropY: f(),
+    orbDirX: f(),
+    orbDirY: f(),
+    orbDirZ: f(),
+    orbR: f(),
+    phase: f(),
+    galR: f(),
+    galA: f(),
+    galY: f(),
+    tint: f(),
+  };
   let s = 42;
   const rand = () => {
     s = (s * 16807) % 2147483647;
     return (s - 1) / 2147483646;
   };
   for (let i = 0; i < count; i++) {
-    angle0[i] = rand() * Math.PI * 2;
-    radialFrac[i] = 0.15 + 0.85 * Math.sqrt(rand());
-    speed[i] = 0.35 + rand() * 0.55;
-    offset[i] = rand();
-    survives[i] = rand() < 0.06 ? 1 : 0;
-    dropY[i] = FUNNEL_TOP - (0.18 + rand() * 0.62) * (FUNNEL_TOP - FUNNEL_BOTTOM);
+    // funnel flow
+    seeds.angle0[i] = rand() * Math.PI * 2;
+    seeds.radialFrac[i] = 0.15 + 0.85 * Math.sqrt(rand());
+    seeds.speed[i] = 0.35 + rand() * 0.55;
+    seeds.offset[i] = rand();
+    seeds.survives[i] = rand() < 0.06 ? 1 : 0;
+    seeds.dropY[i] = FUNNEL_TOP - (0.18 + rand() * 0.62) * (FUNNEL_TOP - FUNNEL_BOTTOM);
+
+    // orb: random unit direction, shell-biased radius so it reads as a cloud
+    const u = rand() * 2 - 1;
+    const theta = rand() * Math.PI * 2;
+    const sq = Math.sqrt(1 - u * u);
+    seeds.orbDirX[i] = sq * Math.cos(theta);
+    seeds.orbDirY[i] = u;
+    seeds.orbDirZ[i] = sq * Math.sin(theta);
+    seeds.orbR[i] = 0.9 + Math.pow(rand(), 0.55) * 1.5;
+    seeds.phase[i] = rand() * Math.PI * 2;
+
+    // galaxy: three spiral arms with scatter, thin in y
+    const arm = i % 3;
+    const tt = rand();
+    const radius = 0.3 + 4.0 * Math.pow(tt, 0.72);
+    seeds.galR[i] = radius;
+    seeds.galA[i] =
+      arm * ((Math.PI * 2) / 3) + radius * 1.25 + (rand() - 0.5) * 0.3;
+    seeds.galY[i] = (rand() - 0.5) * 0.22 * (1.2 - radius / 4.3);
+
+    seeds.tint[i] = rand();
   }
-  return { angle0, radialFrac, speed, offset, survives, dropY };
+  return seeds;
 }
 
 function Particles({ count }: { count: number }) {
@@ -101,14 +163,26 @@ function Particles({ count }: { count: number }) {
   const { progressRef } = useScrollState();
   const seeds = useMemo(() => makeSeeds(count), [count]);
 
-  // Preallocated scratch objects — nothing allocated inside the frame loop.
+  // Pointer in NDC — the orb and galaxy answer the cursor.
+  const pointer = useRef({ x: 0, y: 0 });
+  useEffect(() => {
+    const onMove = (e: PointerEvent) => {
+      pointer.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+      pointer.current.y = -((e.clientY / window.innerHeight) * 2 - 1);
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
+  }, []);
+
+  // Preallocated scratch — nothing allocated inside the frame loop.
   const dummy = useMemo(() => new THREE.Object3D(), []);
   const color = useMemo(() => new THREE.Color(), []);
+  const flowColor = useMemo(() => new THREE.Color(), []);
+  const restColor = useMemo(() => new THREE.Color(), []);
 
   useEffect(() => {
     const mesh = meshRef.current;
     if (!mesh) return;
-    // initialise instance colors once so the buffer exists
     for (let i = 0; i < count; i++) mesh.setColorAt(i, COL_MUTE);
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
   }, [count]);
@@ -118,55 +192,106 @@ function Particles({ count }: { count: number }) {
     if (!mesh) return;
     const t = clock.getElapsedTime();
     const progress = progressRef.current;
-    // flow accelerates slightly as the user descends the funnel
+    const w = morphWeights(progress);
     const flow = 0.55 + progress * 0.65;
+    const galSpin = t * 0.09;
+    const wRest = w.orb + w.gal; // how "interactive" the system is right now
 
-    const span = FUNNEL_TOP - MASS_Y + 1.2; // full survivor travel
+    // pointer mapped into the orb's world plane
+    const px = pointer.current.x * 5.6;
+    const py = ORB_CENTER.y + pointer.current.y * 3.2;
+    const REPULSE_R = 1.5;
+
+    const span = FUNNEL_TOP - MASS_Y + 1.2;
     for (let i = 0; i < count; i++) {
+      /* ---- state C: funnel flow ---- */
       const cycle = span / seeds.speed[i];
       const phase = ((t * flow + seeds.offset[i] * cycle) % cycle) / cycle;
-      let y = FUNNEL_TOP - phase * span;
+      let fy = FUNNEL_TOP - phase * span;
       const surv = seeds.survives[i] === 1;
-
-      let scale = 1;
+      let flowScale = 1;
       let rFrac = seeds.radialFrac[i];
       let radius: number;
       const angle =
-        seeds.angle0[i] + t * 0.12 * seeds.speed[i] + (FUNNEL_TOP - y) * 0.22;
+        seeds.angle0[i] + t * 0.12 * seeds.speed[i] + (FUNNEL_TOP - fy) * 0.22;
 
-      if (!surv && y < seeds.dropY[i]) {
-        // qualification failure: slip out through the lattice and fade away
-        const out = Math.min(1, (seeds.dropY[i] - y) / 1.6);
+      if (!surv && fy < seeds.dropY[i]) {
+        const out = Math.min(1, (seeds.dropY[i] - fy) / 1.6);
         radius = funnelRadius(seeds.dropY[i]) * rFrac + out * 2.2;
-        y = seeds.dropY[i] - out * out * 2.4;
-        scale = Math.max(0, 1 - out * 1.25);
-      } else if (y <= FUNNEL_BOTTOM) {
-        // survivor below the spout: converge into the brass mass
-        const sink = Math.min(1, (FUNNEL_BOTTOM - y) / (FUNNEL_BOTTOM - MASS_Y));
+        fy = seeds.dropY[i] - out * out * 2.4;
+        flowScale = Math.max(0, 1 - out * 1.25);
+      } else if (fy <= FUNNEL_BOTTOM) {
+        const sink = Math.min(1, (FUNNEL_BOTTOM - fy) / (FUNNEL_BOTTOM - MASS_Y));
         radius = THREE.MathUtils.lerp(funnelRadius(FUNNEL_BOTTOM) * rFrac, 0.22, sink);
-        scale = 1 + sink * 2; // scale up 3x as they convert
+        flowScale = 1 + sink * 2;
       } else {
-        radius = funnelRadius(y) * rFrac;
+        radius = funnelRadius(fy) * rFrac;
+      }
+      const fx = Math.cos(angle) * radius;
+      const fz = Math.sin(angle) * radius;
+
+      /* ---- state A: breathing orb ---- */
+      const breathe = seeds.orbR[i] * (1 + 0.06 * Math.sin(t * 0.9 + seeds.phase[i]));
+      let ox = ORB_CENTER.x + seeds.orbDirX[i] * breathe;
+      let oy = ORB_CENTER.y + seeds.orbDirY[i] * breathe;
+      const oz = ORB_CENTER.z + seeds.orbDirZ[i] * breathe;
+
+      /* ---- state B: spiral galaxy, tilted to face the camera ---- */
+      const ga = seeds.galA[i] + galSpin;
+      const tz0 = Math.sin(ga) * seeds.galR[i];
+      let gx = ORB_CENTER.x + Math.cos(ga) * seeds.galR[i];
+      let gy = ORB_CENTER.y - Math.sin(GAL_TILT) * tz0 + seeds.galY[i] * Math.cos(GAL_TILT);
+      const gz = ORB_CENTER.z + Math.cos(GAL_TILT) * tz0;
+
+      /* pointer repulsion while the system is interactive */
+      if (wRest > 0.01) {
+        const dx1 = ox - px;
+        const dy1 = oy - py;
+        const d1 = Math.sqrt(dx1 * dx1 + dy1 * dy1);
+        if (d1 < REPULSE_R && d1 > 0.0001) {
+          const push = ((REPULSE_R - d1) / REPULSE_R) * 0.9;
+          ox += (dx1 / d1) * push;
+          oy += (dy1 / d1) * push;
+        }
+        const dx2 = gx - px;
+        const dy2 = gy - py;
+        const d2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+        if (d2 < REPULSE_R && d2 > 0.0001) {
+          const push = ((REPULSE_R - d2) / REPULSE_R) * 0.7;
+          gx += (dx2 / d2) * push;
+          gy += (dy2 / d2) * push;
+        }
       }
 
-      dummy.position.set(Math.cos(angle) * radius, y, Math.sin(angle) * radius);
-      const s = 1 * scale;
-      dummy.scale.setScalar(s <= 0 ? 0.0001 : s);
+      /* ---- blend ---- */
+      const x = w.orb * ox + w.gal * gx + w.flow * fx;
+      const y = w.orb * oy + w.gal * gy + w.flow * fy;
+      const z = w.orb * oz + w.gal * gz + w.flow * fz;
+      const scale = w.orb + w.gal + w.flow * flowScale;
+
+      dummy.position.set(x, y, z);
+      dummy.scale.setScalar(scale <= 0 ? 0.0001 : scale);
       dummy.rotation.set(0, angle, 0);
       dummy.updateMatrix();
       mesh.setMatrixAt(i, dummy.matrix);
 
-      // colour ramp by height: mute → signal (middle third) → brass (spout)
-      const h = (y - FUNNEL_BOTTOM) / (FUNNEL_TOP - FUNNEL_BOTTOM); // 1 top → 0 bottom
-      if (y <= FUNNEL_BOTTOM || (surv && h < 0.12)) {
-        color.copy(COL_BRASS);
+      /* ---- colour ---- */
+      // funnel ramp: mute at the mouth → violet mid (processing) → mint at
+      // the spout (converted)
+      const h = (fy - FUNNEL_BOTTOM) / (FUNNEL_TOP - FUNNEL_BOTTOM);
+      if (fy <= FUNNEL_BOTTOM || (surv && h < 0.12)) {
+        flowColor.copy(COL_MINT);
       } else if (h > 0.66) {
-        color.copy(COL_MUTE).lerp(COL_SIGNAL, (1 - h) / 0.34);
+        flowColor.copy(COL_MUTE).lerp(COL_VIOLET, (1 - h) / 0.34);
       } else if (h > 0.33) {
-        color.copy(COL_SIGNAL);
+        flowColor.copy(COL_VIOLET);
       } else {
-        color.copy(COL_SIGNAL).lerp(COL_BRASS, 1 - h / 0.33);
+        flowColor.copy(COL_VIOLET).lerp(COL_MINT, 1 - h / 0.33);
       }
+      // orb/galaxy: a living blend of mint and violet per particle,
+      // pushed past 1.0 so the unlit cloud glows (toneMapped is off)
+      restColor.copy(COL_MINT).lerp(COL_VIOLET, seeds.tint[i]).multiplyScalar(1.6);
+      color.copy(restColor).lerp(flowColor, w.flow);
       mesh.setColorAt(i, color);
     }
     mesh.instanceMatrix.needsUpdate = true;
@@ -175,7 +300,7 @@ function Particles({ count }: { count: number }) {
 
   return (
     <instancedMesh ref={meshRef} args={[undefined, undefined, count]} frustumCulled={false}>
-      <icosahedronGeometry args={[0.012, 0]} />
+      <icosahedronGeometry args={[0.015, 0]} />
       <meshStandardMaterial roughness={0.4} metalness={0.6} toneMapped={false} />
     </instancedMesh>
   );
@@ -185,7 +310,7 @@ function Particles({ count }: { count: number }) {
 /* Stage marker rings                                                  */
 /* ------------------------------------------------------------------ */
 function StageRings() {
-  const { activeStage, funnelEvents } = useScrollState();
+  const { activeStage, funnelEvents, progressRef } = useScrollState();
   const mats = useRef<(THREE.MeshStandardMaterial | null)[]>([]);
   const pulses = useRef<number[]>(STAGE_RING_YS.map(() => -1));
   const clockRef = useRef(0);
@@ -207,6 +332,7 @@ function StageRings() {
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
     clockRef.current = t;
+    const reveal = THREE.MathUtils.smoothstep(progressRef.current, 0.1, 0.18);
     for (let i = 0; i < STAGE_RING_YS.length; i++) {
       const m = mats.current[i];
       if (!m) continue;
@@ -216,12 +342,12 @@ function StageRings() {
       if (p0 >= 0) {
         const dt = t - p0;
         if (dt < 0.6) {
-          // 0.15 → 0.8 → rest over 600ms
           const env = Math.sin((dt / 0.6) * Math.PI);
           intensity = Math.max(intensity, 0.15 + env * 0.65);
         }
       }
       m.emissiveIntensity = intensity;
+      m.opacity = reveal;
     }
   });
 
@@ -234,11 +360,13 @@ function StageRings() {
             ref={(el) => {
               mats.current[i] = el;
             }}
-            color={COL_BRASS}
+            color={COL_MINT}
             metalness={0.9}
             roughness={0.3}
-            emissive={COL_BRASS}
+            emissive={COL_MINT}
             emissiveIntensity={0.15}
+            transparent
+            opacity={0}
           />
         </mesh>
       ))}
@@ -247,7 +375,7 @@ function StageRings() {
 }
 
 /* ------------------------------------------------------------------ */
-/* The converted brass mass beneath the spout                          */
+/* The converted mass beneath the spout                                */
 /* ------------------------------------------------------------------ */
 function SpoutMass() {
   const ref = useRef<THREE.Mesh>(null!);
@@ -258,9 +386,7 @@ function SpoutMass() {
   useFrame(({ clock }, delta) => {
     const p = progressRef.current;
     const t = clock.getElapsedTime();
-    // grows as booked revenue accumulates through the scroll
     const grow = THREE.MathUtils.smoothstep(p, 0.25, 0.92);
-    // the payoff moment: past ~0.9 the mass resolves and glows (bloom stand-in)
     const resolve = THREE.MathUtils.smoothstep(p, 0.88, 0.97);
     const target = 0.15 + grow * 0.75 + resolve * 0.15;
     const s = THREE.MathUtils.damp(ref.current.scale.x, target, 4, delta);
@@ -277,21 +403,21 @@ function SpoutMass() {
         <icosahedronGeometry args={[0.85, 1]} />
         <meshStandardMaterial
           ref={matRef}
-          color={COL_BRASS}
+          color={COL_MINT}
           metalness={0.95}
           roughness={0.25}
-          emissive={COL_BRASS}
+          emissive={COL_MINT}
           emissiveIntensity={0.25}
           flatShading
         />
       </mesh>
-      <pointLight ref={lightRef} color={COL_BRASS} intensity={0.6} distance={7} />
+      <pointLight ref={lightRef} color={COL_MINT} intensity={0.6} distance={7} />
     </group>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Lattice mesh with pulse support                                     */
+/* Lattice mesh: fades in after the galaxy phase, pulse support        */
 /* ------------------------------------------------------------------ */
 function Lattice() {
   const geometry = useLatticeGeometry();
@@ -316,27 +442,34 @@ function Lattice() {
     let intensity = 0.15 + progressRef.current * 0.2;
     if (pulseAt.current >= 0) {
       const dt = t - pulseAt.current;
-      if (dt < 0.5) intensity += (1 - dt / 0.5) * 0.9; // brass spike, 500ms decay
+      if (dt < 0.5) intensity += (1 - dt / 0.5) * 0.9;
     }
     matRef.current.emissiveIntensity = intensity;
+    matRef.current.opacity = THREE.MathUtils.smoothstep(
+      progressRef.current,
+      0.1,
+      0.18
+    );
   });
 
   return (
     <mesh geometry={geometry}>
       <meshStandardMaterial
         ref={matRef}
-        color={COL_BRASS_LO}
+        color={COL_LATTICE}
         metalness={0.9}
         roughness={0.35}
-        emissive={COL_BRASS_LO}
+        emissive={COL_LATTICE}
         emissiveIntensity={0.15}
+        transparent
+        opacity={0}
       />
     </mesh>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Camera rig: travels down the funnel with scroll                     */
+/* Camera rig                                                          */
 /* ------------------------------------------------------------------ */
 function CameraRig() {
   const { camera } = useThree();
@@ -352,7 +485,6 @@ function CameraRig() {
       delta
     );
     const p = smooth.current.p;
-    // 0 → looking into the mouth from slightly above; 1 → at the spout
     const camY = THREE.MathUtils.lerp(8.4, -7.2, p);
     const camZ = THREE.MathUtils.lerp(9, 4.6, Math.pow(p, 1.2));
     const lookY = THREE.MathUtils.lerp(5.2, MASS_Y, Math.pow(p, 0.9));
@@ -367,11 +499,11 @@ function CameraRig() {
 export default function FunnelScene({ particleCount }: { particleCount: number }) {
   return (
     <>
-      <ambientLight intensity={0.25} />
-      <directionalLight position={[-6, 10, 6]} color={COL_BONE} intensity={1.1} />
+      <ambientLight intensity={0.3} />
+      <directionalLight position={[-6, 10, 6]} color={COL_BONE} intensity={1.0} />
       <spotLight
         position={[0, -12, 3]}
-        color={COL_BRASS}
+        color={COL_MINT}
         intensity={0.6}
         angle={0.8}
         penumbra={1}

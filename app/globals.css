@@ -1,4 +1,4 @@
-@import url("https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,600&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600&f[]=satoshi@400,500,600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
 
 @tailwind base;
@@ -8,9 +8,9 @@
 :root {
   --ink: #07090e;
   --slate: #121826;
-  --brass: #e0a340;
-  --brass-lo: #8a6224;
-  --signal: #3fe0b0;
+  --brass: #3FE0B0;
+  --brass-lo: #6B5BD6;
+  --signal: #8E7BFF;
   --bone: #f2efe8;
   --mute: #7c879b;
 }
@@ -53,7 +53,7 @@ body {
 }
 
 .font-display {
-  font-family: "Clash Display", system-ui, sans-serif;
+  font-family: "General Sans", system-ui, sans-serif;
 }
 .font-body {
   font-family: "Satoshi", system-ui, sans-serif;
@@ -186,4 +186,58 @@ body {
   * {
     scroll-behavior: auto !important;
   }
+}
+
+/* ---- Vesper design language ---- */
+
+/* Aurora backdrop: mint + violet light bleeding into the ink */
+.aurora {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(55% 45% at 18% 8%, rgba(63, 224, 176, 0.10), transparent 70%),
+    radial-gradient(50% 55% at 85% 30%, rgba(142, 123, 255, 0.10), transparent 70%),
+    radial-gradient(70% 50% at 50% 110%, rgba(63, 224, 176, 0.06), transparent 70%);
+}
+
+/* [ BRACKETED ] mono system labels */
+.bracket-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mute);
+  white-space: nowrap;
+}
+.bracket-label::before {
+  content: "[ ";
+  color: rgba(124, 135, 155, 0.55);
+}
+.bracket-label::after {
+  content: " ]";
+  color: rgba(124, 135, 155, 0.55);
+}
+
+/* Instrument-strip tick before a stat figure */
+.stat-tick {
+  width: 1px;
+  align-self: stretch;
+  background: linear-gradient(to bottom, transparent, rgba(242, 239, 232, 0.45), transparent);
+}
+
+/* Sparkle square that pairs with a primary CTA */
+.sparkle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  border: 1px solid rgba(242, 239, 232, 0.14);
+  background: rgba(18, 24, 38, 0.6);
+  color: var(--brass);
+  transition: border-color 200ms, box-shadow 200ms;
+}
+.sparkle-btn:hover {
+  border-color: rgba(63, 224, 176, 0.5);
+  box-shadow: 0 0 24px rgba(63, 224, 176, 0.25);
 }

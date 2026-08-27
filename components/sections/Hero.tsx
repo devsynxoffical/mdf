@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useScrollState } from "@/components/providers/ScrollProvider";
+import Sparkle from "@/components/ui/Sparkle";
 
 /** Staged hero load sequence: each child fades up on its own beat. */
 function Beat({
@@ -67,59 +68,97 @@ export default function Hero() {
   }, [progressRef]);
 
   return (
-    <section id="top" className="relative flex min-h-screen items-center pt-[150px] pb-16">
-      <div className="mx-auto w-full max-w-[1440px] px-6 md:px-24">
-        <div className="w-full text-center md:w-[52%] md:text-left">
-          <Beat delay={300}>
-            <p className="eyebrow">High-Ticket Client Acquisition</p>
+    <section
+      id="top"
+      className="relative flex min-h-screen flex-col justify-between pt-[160px] pb-20"
+    >
+      <div className="aurora" aria-hidden />
+
+      {/* Headline — top left, light weight, Vesper-style */}
+      <div className="relative mx-auto w-full max-w-[1440px] px-6 md:px-16">
+        <Beat delay={300}>
+          <p className="bracket-label">High-Ticket Client Acquisition</p>
+        </Beat>
+        <h1 className="mt-6 max-w-[20ch] font-display font-light leading-[1.04] tracking-display text-bone">
+          <Beat delay={420}>
+            <span className="block text-[clamp(34px,4.2vw,68px)]">
+              Cold strangers,
+            </span>
           </Beat>
-
-          <h1 className="mt-6 font-display font-bold leading-[0.95] tracking-display text-bone">
-            <Beat delay={420}>
-              <span className="block text-[clamp(36px,5.2vw,88px)]">
-                How we turned cold strangers into
+          <Beat delay={540}>
+            <span className="block whitespace-nowrap text-[clamp(34px,4.2vw,68px)]">
+              turned into{" "}
+              <span className="text-brass">
+                <HeroCount />
               </span>
-            </Beat>
-            <Beat delay={540}>
-              <span className="block text-brass text-[clamp(41px,6vw,101px)]">
-                <HeroCount /> in 19 months
-              </span>
-            </Beat>
-          </h1>
+            </span>
+          </Beat>
+          <Beat delay={620}>
+            <span className="block text-[clamp(34px,4.2vw,68px)] text-mute">
+              in 19 months.
+            </span>
+          </Beat>
+        </h1>
+      </div>
 
+      {/* The orb breathes in the center of the viewport, behind this content */}
+
+      {/* Bottom row — mono narration left, subhead + CTAs right */}
+      <div className="relative mx-auto grid w-full max-w-[1440px] items-end gap-10 px-6 md:grid-cols-2 md:px-16">
+        <div>
           <Beat delay={760}>
-            <p className="mt-7 max-w-[46ch] font-body text-[19px] leading-[1.55] text-mute md:max-w-[46ch] mx-auto md:mx-0">
-              We build you a predictable high-ticket client acquisition system
-              with the Million Dollar Funnel™ — without raising ad spend, hiring
-              setters, or touching the tech yourself.
+            <p className="max-w-[38ch] font-mono text-s12 uppercase leading-[1.8] tracking-eyebrow text-mute">
+              It reads your traffic — clicks, replies, bookings — and answers
+              in revenue. 6% survive the funnel.
             </p>
           </Beat>
-
           <Beat delay={880}>
-            <p className="mt-6 inline-flex items-center gap-2 font-mono text-[13px] text-signal">
+            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
+              <span className="bracket-label">Living Funnel</span>
+              <span className="text-mute/40" aria-hidden>·</span>
+              <span className="bracket-label">Motion Layer</span>
+              <span className="text-mute/40" aria-hidden>·</span>
+              <span className="bracket-label">Performance-Backed</span>
+            </div>
+          </Beat>
+        </div>
+
+        <div className="md:justify-self-end md:text-right">
+          <Beat delay={820}>
+            <p className="max-w-[40ch] font-body text-[16px] leading-[1.6] text-mute md:ml-auto">
+              A predictable high-ticket acquisition system, built and run for
+              you — without raising ad spend, hiring setters, or touching the
+              tech yourself.
+            </p>
+          </Beat>
+          <Beat delay={940}>
+            <p className="mt-4 inline-flex items-center gap-2 font-mono text-[13px] text-signal">
               <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-signal" aria-hidden />
               If it doesn&apos;t perform, we keep working for free.
             </p>
           </Beat>
-
-          <Beat delay={1000}>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center justify-center md:justify-start">
+          <Beat delay={1060}>
+            <div className="mt-6 flex items-center gap-3 md:justify-end">
+              <a
+                href="#system"
+                className="rounded-full border border-bone/[0.14] px-7 py-4 font-body text-[15px] text-bone transition-colors duration-200 hover:border-bone/40"
+              >
+                See the system
+              </a>
               <a
                 href="#book"
-                className="rounded-full bg-brass px-8 py-[18px] text-center font-body text-s16 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(224,163,64,0.35)]"
+                className="rounded-full bg-brass px-7 py-4 font-body text-[15px] font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(63,224,176,0.35)]"
               >
                 Reserve your spot
               </a>
               <a
-                href="#system"
-                className="rounded-full border border-mute px-8 py-[18px] text-center font-body text-s16 text-bone transition-colors duration-200 hover:border-bone"
+                href="#book"
+                aria-label="Reserve your spot"
+                className="sparkle-btn h-[52px] w-[52px]"
               >
-                See the system
+                <Sparkle size={18} />
               </a>
             </div>
-            <p className="mt-5 font-body text-[13px] text-mute">
-              100% risk-free · Performance-backed
-            </p>
           </Beat>
         </div>
       </div>
@@ -127,7 +166,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <div
         ref={indicatorRef}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center transition-opacity duration-500"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center transition-opacity duration-500"
         aria-hidden
       >
         <p className="font-mono text-[11px] uppercase tracking-eyebrow text-mute">

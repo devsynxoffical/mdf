@@ -121,10 +121,10 @@ export default function Gallery() {
   const intro = (
     <div className="mx-auto max-w-[1200px] px-6 md:px-12">
       <RiseIn>
-        <p className="eyebrow">Proven Across Niches</p>
+        <p className="bracket-label">Proven Across Niches</p>
       </RiseIn>
       <RiseIn delay={80}>
-        <h2 className="mt-5 max-w-[24ch] font-display text-[clamp(30px,3.6vw,48px)] font-semibold tracking-display text-bone">
+        <h2 className="mt-5 max-w-[24ch] font-display text-[clamp(30px,3.6vw,48px)] font-light tracking-display text-bone">
           If it only works in one niche, it doesn&apos;t work.
         </h2>
       </RiseIn>
@@ -227,8 +227,8 @@ export default function Gallery() {
             >
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="eyebrow">{ITEMS[openIdx].niche}</p>
-                  <p className="mt-3 font-display text-s40 font-semibold text-brass tabular">
+                  <p className="bracket-label">{ITEMS[openIdx].niche}</p>
+                  <p className="mt-3 font-display text-s40 font-light text-brass tabular">
                     {ITEMS[openIdx].revenue}
                   </p>
                   <p className="mt-1 font-mono text-s12 text-mute">

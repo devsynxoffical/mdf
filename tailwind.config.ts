@@ -11,14 +11,20 @@ const config: Config = {
       colors: {
         ink: "#07090E",
         slate2: "#121826",
-        brass: "#E0A340",
-        "brass-lo": "#8A6224",
-        signal: "#3FE0B0",
+        // Vesper palette: mint is the primary accent (money, conversion,
+        // CTAs); violet is the secondary (live/system states, processing).
+        // Legacy token names kept so existing classes keep working.
+        brass: "#3FE0B0",
+        "brass-lo": "#6B5BD6",
+        signal: "#8E7BFF",
+        mint: "#3FE0B0",
+        violet: "#8E7BFF",
+        "violet-lo": "#4A3F8C",
         bone: "#F2EFE8",
         mute: "#7C879B",
       },
       fontFamily: {
-        display: ["Clash Display", "system-ui", "sans-serif"],
+        display: ["General Sans", "system-ui", "sans-serif"],
         body: ["Satoshi", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },

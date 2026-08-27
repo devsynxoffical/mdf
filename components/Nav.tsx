@@ -140,7 +140,7 @@ export default function Nav() {
         <div className="flex items-center gap-3">
           <a
             href="#book"
-            className="hidden md:inline-block rounded-full bg-brass px-6 py-3.5 font-body text-s14 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(224,163,64,0.35)]"
+            className="hidden md:inline-block rounded-full bg-brass px-6 py-3.5 font-body text-s14 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(63,224,176,0.35)]"
           >
             Reserve Your Spot
           </a>

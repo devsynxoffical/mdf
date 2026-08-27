@@ -1,10 +1,19 @@
 # Million Dollar Funnel™ — 3D Website
 
-A single-page marketing site where **the funnel is a real 3D object and scrolling
-is the journey through it**. Cold traffic enters the mouth of a wireframe brass
-funnel as thousands of particles; as you scroll, the camera descends the funnel,
-most particles get filtered out through the lattice, and the 6% that survive
-crystallise into a solid brass mass beneath the spout — booked revenue.
+A single-page marketing site where **the particles are a living interface and
+scrolling is the journey through the funnel**. The hero opens on a breathing
+mint-and-violet particle orb that answers the pointer; on scroll it blows open
+into a spiral galaxy, then gathers into a wireframe funnel. The camera descends
+the funnel, most particles get filtered out through the lattice, and the 6%
+that survive crystallise into a solid mint mass beneath the spout — booked
+revenue.
+
+**Design language** (GetLayers/Vesper-inspired): deep ink base, mint `#3FE0B0`
+(money, conversion, CTAs) + violet `#8E7BFF` (live/system states) accents,
+aurora gradient backdrops, light-weight General Sans display type, `[ BRACKETED ]`
+JetBrains Mono system labels, instrument-strip stats with tick marks, and
+sparkle-square companion buttons on primary CTAs. Legacy Tailwind token names
+(`brass`, `signal`) are kept but now map to mint and violet.
 
 ## Stack
 
