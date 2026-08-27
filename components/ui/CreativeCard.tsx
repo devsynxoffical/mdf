@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { joinBudget, leaveBudget } from "@/lib/playerBudget";
 import {
   categoryLabel,
   vimeoBackground,
@@ -9,10 +10,10 @@ import {
 } from "@/lib/videos";
 
 /**
- * Vertical creative card. Shows a poster at rest; on hover (or when it
- * becomes the active card on touch) it swaps in a muted, looping Vimeo
- * background player. The "Click for sound" pill opens the full player.
- * Only the hovered card mounts an iframe, so the grid stays light.
+ * Vertical creative card. Plays automatically — muted and looping — while it
+ * is on screen, subject to the shared player budget so only the cards nearest
+ * the viewport centre actually run. The "Click for sound" pill opens the full
+ * player with audio.
  */
 export default function CreativeCard({
   video,
@@ -23,13 +24,13 @@ export default function CreativeCard({
   onOpen: (v: PortfolioVideo) => void;
   index?: number;
 }) {
-  const [preview, setPreview] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const [imgOk, setImgOk] = useState(true);
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const uid = useId();
 
-  // Fade/lift the card in as it enters view.
+  // Enter animation.
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -50,20 +51,28 @@ export default function CreativeCard({
     return () => io.disconnect();
   }, []);
 
-  const enter = () => {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    hoverTimer.current = setTimeout(() => setPreview(true), 180);
-  };
-  const leave = () => {
-    if (hoverTimer.current) clearTimeout(hoverTimer.current);
-    setPreview(false);
-  };
+  // Autoplay while on screen, arbitrated by the shared budget.
+  useEffect(() => {
+    const el = ref.current;
+    const key = `${video.id}-${uid}`;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) joinBudget(key, el, setPlaying);
+        else leaveBudget(key);
+      },
+      { rootMargin: "150px 0px", threshold: 0.15 }
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      leaveBudget(key);
+    };
+  }, [video.id, uid]);
 
   return (
     <div
       ref={ref}
-      onPointerEnter={enter}
-      onPointerLeave={leave}
       className="group relative"
       style={{
         opacity: visible ? 1 : 0,
@@ -75,7 +84,7 @@ export default function CreativeCard({
         className="relative overflow-hidden rounded-[14px] border border-bone/[0.1] bg-[#141210] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1.5 group-hover:border-brass/45 group-hover:shadow-[0_22px_60px_-18px_rgba(217,164,65,0.35)]"
         style={{ aspectRatio: "9/16" }}
       >
-        {/* poster */}
+        {/* poster (stays underneath as the player's own placeholder) */}
         {imgOk ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -99,8 +108,8 @@ export default function CreativeCard({
           </span>
         )}
 
-        {/* muted looping preview on hover */}
-        {preview && (
+        {/* auto-playing muted loop */}
+        {playing && (
           <iframe
             src={vimeoBackground(video.id)}
             title={`${video.title} preview`}
@@ -108,7 +117,7 @@ export default function CreativeCard({
             aria-hidden
             allow="autoplay; picture-in-picture"
             className="pointer-events-none absolute left-1/2 top-1/2 h-[104%] w-[178%] -translate-x-1/2 -translate-y-1/2 border-0"
-            style={{ objectFit: "cover" }}
+            style={{ background: "#0A0908" }}
           />
         )}
 
@@ -128,7 +137,14 @@ export default function CreativeCard({
         <span className="absolute left-3 top-3 rounded-full border border-bone/20 bg-inkdeep/60 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.14em] text-bone/85 backdrop-blur-sm">
           {categoryLabel(video.category)}
         </span>
-        <span className="tnum absolute right-3 top-3 rounded-full bg-inkdeep/70 px-2 py-1 font-mono text-[9px] text-bone/80 backdrop-blur-sm">
+        <span className="tnum absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-inkdeep/70 px-2 py-1 font-mono text-[9px] text-bone/80 backdrop-blur-sm">
+          {playing && (
+            <span
+              aria-hidden
+              className="inline-block h-1.5 w-1.5 rounded-full bg-brass"
+              style={{ animation: "live-dot 2s ease-in-out infinite" }}
+            />
+          )}
           {video.duration}s
         </span>
 

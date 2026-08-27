@@ -3,7 +3,7 @@
 import { useState } from "react";
 import WordReveal from "./WordReveal";
 import Reveal from "./Reveal";
-import VideoThumb from "@/components/ui/VideoThumb";
+import CreativeCard from "@/components/ui/CreativeCard";
 import VideoModal from "@/components/ui/VideoModal";
 import { VIDEOS, vimeoThumb, type PortfolioVideo } from "@/lib/videos";
 
@@ -84,16 +84,11 @@ export default function UFOpinions() {
       </div>
 
       {/* proof clips */}
-      <div className="mx-auto mt-14 flex max-w-[1280px] flex-wrap items-center justify-center gap-4 px-6">
+      <div className="mx-auto mt-16 flex max-w-[1280px] flex-wrap items-start justify-center gap-4 px-6">
         {thumbs.map((v, i) => (
-          <button
-            key={v.id}
-            onClick={() => setOpenVideo(v)}
-            aria-label={`Play ${v.title}`}
-            className="group relative h-[74px] w-[124px] overflow-hidden rounded-[8px] border border-bone/[0.12] transition-transform duration-300 hover:scale-[1.04] md:h-[88px] md:w-[150px]"
-          >
-            <VideoThumb video={v} seed={i} playSize={28} />
-          </button>
+          <div key={v.id} className="w-[142px] sm:w-[160px] md:w-[176px]">
+            <CreativeCard video={v} index={i} onOpen={setOpenVideo} />
+          </div>
         ))}
       </div>
 

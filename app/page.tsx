@@ -1,4 +1,5 @@
 import UFHero from "@/components/uf/UFHero";
+import UFReel from "@/components/uf/UFReel";
 import UFStatement from "@/components/uf/UFStatement";
 import UFLeaks from "@/components/uf/UFLeaks";
 import UFHeadcount from "@/components/uf/UFHeadcount";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <div id="top">
       <UFHero />
+      <UFReel />
       <UFStatement />
       <UFLeaks />
       <UFHeadcount />
