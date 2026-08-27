@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ScrollProvider from "@/components/providers/ScrollProvider";
-import FunnelCanvas from "@/components/canvas/FunnelCanvas";
-import Nav from "@/components/Nav";
+import MinimalNav from "@/components/MinimalNav";
 
 export const metadata: Metadata = {
   title: "Million Dollar Funnel™ — Predictable High-Ticket Client Acquisition",
@@ -17,10 +16,8 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-ink text-bone">
         <ScrollProvider>
-          {/* The one shared canvas — fixed behind everything for the entire scroll */}
-          <FunnelCanvas />
-          <Nav />
-          <main className="relative z-10">{children}</main>
+          <MinimalNav />
+          <main className="relative">{children}</main>
         </ScrollProvider>
       </body>
     </html>

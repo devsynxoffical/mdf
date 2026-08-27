@@ -37,9 +37,13 @@ export default function PortfolioGrid() {
           <p className="bracket-label">Portfolio · {VIDEOS.length} Creatives</p>
         </RiseIn>
         <RiseIn delay={80}>
-          <h1 className="mt-5 max-w-[18ch] font-display text-[clamp(36px,5vw,72px)] font-light leading-[1.04] tracking-display text-bone">
-            Every niche.{" "}
-            <span className="text-mute">Same system.</span>
+          <h1 className="mt-5 leading-[0.86]">
+            <span className="font-condensed block text-bone text-[clamp(48px,7vw,100px)]">
+              Every Niche.
+            </span>
+            <span className="font-editorial block text-mint text-[clamp(38px,5.6vw,82px)]">
+              Same System.
+            </span>
           </h1>
         </RiseIn>
         <RiseIn delay={160}>
