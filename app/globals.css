@@ -353,3 +353,21 @@ body {
     animation: none;
   }
 }
+
+/* slow-rotating brand seal */
+@keyframes uf-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: uf-spin 28s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spin-slow {
+    animation: none;
+  }
+}

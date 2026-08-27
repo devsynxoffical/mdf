@@ -1,93 +1,107 @@
 "use client";
 
 import ContourBG from "./ContourBG";
+import InkTrail from "./InkTrail";
+
+const STATS = [
+  ["$100M+", "Client revenue generated"],
+  ["500+", "Service businesses scaled"],
+  ["62", "Ad creatives running now"],
+];
 
 /**
- * Editorial hero: bone canvas, contour lines, a morphing ink blob, a dark
- * silhouette center-stage, and the giant condensed/italic split title
- * anchored bottom-left. Title lines rise in on load.
+ * Editorial hero: warm paper, contour lines, and a pointer-reactive ink
+ * smear that follows the cursor and dissolves. Giant condensed/italic split
+ * title bottom-left, stat stack bottom-right, rotating brand seal upper
+ * right. Title lines rise in on load.
  */
 export default function UFHero() {
   return (
     <section className="uf-light relative flex min-h-screen flex-col overflow-hidden">
       <ContourBG tone="light" />
+      <InkTrail />
 
-      {/* morphing ink blob, low right of the figure */}
-      <div
-        aria-hidden
-        className="uf-blob absolute right-[14%] top-[58%] h-[180px] w-[420px] bg-inkdeep/60 max-md:hidden"
-      />
-      {/* mint thread running through the blob */}
-      <svg
-        aria-hidden
-        className="absolute right-[10%] top-[52%] w-[480px] max-md:hidden"
-        viewBox="0 0 480 200"
-        fill="none"
-      >
-        <path
-          d="M0,120 C90,60 150,180 240,110 C330,40 380,160 480,90"
-          stroke="#8C6420"
-          strokeWidth="1.5"
-        />
-      </svg>
-
-      {/* silhouette */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center">
-        <svg
-          viewBox="0 0 420 560"
-          className="h-[68vh] w-auto"
-          aria-label="Founder silhouette"
-        >
+      {/* rotating brand seal */}
+      <div className="absolute right-10 top-[22%] hidden h-[150px] w-[150px] md:block lg:right-20">
+        <svg viewBox="0 0 150 150" className="spin-slow h-full w-full" aria-hidden>
           <defs>
-            <linearGradient id="sil" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#101319" />
-              <stop offset="100%" stopColor="#0A0908" />
-            </linearGradient>
+            <path
+              id="sealCircle"
+              d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"
+            />
           </defs>
-          {/* head */}
-          <ellipse cx="210" cy="96" rx="58" ry="66" fill="url(#sil)" />
-          {/* neck + shoulders + torso, arm raised to chin */}
-          <path
-            d="M186,150 L186,176 C120,190 84,238 74,320 L60,560 L360,560 L348,318 C338,236 300,190 234,176 L234,150 Z"
-            fill="url(#sil)"
-          />
-          <path
-            d="M234,214 C262,220 276,244 270,268 C264,288 246,296 232,290 C222,286 216,272 220,258 Z"
-            fill="url(#sil)"
-          />
+          <text
+            fill="#0D0C0A"
+            fontFamily="JetBrains Mono, monospace"
+            fontSize="10"
+            letterSpacing="2.6"
+          >
+            <textPath href="#sealCircle">
+              MILLION DOLLAR FUNNEL™ · EST. 2015 ·&#160;
+            </textPath>
+          </text>
+        </svg>
+        <svg
+          viewBox="0 0 24 24"
+          className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2"
+          fill="#8C6420"
+          aria-hidden
+        >
+          <path d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z" />
         </svg>
       </div>
 
-      {/* title block bottom-left */}
-      <div className="relative z-10 mt-auto px-6 pb-10 md:px-14 md:pb-14">
-        <h1 className="leading-[0.82] text-inkdeep">
-          <span className="uf-line">
-            <span
-              className="font-condensed text-[clamp(72px,14vw,190px)]"
-              style={{ animationDelay: "150ms" }}
-            >
-              Million
+      {/* bottom row: title left, stats right */}
+      <div className="relative z-10 mt-auto flex flex-col gap-10 px-6 pb-10 md:flex-row md:items-end md:justify-between md:px-14 md:pb-14">
+        <div>
+          <h1 className="leading-[0.84] text-inkdeep">
+            <span className="uf-line">
+              <span
+                className="font-condensed text-[clamp(72px,13vw,180px)]"
+                style={{ animationDelay: "150ms" }}
+              >
+                Million
+              </span>
             </span>
-          </span>
-          <span className="uf-line">
-            <span
-              className="font-editorial text-mint-deep text-[clamp(48px,9.4vw,128px)]"
-              style={{ animationDelay: "320ms" }}
-            >
-              Dollar&nbsp;Funnel
-              <sup className="text-[0.35em] align-super">™</sup>
+            <span className="uf-line">
+              <span
+                className="font-editorial text-mint-deep text-[clamp(46px,9vw,124px)]"
+                style={{ animationDelay: "320ms" }}
+              >
+                Dollar&nbsp;Funnel
+                <sup className="align-super text-[0.35em]">™</sup>
+              </span>
             </span>
-          </span>
-        </h1>
-        <div className="uf-line mt-6">
-          <p
-            className="uf-eyebrow text-inkdeep/70"
-            style={{ animationDelay: "520ms" }}
-          >
-            High-ticket client acquisition for service providers
-            <br />
-            $35M+ managed ad spend · 500+ businesses scaled
-          </p>
+          </h1>
+          <div className="uf-line mt-6">
+            <p
+              className="uf-eyebrow text-inkdeep/70"
+              style={{ animationDelay: "520ms" }}
+            >
+              High-ticket client acquisition for service providers
+            </p>
+          </div>
+        </div>
+
+        {/* stat stack */}
+        <div className="uf-line shrink-0 md:pb-2 md:text-right">
+          <div style={{ animationDelay: "640ms" }}>
+            <ul className="space-y-3 border-l border-inkdeep/15 pl-5 md:border-l-0 md:border-r md:pl-0 md:pr-5">
+              {STATS.map(([num, label]) => (
+                <li key={label} className="leading-tight">
+                  <span className="font-condensed block text-[24px] text-inkdeep md:text-[28px]">
+                    {num}
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-inkdeep/55">
+                    {label}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 hidden font-mono text-[10px] uppercase tracking-[0.2em] text-inkdeep/45 md:block">
+              ( Scroll )
+            </p>
+          </div>
         </div>
       </div>
     </section>
