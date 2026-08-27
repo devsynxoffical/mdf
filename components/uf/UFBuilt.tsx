@@ -1,131 +1,122 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMemo, useState } from "react";
 import ContourBG from "./ContourBG";
-import VideoThumb from "@/components/ui/VideoThumb";
+import Reveal from "./Reveal";
+import Magnetic from "./Magnetic";
+import CreativeCard from "@/components/ui/CreativeCard";
 import VideoModal from "@/components/ui/VideoModal";
 import { VIDEOS, type PortfolioVideo } from "@/lib/videos";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
-// scattered collage tiles: position (%), size (px), tilt (deg), parallax speed
-const TILES = [
-  { id: "1203105527", x: 6, y: 2, w: 240, r: -3, s: -60 },
-  { id: "1203828901", x: 66, y: 0, w: 280, r: 2, s: -110 },
-  { id: "1203808485", x: 30, y: 6, w: 220, r: 4, s: -30 },
-  { id: "1203818782", x: 2, y: 58, w: 300, r: 2, s: -130 },
-  { id: "1219790482", x: 40, y: 66, w: 260, r: -4, s: -50 },
-  { id: "1203819145", x: 72, y: 56, w: 250, r: 3, s: -90 },
-  { id: "1203812276", x: 52, y: 30, w: 200, r: -2, s: -150 },
+// The niches we lead with on the home page.
+const TABS = [
+  { slug: "all", label: "Featured" },
+  { slug: "roofing", label: "Roofing" },
+  { slug: "solar", label: "Solar" },
+  { slug: "mva", label: "MVA Law" },
+  { slug: "hvac", label: "HVAC" },
+  { slug: "finance", label: "Finance" },
 ];
 
-/** (05) The work — giant type over a parallax collage of real creatives. */
+const FEATURED = [
+  "1203105527",
+  "1203828901",
+  "1203808485",
+  "1203816135",
+  "1203819145",
+  "1203812402",
+  "1203818782",
+  "1203812276",
+];
+
+/** (06) The work — creative cards that play on hover. */
 export default function UFBuilt() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const [tab, setTab] = useState("all");
   const [openVideo, setOpenVideo] = useState<PortfolioVideo | null>(null);
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const tiles = section.querySelectorAll<HTMLElement>("[data-tile]");
-    const st = ScrollTrigger.create({
-      trigger: section,
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 0.5,
-      onUpdate: (self) => {
-        tiles.forEach((t) => {
-          const speed = Number(t.dataset.speed);
-          t.style.transform = `translateY(${(self.progress - 0.5) * speed}px) rotate(${t.dataset.rot}deg)`;
-        });
-      },
-    });
-    return () => st.kill();
-  }, []);
+  const cards = useMemo(() => {
+    if (tab === "all")
+      return FEATURED.map((id) => VIDEOS.find((v) => v.id === id)!);
+    return VIDEOS.filter((v) => v.category === tab).slice(0, 8);
+  }, [tab]);
 
   return (
-    <section ref={sectionRef} className="uf-light relative overflow-hidden py-[18vh]">
+    <section id="work" className="uf-light relative overflow-hidden py-[15vh]">
       <ContourBG tone="light" />
-      <div className="relative mx-auto max-w-[1280px] px-6">
-        <p className="uf-eyebrow relative z-20 text-mint-deep">( 05 ) — The Work</p>
+      <div className="relative mx-auto max-w-[1440px] px-6 md:px-14">
+        <p className="uf-eyebrow text-mint-deep">( 06 ) — The Work</p>
 
-        <div className="relative mt-4 min-h-[560px] md:min-h-[680px]">
-          {/* collage behind + around the heading */}
-          {TILES.map((t, i) => {
-            const video = VIDEOS.find((v) => v.id === t.id)!;
+        <div className="mt-6 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <h2 className="type-xl text-inkdeep">
+            <Reveal as="span">
+              <span className="font-condensed block text-[clamp(38px,5.6vw,88px)]">
+                What We&apos;ve
+              </span>
+            </Reveal>
+            <Reveal as="span" delay={110}>
+              <span className="font-editorial block text-mint-deep text-[clamp(32px,4.6vw,72px)]">
+                Built.
+              </span>
+            </Reveal>
+          </h2>
+          <p className="max-w-[42ch] font-body text-[16px] leading-[1.62] text-inkdeep/65">
+            Real ads running for real clients. Hover a card to watch it play —
+            click for sound.
+          </p>
+        </div>
+
+        {/* niche tabs */}
+        <div className="mt-10 flex flex-wrap gap-2" role="tablist" aria-label="Filter creatives">
+          {TABS.map((t) => {
+            const active = tab === t.slug;
             return (
               <button
-                key={t.id}
-                data-tile
-                data-speed={t.s}
-                data-rot={t.r}
-                onClick={() => setOpenVideo(video)}
-                aria-label={`Play ${video.title}`}
-                className="group absolute z-10 hidden overflow-hidden rounded-[10px] shadow-[0_18px_48px_rgba(13,12,10,0.22)] md:block"
-                style={{
-                  left: `${t.x}%`,
-                  top: `${t.y}%`,
-                  width: t.w,
-                  aspectRatio: "16/10",
-                  transform: `rotate(${t.r}deg)`,
-                }}
+                key={t.slug}
+                role="tab"
+                aria-selected={active}
+                onClick={() => setTab(t.slug)}
+                className={`rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.14em] transition-all duration-300 ${
+                  active
+                    ? "border-inkdeep bg-inkdeep text-cream"
+                    : "border-inkdeep/20 text-inkdeep/60 hover:border-inkdeep/50 hover:text-inkdeep"
+                }`}
               >
-                <VideoThumb video={video} seed={i} playSize={30} />
+                {t.label}
               </button>
             );
           })}
-
-          {/* mobile: simple two-column collage */}
-          <div className="grid grid-cols-2 gap-3 md:hidden">
-            {TILES.slice(0, 4).map((t, i) => {
-              const video = VIDEOS.find((v) => v.id === t.id)!;
-              return (
-                <button
-                  key={t.id}
-                  onClick={() => setOpenVideo(video)}
-                  aria-label={`Play ${video.title}`}
-                  className="group relative overflow-hidden rounded-[10px]"
-                  style={{ aspectRatio: "16/10" }}
-                >
-                  <VideoThumb video={video} seed={i} playSize={26} />
-                </button>
-              );
-            })}
-          </div>
-
-          {/* the heading floats over the collage */}
-          <h2 className="pointer-events-none relative z-20 mt-10 text-center leading-[0.84] md:mt-[180px]">
-            <span className="font-condensed block text-inkdeep text-[clamp(56px,11vw,170px)] drop-shadow-[0_2px_24px_rgba(240,235,226,0.55)]">
-              What We&apos;ve
-            </span>
-            <span className="font-editorial block text-mint-deep text-[clamp(44px,9vw,140px)]">
-              Built.
-            </span>
-          </h2>
         </div>
 
-        <div className="relative z-20 mt-16 text-center">
-          <p className="font-editorial normal-case text-[clamp(22px,2.6vw,34px)] text-inkdeep/80">
-            62 creatives. 14 niches. Yours is next —
+        {/* cards */}
+        <div
+          key={tab}
+          className="mt-9 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-4"
+        >
+          {cards.map((v, i) => (
+            <CreativeCard key={v.id} video={v} index={i} onOpen={setOpenVideo} />
+          ))}
+        </div>
+
+        {/* closer */}
+        <div className="mt-16 flex flex-col items-center gap-6 border-t rule-light pt-12 text-center">
+          <p className="font-editorial normal-case text-[clamp(20px,2.4vw,32px)] text-inkdeep/80">
+            {VIDEOS.length} creatives. 14 niches. Yours is next —
           </p>
-          <div className="mt-8 flex flex-col items-center gap-5">
-            <a href="#door" className="uf-pill">
-              Let&apos;s talk about yours
-            </a>
-            <a
-              href="/portfolio"
-              className="font-mono text-[11px] uppercase tracking-[0.18em] text-inkdeep/60 underline underline-offset-4 hover:text-inkdeep"
-            >
-              See all 62 →
-            </a>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Magnetic>
+              <a href="/portfolio" className="btn-gold">
+                See all {VIDEOS.length}
+              </a>
+            </Magnetic>
+            <Magnetic strength={0.22}>
+              <a href="#door" className="btn-ghost">
+                Talk about yours
+              </a>
+            </Magnetic>
           </div>
         </div>
       </div>
+
       <VideoModal video={openVideo} onClose={() => setOpenVideo(null)} />
     </section>
   );

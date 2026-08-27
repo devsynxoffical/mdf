@@ -134,3 +134,8 @@ export function vimeoThumb(id: string) {
 export function vimeoEmbed(id: string) {
   return `https://player.vimeo.com/video/${id}?autoplay=1&title=0&byline=0&portrait=0`;
 }
+
+/** Muted, looping, chrome-less embed used for inline card previews. */
+export function vimeoBackground(id: string) {
+  return `https://player.vimeo.com/video/${id}?background=1&autoplay=1&loop=1&muted=1&autopause=0`;
+}

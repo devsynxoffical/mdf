@@ -86,7 +86,7 @@ export default function UFProcess() {
       <div className="flex h-auto flex-col py-[12vh] md:h-screen md:py-0">
         {/* header + progress line */}
         <div className="px-6 pt-0 md:px-14 md:pt-16">
-          <p className="uf-eyebrow text-mint">( 06 ) — The Process</p>
+          <p className="uf-eyebrow text-mint">( 07 ) — The Process</p>
           <h2 className="mt-5 leading-[0.86]">
             <span className="font-condensed block text-bone text-[clamp(40px,5.4vw,72px)]">
               Start To
@@ -165,7 +165,7 @@ export default function UFProcess() {
                 <p className="mt-5 max-w-[40ch] font-body text-[16px] leading-[1.6] text-mute">
                   So nothing gets lost between the click and the calendar.
                 </p>
-                <a href="#door" className="uf-pill mt-8">
+                <a href="#door" className="btn-gold mt-8">
                   Walk me through it
                 </a>
               </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ScrollProvider from "@/components/providers/ScrollProvider";
 import MinimalNav from "@/components/MinimalNav";
+import Grain from "@/components/uf/Grain";
 
 export const metadata: Metadata = {
   title: "Million Dollar Funnel™ — Predictable High-Ticket Client Acquisition",
@@ -16,6 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-ink text-bone">
         <ScrollProvider>
+          <Grain />
           <MinimalNav />
           <main className="relative">{children}</main>
         </ScrollProvider>

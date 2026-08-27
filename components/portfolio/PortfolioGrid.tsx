@@ -1,16 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import RiseIn from "@/components/ui/RiseIn";
-import VideoThumb from "@/components/ui/VideoThumb";
+import CreativeCard from "@/components/ui/CreativeCard";
 import VideoModal from "@/components/ui/VideoModal";
-import {
-  CATEGORIES,
-  VIDEOS,
-  categoryLabel,
-  type PortfolioVideo,
-} from "@/lib/videos";
+import Reveal from "@/components/uf/Reveal";
+import ContourBG from "@/components/uf/ContourBG";
+import { CATEGORIES, VIDEOS, type PortfolioVideo } from "@/lib/videos";
 
 export default function PortfolioGrid() {
   const [filter, setFilter] = useState<string>("all");
@@ -28,35 +23,39 @@ export default function PortfolioGrid() {
   );
 
   return (
-    <section className="relative mx-auto min-h-screen max-w-[1440px] px-6 pb-32 pt-[180px] md:px-16">
-      <div className="aurora" aria-hidden />
+    <section className="uf-dark relative min-h-screen overflow-hidden pb-[14vh] pt-[22vh]">
+      <ContourBG tone="dark" />
 
-      {/* Header */}
-      <div className="relative">
-        <RiseIn>
-          <p className="bracket-label">Portfolio · {VIDEOS.length} Creatives</p>
-        </RiseIn>
-        <RiseIn delay={80}>
-          <h1 className="mt-5 leading-[0.86]">
-            <span className="font-condensed block text-bone text-[clamp(48px,7vw,100px)]">
-              Every Niche.
-            </span>
-            <span className="font-editorial block text-mint text-[clamp(38px,5.6vw,82px)]">
-              Same System.
-            </span>
+      <div className="relative mx-auto max-w-[1440px] px-6 md:px-14">
+        {/* header */}
+        <p className="uf-eyebrow text-mint">
+          ( Portfolio ) — {VIDEOS.length} Creatives · {CATEGORIES.length} Niches
+        </p>
+        <div className="mt-6 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <h1 className="type-xl text-bone">
+            <Reveal as="span">
+              <span className="font-condensed block text-[clamp(42px,6.4vw,96px)]">
+                Every Niche.
+              </span>
+            </Reveal>
+            <Reveal as="span" delay={110}>
+              <span className="font-editorial block text-mint text-[clamp(34px,5vw,76px)]">
+                Same System.
+              </span>
+            </Reveal>
           </h1>
-        </RiseIn>
-        <RiseIn delay={160}>
-          <p className="mt-6 max-w-[56ch] font-body text-[18px] leading-[1.6] text-mute">
-            The ad creatives feeding the Million Dollar Funnel™ across{" "}
-            {CATEGORIES.length} industries. Filter by niche, click to watch.
+          <p className="max-w-[46ch] font-body text-[16px] leading-[1.62] text-mute">
+            The creatives feeding the funnel right now. Hover any card to watch
+            it play, or click for sound.
           </p>
-        </RiseIn>
-      </div>
+        </div>
 
-      {/* Filters */}
-      <RiseIn delay={220}>
-        <div className="relative mt-12 flex flex-wrap gap-2.5" role="tablist" aria-label="Filter by niche">
+        {/* filters */}
+        <div
+          className="mt-12 flex flex-wrap gap-2"
+          role="tablist"
+          aria-label="Filter by niche"
+        >
           <FilterChip
             active={filter === "all"}
             onClick={() => setFilter("all")}
@@ -73,50 +72,26 @@ export default function PortfolioGrid() {
             />
           ))}
         </div>
-      </RiseIn>
 
-      {/* Grid */}
-      <motion.div layout className="relative mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <AnimatePresence mode="popLayout">
-          {visible.map((v, i) => (
-            <motion.button
-              layout
-              key={v.id}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1], delay: Math.min(i * 0.03, 0.4) }}
-              onClick={() => setOpenVideo(v)}
-              aria-label={`Play ${v.title}`}
-              className="group relative block overflow-hidden rounded-[16px] border border-bone/[0.08] bg-slate2 text-left transition-colors duration-[250ms] hover:border-brass/30"
-            >
-              <span className="relative block" style={{ aspectRatio: "16/9" }}>
-                <VideoThumb video={v} seed={i} playSize={44} />
-              </span>
-              <span className="block px-4 py-3.5">
-                <span className="block truncate font-body text-[14px] font-medium text-bone">
-                  {v.title}
-                </span>
-                <span className="mt-1 block font-mono text-[11px] uppercase tracking-eyebrow text-mute">
-                  {categoryLabel(v.category)} · {v.duration}s
-                </span>
-              </span>
-            </motion.button>
-          ))}
-        </AnimatePresence>
-      </motion.div>
-
-      {/* CTA */}
-      <div className="relative mt-20 text-center">
-        <p className="font-body text-[17px] text-mute">
-          Want creatives like these feeding your calendar?
-        </p>
-        <a
-          href="/#book"
-          className="mt-5 inline-block rounded-full bg-brass px-9 py-4 font-body text-s16 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(217,164,65,0.35)]"
+        {/* grid */}
+        <div
+          key={filter}
+          className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-4 xl:grid-cols-5"
         >
-          Reserve your spot
-        </a>
+          {visible.map((v, i) => (
+            <CreativeCard key={v.id} video={v} index={i} onOpen={setOpenVideo} />
+          ))}
+        </div>
+
+        {/* closer */}
+        <div className="mt-24 border-t rule-dark pt-14 text-center">
+          <p className="font-editorial normal-case text-[clamp(22px,2.8vw,36px)] text-bone/85">
+            Your niche is next —
+          </p>
+          <a href="/#door" className="btn-gold mt-8">
+            Book the call
+          </a>
+        </div>
       </div>
 
       <VideoModal video={openVideo} onClose={() => setOpenVideo(null)} />
@@ -140,13 +115,16 @@ function FilterChip({
       role="tab"
       aria-selected={active}
       onClick={onClick}
-      className={`rounded-full border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors duration-200 ${
+      className={`rounded-full border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.14em] transition-all duration-300 ${
         active
-          ? "border-brass/60 bg-brass/10 text-bone"
-          : "border-bone/[0.1] text-mute hover:border-bone/25 hover:text-bone"
+          ? "border-brass bg-brass text-inkdeep"
+          : "border-bone/15 text-mute hover:border-bone/40 hover:text-bone"
       }`}
     >
-      {label} <span className={active ? "text-brass" : "text-mute/60"}>{count}</span>
+      {label}{" "}
+      <span className={`tnum ${active ? "text-inkdeep/60" : "text-mute/50"}`}>
+        {count}
+      </span>
     </button>
   );
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PortfolioGrid from "@/components/portfolio/PortfolioGrid";
-import Footer from "@/components/Footer";
+import UFFooter from "@/components/uf/UFFooter";
 
 export const metadata: Metadata = {
   title: "Portfolio — Million Dollar Funnel™",
@@ -12,7 +12,7 @@ export default function PortfolioPage() {
   return (
     <>
       <PortfolioGrid />
-      <Footer />
+      <UFFooter />
     </>
   );
 }
