@@ -13,19 +13,19 @@ const THUMB_IDS = ["1203105580", "1203818782", "1203812402", "1203819145"];
 const QUOTES = [
   {
     quote:
-      "They rebuilt the backend in three weeks. The calendar hasn't had an empty week since.",
+      "Rebuilt in three weeks. The calendar hasn't been empty since.",
     name: "Sarah K.",
     role: "Med Spa · Texas",
   },
   {
     quote:
-      "First team that treated follow-up as the product instead of an afterthought.",
+      "First team to treat follow-up as the product.",
     name: "Daniel R.",
     role: "Roofing · Florida",
   },
   {
     quote:
-      "I stopped guessing which campaign worked. Now I can see the whole pipeline.",
+      "I stopped guessing. Now I see the whole pipeline.",
     name: "Priya S.",
     role: "Legal · United Kingdom",
   },
@@ -43,15 +43,11 @@ export default function UFOpinions() {
         <WordReveal
           className="font-body text-[clamp(22px,2.9vw,38px)] font-medium leading-[1.5] text-bone"
           parts={[
-            { text: "That's enough from us. The rest comes from clients" },
+            { text: "Enough from us. The rest comes from the owners" },
             { img: vimeoThumb(CHIP_IDS[0]) },
-            { text: "who hired us, owners" },
             { img: vimeoThumb(CHIP_IDS[1]) },
-            { text: "who scaled past seven figures, and the niches" },
-            { img: vimeoThumb(CHIP_IDS[2]) },
-            { img: vimeoThumb(CHIP_IDS[3]) },
-            { text: "we did it in." },
-            { text: "All in their own work.", accent: true },
+            { text: "who hired us." },
+            { text: "In their own words.", accent: true },
           ]}
         />
       </div>

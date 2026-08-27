@@ -35,10 +35,7 @@ export default function UFReel() {
             className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-brass"
             aria-hidden
           />
-          Live reel — {VIDEOS.length} creatives running right now
-        </p>
-        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-mute/60">
-          Scroll the strip →
+          Live reel — {VIDEOS.length} creatives
         </p>
       </div>
 

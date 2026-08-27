@@ -13,31 +13,31 @@ const STEPS = [
     num: "01",
     plain: "Map The",
     italic: "Offer",
-    body: "We define who it's for, what it promises, and the one action the funnel must cause — before anything gets designed.",
+    body: "Who it's for, what it promises, the one action it must cause.",
   },
   {
     num: "02",
     plain: "Architect The",
     italic: "Path",
-    body: "The funnel is mapped in words first: what a visitor sees, believes, and does next. A pretty page on a broken path stays broken.",
+    body: "Mapped in words first. A pretty page on a broken path stays broken.",
   },
   {
     num: "03",
     plain: "Build The",
     italic: "Pages",
-    body: "Landing architecture that qualifies on entry — built, integrated, and tracked end to end by our team.",
+    body: "Landing architecture that qualifies on entry.",
   },
   {
     num: "04",
     plain: "Wire The",
     italic: "Follow-Up",
-    body: "A2P, SMS, email, voicemail drops and AI responses in seconds. Bookings happen without you watching for them.",
+    body: "A2P, SMS, email, voicemail — answering in seconds.",
   },
   {
     num: "05",
     plain: "Launch &",
     italic: "Compound",
-    body: "Live with real traffic from day one. We watch the numbers and tighten every layer, week after week.",
+    body: "Live on real traffic, tightened week after week.",
   },
 ];
 
@@ -95,10 +95,6 @@ export default function UFProcess() {
               Finish.
             </span>
           </h2>
-          <p className="mt-4 max-w-[44ch] font-body text-[15px] leading-[1.55] text-mute">
-            Five steps, in the order they happen — the offer, the build, and
-            the follow-up behind it.
-          </p>
           {/* traveling squiggle */}
           <div className="relative mt-8 hidden h-10 md:block">
             <span className="absolute left-0 right-0 top-1/2 h-px bg-bone/15" />
@@ -162,9 +158,6 @@ export default function UFProcess() {
                     At A Time.
                   </span>
                 </h3>
-                <p className="mt-5 max-w-[40ch] font-body text-[16px] leading-[1.6] text-mute">
-                  So nothing gets lost between the click and the calendar.
-                </p>
                 <a href="#door" className="btn-gold mt-8">
                   Walk me through it
                 </a>

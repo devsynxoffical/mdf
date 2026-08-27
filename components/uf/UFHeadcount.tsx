@@ -12,19 +12,19 @@ if (typeof window !== "undefined") {
 const HIRES = [
   {
     role: "Media Buyer",
-    line: "Feeds the funnel with paid traffic that converts.",
+    line: "Paid traffic that converts.",
     tag: "( Hire 01 )",
     rest: { x: "-26%", y: 10, r: -8 },
   },
   {
     role: "Funnel Builder",
-    line: "Pages, tracking, integrations — wired together.",
+    line: "Pages, tracking, integrations.",
     tag: "( Hire 02 )",
     rest: { x: "26%", y: -6, r: 6 },
   },
   {
     role: "Automation Engineer",
-    line: "Sets up the follow-up that never sleeps.",
+    line: "Follow-up that never sleeps.",
     tag: "( Hire 03 )",
     rest: { x: "0%", y: 64, r: -2 },
   },
@@ -78,7 +78,7 @@ export default function UFHeadcount() {
           </span>
         </h2>
         <p className="mt-6 max-w-[40ch] font-body text-[17px] leading-[1.6] text-inkdeep/60">
-          Doing this in-house takes three hires. Watch them land.
+          In-house, that&apos;s three hires.
         </p>
 
         {/* card stage */}
@@ -103,9 +103,6 @@ export default function UFHeadcount() {
               </p>
               <p className="mt-3 font-body text-[14px] leading-[1.5] text-inkdeep/65">
                 {h.line}
-              </p>
-              <p className="mt-6 border-t border-inkdeep/10 pt-3 font-mono text-[9px] tracking-[0.16em] text-inkdeep/45">
-                SALARY · TOOLS · MANAGEMENT
               </p>
             </div>
           ))}

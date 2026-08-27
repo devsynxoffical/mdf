@@ -65,27 +65,18 @@ export default function UFFooter() {
               Million Dollar Funnel
               <span className="text-mint">™</span>
             </p>
-            <p className="mt-4 max-w-[34ch] font-body text-[14px] leading-[1.6] text-mute">
-              A client acquisition system for high-ticket service providers.
-              Built, launched, and managed end to end by our team.
+            <p className="mt-4 max-w-[30ch] font-body text-[14px] leading-[1.6] text-mute">
+              Client acquisition for high-ticket service providers.
             </p>
 
-            <dl className="mt-8 space-y-3">
-              {[
-                ["Email", "hello@milliondollarfunnel.com"],
-                ["Hours", "Mon–Fri · 9am–6pm EST"],
-                ["Coverage", "US · UK · Canada · Australia"],
-              ].map(([k, v]) => (
-                <div key={k} className="flex gap-4">
-                  <dt className="w-[70px] shrink-0 font-mono text-[9.5px] uppercase tracking-[0.16em] text-mute/60">
-                    {k}
-                  </dt>
-                  <dd className="font-body text-[13.5px] text-bone/85">{v}</dd>
-                </div>
-              ))}
-            </dl>
+            <a
+              href="mailto:hello@milliondollarfunnel.com"
+              className="link-sweep mt-6 inline-block font-body text-[14px] text-bone/85"
+            >
+              hello@milliondollarfunnel.com
+            </a>
 
-            <p className="mt-8 inline-flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.16em] text-mute">
+            <p className="mt-7 inline-flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.16em] text-mute">
               <span
                 className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-mint"
                 aria-hidden
@@ -166,7 +157,7 @@ export default function UFFooter() {
         {/* niches served */}
         <div className="mt-16 border-t rule-dark pt-10">
           <p className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-mute/60">
-            Niches Served · {VIDEOS.length} Creatives Live
+            Niches Served
           </p>
           <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-2">
             {CATEGORIES.map((c) => (
@@ -183,14 +174,11 @@ export default function UFFooter() {
         </div>
 
         {/* disclaimer */}
-        <p className="mt-14 max-w-[92ch] font-body text-[11.5px] leading-[1.65] text-mute/55">
+        <p className="mt-14 max-w-[80ch] font-body text-[11.5px] leading-[1.6] text-mute/55">
           <span className="text-mute/75">Earnings disclaimer.</span> Results
           shown are from specific client engagements and are not typical.
-          Individual results vary based on offer, market, ad spend, and
-          execution. Nothing on this site is a guarantee of earnings or a
-          promise of future performance. See our Income Disclosure for full
-          details. This site is not part of, or endorsed by, Meta, Google, or
-          any of their affiliates.
+          Individual results vary and nothing here guarantees earnings. See our
+          Income Disclosure. Not affiliated with or endorsed by Meta or Google.
         </p>
       </div>
 
@@ -200,9 +188,6 @@ export default function UFFooter() {
           <p className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-mute/70">
             © {new Date().getFullYear()} Million Dollar Funnel™ — All rights
             reserved
-          </p>
-          <p className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-mute/70">
-            Built for operators, not spectators
           </p>
         </div>
       </div>

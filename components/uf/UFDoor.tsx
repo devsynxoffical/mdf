@@ -23,7 +23,7 @@ export default function UFDoor() {
         </RiseIn>
         <RiseIn delay={200}>
           <p className="mt-8 max-w-[44ch] font-body text-[17px] leading-[1.6] text-mute">
-            A funnel has one job. This page exists to start that conversation.
+            A funnel has one job.
           </p>
         </RiseIn>
         <RiseIn delay={300}>

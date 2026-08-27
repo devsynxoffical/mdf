@@ -12,22 +12,22 @@ const LEAKS = [
   {
     num: "01",
     title: "Slow first response",
-    body: "A lead that waits an hour is a lead that books with someone else.",
+    body: "An hour late is a lead lost.",
   },
   {
     num: "02",
     title: "Message without a path",
-    body: "Pages that impress but never move a visitor toward the calendar.",
+    body: "Pages that impress, then lead nowhere.",
   },
   {
     num: "03",
     title: "Follow-up that gives up",
-    body: "Two touches, then silence. Most bookings happen after touch five.",
+    body: "Two touches, then silence.",
   },
   {
     num: "04",
     title: "A pipeline nobody tracks",
-    body: "No numbers, no levers. You can't fix what you can't see.",
+    body: "No numbers, no levers.",
   },
 ];
 
@@ -71,9 +71,6 @@ export default function UFLeaks() {
             Leak.
           </span>
         </h2>
-        <p className="mt-6 max-w-[44ch] font-body text-[17px] leading-[1.6] text-mute">
-          Four places revenue quietly slips away — we audit these first.
-        </p>
 
         <ol ref={listRef} className="mt-16">
           {LEAKS.map((l) => (

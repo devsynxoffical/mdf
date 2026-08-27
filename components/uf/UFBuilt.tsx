@@ -59,10 +59,6 @@ export default function UFBuilt() {
               </span>
             </Reveal>
           </h2>
-          <p className="max-w-[42ch] font-body text-[16px] leading-[1.62] text-inkdeep/65">
-            Real ads running for real clients. Hover a card to watch it play —
-            click for sound.
-          </p>
         </div>
 
         {/* niche tabs */}
@@ -100,7 +96,7 @@ export default function UFBuilt() {
         {/* closer */}
         <div className="mt-16 flex flex-col items-center gap-6 border-t rule-light pt-12 text-center">
           <p className="font-editorial normal-case text-[clamp(20px,2.4vw,32px)] text-inkdeep/80">
-            {VIDEOS.length} creatives. 14 niches. Yours is next —
+            Yours is next —
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Magnetic>

@@ -11,15 +11,15 @@ const FIGURES = [
 ];
 
 const BEFORE = [
-  "Couldn't sell the offer consistently",
-  "No tracking, no visible funnel",
-  "Revenue leaking on every campaign",
+  "No consistent sales",
+  "No tracking",
+  "Leaks on every campaign",
 ];
 
 const AFTER = [
-  "Architecture rebuilt around one path",
-  "Automated follow-up, clean attribution",
-  "Predictable, repeatable, scalable",
+  "One clear path",
+  "Automated follow-up",
+  "Predictable and scalable",
 ];
 
 function Figure({
@@ -104,12 +104,6 @@ export default function UFProof() {
                 </span>
               </Reveal>
             </h2>
-            <p className="mt-7 max-w-[50ch] font-body text-[17px] leading-[1.65] text-mute">
-              A coaching business with traffic but no path — a funnel that
-              couldn&apos;t convert its own offer and a backend nobody was
-              tracking. We rebuilt the architecture, wired the follow-up, and
-              let it run.
-            </p>
 
             {/* before / after ledger */}
             <div className="mt-10 grid gap-8 sm:grid-cols-2">

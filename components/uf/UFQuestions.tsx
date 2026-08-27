@@ -1,40 +1,39 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import ContourBG from "./ContourBG";
 import Reveal from "./Reveal";
 
 const QA = [
   {
     q: "Who is this actually for?",
-    a: "High-ticket service providers, coaches, and agencies already generating revenue who need a predictable acquisition system instead of referrals and word of mouth.",
+    a: "High-ticket service providers already generating revenue who need a predictable system instead of referrals.",
   },
   {
     q: "What's included in the build?",
-    a: "Landing architecture, A2P compliance and registration, AI-led automations, multi-touch SMS and email, voicemail drops, and full CRM setup — built, launched, and managed by our team.",
+    a: "Landing architecture, A2P, AI automations, SMS and email, voicemail drops, and CRM — built and managed by us.",
   },
   {
     q: "Do you handle the technical side?",
-    a: "All of it. Integrations, tracking, deliverability, CRM configuration. You review the work; you never touch the tooling.",
+    a: "All of it. You review the work; you never touch the tooling.",
   },
   {
     q: "Can you run the ads as well as the funnel?",
-    a: "Yes — and we prefer it. Ads feed the funnel and the funnel qualifies and books. Running both sides means they're built for each other rather than bolted together.",
+    a: "Yes, and we prefer it — both sides get built for each other.",
   },
   {
     q: "Will you work on my existing platform?",
-    a: "Usually. We audit what you have, keep the parts that convert, and rebuild the parts that leak. A rebuild is a decision we justify with numbers, not a default.",
+    a: "Usually. We keep what converts and rebuild what leaks.",
   },
   {
     q: "How fast does it go live?",
-    a: "Most builds are live on real traffic within three to four weeks. Follow-up and CRM go in first so nothing entering the funnel is ever wasted.",
+    a: "Live on real traffic in three to four weeks.",
   },
 ];
 
 /** (08) The questions — editorial accordion, one open at a time. */
 export default function UFQuestions() {
   const [open, setOpen] = useState<number | null>(0);
-  const panels = useRef<(HTMLDivElement | null)[]>([]);
 
   return (
     <section id="faq" className="uf-light relative overflow-hidden py-[16vh]">
@@ -55,15 +54,11 @@ export default function UFQuestions() {
                 </span>
               </Reveal>
             </h2>
-            <p className="mt-6 max-w-[32ch] font-body text-[15px] leading-[1.6] text-inkdeep/60">
-              The six things every founder asks on the first call.
-            </p>
           </div>
 
           <div>
             {QA.map((item, i) => {
               const isOpen = open === i;
-              const panel = panels.current[i];
               return (
                 <div key={item.q} className="border-b rule-light">
                   <button
@@ -101,17 +96,14 @@ export default function UFQuestions() {
                     id={`q-panel-${i}`}
                     role="region"
                     aria-labelledby={`q-btn-${i}`}
-                    ref={(el) => {
-                      panels.current[i] = el;
-                    }}
-                    className="overflow-hidden transition-all duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    className="grid transition-all duration-[420ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
                     style={{
-                      maxHeight: isOpen && panel ? panel.scrollHeight : 0,
+                      gridTemplateRows: isOpen ? "1fr" : "0fr",
                       opacity: isOpen ? 1 : 0,
                     }}
                   >
-                    <p className="max-w-[58ch] pb-7 pl-10 font-body text-[15px] leading-[1.68] text-inkdeep/65">
-                      {item.a}
+                    <p className="max-w-[58ch] overflow-hidden pl-10 font-body text-[15px] leading-[1.68] text-inkdeep/65">
+                      <span className="block pb-7">{item.a}</span>
                     </p>
                   </div>
                 </div>

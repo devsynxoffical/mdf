@@ -93,9 +93,8 @@ export default function UFHero() {
                 className="font-body text-[16px] leading-[1.62] text-inkdeep/70 md:text-[18px]"
                 style={{ animationDelay: "440ms" }}
               >
-                We build and run the entire acquisition system — landing
-                architecture, AI-led follow-up, and CRM — so cold traffic turns
-                into booked calls. You never touch the tech.
+                We build and run the whole system — pages, follow-up, CRM.
+                You never touch the tech.
               </p>
             </div>
 

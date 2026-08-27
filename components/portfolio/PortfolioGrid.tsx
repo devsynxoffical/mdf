@@ -44,9 +44,8 @@ export default function PortfolioGrid() {
               </span>
             </Reveal>
           </h1>
-          <p className="max-w-[46ch] font-body text-[16px] leading-[1.62] text-mute">
-            The creatives feeding the funnel right now. Hover any card to watch
-            it play, or click for sound.
+          <p className="max-w-[38ch] font-body text-[16px] leading-[1.62] text-mute">
+            Every creative currently running. Click any card for sound.
           </p>
         </div>
 
@@ -86,7 +85,7 @@ export default function PortfolioGrid() {
         {/* closer */}
         <div className="mt-24 border-t rule-dark pt-14 text-center">
           <p className="font-editorial normal-case text-[clamp(22px,2.8vw,36px)] text-bone/85">
-            Your niche is next —
+            Yours is next —
           </p>
           <a href="/#door" className="btn-gold mt-8">
             Book the call
