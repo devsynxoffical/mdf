@@ -10,31 +10,43 @@ const PILLARS = [
     num: "01",
     title: "High-Conversion Landing Architecture",
     body: "Conversion-optimised landing pages that capture attention, qualify on entry, and move prospects into the funnel without friction.",
+    tags: ["Landing Pages", "Qualification", "CRO"],
+    outcome: "Cold click → qualified lead",
   },
   {
     num: "02",
     title: "A2P Compliance & Infrastructure",
     body: "Full A2P registration handled end to end, protecting deliverability so your SMS keeps landing at scale.",
+    tags: ["A2P 10DLC", "Deliverability", "Compliance"],
+    outcome: "Every message lands",
   },
   {
     num: "03",
     title: "AI-Led Automations & Workflows",
     body: "Workflows that respond to lead behaviour in seconds, not hours — speed is the single biggest lever on close rate.",
+    tags: ["AI Workflows", "Speed-to-Lead", "Behaviour Triggers"],
+    outcome: "Response in seconds",
   },
   {
     num: "04",
     title: "Multi-Touch SMS & Email Sequences",
     body: "Behaviour-triggered messaging that nurtures and follows up until the call is on the calendar.",
+    tags: ["SMS", "Email", "Nurture Sequences"],
+    outcome: "Follow-up that never sleeps",
   },
   {
     num: "05",
     title: "Voicemail Drops for Follow-Up",
     body: "Ringless voicemail layered into follow-up to reach leads that ignore text and email entirely.",
+    tags: ["Ringless VM", "Re-Engagement", "Reach"],
+    outcome: "Unreachable leads, reached",
   },
   {
     num: "06",
     title: "CRM Setup, Management & Optimisation",
     body: "Every lead, action, and conversion tracked in one place, so you can see the pipeline instead of guessing at it.",
+    tags: ["CRM", "Tracking", "Pipeline Visibility"],
+    outcome: "One pipeline, zero guessing",
   },
 ];
 
@@ -81,15 +93,16 @@ export default function Pillars() {
   }, [activeStage]);
 
   return (
-    <section id="system" className="relative mx-auto max-w-[1440px] px-6 py-32 md:px-24">
+    <section id="system" className="relative mx-auto max-w-[1440px] px-6 py-32 md:px-16">
       {/* Intro */}
       <div className="max-w-[760px]">
         <RiseIn>
-          <p className="bracket-label">The System</p>
+          <p className="bracket-label">The System · Six Layers</p>
         </RiseIn>
         <RiseIn delay={80}>
-          <h2 className="mt-5 max-w-[20ch] font-display text-[clamp(34px,4vw,56px)] font-light leading-[1.05] tracking-display text-bone">
-            A multi-layered growth framework, not a funnel-building service.
+          <h2 className="mt-5 max-w-[22ch] font-display text-[clamp(34px,4vw,56px)] font-light leading-[1.08] tracking-display text-bone">
+            A multi-layered growth framework,{" "}
+            <span className="text-mute">not a funnel-building service.</span>
           </h2>
         </RiseIn>
         <RiseIn delay={160}>
@@ -110,10 +123,10 @@ export default function Pillars() {
         {PILLARS.map((p, i) => (
           <span
             key={p.num}
-            className={`shrink-0 rounded-full border px-4 py-2 font-mono text-[11px] uppercase tracking-eyebrow transition-colors ${
+            className={`shrink-0 rounded-full border px-4 py-2 font-mono text-[11px] uppercase tracking-eyebrow backdrop-blur-md transition-colors ${
               activeStage === i
-                ? "border-brass/50 bg-slate2 text-bone"
-                : "border-bone/[0.08] text-mute"
+                ? "border-brass/50 bg-slate2/80 text-bone"
+                : "border-bone/[0.08] bg-ink/50 text-mute"
             }`}
             style={{ scrollSnapAlign: "center" }}
           >
@@ -123,44 +136,56 @@ export default function Pillars() {
       </div>
 
       <div className="mt-12 flex gap-16 md:mt-24">
-        {/* Sticky stage list — left 40% */}
-        <div className="hidden w-[40%] md:block">
+        {/* Sticky stage rail — left 40% */}
+        <div className="hidden w-[38%] md:block">
           <ol className="sticky top-44 relative">
             {/* connecting line */}
             <span
               aria-hidden
-              className="absolute left-[5px] top-3 bottom-3 w-px bg-bone/[0.08]"
+              className="absolute left-[15px] top-4 bottom-4 w-px bg-bone/[0.08]"
             />
             <span
               aria-hidden
-              className="absolute left-[5px] top-3 w-px bg-brass transition-[height] duration-500 ease-out"
+              className="absolute left-[15px] top-4 w-px bg-gradient-to-b from-brass to-signal transition-[height] duration-500 ease-out"
               style={{
                 height:
                   activeStage < 0
                     ? "0%"
-                    : `${(activeStage / (PILLARS.length - 1)) * 92 + 4}%`,
+                    : `${(activeStage / (PILLARS.length - 1)) * 90 + 5}%`,
               }}
             />
             {PILLARS.map((p, i) => {
               const active = activeStage === i;
+              const passed = activeStage > i;
               return (
-                <li key={p.num} className="relative flex items-center gap-5 py-4 pl-0">
+                <li key={p.num} className="relative flex items-center gap-5 py-4">
                   <span
                     aria-hidden
-                    className={`relative z-10 h-[11px] w-[11px] rounded-full border transition-colors duration-300 ${
+                    className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border font-mono text-[11px] transition-all duration-300 ${
                       active
-                        ? "border-brass bg-brass"
-                        : i < activeStage
-                          ? "border-brass bg-ink"
-                          : "border-mute bg-ink"
-                    }`}
-                  />
-                  <span
-                    className={`font-mono text-[13px] uppercase tracking-eyebrow transition-colors duration-300 ${
-                      active ? "text-bone" : "text-mute"
+                        ? "border-brass bg-brass/15 text-brass shadow-[0_0_18px_rgba(63,224,176,0.35)]"
+                        : passed
+                          ? "border-brass/50 bg-ink text-brass/70"
+                          : "border-bone/[0.14] bg-ink text-mute"
                     }`}
                   >
-                    {p.num} — {p.title}
+                    {p.num}
+                  </span>
+                  <span className="min-w-0">
+                    <span
+                      className={`block truncate font-body text-[15px] font-medium transition-colors duration-300 ${
+                        active ? "text-bone" : "text-mute"
+                      }`}
+                    >
+                      {p.title}
+                    </span>
+                    <span
+                      className={`block font-mono text-[10px] uppercase tracking-[0.14em] transition-all duration-300 ${
+                        active ? "text-signal opacity-100" : "opacity-0"
+                      }`}
+                    >
+                      {p.outcome}
+                    </span>
                   </span>
                 </li>
               );
@@ -168,10 +193,11 @@ export default function Pillars() {
           </ol>
         </div>
 
-        {/* Right column — six full-height blocks */}
-        <div className="w-full md:w-[60%]">
+        {/* Right column — glass panels, one per layer */}
+        <div className="w-full md:w-[62%]">
           {PILLARS.map((p, i) => {
             const Mini = PILLAR_MINIS[i];
+            const active = activeStage === i;
             return (
               <div
                 key={p.num}
@@ -179,23 +205,71 @@ export default function Pillars() {
                   blockRefs.current[i] = el;
                 }}
                 data-stage={i}
-                className="relative flex min-h-[80vh] flex-col justify-center py-16"
+                className="flex min-h-[72vh] items-center py-10"
               >
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute -top-2 left-0 font-display text-[96px] font-light leading-none"
-                  style={{ color: "rgba(63,224,176,0.14)" }}
+                <div
+                  className={`relative w-full overflow-hidden rounded-[24px] border p-8 backdrop-blur-xl transition-all duration-500 md:p-12 ${
+                    active
+                      ? "border-brass/25 shadow-[0_0_60px_rgba(63,224,176,0.08)]"
+                      : "border-bone/[0.08]"
+                  }`}
+                  style={{ background: "rgba(10,13,20,0.72)" }}
                 >
-                  {p.num}
-                </span>
-                <h3 className="relative mt-10 max-w-[18ch] font-display text-[28px] md:text-[34px] font-light text-bone">
-                  {p.title}
-                </h3>
-                <p className="mt-5 max-w-[44ch] font-body text-[17px] leading-[1.6] text-mute">
-                  {p.body}
-                </p>
-                <div className="mt-10">
-                  <Mini />
+                  {/* corner glow + recessed stage numeral */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                      background: `radial-gradient(60% 50% at ${i % 2 ? "100%" : "0%"} 0%, rgba(${
+                        i % 2 ? "142,123,255" : "63,224,176"
+                      },0.08), transparent 65%)`,
+                    }}
+                  />
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute -top-8 right-4 select-none font-display text-[150px] font-light leading-none md:text-[190px]"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(63,224,176,0.16), rgba(142,123,255,0.14))",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      color: "transparent",
+                    }}
+                  >
+                    {p.num}
+                  </span>
+
+                  <div className="relative">
+                    <p className="bracket-label">
+                      Stage {p.num} / 06
+                    </p>
+                    <h3 className="mt-5 max-w-[18ch] font-display text-[28px] font-light leading-[1.15] text-bone md:text-[36px]">
+                      {p.title}
+                    </h3>
+                    <p className="mt-5 max-w-[46ch] font-body text-[17px] leading-[1.65] text-mute">
+                      {p.body}
+                    </p>
+
+                    <div className="mt-7 flex flex-wrap gap-2">
+                      {p.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded-full border border-bone/[0.1] px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-mute"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="mt-9 flex flex-wrap items-end justify-between gap-6">
+                      <p className="inline-flex items-center gap-2.5 font-mono text-[12px] text-signal">
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-signal" aria-hidden />
+                        {p.outcome.toUpperCase()}
+                      </p>
+                      <div className="opacity-90">
+                        <Mini />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             );

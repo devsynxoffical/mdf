@@ -4,11 +4,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const LINKS = [
-  { label: "System", href: "#system" },
-  { label: "Results", href: "#results" },
-  { label: "Case Studies", href: "#case-studies" },
-  { label: "About", href: "#about" },
-  { label: "FAQ", href: "#faq" },
+  { label: "System", href: "/#system" },
+  { label: "Results", href: "/#results" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "About", href: "/#about" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 const SECTION_IDS = ["system", "results", "case-studies", "about", "faq"];
@@ -98,7 +98,7 @@ export default function Nav() {
         style={{ marginTop: contracted ? 16 : 32 }}
       >
         <a
-          href="#top"
+          href="/#top"
           className="font-display text-[18px] font-semibold text-bone shrink-0"
         >
           MDF<span className="text-brass">™</span>
@@ -113,7 +113,8 @@ export default function Nav() {
         >
           <ul className="flex items-center">
             {LINKS.map((l) => {
-              const isActive = active === l.href.slice(1);
+              const isActive =
+                l.href === "/portfolio" ? false : active === l.href.split("#")[1];
               return (
                 <li key={l.href} className="relative">
                   <a

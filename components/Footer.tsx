@@ -1,6 +1,13 @@
 "use client";
 
-const NAV_LINKS = ["System", "Results", "Case Studies", "About", "FAQ"];
+const NAV_LINKS = [
+  { label: "System", href: "/#system" },
+  { label: "Results", href: "/#results" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Case Studies", href: "/#case-studies" },
+  { label: "About", href: "/#about" },
+  { label: "FAQ", href: "/#faq" },
+];
 const LEGAL_LINKS = ["Terms of Service", "Privacy", "DMCA Policy", "Income Disclosure"];
 
 export default function Footer() {
@@ -40,12 +47,12 @@ export default function Footer() {
             </p>
             <ul className="mt-5 space-y-3">
               {NAV_LINKS.map((l) => (
-                <li key={l}>
+                <li key={l.label}>
                   <a
-                    href={`#${l.toLowerCase().replace(" ", "-")}`}
+                    href={l.href}
                     className="font-body text-[15px] text-mute transition-colors duration-200 hover:text-bone"
                   >
-                    {l}
+                    {l.label}
                   </a>
                 </li>
               ))}
