@@ -147,7 +147,7 @@ export default function Hero() {
               </a>
               <a
                 href="#book"
-                className="rounded-full bg-brass px-7 py-4 font-body text-[15px] font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(63,224,176,0.35)]"
+                className="rounded-full bg-brass px-7 py-4 font-body text-[15px] font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(217,164,65,0.35)]"
               >
                 Reserve your spot
               </a>

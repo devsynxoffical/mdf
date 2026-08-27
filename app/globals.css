@@ -1,18 +1,18 @@
 @import url("https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600&f[]=satoshi@400,500,600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Anton&family=Playfair+Display:ital,wght@1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Oswald:wght@500;600&family=Instrument+Serif:ital@0;1&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --ink: #07090e;
-  --slate: #121826;
-  --brass: #3FE0B0;
-  --brass-lo: #6B5BD6;
-  --signal: #8E7BFF;
-  --bone: #f2efe8;
-  --mute: #7c879b;
+  --ink: #0A0908;
+  --slate: #1A1712;
+  --brass: #D9A441;
+  --brass-lo: #8A7440;
+  --signal: #C0B49A;
+  --bone: #F0EBE2;
+  --mute: #8F887C;
 }
 
 html {
@@ -245,26 +245,27 @@ body {
 /* ---- Editorial (UF) design language ---- */
 
 .font-condensed {
-  font-family: "Anton", "Arial Narrow", sans-serif;
+  font-family: "Oswald", "Arial Narrow", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.font-editorial {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.01em;
 }
-.font-editorial {
-  font-family: "Playfair Display", Georgia, serif;
-  font-style: italic;
-  font-weight: 600;
-  text-transform: uppercase;
-}
 
 /* Light (bone) sections */
 .uf-light {
-  background: #f2efe8;
-  color: #0b0d10;
+  background: #EAE4D8;
+  color: #0D0C0A;
 }
 .uf-dark {
-  background: #0b0d10;
-  color: #f2efe8;
+  background: #0D0C0A;
+  color: #F0EBE2;
 }
 
 /* numbered section eyebrow: ( 03 ) THE HEADCOUNT */
@@ -281,8 +282,8 @@ body {
   align-items: center;
   gap: 8px;
   border-radius: 999px;
-  background: #3fe0b0;
-  color: #0b0d10;
+  background: #D9A441;
+  color: #0D0C0A;
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 12px;
   letter-spacing: 0.14em;

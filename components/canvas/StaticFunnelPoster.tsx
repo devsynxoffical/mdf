@@ -20,7 +20,7 @@ export default function StaticFunnelPoster() {
       const y = 90 + t * 560;
       const halfWidth = 30 + (1 - Math.pow(t, 1.6)) * 250;
       const x = 400 + (rand() * 2 - 1) * halfWidth;
-      const c = t < 0.33 ? "#7C879B" : t < 0.66 ? "#8E7BFF" : "#3FE0B0";
+      const c = t < 0.33 ? "#8F887C" : t < 0.66 ? "#C0B49A" : "#D9A441";
       pts.push({ x, y, r: 1.2 + rand() * 1.6, c, o: 0.25 + rand() * 0.6 });
     }
     return pts;
@@ -44,11 +44,11 @@ export default function StaticFunnelPoster() {
       >
         <defs>
           <radialGradient id="spoutGlow" cx="50%" cy="88%" r="30%">
-            <stop offset="0%" stopColor="#3FE0B0" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#3FE0B0" stopOpacity="0" />
+            <stop offset="0%" stopColor="#D9A441" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#D9A441" stopOpacity="0" />
           </radialGradient>
         </defs>
-        <rect width="800" height="800" fill="#07090E" />
+        <rect width="800" height="800" fill="#0A0908" />
         <rect width="800" height="800" fill="url(#spoutGlow)" />
         {rings.map((r, i) => (
           <ellipse
@@ -58,7 +58,7 @@ export default function StaticFunnelPoster() {
             rx={r.rx}
             ry={r.rx * 0.22}
             fill="none"
-            stroke="#6B5BD6"
+            stroke="#8A7440"
             strokeWidth="1"
             opacity={0.5}
           />
@@ -75,7 +75,7 @@ export default function StaticFunnelPoster() {
               y1={90}
               x2={botX}
               y2={650}
-              stroke="#6B5BD6"
+              stroke="#8A7440"
               strokeWidth="0.8"
               opacity={0.35}
             />
@@ -84,12 +84,12 @@ export default function StaticFunnelPoster() {
         {particles.map((p, i) => (
           <circle key={i} cx={p.x} cy={p.y} r={p.r} fill={p.c} opacity={p.o} />
         ))}
-        <circle cx="400" cy="700" r="26" fill="#3FE0B0" opacity="0.9" />
-        <circle cx="400" cy="700" r="40" fill="none" stroke="#3FE0B0" strokeWidth="1" opacity="0.4" />
+        <circle cx="400" cy="700" r="26" fill="#D9A441" opacity="0.9" />
+        <circle cx="400" cy="700" r="40" fill="none" stroke="#D9A441" strokeWidth="1" opacity="0.4" />
       </svg>
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2"
-        style={{ background: "linear-gradient(to top, #07090E 10%, transparent)" }}
+        style={{ background: "linear-gradient(to top, #0A0908 10%, transparent)" }}
       />
     </div>
   );

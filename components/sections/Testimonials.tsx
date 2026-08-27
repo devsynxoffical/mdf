@@ -30,8 +30,8 @@ function VideoCard({
           className="absolute inset-0"
           style={{
             background: `radial-gradient(90% 90% at ${20 + seed * 25}% 20%, rgba(${
-              seed % 2 ? "142,123,255" : "63,224,176"
-            },0.08), transparent), #121826`,
+              seed % 2 ? "192,180,154" : "217,164,65"
+            },0.08), transparent), #1A1712`,
           }}
         />
         <span

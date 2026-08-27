@@ -109,7 +109,7 @@ export default function Nav() {
           className={`hidden md:block rounded-full border border-bone/[0.08] transition-all duration-[250ms] ${
             contracted ? "backdrop-blur-2xl" : "backdrop-blur-xl"
           }`}
-          style={{ background: "rgba(18,24,38,0.72)" }}
+          style={{ background: "rgba(26,23,18,0.72)" }}
         >
           <ul className="flex items-center">
             {LINKS.map((l) => {
@@ -141,7 +141,7 @@ export default function Nav() {
         <div className="flex items-center gap-3">
           <a
             href="#book"
-            className="hidden md:inline-block rounded-full bg-brass px-6 py-3.5 font-body text-s14 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(63,224,176,0.35)]"
+            className="hidden md:inline-block rounded-full bg-brass px-6 py-3.5 font-body text-s14 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(217,164,65,0.35)]"
           >
             Reserve Your Spot
           </a>
@@ -149,13 +149,13 @@ export default function Nav() {
           <button
             ref={triggerRef}
             className="md:hidden rounded-full border border-bone/[0.08] p-3"
-            style={{ background: "rgba(18,24,38,0.72)" }}
+            style={{ background: "rgba(26,23,18,0.72)" }}
             aria-label="Open menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(true)}
           >
             <svg width="18" height="12" viewBox="0 0 18 12" fill="none" aria-hidden>
-              <path d="M0 1h18M0 6h18M0 11h18" stroke="#F2EFE8" strokeWidth="1.5" />
+              <path d="M0 1h18M0 6h18M0 11h18" stroke="#F0EBE2" strokeWidth="1.5" />
             </svg>
           </button>
         </div>

@@ -9,22 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#07090E",
-        slate2: "#121826",
+        ink: "#0A0908",
+        slate2: "#1A1712",
         // Vesper palette: mint is the primary accent (money, conversion,
         // CTAs); violet is the secondary (live/system states, processing).
         // Legacy token names kept so existing classes keep working.
-        brass: "#3FE0B0",
-        "brass-lo": "#6B5BD6",
-        signal: "#8E7BFF",
-        mint: "#3FE0B0",
-        "mint-deep": "#118A6B",
-        cream: "#F2EFE8",
-        inkdeep: "#0B0D10",
-        violet: "#8E7BFF",
-        "violet-lo": "#4A3F8C",
-        bone: "#F2EFE8",
-        mute: "#7C879B",
+        brass: "#D9A441",
+        "brass-lo": "#8A7440",
+        signal: "#C0B49A",
+        mint: "#D9A441",
+        "mint-deep": "#8C6420",
+        cream: "#F0EBE2",
+        inkdeep: "#0D0C0A",
+        violet: "#C0B49A",
+        "violet-lo": "#6E5A2E",
+        bone: "#F0EBE2",
+        mute: "#8F887C",
       },
       fontFamily: {
         display: ["General Sans", "system-ui", "sans-serif"],

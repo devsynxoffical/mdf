@@ -61,7 +61,7 @@ export default function WordReveal({
           className="wr-word mx-1 inline-block h-[0.82em] w-[1.7em] overflow-hidden rounded-full align-middle"
           style={{
             background:
-              "linear-gradient(120deg, rgba(63,224,176,0.5), rgba(142,123,255,0.5))",
+              "linear-gradient(120deg, rgba(217,164,65,0.5), rgba(192,180,154,0.5))",
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}

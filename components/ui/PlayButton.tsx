@@ -16,7 +16,7 @@ export default function PlayButton({ size = 72 }: { size?: number }) {
           fill="none"
           style={{ marginLeft: size * 0.04 }}
         >
-          <path d="M4 2.5v15l13-7.5L4 2.5z" fill="#07090E" />
+          <path d="M4 2.5v15l13-7.5L4 2.5z" fill="#0A0908" />
         </svg>
       </span>
     </span>

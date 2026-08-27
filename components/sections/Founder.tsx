@@ -23,7 +23,7 @@ export default function Founder() {
               className="absolute -left-10 -top-10 h-[120%] w-[120%] opacity-60"
               aria-hidden
             >
-              <g fill="none" stroke="#6B5BD6" strokeWidth="0.8">
+              <g fill="none" stroke="#8A7440" strokeWidth="0.8">
                 {Array.from({ length: 12 }).map((_, i) => {
                   const a = (i / 12) * 180;
                   return (
@@ -58,19 +58,19 @@ export default function Founder() {
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(160deg, #121826 0%, #07090E 55%), radial-gradient(60% 50% at 70% 30%, rgba(63,224,176,0.25), transparent)",
+                    "linear-gradient(160deg, #1A1712 0%, #0A0908 55%), radial-gradient(60% 50% at 70% 30%, rgba(217,164,65,0.25), transparent)",
                   backgroundBlendMode: "screen",
                 }}
               />
               <svg viewBox="0 0 400 500" className="relative h-full w-full" aria-label="Portrait of Gaurav Kapoor (placeholder)">
                 <rect width="400" height="500" fill="#0B0F17" />
                 {/* abstract figure */}
-                <circle cx="200" cy="180" r="70" fill="#121826" />
-                <path d="M80 500 Q90 330 200 320 Q310 330 320 500 Z" fill="#121826" />
+                <circle cx="200" cy="180" r="70" fill="#1A1712" />
+                <path d="M80 500 Q90 330 200 320 Q310 330 320 500 Z" fill="#1A1712" />
                 {/* brass rim light on the right edge */}
-                <path d="M258 130 Q276 175 262 228" stroke="#3FE0B0" strokeWidth="3" fill="none" opacity="0.7" />
-                <path d="M300 340 Q316 410 318 500" stroke="#3FE0B0" strokeWidth="3" fill="none" opacity="0.5" />
-                <text x="200" y="470" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="12" fill="#7C879B">
+                <path d="M258 130 Q276 175 262 228" stroke="#D9A441" strokeWidth="3" fill="none" opacity="0.7" />
+                <path d="M300 340 Q316 410 318 500" stroke="#D9A441" strokeWidth="3" fill="none" opacity="0.5" />
+                <text x="200" y="470" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="12" fill="#8F887C">
                   PORTRAIT — GAURAV KAPOOR
                 </text>
               </svg>
@@ -124,7 +124,7 @@ export default function Founder() {
           <RiseIn delay={200}>
             <a
               href="#book"
-              className="mt-10 block rounded-full bg-brass px-8 py-[18px] text-center font-body text-s16 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(63,224,176,0.35)]"
+              className="mt-10 block rounded-full bg-brass px-8 py-[18px] text-center font-body text-s16 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(217,164,65,0.35)]"
             >
               Get my Million Dollar Funnel
             </a>

@@ -69,7 +69,7 @@ export default function FAQ() {
                   style={{ transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}
                 >
                   <svg width="10" height="10" viewBox="0 0 10 10">
-                    <path d="M5 0v10M0 5h10" stroke="#7C879B" strokeWidth="1" />
+                    <path d="M5 0v10M0 5h10" stroke="#8F887C" strokeWidth="1" />
                   </svg>
                 </span>
               </button>

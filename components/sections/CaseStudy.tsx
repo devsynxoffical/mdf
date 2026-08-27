@@ -91,9 +91,9 @@ export default function CaseStudy() {
           ref={afterRef}
           className="h-full rounded-[20px] p-10 transition-all"
           style={{
-            border: "1px solid rgba(63,224,176,0.25)",
+            border: "1px solid rgba(217,164,65,0.25)",
             background:
-              "radial-gradient(120% 80% at 0% 0%, rgba(63,224,176,0.10), transparent 60%), #121826",
+              "radial-gradient(120% 80% at 0% 0%, rgba(217,164,65,0.10), transparent 60%), #1A1712",
             opacity: afterIn ? 1 : 0,
             transform: afterIn ? "translateY(0)" : "translateY(32px)",
             transitionDuration: "800ms",
@@ -150,7 +150,7 @@ export default function CaseStudy() {
         </p>
         <button
           className="group relative block w-full overflow-hidden rounded-[20px]"
-          style={{ border: "1px solid rgba(63,224,176,0.25)", aspectRatio: "16/9" }}
+          style={{ border: "1px solid rgba(217,164,65,0.25)", aspectRatio: "16/9" }}
           aria-label="Play case study video"
         >
           <span
@@ -158,7 +158,7 @@ export default function CaseStudy() {
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(80% 100% at 50% 0%, rgba(142,123,255,0.06), transparent), radial-gradient(90% 90% at 50% 100%, rgba(63,224,176,0.10), transparent), #121826",
+                "radial-gradient(80% 100% at 50% 0%, rgba(192,180,154,0.06), transparent), radial-gradient(90% 90% at 50% 100%, rgba(217,164,65,0.10), transparent), #1A1712",
             }}
           />
           <span aria-hidden className="absolute inset-0 bg-ink/40 transition-colors duration-250 group-hover:bg-ink/25" />

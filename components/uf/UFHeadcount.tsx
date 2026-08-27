@@ -87,7 +87,7 @@ export default function UFHeadcount() {
             <div
               key={h.role}
               data-card
-              className="absolute left-1/2 top-1/4 w-[280px] md:w-[330px] -translate-x-1/2 rounded-[6px] bg-[#FBFAF6] p-7 text-inkdeep shadow-[0_24px_60px_rgba(11,13,16,0.18)]"
+              className="absolute left-1/2 top-1/4 w-[280px] md:w-[330px] -translate-x-1/2 rounded-[6px] bg-[#FBFAF6] p-7 text-inkdeep shadow-[0_24px_60px_rgba(13,12,10,0.18)]"
               style={{
                 marginLeft: h.rest.x,
                 marginTop: h.rest.y,

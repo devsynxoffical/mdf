@@ -110,7 +110,7 @@ export default function UFProcess() {
               <svg viewBox="0 0 140 40" fill="none" className="h-full w-full">
                 <path
                   d="M0,20 C12,20 14,6 24,6 C36,6 36,34 48,34 C60,34 60,10 70,10 C80,10 80,30 92,30 C104,30 104,14 116,14 C128,14 130,20 140,20"
-                  stroke="#3FE0B0"
+                  stroke="#D9A441"
                   strokeWidth="1.5"
                 />
               </svg>

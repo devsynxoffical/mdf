@@ -113,7 +113,7 @@ export default function PortfolioGrid() {
         </p>
         <a
           href="/#book"
-          className="mt-5 inline-block rounded-full bg-brass px-9 py-4 font-body text-s16 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(63,224,176,0.35)]"
+          className="mt-5 inline-block rounded-full bg-brass px-9 py-4 font-body text-s16 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(217,164,65,0.35)]"
         >
           Reserve your spot
         </a>

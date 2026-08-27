@@ -44,12 +44,12 @@ function Row({ items, direction }: { items: string[]; direction: "left" | "right
       <span
         aria-hidden
         className="pointer-events-none absolute inset-y-0 left-0 w-[180px]"
-        style={{ background: "linear-gradient(to right, #07090E, transparent)" }}
+        style={{ background: "linear-gradient(to right, #0A0908, transparent)" }}
       />
       <span
         aria-hidden
         className="pointer-events-none absolute inset-y-0 right-0 w-[180px]"
-        style={{ background: "linear-gradient(to left, #07090E, transparent)" }}
+        style={{ background: "linear-gradient(to left, #0A0908, transparent)" }}
       />
     </div>
   );

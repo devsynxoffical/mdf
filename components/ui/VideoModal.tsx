@@ -76,7 +76,7 @@ export default function VideoModal({
             </div>
             <div
               className="relative w-full overflow-hidden rounded-[16px] border bg-ink"
-              style={{ aspectRatio: "16/9", borderColor: "rgba(63,224,176,0.25)" }}
+              style={{ aspectRatio: "16/9", borderColor: "rgba(217,164,65,0.25)" }}
             >
               <iframe
                 src={vimeoEmbed(video.id)}

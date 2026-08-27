@@ -163,7 +163,7 @@ export default function Pillars() {
                     aria-hidden
                     className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border font-mono text-[11px] transition-all duration-300 ${
                       active
-                        ? "border-brass bg-brass/15 text-brass shadow-[0_0_18px_rgba(63,224,176,0.35)]"
+                        ? "border-brass bg-brass/15 text-brass shadow-[0_0_18px_rgba(217,164,65,0.35)]"
                         : passed
                           ? "border-brass/50 bg-ink text-brass/70"
                           : "border-bone/[0.14] bg-ink text-mute"
@@ -210,7 +210,7 @@ export default function Pillars() {
                 <div
                   className={`relative w-full overflow-hidden rounded-[24px] border p-8 backdrop-blur-xl transition-all duration-500 md:p-12 ${
                     active
-                      ? "border-brass/25 shadow-[0_0_60px_rgba(63,224,176,0.08)]"
+                      ? "border-brass/25 shadow-[0_0_60px_rgba(217,164,65,0.08)]"
                       : "border-bone/[0.08]"
                   }`}
                   style={{ background: "rgba(10,13,20,0.72)" }}
@@ -221,7 +221,7 @@ export default function Pillars() {
                     className="pointer-events-none absolute inset-0"
                     style={{
                       background: `radial-gradient(60% 50% at ${i % 2 ? "100%" : "0%"} 0%, rgba(${
-                        i % 2 ? "142,123,255" : "63,224,176"
+                        i % 2 ? "192,180,154" : "217,164,65"
                       },0.08), transparent 65%)`,
                     }}
                   />
@@ -229,7 +229,7 @@ export default function Pillars() {
                     aria-hidden
                     className="pointer-events-none absolute -top-8 right-4 select-none font-display text-[150px] font-light leading-none md:text-[190px]"
                     style={{
-                      background: "linear-gradient(135deg, rgba(63,224,176,0.16), rgba(142,123,255,0.14))",
+                      background: "linear-gradient(135deg, rgba(217,164,65,0.16), rgba(192,180,154,0.14))",
                       WebkitBackgroundClip: "text",
                       backgroundClip: "text",
                       color: "transparent",

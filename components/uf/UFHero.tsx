@@ -26,7 +26,7 @@ export default function UFHero() {
       >
         <path
           d="M0,120 C90,60 150,180 240,110 C330,40 380,160 480,90"
-          stroke="#118A6B"
+          stroke="#8C6420"
           strokeWidth="1.5"
         />
       </svg>
@@ -41,7 +41,7 @@ export default function UFHero() {
           <defs>
             <linearGradient id="sil" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#101319" />
-              <stop offset="100%" stopColor="#07090E" />
+              <stop offset="100%" stopColor="#0A0908" />
             </linearGradient>
           </defs>
           {/* head */}

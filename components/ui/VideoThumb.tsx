@@ -28,8 +28,8 @@ export default function VideoThumb({
         className="absolute inset-0"
         style={{
           background: `radial-gradient(90% 90% at ${25 + (seed % 3) * 25}% 20%, rgba(${
-            seed % 2 ? "142,123,255" : "63,224,176"
-          },0.12), transparent), #121826`,
+            seed % 2 ? "192,180,154" : "217,164,65"
+          },0.12), transparent), #1A1712`,
         }}
       />
       {imgOk && (

@@ -13,11 +13,11 @@ import {
   STAGE_RING_YS,
 } from "./funnelMath";
 
-const COL_MUTE = new THREE.Color("#7C879B");
-const COL_VIOLET = new THREE.Color("#8E7BFF");
-const COL_MINT = new THREE.Color("#3FE0B0");
-const COL_LATTICE = new THREE.Color("#4A3F8C"); // dim violet wireframe
-const COL_BONE = new THREE.Color("#F2EFE8");
+const COL_MUTE = new THREE.Color("#8F887C");
+const COL_VIOLET = new THREE.Color("#C0B49A");
+const COL_MINT = new THREE.Color("#D9A441");
+const COL_LATTICE = new THREE.Color("#6E5A2E"); // dim violet wireframe
+const COL_BONE = new THREE.Color("#F0EBE2");
 
 // Where the orb / galaxy live: centered in the hero camera's view.
 const ORB_CENTER = new THREE.Vector3(0, 5.0, 0);
@@ -508,7 +508,7 @@ export default function FunnelScene({ particleCount }: { particleCount: number }
         angle={0.8}
         penumbra={1}
       />
-      <fog attach="fog" args={["#07090E", 10, 26]} />
+      <fog attach="fog" args={["#0A0908", 10, 26]} />
       <CameraRig />
       <Lattice />
       <StageRings />

@@ -66,7 +66,7 @@ export default function UFBuilt() {
                 data-rot={t.r}
                 onClick={() => setOpenVideo(video)}
                 aria-label={`Play ${video.title}`}
-                className="group absolute z-10 hidden overflow-hidden rounded-[10px] shadow-[0_18px_48px_rgba(11,13,16,0.22)] md:block"
+                className="group absolute z-10 hidden overflow-hidden rounded-[10px] shadow-[0_18px_48px_rgba(13,12,10,0.22)] md:block"
                 style={{
                   left: `${t.x}%`,
                   top: `${t.y}%`,
@@ -100,7 +100,7 @@ export default function UFBuilt() {
 
           {/* the heading floats over the collage */}
           <h2 className="pointer-events-none relative z-20 mt-10 text-center leading-[0.84] md:mt-[180px]">
-            <span className="font-condensed block text-inkdeep text-[clamp(56px,11vw,170px)] drop-shadow-[0_2px_24px_rgba(242,239,232,0.55)]">
+            <span className="font-condensed block text-inkdeep text-[clamp(56px,11vw,170px)] drop-shadow-[0_2px_24px_rgba(240,235,226,0.55)]">
               What We&apos;ve
             </span>
             <span className="font-editorial block text-mint-deep text-[clamp(44px,9vw,140px)]">

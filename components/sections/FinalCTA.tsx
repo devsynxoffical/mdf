@@ -30,7 +30,7 @@ export default function FinalCTA() {
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href="#"
-              className="inline-block w-full rounded-full bg-brass px-12 py-5 font-body text-[18px] font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_40px_rgba(63,224,176,0.4)] sm:w-auto"
+              className="inline-block w-full rounded-full bg-brass px-12 py-5 font-body text-[18px] font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_40px_rgba(217,164,65,0.4)] sm:w-auto"
             >
               Reserve your spot
             </a>
