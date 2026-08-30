@@ -4,8 +4,13 @@
  * Decorative flowing contour lines, like topographic map curves.
  * tone="light" for bone sections (dark hairlines), "dark" for ink sections.
  */
-export default function ContourBG({ tone = "light" }: { tone?: "light" | "dark" }) {
-  const stroke = tone === "light" ? "rgba(13,12,10,0.07)" : "rgba(240,235,226,0.05)";
+export default function ContourBG({ tone = "light" }: { tone?: "light" | "dark" | "cobalt" }) {
+  const stroke =
+    tone === "light"
+      ? "rgba(18,84,236,0.08)"
+      : tone === "cobalt"
+      ? "rgba(255,255,255,0.12)"
+      : "rgba(56,189,248,0.06)";
   const paths = [
     "M-100,120 C250,40 480,220 760,140 C1040,60 1240,200 1540,120",
     "M-100,260 C200,180 520,340 800,250 C1080,160 1280,320 1540,240",

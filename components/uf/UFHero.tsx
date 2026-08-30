@@ -1,145 +1,173 @@
 "use client";
 
-import ContourBG from "./ContourBG";
-import InkTrail from "./InkTrail";
-import Magnetic from "./Magnetic";
+import ResnDiamond from "./ResnDiamond";
 
-const PROOF = [
-  ["$100M+", "Client revenue generated"],
-  ["500+", "Service businesses scaled"],
-  ["62", "Creatives running live"],
-  ["11 yrs", "Buying media at scale"],
+const CAPABILITIES = [
+  {
+    title: "The Funnel Engine",
+    subtitle: "UX/UI, High-Ticket VSL, Architecture",
+    href: "#proof",
+    iconSrc: "/images/hero-link-ico1.png",
+  },
+  {
+    title: "Media & Traffic",
+    subtitle: "Meta, Google & High-Ticket Ads",
+    href: "#proof",
+    iconSrc: "/images/hero-link-ico2.png",
+  },
+  {
+    title: "AI Qualification",
+    subtitle: "60s Response & CRM Pipeline",
+    href: "#process",
+    iconSrc: "/images/hero-link-ico3.png",
+  },
 ];
 
-/**
- * Hero: warm paper, contour lines, and a pointer-reactive ink smear.
- * Composition is a proper conversion hero — availability badge, value
- * headline, subhead, dual CTA, and a full-width proof strip on the base.
- */
 export default function UFHero() {
-  return (
-    <section className="uf-light relative flex min-h-svh flex-col overflow-hidden">
-      <ContourBG tone="light" />
-      <InkTrail />
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-      {/* rotating brand seal */}
-      <div className="absolute right-10 top-[13vh] hidden h-[112px] w-[112px] opacity-90 lg:block xl:right-16">
-        <svg viewBox="0 0 150 150" className="spin-slow h-full w-full" aria-hidden>
-          <defs>
-            <path id="sealCircle" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0" />
-          </defs>
-          <text
-            fill="#0D0C0A"
-            fillOpacity="0.55"
-            fontFamily="JetBrains Mono, monospace"
-            fontSize="10"
-            letterSpacing="2.6"
-          >
-            <textPath href="#sealCircle">
-              MILLION DOLLAR FUNNEL™ · EST. 2015 ·&#160;
-            </textPath>
-          </text>
-        </svg>
-        <svg
-          viewBox="0 0 24 24"
-          className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2"
-          fill="#8C6420"
-          aria-hidden
-        >
-          <path d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z" />
-        </svg>
+  return (
+    <section
+      id="hero"
+      className="relative flex min-h-[96vh] flex-col justify-between overflow-hidden bg-[#050508] pt-24 sm:pt-28 pb-0 text-white select-none"
+    >
+      {/* 1. Deep Obsidian Vignette */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgba(90,40,160,0.14)_0%,rgba(10,10,14,0.4)_50%,#050508_85%)]" />
+
+      {/* 2. BACKGROUND 3D RESN DIAMOND */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-auto z-0 overflow-hidden top-[-4vh]">
+        <ResnDiamond
+          height="h-[520px] sm:h-[620px] md:h-[760px] lg:h-[840px]"
+          showClickAndHoldPrompt={false}
+          className="scale-100 sm:scale-110 md:scale-120 opacity-90 hover:opacity-100 transition-opacity duration-300"
+        />
       </div>
 
-      {/* main column */}
-      <div className="relative z-10 flex flex-1 items-center px-6 pt-[19vh] md:px-14">
-        <div className="w-full">
-          {/* availability badge */}
-          <div className="mask-up mask-fit in">
-            <span className="inline-flex items-center gap-2.5 rounded-full border border-inkdeep/20 bg-cream/50 px-4 py-2 backdrop-blur-sm">
-              <span
-                className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-mint-deep"
-                aria-hidden
-              />
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-inkdeep/75">
-                Accepting 4 clients this quarter
+      {/* 3. MAIN HERO CONTENT: Top Badges & Prefix */}
+      <div className="relative z-20 mx-auto flex flex-col items-center justify-center px-4 sm:px-6 text-center max-w-[1400px] w-full pt-4 pb-2 pointer-events-none">
+
+        {/* Elegant Hybrid Prefix: "Making Brands" */}
+        <div className="mb-2 sm:mb-3 pointer-events-auto">
+          <span className="font-['Instrument_Serif',serif] italic font-normal text-[clamp(26px,4.5vw,54px)] text-white/90 mr-2 sm:mr-3 drop-shadow-lg">
+            Making Brands
+          </span>
+          <span className="font-sans font-extrabold text-[clamp(26px,4.5vw,54px)] text-white tracking-tight drop-shadow-lg">
+            Unforgettable
+          </span>
+        </div>
+      </div>
+
+      {/* 4. FULL-WIDTH INFINITE SCROLLER HEADLINE (Never finishes, seamless loop) */}
+      <div className="relative z-20 w-full overflow-hidden py-2 select-none pointer-events-none my-auto">
+        <div
+          className="flex w-max items-center whitespace-nowrap will-change-transform"
+          style={{
+            animation: "marquee-left 35s linear infinite",
+          }}
+        >
+          {/* Set 1 */}
+          <div className="flex shrink-0 items-center">
+            {[
+              "UNFORGETTABLE",
+              "THE TOP 1%",
+              "ACQUISITION",
+              "UNFORGETTABLE",
+              "UNSTOPPABLE",
+              "HIGH-TICKET",
+              "ARCHITECTING",
+              "UNFORGETTABLE",
+            ].map((word, i) => (
+              <span key={`s1-${i}`} className="flex items-center">
+                <span className="font-['Anton',sans-serif] uppercase tracking-[-0.015em] leading-[0.84] text-white text-[clamp(60px,16vw,220px)] select-none drop-shadow-[0_25px_60px_rgba(0,0,0,0.95)]">
+                  {word}
+                </span>
+                <span className="mx-6 sm:mx-10 md:mx-14 inline-block font-sans text-[clamp(24px,5vw,72px)] text-cyan-400/80 align-middle">
+                  ✦
+                </span>
               </span>
-            </span>
+            ))}
           </div>
 
-          {/* headline */}
-          <h1 className="type-hero mt-7 text-inkdeep">
-            <span className="uf-line">
-              <span
-                className="font-condensed block text-[clamp(42px,7.6vw,112px)]"
-                style={{ animationDelay: "120ms" }}
-              >
-                High-Ticket Clients,
+          {/* Set 2 (Identical duplicate for seamless mathematical infinite loop) */}
+          <div className="flex shrink-0 items-center" aria-hidden="true">
+            {[
+              "UNFORGETTABLE",
+              "THE TOP 1%",
+              "ACQUISITION",
+              "UNFORGETTABLE",
+              "UNSTOPPABLE",
+              "HIGH-TICKET",
+              "ARCHITECTING",
+              "UNFORGETTABLE",
+            ].map((word, i) => (
+              <span key={`s2-${i}`} className="flex items-center">
+                <span className="font-['Anton',sans-serif] uppercase tracking-[-0.015em] leading-[0.84] text-white text-[clamp(60px,16vw,220px)] select-none drop-shadow-[0_25px_60px_rgba(0,0,0,0.95)]">
+                  {word}
+                </span>
+                <span className="mx-6 sm:mx-10 md:mx-14 inline-block font-sans text-[clamp(24px,5vw,72px)] text-cyan-400/80 align-middle">
+                  ✦
+                </span>
               </span>
-            </span>
-            <span className="uf-line">
-              <span
-                className="font-editorial block text-mint-deep text-[clamp(36px,6.7vw,99px)]"
-                style={{ animationDelay: "280ms" }}
-              >
-                Booked On Autopilot.
-              </span>
-            </span>
-          </h1>
-
-          {/* subhead + CTAs */}
-          <div className="mt-9 flex flex-col gap-9 lg:flex-row lg:items-end lg:justify-between">
-            <div className="uf-line max-w-[52ch]">
-              <p
-                className="font-body text-[16px] leading-[1.62] text-inkdeep/70 md:text-[18px]"
-                style={{ animationDelay: "440ms" }}
-              >
-                We build and run the whole system — pages, follow-up, CRM.
-                You never touch the tech.
-              </p>
-            </div>
-
-            <div className="uf-line shrink-0">
-              <div
-                className="flex flex-wrap items-center gap-3"
-                style={{ animationDelay: "580ms" }}
-              >
-                <Magnetic>
-                  <a href="#door" className="btn-gold">
-                    Book the call
-                  </a>
-                </Magnetic>
-                <Magnetic strength={0.22}>
-                  <a href="#work" className="btn-ghost">
-                    See the work
-                  </a>
-                </Magnetic>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* proof strip */}
-      <div className="relative z-10 border-t rule-light">
-        <ul className="grid grid-cols-2 md:grid-cols-4">
-          {PROOF.map(([num, label], i) => (
-            <li
-              key={label}
-              className={`px-6 py-5 md:px-8 md:py-6 ${
-                i > 0 ? "md:border-l md:rule-light" : ""
-              } ${i === 1 ? "border-l rule-light md:border-l" : ""} ${
-                i >= 2 ? "border-t rule-light md:border-t-0" : ""
-              }`}
-            >
-              <span className="tnum font-condensed block text-[22px] text-inkdeep md:text-[27px]">
-                {num}
-              </span>
-              <span className="mt-0.5 block font-mono text-[9.5px] uppercase tracking-[0.16em] text-inkdeep/50">
-                {label}
-              </span>
-            </li>
-          ))}
-        </ul>
+      {/* 5. SUBTITLE */}
+      <div className="relative z-20 mx-auto px-4 sm:px-6 text-center max-w-[900px] w-full pb-6 pointer-events-none">
+        <p className="font-mono text-[10px] sm:text-[12px] md:text-[13px] tracking-[0.28em] sm:tracking-[0.34em] uppercase text-white/60 pointer-events-auto">
+          AWARD-WINNING CLIENT ACQUISITION ARCHITECTURE · EST. 2024
+        </p>
+      </div>
+
+      {/* 6. 3-COLUMN CAPABILITY BAR (Deep Black Glass with Subtle Hairline Dividers) */}
+      <div className="relative z-20 border-t border-white/[0.08] bg-[#050508]/80 backdrop-blur-xl">
+        <div className="mx-auto max-w-[1360px] px-4 sm:px-6 md:px-12">
+          <div className="grid grid-cols-1 divide-y divide-white/[0.08] md:grid-cols-3 md:divide-x md:divide-y-0">
+            {CAPABILITIES.map((c) => (
+              <a
+                key={c.title}
+                href={c.href}
+                className="group flex items-center justify-between py-5 sm:py-6 px-4 md:px-8 transition-all duration-300 hover:bg-white/[0.02]"
+              >
+                <div className="flex items-center gap-3.5 sm:gap-4">
+                  {/* Floating 3D glass asset */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={c.iconSrc}
+                    alt={c.title}
+                    className="h-11 w-11 sm:h-12 sm:w-12 md:h-14 md:w-14 shrink-0 object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)] transition-transform duration-300 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="text-left">
+                    <h3 className="font-sans text-[14.5px] sm:text-[15.5px] md:text-[16px] font-semibold text-white transition-colors group-hover:text-sky-300">
+                      {c.title}
+                    </h3>
+                    <p className="mt-0.5 font-sans text-[12px] sm:text-[12.5px] text-slate-400 font-normal">
+                      {c.subtitle}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Sleek diagonal arrow */}
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4 sm:h-5 sm:w-5 shrink-0 text-slate-400 transition-all duration-200 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                >
+                  <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

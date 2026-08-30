@@ -1,24 +1,41 @@
-@import url("https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600&f[]=satoshi@400,500,600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Oswald:wght@500;600&family=Instrument+Serif:ital@0;1&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --ink: #0A0908;
-  --slate: #1A1712;
-  --brass: #D9A441;
-  --brass-lo: #8A7440;
-  --signal: #C0B49A;
-  --bone: #F0EBE2;
-  --mute: #8F887C;
+  --ink: #061335;
+  --slate: #0B2052;
+  --cobalt: #1254EC;
+  --cobalt-deep: #0B3BB3;
+  --brass: #1254EC;
+  --brass-lo: #0B3BB3;
+  --signal: #38BDF8;
+  --bone: #FFFFFF;
+  --ice: #EBF2FC;
+  --mute: #8E9EC6;
+  --orbit-radius: 46rem;
+}
+
+@media (max-width: 1280px) {
+  :root { --orbit-radius: 40rem; }
+}
+@media (max-width: 1024px) {
+  :root { --orbit-radius: 34rem; }
+}
+@media (max-width: 768px) {
+  :root { --orbit-radius: 26rem; }
+}
+@media (max-width: 480px) {
+  :root { --orbit-radius: 19rem; }
 }
 
 html {
-  background: var(--ink);
+  background: #020926;
   color: var(--bone);
   scroll-behavior: auto;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 html.lenis,
@@ -33,7 +50,7 @@ html.lenis body {
 }
 
 body {
-  font-family: "Satoshi", system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--ink);
   color: var(--bone);
   -webkit-font-smoothing: antialiased;
@@ -41,8 +58,8 @@ body {
 }
 
 ::selection {
-  background: rgba(224, 163, 64, 0.35);
-  color: var(--bone);
+  background: rgba(18, 84, 236, 0.45);
+  color: #ffffff;
 }
 
 /* Accessibility: focus ring is a 2px --signal outline at 3px offset */
@@ -53,20 +70,24 @@ body {
 }
 
 .font-display {
-  font-family: "General Sans", system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
 }
 .font-body {
-  font-family: "Satoshi", system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+.font-sans {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
 }
 .font-mono {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: 'Plus Jakarta Sans', 'Inter', monospace;
 }
 
 .eyebrow {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 12px;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   color: var(--mute);
 }
 
@@ -245,55 +266,80 @@ body {
 /* ---- Editorial (UF) design language ---- */
 
 .font-condensed {
-  font-family: "Oswald", "Arial Narrow", sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 .font-editorial {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
-/* Light (bone) sections */
+/* Light (ice blue / pure white) sections */
 .uf-light {
-  background: #EAE4D8;
-  color: #0D0C0A;
+  background: #EBF2FC;
+  color: #070B1E;
 }
+/* Deep space cosmic navy sections */
 .uf-dark {
-  background: #0D0C0A;
-  color: #F0EBE2;
+  background: #061335;
+  color: #FFFFFF;
 }
+/* Halo Lab signature electric royal blue section */
+.uf-cobalt {
+  background: #1254EC;
+  color: #FFFFFF;
+}
+
+/* Explicit Halo Lab color utility overrides */
+.bg-cobalt { background-color: #1254EC !important; }
+.bg-cobalt-deep { background-color: #0B3BB3 !important; }
+.bg-navy { background-color: #061335 !important; }
+.bg-navy-dark { background-color: #020926 !important; }
+.bg-navy-rich { background-color: #072151 !important; }
+.bg-navy-surface { background-color: #0B2256 !important; }
+.bg-ice { background-color: #EBF2FC !important; }
+
+.text-cobalt { color: #1254EC !important; }
+.text-sky { color: #38BDF8 !important; }
+.text-bone { color: #FFFFFF !important; }
+.text-mute { color: #8E9EC6 !important; }
+.text-mint { color: #38BDF8 !important; }
+.text-mint-deep { color: #1254EC !important; }
+.text-brass { color: #1254EC !important; }
+.text-inkdeep { color: #061335 !important; }
 
 /* numbered section eyebrow: ( 03 ) THE HEADCOUNT */
 .uf-eyebrow {
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   font-size: 11px;
-  letter-spacing: 0.22em;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
-/* mint pill button */
+/* cobalt pill button */
 .uf-pill {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   border-radius: 999px;
-  background: #D9A441;
-  color: #0D0C0A;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 14px 26px;
+  background: #1254EC;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  padding: 13px 24px;
+  box-shadow: 0 4px 20px rgba(18, 84, 236, 0.35);
   transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms;
 }
 .uf-pill:hover {
   transform: scale(1.04);
-  box-shadow: 0 0 32px rgba(63, 224, 176, 0.35);
+  box-shadow: 0 0 32px rgba(18, 84, 236, 0.65);
 }
 
 /* scroll word-reveal: words start dim, light up in order */
@@ -382,9 +428,9 @@ body {
   inset: -50%;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.32;
+  opacity: 0.15;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
+  mix-blend-mode: overlay;
   animation: grain-shift 6s steps(6) infinite;
 }
 @keyframes grain-shift {
@@ -422,9 +468,9 @@ body {
   font-feature-settings: "tnum" 1;
 }
 
-/* Hairline rules that match the paper/ink tone */
-.rule-light { border-color: rgba(13, 12, 10, 0.14); }
-.rule-dark { border-color: rgba(240, 235, 226, 0.12); }
+/* Hairline rules */
+.rule-light { border-color: rgba(18, 84, 236, 0.12); }
+.rule-dark { border-color: rgba(255, 255, 255, 0.10); }
 
 /* Mask reveal: text/blocks wipe up from a clipped edge */
 .mask-up { overflow: hidden; display: block; }
@@ -474,7 +520,7 @@ body {
   transform-origin: left;
 }
 
-/* Primary button: gold fill wipes in from the bottom on hover */
+/* Primary button: Electric cobalt blue with luminous hover glow */
 .btn-gold {
   position: relative;
   display: inline-flex;
@@ -483,61 +529,69 @@ body {
   gap: 10px;
   overflow: hidden;
   border-radius: 999px;
-  background: #d9a441;
-  color: #0d0c0a;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  padding: 17px 32px;
+  background: #1254EC;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  padding: 14px 28px;
   isolation: isolate;
-  transition: color 320ms ease;
+  box-shadow: 0 4px 24px rgba(18, 84, 236, 0.4);
+  transition: transform 260ms ease, box-shadow 260ms ease, background 260ms ease;
 }
 .btn-gold::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: #0d0c0a;
+  background: #0B3BB3;
   transform: translateY(101%);
   transition: transform 460ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-.btn-gold:hover { color: #f0ebe2; }
+.btn-gold:hover {
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(18, 84, 236, 0.65);
+}
 .btn-gold:hover::before { transform: translateY(0); }
 
-/* Ghost button on paper */
+/* Ghost button */
 .btn-ghost {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   border-radius: 999px;
-  border: 1px solid rgba(13, 12, 10, 0.28);
-  color: #0d0c0a;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  padding: 16px 30px;
-  transition: border-color 260ms ease, background 260ms ease;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  padding: 14px 28px;
+  transition: border-color 260ms ease, background 260ms ease, color 260ms ease;
 }
 .btn-ghost:hover {
-  border-color: rgba(13, 12, 10, 0.7);
-  background: rgba(13, 12, 10, 0.04);
+  border-color: #38BDF8;
+  background: rgba(56, 189, 248, 0.1);
+  color: #38BDF8;
 }
 .uf-dark .btn-ghost {
-  border-color: rgba(240, 235, 226, 0.26);
-  color: #f0ebe2;
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
 }
 .uf-dark .btn-ghost:hover {
-  border-color: rgba(240, 235, 226, 0.7);
-  background: rgba(240, 235, 226, 0.05);
+  border-color: #38BDF8;
+  background: rgba(56, 189, 248, 0.08);
 }
 
 /* Availability dot */
 @keyframes live-dot {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 164, 65, 0.55); }
-  50% { box-shadow: 0 0 0 5px rgba(217, 164, 65, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.8); }
+  50% { box-shadow: 0 0 0 5px rgba(56, 189, 248, 0); }
 }
 .live-dot { animation: live-dot 2.4s ease-in-out infinite; }
 

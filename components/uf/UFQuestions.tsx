@@ -36,20 +36,20 @@ export default function UFQuestions() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="uf-light relative overflow-hidden py-[16vh]">
+    <section id="faq" className="uf-light relative overflow-hidden bg-gradient-to-b from-[#FFFFFF] via-[#F3F7FD] to-[#EBF2FC] py-[18vh] text-[#070B1E]">
       <ContourBG tone="light" />
       <div className="relative mx-auto max-w-[1100px] px-6 md:px-14">
         <div className="grid gap-12 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
           <div className="md:sticky md:top-28 md:self-start">
-            <p className="uf-eyebrow text-mint-deep">( 08 ) — The Questions</p>
-            <h2 className="type-lg mt-6 text-inkdeep">
+            <p className="uf-eyebrow text-cobalt font-bold tracking-[0.16em] font-sans">( 07 ) — The Questions</p>
+            <h2 className="type-lg mt-6 text-[#070B1E]">
               <Reveal as="span">
-                <span className="font-condensed block text-[clamp(36px,4.6vw,68px)]">
+                <span className="font-sans block text-[clamp(36px,4.6vw,68px)] font-extrabold text-[#070B1E] tracking-tight leading-[1.05]">
                   Before You
                 </span>
               </Reveal>
               <Reveal as="span" delay={110}>
-                <span className="font-editorial block text-mint-deep text-[clamp(30px,3.8vw,56px)]">
+                <span className="font-sans block text-cobalt text-[clamp(30px,3.8vw,56px)] font-bold tracking-tight">
                   Book.
                 </span>
               </Reveal>
@@ -60,7 +60,7 @@ export default function UFQuestions() {
             {QA.map((item, i) => {
               const isOpen = open === i;
               return (
-                <div key={item.q} className="border-b rule-light">
+                <div key={item.q} className="border-b border-blue-200/60">
                   <button
                     className="group flex w-full items-start justify-between gap-8 py-6 text-left"
                     aria-expanded={isOpen}
@@ -69,12 +69,12 @@ export default function UFQuestions() {
                     onClick={() => setOpen(isOpen ? null : i)}
                   >
                     <span className="flex gap-5">
-                      <span className="tnum mt-1 font-mono text-[11px] text-inkdeep/40">
+                      <span className="tnum mt-1 font-sans text-[13px] text-cobalt font-bold">
                         0{i + 1}
                       </span>
                       <span
-                        className={`font-body text-[17px] font-medium leading-[1.4] transition-colors duration-300 md:text-[19px] ${
-                          isOpen ? "text-mint-deep" : "text-inkdeep"
+                        className={`font-sans text-[17px] font-semibold leading-[1.4] transition-colors duration-300 md:text-[19px] ${
+                          isOpen ? "text-cobalt font-semibold" : "text-[#070B1E] group-hover:text-cobalt"
                         }`}
                       >
                         {item.q}
@@ -88,8 +88,8 @@ export default function UFQuestions() {
                         transition: "transform 380ms cubic-bezier(0.16,1,0.3,1)",
                       }}
                     >
-                      <span className="absolute left-1/2 top-0 h-3 w-px -translate-x-1/2 bg-inkdeep/60" />
-                      <span className="absolute left-0 top-1/2 h-px w-3 -translate-y-1/2 bg-inkdeep/60" />
+                      <span className={`absolute left-1/2 top-0 h-3 w-px -translate-x-1/2 ${isOpen ? "bg-cobalt" : "bg-[#070B1E]/60"}`} />
+                      <span className={`absolute left-0 top-1/2 h-px w-3 -translate-y-1/2 ${isOpen ? "bg-cobalt" : "bg-[#070B1E]/60"}`} />
                     </span>
                   </button>
                   <div
@@ -102,7 +102,7 @@ export default function UFQuestions() {
                       opacity: isOpen ? 1 : 0,
                     }}
                   >
-                    <p className="max-w-[58ch] overflow-hidden pl-10 font-body text-[15px] leading-[1.68] text-inkdeep/65">
+                    <p className="max-w-[58ch] overflow-hidden pl-10 font-sans text-[15px] leading-[1.68] text-slate-600">
                       <span className="block pb-7">{item.a}</span>
                     </p>
                   </div>

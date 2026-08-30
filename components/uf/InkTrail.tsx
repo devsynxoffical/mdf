@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { playWindMove } from "@/components/audio/SoundToggle";
 
 type Stamp = {
   x: number;
@@ -100,6 +101,9 @@ export default function InkTrail() {
         if (++moveCount % 6 === 0) {
           stamp(x + (Math.random() - 0.5) * 40, y + (Math.random() - 0.5) * 40, 2.2, true);
         }
+        if (speed > 5) {
+          playWindMove(speed * 0.05, (x / width - 0.5) * 2);
+        }
       }
       last = { x, y };
     };
@@ -122,15 +126,16 @@ export default function InkTrail() {
         if (!interactive) st.life = Math.max(st.life, 0.55); // freeze static frame
         const r = st.gold ? st.r : st.r * (1.15 - st.life * 0.15);
         if (st.gold) {
-          ctx.globalAlpha = st.life * 0.85;
-          ctx.fillStyle = "#D9A441";
+          ctx.globalAlpha = st.life * 0.95;
+          ctx.fillStyle = Math.random() > 0.4 ? "#60A5FA" : "#FFAE33";
           ctx.beginPath();
           ctx.arc(st.x, st.y, r, 0, Math.PI * 2);
           ctx.fill();
         } else {
           const g = ctx.createRadialGradient(st.x, st.y, 0, st.x, st.y, r);
-          g.addColorStop(0, `rgba(15,13,10,${0.20 * st.life})`);
-          g.addColorStop(1, "rgba(15,13,10,0)");
+          g.addColorStop(0, `rgba(56,189,248,${0.32 * st.life})`);
+          g.addColorStop(0.45, `rgba(18,84,236,${0.22 * st.life})`);
+          g.addColorStop(1, "rgba(5,8,20,0)");
           ctx.globalAlpha = 1;
           ctx.fillStyle = g;
           ctx.beginPath();

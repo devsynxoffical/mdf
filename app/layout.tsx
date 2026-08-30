@@ -3,6 +3,7 @@ import "./globals.css";
 import ScrollProvider from "@/components/providers/ScrollProvider";
 import MinimalNav from "@/components/MinimalNav";
 import Grain from "@/components/uf/Grain";
+import SoundToggle from "@/components/audio/SoundToggle";
 
 export const metadata: Metadata = {
   title: "Million Dollar Funnel™ — Predictable High-Ticket Client Acquisition",
@@ -15,11 +16,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="bg-ink text-bone">
+      <body className="bg-[#000000] text-white selection:bg-[#1254EC]/40 selection:text-white">
         <ScrollProvider>
           <Grain />
           <MinimalNav />
           <main className="relative">{children}</main>
+          <SoundToggle />
         </ScrollProvider>
       </body>
     </html>

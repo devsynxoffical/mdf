@@ -60,14 +60,14 @@ export default function UFLeaks() {
   }, []);
 
   return (
-    <section className="uf-dark relative pb-[24vh] pt-[10vh]">
+    <section className="uf-dark relative bg-gradient-to-b from-[#072151] via-[#05163F] to-[#04112E] pb-[24vh] pt-[14vh]">
       <div className="mx-auto max-w-[900px] px-6 md:px-10">
-        <p className="uf-eyebrow text-mint">( 02 ) — The Leaks</p>
-        <h2 className="mt-6 leading-[0.86] text-bone">
-          <span className="font-condensed block text-[clamp(44px,7vw,96px)]">
+        <p className="uf-eyebrow text-sky tracking-[0.16em] font-sans">( 02 ) — The Leaks</p>
+        <h2 className="mt-6 leading-[0.96] text-white">
+          <span className="font-sans block text-[clamp(44px,7vw,96px)] font-extrabold tracking-tight text-white">
             Where Funnels
           </span>
-          <span className="font-editorial block text-mint text-[clamp(36px,5.6vw,78px)]">
+          <span className="font-sans block text-sky text-[clamp(36px,5.6vw,78px)] font-bold tracking-tight">
             Leak.
           </span>
         </h2>
@@ -76,15 +76,15 @@ export default function UFLeaks() {
           {LEAKS.map((l) => (
             <li
               key={l.num}
-              className="grid grid-cols-[52px_1fr] gap-6 border-t border-bone/[0.09] py-8 md:grid-cols-[90px_1fr]"
+              className="grid grid-cols-[52px_1fr] gap-6 border-t border-white/[0.09] py-8 md:grid-cols-[90px_1fr]"
               style={{ opacity: 0.14 }}
             >
-              <span className="font-mono text-[13px] text-mint pt-1.5">{l.num}</span>
+              <span className="font-sans text-[14px] text-sky font-bold pt-1.5">{l.num}</span>
               <div>
-                <h3 className="font-body text-[20px] md:text-[24px] font-semibold text-bone">
+                <h3 className="font-sans text-[20px] md:text-[24px] font-bold text-white tracking-tight">
                   {l.title}
                 </h3>
-                <p className="mt-2 max-w-[52ch] font-body text-[16px] leading-[1.55] text-mute">
+                <p className="mt-2 max-w-[52ch] font-sans text-[16px] font-normal leading-[1.55] text-slate-300">
                   {l.body}
                 </p>
               </div>

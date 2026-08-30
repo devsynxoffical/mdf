@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import LivingWave from "./LivingWave";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -82,34 +83,31 @@ export default function UFProcess() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="uf-dark relative overflow-hidden">
+    <section ref={sectionRef} className="uf-dark relative bg-gradient-to-b from-[#020926] via-[#05163F] to-[#072151] overflow-hidden">
       <div className="flex h-auto flex-col py-[12vh] md:h-screen md:py-0">
         {/* header + progress line */}
         <div className="px-6 pt-0 md:px-14 md:pt-16">
-          <p className="uf-eyebrow text-mint">( 07 ) — The Process</p>
-          <h2 className="mt-5 leading-[0.86]">
-            <span className="font-condensed block text-bone text-[clamp(40px,5.4vw,72px)]">
+          <p className="uf-eyebrow text-sky tracking-[0.16em] font-sans">( 06 ) — The Process</p>
+          <h2 className="mt-5 leading-[0.96]">
+            <span className="font-sans block text-white text-[clamp(40px,5.4vw,72px)] font-extrabold tracking-tight">
               Start To
             </span>
-            <span className="font-editorial block text-mint text-[clamp(32px,4.2vw,58px)]">
+            <span className="font-sans block text-sky text-[clamp(32px,4.2vw,58px)] font-bold tracking-tight drop-shadow-[0_0_25px_rgba(56,189,248,0.25)]">
               Finish.
             </span>
           </h2>
-          {/* traveling squiggle */}
-          <div className="relative mt-8 hidden h-10 md:block">
-            <span className="absolute left-0 right-0 top-1/2 h-px bg-bone/15" />
+          {/* Traveling Living Wave Rail */}
+          <div className="relative mt-8 hidden h-11 md:block">
+            {/* Ambient glowing track rail */}
+            <span className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[1.5px] bg-gradient-to-r from-sky-400/10 via-sky-400/25 to-sky-400/10" />
+            <span className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[6px] bg-sky-400/5 blur-sm" />
+
             <div
               ref={squiggleRef}
-              className="absolute top-0 h-10 w-[140px] -translate-x-1/2 transition-[left] duration-150 ease-linear"
+              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 transition-[left] duration-150 ease-linear pointer-events-none"
               style={{ left: "8%" }}
             >
-              <svg viewBox="0 0 140 40" fill="none" className="h-full w-full">
-                <path
-                  d="M0,20 C12,20 14,6 24,6 C36,6 36,34 48,34 C60,34 60,10 70,10 C80,10 80,30 92,30 C104,30 104,14 116,14 C128,14 130,20 140,20"
-                  stroke="#D9A441"
-                  strokeWidth="1.5"
-                />
-              </svg>
+              <LivingWave width={180} height={44} />
             </div>
           </div>
         </div>
@@ -128,19 +126,19 @@ export default function UFProcess() {
                 <div className="relative">
                   <span
                     aria-hidden
-                    className="font-condensed block leading-[0.8] text-mint text-[clamp(110px,22vh,230px)]"
+                    className="font-sans font-black block leading-[0.8] text-cobalt/30 text-[clamp(110px,22vh,230px)] select-none"
                   >
                     {s.num}
                   </span>
                   <h3 className="mt-2 whitespace-nowrap leading-none">
-                    <span className="font-condensed text-bone text-[clamp(30px,4.6vw,64px)]">
+                    <span className="font-sans text-white text-[clamp(30px,4.6vw,64px)] font-extrabold tracking-tight">
                       {s.plain}{" "}
                     </span>
-                    <span className="font-editorial text-bone/90 text-[clamp(26px,4.2vw,58px)]">
+                    <span className="font-sans text-sky text-[clamp(26px,4.2vw,58px)] font-bold tracking-tight">
                       {s.italic}
                     </span>
                   </h3>
-                  <p className="mt-6 max-w-[46ch] font-body text-[15px] leading-[1.65] text-mute">
+                  <p className="mt-6 max-w-[46ch] font-sans text-[15px] font-normal leading-[1.65] text-slate-300">
                     {s.body}
                   </p>
                 </div>
@@ -150,11 +148,11 @@ export default function UFProcess() {
             {/* end slide */}
             <article className="shrink-0 md:flex md:h-full md:w-[70vw] md:items-center md:px-[8vw]">
               <div>
-                <h3 className="leading-[0.86]">
-                  <span className="font-condensed block text-bone text-[clamp(40px,6vw,88px)]">
+                <h3 className="leading-[0.96]">
+                  <span className="font-sans block text-white text-[clamp(40px,6vw,88px)] font-extrabold tracking-tight">
                     One Funnel
                   </span>
-                  <span className="font-editorial block text-mint text-[clamp(32px,4.8vw,70px)]">
+                  <span className="font-sans block text-sky text-[clamp(32px,4.8vw,70px)] font-bold tracking-tight drop-shadow-[0_0_25px_rgba(56,189,248,0.25)]">
                     At A Time.
                   </span>
                 </h3>

@@ -3,6 +3,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { playTypingClick } from "@/components/audio/SoundToggle";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -14,9 +15,8 @@ export type RevealPart =
 
 /**
  * Large statement text whose words light up one by one as the user scrolls
- * through the section (scrubbed, not time-based). Accent words render in
- * mint; parts with `img` render as small inline photo chips that reveal
- * in sequence with the words.
+ * through the section. Emits the tactile typing "crick-crick" sound from
+ * hire.unickfunnel.com as words illuminate.
  */
 export default function WordReveal({
   parts,
@@ -26,6 +26,7 @@ export default function WordReveal({
   className?: string;
 }) {
   const ref = useRef<HTMLParagraphElement>(null);
+  const lastProgressRef = useRef(0);
 
   useEffect(() => {
     const el = ref.current;
@@ -42,8 +43,15 @@ export default function WordReveal({
       scrollTrigger: {
         trigger: el,
         start: "top 78%",
-        end: "bottom 42%",
+        end: "bottom 38%",
         scrub: 0.4,
+        onUpdate: (self) => {
+          const delta = Math.abs(self.progress - lastProgressRef.current);
+          if (delta > 0.015) {
+            lastProgressRef.current = self.progress;
+            playTypingClick(0.85);
+          }
+        },
       },
     });
     return () => {
@@ -83,7 +91,11 @@ export default function WordReveal({
       rendered.push(
         <span
           key={`${pi}-${wi}`}
-          className={`wr-word inline ${part.accent ? "text-mint" : ""}`}
+          className={`wr-word inline ${
+            part.accent
+              ? "text-[#38BDF8] font-bold drop-shadow-[0_0_25px_rgba(56,189,248,0.5)]"
+              : "text-white"
+          }`}
         >
           {word}
         </span>

@@ -1,153 +1,295 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Reveal from "./Reveal";
+import { useState } from "react";
+import { playTick } from "@/components/audio/SoundToggle";
 
-const FIGURES = [
-  { value: 255130, prefix: "$", label: "Ad spend managed" },
-  { value: 847307, prefix: "$", label: "Revenue collected" },
-  { value: 3.32, decimals: 2, label: "Return on ad spend" },
-  { value: 13630, label: "Sales attributed" },
-];
-
-const BEFORE = [
-  "No consistent sales",
-  "No tracking",
-  "Leaks on every campaign",
-];
-
-const AFTER = [
-  "One clear path",
-  "Automated follow-up",
-  "Predictable and scalable",
-];
-
-function Figure({
-  value,
-  prefix = "",
-  decimals = 0,
-  label,
-  delay,
-}: {
-  value: number;
-  prefix?: string;
-  decimals?: number;
-  label: string;
-  delay: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(0);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setShown(value);
-      return;
-    }
-    let raf = 0;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        io.disconnect();
-        const t0 = performance.now() + delay;
-        const tick = (now: number) => {
-          const t = Math.min(1, Math.max(0, (now - t0) / 1400));
-          setShown(value * (1 - Math.pow(1 - t, 3)));
-          if (t < 1) raf = requestAnimationFrame(tick);
-        };
-        raf = requestAnimationFrame(tick);
-      },
-      { rootMargin: "0px 0px -25% 0px" }
-    );
-    io.observe(el);
-    return () => {
-      io.disconnect();
-      cancelAnimationFrame(raf);
-    };
-  }, [value, delay]);
-
-  return (
-    <div ref={ref} className="border-t rule-dark pt-5">
-      <span className="tnum font-condensed block text-mint text-[clamp(30px,4.4vw,58px)] leading-none">
-        {prefix}
-        {shown.toLocaleString("en-US", {
-          minimumFractionDigits: decimals,
-          maximumFractionDigits: decimals,
-        })}
-      </span>
-      <span className="mt-2.5 block font-mono text-[10px] uppercase tracking-[0.18em] text-mute">
-        {label}
-      </span>
-    </div>
-  );
+interface CaseStudy {
+  id: string;
+  name: string;
+  color: string;
+  textColor: string;
+  subtextColor: string;
+  tagColor: string;
+  description: string;
+  services: string[];
+  location: string;
+  images: string[];
 }
 
-/** (04) The proof — one engagement, in numbers. */
+const CASE_STUDIES: CaseStudy[] = [
+  {
+    id: "meridian",
+    name: "Meridian",
+    color: "#FA4D09", // Vibrant Electric Orange
+    textColor: "#FFFFFF",
+    subtextColor: "rgba(255, 255, 255, 0.85)",
+    tagColor: "rgba(255, 255, 255, 0.75)",
+    description:
+      "Built Meridian's positioning, brand, and website from the ground up, turning a new AI visibility product into a clear category story that drove massive trial demand at launch.",
+    services: [
+      "BRANDING",
+      "WEB DESIGN",
+      "WEBFLOW DEVELOPMENT",
+      "STRATEGY",
+    ],
+    location: "NEW YORK, USA",
+    images: [
+      "/images/shots/shot1.webp",
+      "/images/shots/shot2.webp",
+      "/images/shots/shot3.webp",
+    ],
+  },
+  {
+    id: "heimdall-power",
+    name: "Heimdall Power",
+    color: "#E8431E", // Vibrant Vermilion / Red-Orange
+    textColor: "#FFFFFF",
+    subtextColor: "rgba(255, 255, 255, 0.85)",
+    tagColor: "rgba(255, 255, 255, 0.75)",
+    description:
+      "Turned complex grid technology into a clear, compelling brand story for Heimdall Power, making its vision for a more efficient energy grid easier to understand.",
+    services: [
+      "3D ANIMATIONS",
+      "BRANDING",
+      "CREATIVE DEVELOPMENT",
+      "WEB DESIGN",
+      "WEBFLOW DEVELOPMENT",
+    ],
+    location: "NORWAY",
+    images: [
+      "/images/shots/shot4.webp",
+      "/images/shots/shot5.webp",
+      "/images/shots/shot6.webp",
+    ],
+  },
+  {
+    id: "cula",
+    name: "Cula",
+    color: "#3A4B62", // Slate Steel Blue
+    textColor: "#FFFFFF",
+    subtextColor: "rgba(255, 255, 255, 0.85)",
+    tagColor: "rgba(255, 255, 255, 0.75)",
+    description:
+      "Made Cula's carbon removal platform tangible and easy to understand, turning an invisible technical process into a clear and memorable digital story.",
+    services: [
+      "WEB DESIGN",
+      "WEBFLOW DEVELOPMENT",
+      "CREATIVE DEVELOPMENT",
+      "3D ANIMATIONS",
+    ],
+    location: "BERLIN, GERMANY",
+    images: [
+      "/images/shots/shot7.webp",
+      "/images/shots/shot8.webp",
+      "/images/shots/shot9.webp",
+    ],
+  },
+  {
+    id: "space-capital",
+    name: "Space Capital",
+    color: "#0B1437", // Deep Space Midnight Navy
+    textColor: "#FFFFFF",
+    subtextColor: "rgba(255, 255, 255, 0.85)",
+    tagColor: "rgba(255, 255, 255, 0.75)",
+    description:
+      "Repositioned Space Capital as the reference standard in space venture capital, bringing its portfolio, research, and point of view together under one authoritative brand.",
+    services: [
+      "3D ANIMATIONS",
+      "BRANDING",
+      "CREATIVE DEVELOPMENT",
+      "STRATEGY",
+      "WEB DESIGN",
+    ],
+    location: "NEW YORK, USA",
+    images: [
+      "/images/shots/shot10.webp",
+      "/images/shots/shot11.webp",
+      "/images/shots/shot12.webp",
+    ],
+  },
+  {
+    id: "exebenus",
+    name: "Exebenus",
+    color: "#2D1B54", // Rich Imperial Purple
+    textColor: "#FFFFFF",
+    subtextColor: "rgba(255, 255, 255, 0.85)",
+    tagColor: "rgba(255, 255, 255, 0.75)",
+    description:
+      "Turned a highly technical drilling intelligence platform into a clear, credible story built around what matters most in the category: precision, proof, and trust.",
+    services: [
+      "3D ANIMATIONS",
+      "CREATIVE DEVELOPMENT",
+      "BRANDING",
+      "STRATEGY",
+      "WEB DESIGN",
+    ],
+    location: "TEXAS, USA",
+    images: [
+      "/images/shots/shot13.webp",
+      "/images/shots/shot14.webp",
+      "/images/shots/shot15.webp",
+    ],
+  },
+  {
+    id: "arqitel",
+    name: "Arqitel",
+    color: "#0F3332", // Deep Teal Emerald
+    textColor: "#FFFFFF",
+    subtextColor: "rgba(255, 255, 255, 0.85)",
+    tagColor: "rgba(255, 255, 255, 0.75)",
+    description:
+      "Turned Arqitel's complex mix of data science, real estate, and investment into a clear, differentiated story that positions the firm as a leader in its category.",
+    services: [
+      "WEB DESIGN",
+      "WEBFLOW DEVELOPMENT",
+      "CREATIVE DEVELOPMENT",
+      "3D ANIMATIONS",
+    ],
+    location: "CALIFORNIA, USA",
+    images: [
+      "/images/shots/shot16.webp",
+      "/images/shots/shot1.webp",
+      "/images/shots/shot4.webp",
+    ],
+  },
+];
+
+/**
+ * Interactive Expandable Case Studies Accordion Showcase
+ * Matching reference screenshot exactly:
+ * - Editorial serif headline & subtitle
+ * - Clean row list with client name, description, tags & location
+ * - Interactive expanding row revealing vibrant client brand color & 3-mockup showcase
+ */
 export default function UFProof() {
+  const [activeId, setActiveId] = useState<string>("meridian");
+
+  // Hover to expand without clicking, with clean tactile tick sound
+  const handleHover = (id: string) => {
+    if (activeId !== id) {
+      setActiveId(id);
+      playTick();
+    }
+  };
+
   return (
-    <section id="proof" className="uf-dark relative py-[16vh]">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-14">
-        <p className="uf-eyebrow text-mint">( 04 ) — The Proof</p>
+    <section
+      id="proof"
+      className="relative overflow-hidden bg-[#0A0D14] pt-28 pb-36 text-white"
+    >
+      <div className="mx-auto max-w-[1400px] px-6 md:px-14">
+        {/* Section Header with Editorial Serif Typography */}
+        <div className="max-w-[1020px]">
+          <h2 className="font-serif text-[clamp(40px,5.8vw,88px)] font-normal leading-[1.04] tracking-[-0.02em] text-white">
+            We help the outside world see the company you&apos;ve actually become.
+          </h2>
 
-        <div className="mt-6 grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
-          <div>
-            <h2 className="type-xl text-bone">
-              <Reveal as="span">
-                <span className="font-condensed block text-[clamp(38px,5.6vw,84px)]">
-                  One Client.
-                </span>
-              </Reveal>
-              <Reveal as="span" delay={110}>
-                <span className="font-editorial block text-mint text-[clamp(32px,4.6vw,68px)]">
-                  Nineteen Months.
-                </span>
-              </Reveal>
-            </h2>
+          <p className="mt-8 max-w-[620px] font-sans text-[15px] sm:text-[16px] font-normal leading-[1.6] text-slate-400">
+            From AI and energy infrastructure to climate tech and the space economy,
+            we help ambitious technology companies turn complicated products into clear,
+            compelling brands.
+          </p>
+        </div>
 
-            {/* before / after ledger */}
-            <div className="mt-10 grid gap-8 sm:grid-cols-2">
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-mute/70">
-                  Before
-                </p>
-                <ul className="mt-4 space-y-3">
-                  {BEFORE.map((b) => (
-                    <li
-                      key={b}
-                      className="flex gap-3 font-body text-[14px] leading-[1.5] text-mute"
-                    >
-                      <span className="mt-[7px] h-px w-3 shrink-0 bg-mute/50" aria-hidden />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+        {/* Case Studies Interactive List */}
+        <div className="mt-20 border-t border-white/10">
+          {CASE_STUDIES.map((c) => {
+            const isActive = activeId === c.id;
+
+            return (
+              <div
+                key={c.id}
+                onMouseEnter={() => handleHover(c.id)}
+                onClick={() => handleHover(c.id)}
+                className={`group relative cursor-pointer border-b border-white/10 transition-colors duration-500 overflow-hidden ${
+                  isActive ? "py-10 md:py-14" : "py-7 md:py-9 hover:bg-white/[0.02]"
+                }`}
+                style={{
+                  backgroundColor: isActive ? c.color : "transparent",
+                }}
+              >
+                <div className="mx-auto px-4 md:px-8">
+                  {/* Top Metadata Row (Client, Summary, Services/Location) */}
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-[260px_1fr_220px] items-start">
+                    {/* Column 1: Client Name & Link */}
+                    <div>
+                      <h3 className="font-sans text-[22px] md:text-[25px] font-bold tracking-tight text-white">
+                        {c.name}
+                      </h3>
+
+                      {isActive && (
+                        <div className="mt-6">
+                          <a
+                            href="#door"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-2 font-sans text-[13px] font-medium tracking-wide text-white underline underline-offset-4 opacity-90 transition-opacity hover:opacity-100"
+                          >
+                            <span>View Case Study</span>
+                            <span className="transition-transform duration-200 group-hover:translate-x-1">
+                              →
+                            </span>
+                          </a>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Column 2: Project Description */}
+                    <div>
+                      <p
+                        className={`font-sans text-[13.5px] sm:text-[14.5px] leading-[1.65] max-w-[540px] ${
+                          isActive ? "text-white/95" : "text-slate-400"
+                        }`}
+                      >
+                        {c.description}
+                      </p>
+                    </div>
+
+                    {/* Column 3: Services & Location */}
+                    <div className="text-left md:text-right">
+                      <div className="flex flex-col gap-1">
+                        {c.services.map((s) => (
+                          <span
+                            key={s}
+                            className={`font-sans text-[10px] font-semibold tracking-[0.14em] uppercase ${
+                              isActive ? "text-white/80" : "text-slate-400"
+                            }`}
+                          >
+                            {s}
+                          </span>
+                        ))}
+                        <span
+                          className={`mt-2 font-sans text-[10px] font-bold tracking-[0.16em] uppercase ${
+                            isActive ? "text-white" : "text-slate-300"
+                          }`}
+                        >
+                          {c.location}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Expanded Visual Gallery (3 High-Definition Mockups) */}
+                  {isActive && (
+                    <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 md:mt-12 animate-fadeIn">
+                      {c.images.map((img, idx) => (
+                        <div
+                          key={idx}
+                          className="relative aspect-[16/10] w-full overflow-hidden rounded-xl sm:rounded-2xl border border-white/20 bg-black/25 shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-transform duration-300 hover:scale-[1.02]"
+                        >
+                          <img
+                            src={img}
+                            alt={`${c.name} Project Mockup ${idx + 1}`}
+                            className="h-full w-full object-cover object-center"
+                            loading="lazy"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-mint">
-                  After
-                </p>
-                <ul className="mt-4 space-y-3">
-                  {AFTER.map((a) => (
-                    <li
-                      key={a}
-                      className="flex gap-3 font-body text-[14px] leading-[1.5] text-bone/85"
-                    >
-                      <span className="mt-[7px] h-px w-3 shrink-0 bg-mint" aria-hidden />
-                      {a}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* figures */}
-          <div className="grid grid-cols-2 gap-x-8 gap-y-10 self-center">
-            {FIGURES.map((f, i) => (
-              <Figure key={f.label} {...f} delay={i * 120} />
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>
