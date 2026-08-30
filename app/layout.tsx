@@ -16,6 +16,26 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener('error', function(e) {
+                if (e.filename && e.filename.indexOf('chrome-extension://') !== -1) {
+                  e.stopImmediatePropagation();
+                  e.preventDefault();
+                }
+              }, true);
+              window.addEventListener('unhandledrejection', function(e) {
+                if (e.reason && (e.reason.stack || '').indexOf('chrome-extension://') !== -1) {
+                  e.stopImmediatePropagation();
+                  e.preventDefault();
+                }
+              }, true);
+            `,
+          }}
+        />
+      </head>
       <body className="bg-[#000000] text-white selection:bg-[#1254EC]/40 selection:text-white">
         <ScrollProvider>
           <Grain />
