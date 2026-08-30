@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,6 +11,7 @@ if (typeof window !== "undefined") {
 export default function LusionAstronautSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -23,12 +24,16 @@ export default function LusionAstronautSection() {
       try {
         const win = iframe.contentWindow as any;
         if (win && win.scrollManager) {
-          // Initialize at the start of the goal section
+          // Immediately position to the astronaut start point
           win.scrollManager.scrollToPixel(7337, true);
         }
       } catch (e) {
         console.warn("Could not init iframe scroll:", e);
       }
+      // Reveal iframe smoothly after 3D scene is positioned
+      setTimeout(() => {
+        setIsReady(true);
+      }, 400);
     };
 
     iframe.addEventListener("load", onIframeLoad);
@@ -73,7 +78,9 @@ export default function LusionAstronautSection() {
         ref={iframeRef}
         src="/lusion_standalone.html"
         title="Lusion 3D Astronaut Interactive Experience"
-        className="h-full w-full border-0 bg-[#050508] pointer-events-none"
+        className={`h-full w-full border-0 bg-[#050508] pointer-events-none transition-opacity duration-700 ${
+          isReady ? "opacity-100" : "opacity-0"
+        }`}
         allow="autoplay; fullscreen"
       />
     </section>
