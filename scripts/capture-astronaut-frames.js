@@ -1,38 +1,25 @@
 /**
  * Lusion Astronaut 60FPS Retina Frame Extraction Pipeline
  * 
- * You can run this anytime by typing:
- *   npm run capture-astronaut
- * 
- * To customize the start, end, resolution, or frame count, simply edit the CONFIG below:
+ * Captures ALL modules:
+ * 1. Tablet with astronaut & Earth inside + "Become Immersive Experiences"
+ * 2. Breakout into space
+ * 3. Cyber Grid Tunnel plunge
+ * 4. Neon Pink Kaleidoscope vortex
+ * 5. Screen glass shatter
+ * 6. Finale with smiling visor, floating pop stickers, and "Let's work together!"
  */
 
 const CONFIG = {
-  // 1. START POINT (Wheel events from the very top of Lusion.co):
-  // 38 = Starts with the full 'Become Immersive Experiences' title + Tablet + Astronaut + Earth
   START_WHEEL: 38,
-
-  // 2. SCROLL DISTANCE (How far to scroll through the full experience):
-  // 146 = Travels all the way through Tablet -> Cyber Tunnel -> Kaleidoscope -> Glass Shatter -> Finale
-  TOTAL_SCROLL_WHEELS: 146,
-
-  // 3. TOTAL FRAMES (Higher = smoother scroll scrubbing):
-  // 85 frames provides buttery smooth 60fps scrubbing with low file size (~3MB total)
-  TOTAL_FRAMES: 85,
-
-  // 4. RESOLUTION & RETINA CLARITY:
-  // 1920x1080 with deviceScaleFactor: 2 captures ultra-sharp 2.8K Retina quality
+  TOTAL_SCROLL_WHEELS: 128,
+  TOTAL_FRAMES: 90,
   VIEWPORT: {
     width: 1920,
     height: 1080,
-    deviceScaleFactor: 2,
+    deviceScaleFactor: 1.5,
   },
-
-  // 5. WEBP COMPRESSION QUALITY (1 to 100):
-  // 94 = Visually lossless, crystal clear textures and typography
-  QUALITY: 94,
-
-  // Destination folder:
+  QUALITY: 92,
   OUTPUT_DIR: 'public/frames/lusion',
 };
 
@@ -42,8 +29,8 @@ const path = require('path');
 
 (async () => {
   console.log('🚀 Starting Astronaut Frame Extractor...');
-  console.log(`📐 Resolution: ${CONFIG.VIEWPORT.width * CONFIG.VIEWPORT.deviceScaleFactor}x${CONFIG.VIEWPORT.height * CONFIG.VIEWPORT.deviceScaleFactor} (Retina 2x)`);
-  console.log(`🎯 Start: Wheel ${CONFIG.START_WHEEL} | Total Distance: ${CONFIG.TOTAL_SCROLL_WHEELS} wheels | Frames: ${CONFIG.TOTAL_FRAMES}`);
+  console.log(`📐 Resolution: ${CONFIG.VIEWPORT.width * CONFIG.VIEWPORT.deviceScaleFactor}x${CONFIG.VIEWPORT.height * CONFIG.VIEWPORT.deviceScaleFactor}`);
+  console.log(`🎯 Start: Wheel ${CONFIG.START_WHEEL} | Total Wheels: ${CONFIG.TOTAL_SCROLL_WHEELS} | Frames: ${CONFIG.TOTAL_FRAMES}`);
 
   const browser = await puppeteer.launch({
     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
@@ -61,29 +48,31 @@ const path = require('path');
   await page.setViewport(CONFIG.VIEWPORT);
 
   console.log('🌐 Loading authentic WebGL engine from lusion.co...');
-  await page.goto('https://lusion.co/', { waitUntil: 'load', timeout: 60000 });
+  await page.goto('https://lusion.co/', { waitUntil: 'domcontentloaded', timeout: 60000 });
   await new Promise((r) => setTimeout(r, 4500));
 
-  // Hide fixed navigation bars, menus, and custom mouse cursors so only pure visuals are captured
+  // Hide fixed navigation bars
   await page.evaluate(() => {
     ['header', '#menu', '.menu', '#cursor', '.cursor', 'nav'].forEach((sel) => {
       document.querySelectorAll(sel).forEach((el) => (el.style.display = 'none'));
     });
   });
 
-  // Fast forward smoothly to the exact Tablet start position
+  // Fast forward to Tablet start position
   console.log(`⏩ Navigating to Start Point (Wheel ${CONFIG.START_WHEEL})...`);
   for (let i = 0; i < CONFIG.START_WHEEL; i++) {
     await page.mouse.wheel({ deltaY: 200 });
-    await new Promise((r) => setTimeout(r, 18));
+    await new Promise((r) => setTimeout(r, 15));
   }
   await new Promise((r) => setTimeout(r, 1200));
 
   fs.mkdirSync(CONFIG.OUTPUT_DIR, { recursive: true });
 
-  // Calculate exact delta per step
-  const stepDelta = (CONFIG.TOTAL_SCROLL_WHEELS * 200) / (CONFIG.TOTAL_FRAMES - 1);
-  console.log(`📸 Capturing ${CONFIG.TOTAL_FRAMES} frames (Step Delta: ${stepDelta.toFixed(1)}px)...`);
+  const totalDelta = CONFIG.TOTAL_SCROLL_WHEELS * 200;
+  const deltaPerStep = totalDelta / (CONFIG.TOTAL_FRAMES - 1);
+  const halfDelta = Math.round(deltaPerStep / 2);
+
+  console.log(`📸 Capturing ${CONFIG.TOTAL_FRAMES} frames through ALL modules (Step Delta: ${deltaPerStep.toFixed(1)}px)...`);
 
   for (let i = 0; i < CONFIG.TOTAL_FRAMES; i++) {
     const pad = String(i).padStart(3, '0');
@@ -95,9 +84,11 @@ const path = require('path');
       type: 'webp',
     });
 
-    // Advance wheel by step delta
-    await page.mouse.wheel({ deltaY: stepDelta });
-    await new Promise((r) => setTimeout(r, 90));
+    // Send two gentle wheel pulses per frame so physics damping never skips modules
+    await page.mouse.wheel({ deltaY: halfDelta });
+    await new Promise((r) => setTimeout(r, 30));
+    await page.mouse.wheel({ deltaY: deltaPerStep - halfDelta });
+    await new Promise((r) => setTimeout(r, 80));
 
     if (i % 15 === 0 || i === CONFIG.TOTAL_FRAMES - 1) {
       console.log(`  ✓ Frame ${i + 1}/${CONFIG.TOTAL_FRAMES} saved.`);
