@@ -8,7 +8,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const TOTAL_FRAMES = 70;
+const TOTAL_FRAMES = 65;
 
 export default function LusionAstronautSection() {
   const containerRef = useRef<HTMLDivElement>(null);
