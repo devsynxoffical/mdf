@@ -156,7 +156,7 @@ export default function UFProcess() {
                     At A Time.
                   </span>
                 </h3>
-                <a href="#door" className="btn-gold mt-8">
+                <a href="/book" className="btn-gold mt-8">
                   Walk me through it
                 </a>
               </div>

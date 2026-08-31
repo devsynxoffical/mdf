@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "capture-astronaut": "node scripts/capture-astronaut-frames.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@react-three/drei": "^9.114.0",

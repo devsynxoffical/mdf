@@ -12,7 +12,7 @@ const CAPABILITIES = [
   {
     title: "Media & Traffic",
     subtitle: "Meta, Google & High-Ticket Ads",
-    href: "#proof",
+    href: "#workproof",
     iconSrc: "/images/hero-link-ico2.png",
   },
   {

@@ -220,7 +220,7 @@ export default function UFProof() {
                       {isActive && (
                         <div className="mt-6">
                           <a
-                            href="#door"
+                            href="/book"
                             onClick={(e) => e.stopPropagation()}
                             className="inline-flex items-center gap-2 font-sans text-[13px] font-medium tracking-wide text-white underline underline-offset-4 opacity-90 transition-opacity hover:opacity-100"
                           >

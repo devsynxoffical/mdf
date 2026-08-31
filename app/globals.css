@@ -595,6 +595,19 @@ body {
 }
 .live-dot { animation: live-dot 2.4s ease-in-out infinite; }
 
+/* Apple-style CSS 3D laptop stack (UFLeaks) */
+.uf-leaks .uf-laptop-stage {
+  perspective: 1600px;
+  perspective-origin: 50% 42%;
+  transform-style: preserve-3d;
+}
+.uf-leaks .uf-leak-card {
+  transform-style: preserve-3d;
+}
+.uf-leaks .uf-leak-laptop {
+  transform-style: preserve-3d;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .grain { animation: none; }
   .mask-up > * { transform: none; }

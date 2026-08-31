@@ -211,7 +211,7 @@ export default function UFDoor() {
         <div className="mt-9 flex items-center justify-center">
           <Magnetic strength={0.24}>
             <a
-              href="#door"
+              href="/book"
               className="inline-flex items-center justify-center rounded-full bg-[#1254EC] px-9 py-4 font-sans text-[13px] font-bold tracking-[0.14em] uppercase text-white shadow-[0_10px_35px_rgba(18,84,236,0.4)] transition-all duration-300 hover:scale-105 hover:bg-[#0B3BB3] hover:shadow-[0_15px_45px_rgba(18,84,236,0.6)]"
             >
               BOOK A CALL

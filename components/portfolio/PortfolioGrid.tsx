@@ -5,6 +5,7 @@ import CreativeCard from "@/components/ui/CreativeCard";
 import VideoModal from "@/components/ui/VideoModal";
 import Reveal from "@/components/uf/Reveal";
 import ContourBG from "@/components/uf/ContourBG";
+import ResultsLogos from "@/components/uf/ResultsLogos";
 import { CATEGORIES, VIDEOS, type PortfolioVideo } from "@/lib/videos";
 
 export default function PortfolioGrid() {
@@ -87,9 +88,13 @@ export default function PortfolioGrid() {
           <p className="font-editorial normal-case text-[clamp(22px,2.8vw,36px)] text-bone/85">
             Yours is next —
           </p>
-          <a href="/#door" className="btn-gold mt-8">
+          <a href="/book" className="btn-gold mt-8">
             Book the call
           </a>
+        </div>
+
+        <div className="mt-24">
+          <ResultsLogos tone="dark" />
         </div>
       </div>
 

@@ -167,17 +167,9 @@ function windStart() {
   const whistleG = actx.createGain();
   whistleG.gain.value = 0.35;
 
+  // Gain stays at 0 until playWindMove — no continuous flutter/modulation
   windGain = actx.createGain();
   windGain.gain.value = 0;
-
-  // Gentle flutter oscillator for natural air draft dynamics
-  const flut = actx.createOscillator();
-  flut.frequency.value = 0.9;
-  const flutG = actx.createGain();
-  flutG.gain.value = 0.014;
-  flut.connect(flutG);
-  flutG.connect(windGain.gain);
-  flut.start();
 
   windSrc.connect(windLP);
   windLP.connect(windGain);
@@ -198,20 +190,26 @@ function windStart() {
 }
 
 /**
- * Atmospheric reactive wind sound triggered by cursor velocity (matching hire.unickfunnel.com)
+ * Wind whoosh — only while the cursor is moving (volume follows velocity).
+ * Stays silent when the pointer is idle.
  */
 export function playWindMove(speed: number, panNorm = 0) {
   if (!soundEnabled || !actx || actx.state !== "running") return;
+  // Ignore tiny jitter / scroll-under-cursor fake moves
+  if (speed < 0.12) return;
+
   if (!windSrc) {
     windStart();
     if (!windSrc || !windGain || !windLP || !windWhistle) return;
   }
 
   const t = actx.currentTime;
-  const target = Math.min(0.085, 0.008 + speed * 0.014);
+  const target = Math.min(0.09, 0.01 + speed * 0.016);
   windGain!.gain.cancelScheduledValues(t);
-  windGain!.gain.setTargetAtTime(target, t, 0.07);
-  windGain!.gain.setTargetAtTime(0, t + 0.18, 0.35); // Gently settles to silence if mouse rests
+  windGain!.gain.setValueAtTime(Math.max(windGain!.gain.value, 0.0001), t);
+  windGain!.gain.linearRampToValueAtTime(target, t + 0.04);
+  // Quick fade when movement stops (caller stops sending updates)
+  windGain!.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
 
   windLP!.frequency.setTargetAtTime(420 + Math.min(700, speed * 95), t, 0.1);
   windWhistle!.frequency.setTargetAtTime(760 + Math.min(900, speed * 120), t, 0.12);
@@ -225,7 +223,8 @@ export function stopWind() {
   if (!windGain || !actx) return;
   const t = actx.currentTime;
   windGain.gain.cancelScheduledValues(t);
-  windGain.gain.setTargetAtTime(0, t, 0.14);
+  windGain.gain.setValueAtTime(Math.max(windGain.gain.value, 0.0001), t);
+  windGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.08);
 }
 
 // Attach globally for window-level listeners
@@ -265,10 +264,17 @@ export default function SoundToggle() {
         sessionStorage.setItem("uf-sound", "on");
       } catch {}
     } else {
+      stopWind();
       try {
         sessionStorage.setItem("uf-sound", "off");
       } catch {}
     }
+
+    try {
+      window.dispatchEvent(
+        new CustomEvent("uf-sound-change", { detail: { enabled: nextState } })
+      );
+    } catch {}
   }, [isOn]);
 
   // Audio spectrum visualizer for the equalizer bars
@@ -318,6 +324,11 @@ export default function SoundToggle() {
         initAudioContext();
         setIsOn(true);
         soundEnabled = true;
+        try {
+          window.dispatchEvent(
+            new CustomEvent("uf-sound-change", { detail: { enabled: true } })
+          );
+        } catch {}
         window.removeEventListener("pointerdown", unlock);
         window.removeEventListener("scroll", unlock);
       };

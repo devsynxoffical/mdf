@@ -11,16 +11,18 @@
  */
 
 const CONFIG = {
-  START_WHEEL: 38,
-  TOTAL_SCROLL_WHEELS: 128,
-  TOTAL_FRAMES: 90,
+  // Land on the tablet-with-astronaut beat (not the empty bezel)
+  START_WHEEL: 52,
+  TOTAL_SCROLL_WHEELS: 140,
+  TOTAL_FRAMES: 120,
   VIEWPORT: {
     width: 1920,
     height: 1080,
     deviceScaleFactor: 1.5,
   },
-  QUALITY: 92,
-  OUTPUT_DIR: 'public/frames/lusion',
+  QUALITY: 95,
+  OUTPUT_DIR: "public/frames/lusion",
+  SETTLE_MS: 140, // let WebGL catch up before each shot
 };
 
 const puppeteer = require('puppeteer-core');
@@ -64,7 +66,7 @@ const path = require('path');
     await page.mouse.wheel({ deltaY: 200 });
     await new Promise((r) => setTimeout(r, 15));
   }
-  await new Promise((r) => setTimeout(r, 1200));
+  await new Promise((r) => setTimeout(r, 2500));
 
   fs.mkdirSync(CONFIG.OUTPUT_DIR, { recursive: true });
 
@@ -72,29 +74,33 @@ const path = require('path');
   const deltaPerStep = totalDelta / (CONFIG.TOTAL_FRAMES - 1);
   const halfDelta = Math.round(deltaPerStep / 2);
 
-  console.log(`📸 Capturing ${CONFIG.TOTAL_FRAMES} frames through ALL modules (Step Delta: ${deltaPerStep.toFixed(1)}px)...`);
+  console.log(
+    `📸 Capturing ${CONFIG.TOTAL_FRAMES} frames through ALL modules (Step Delta: ${deltaPerStep.toFixed(1)}px)...`
+  );
 
   for (let i = 0; i < CONFIG.TOTAL_FRAMES; i++) {
-    const pad = String(i).padStart(3, '0');
+    const pad = String(i).padStart(3, "0");
     const filePath = path.join(CONFIG.OUTPUT_DIR, `frame_${pad}.webp`);
+
+    // Settle so astronaut / tunnel shaders finish rendering
+    await new Promise((r) => setTimeout(r, CONFIG.SETTLE_MS));
 
     await page.screenshot({
       path: filePath,
       quality: CONFIG.QUALITY,
-      type: 'webp',
+      type: "webp",
     });
 
-    // Send two gentle wheel pulses per frame so physics damping never skips modules
     await page.mouse.wheel({ deltaY: halfDelta });
-    await new Promise((r) => setTimeout(r, 30));
+    await new Promise((r) => setTimeout(r, 40));
     await page.mouse.wheel({ deltaY: deltaPerStep - halfDelta });
-    await new Promise((r) => setTimeout(r, 80));
+    await new Promise((r) => setTimeout(r, 90));
 
-    if (i % 15 === 0 || i === CONFIG.TOTAL_FRAMES - 1) {
+    if (i % 10 === 0 || i === CONFIG.TOTAL_FRAMES - 1) {
       console.log(`  ✓ Frame ${i + 1}/${CONFIG.TOTAL_FRAMES} saved.`);
     }
   }
 
-  console.log('✨ All frames successfully extracted and saved to', CONFIG.OUTPUT_DIR);
+  console.log("✨ All frames successfully extracted and saved to", CONFIG.OUTPUT_DIR);
   await browser.close();
 })();

@@ -105,7 +105,7 @@ export default function UFBuilt() {
               </a>
             </Magnetic>
             <Magnetic strength={0.22}>
-              <a href="#door" className="btn-ghost">
+              <a href="/book" className="btn-ghost">
                 Talk about yours
               </a>
             </Magnetic>

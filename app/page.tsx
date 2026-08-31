@@ -3,6 +3,7 @@ import UFStatement from "@/components/uf/UFStatement";
 import UFLeaks from "@/components/uf/UFLeaks";
 import UFHeadcount from "@/components/uf/UFHeadcount";
 import UFProof from "@/components/uf/UFProof";
+import UFWorkProof from "@/components/uf/UFWorkProof";
 import UFOpinions from "@/components/uf/UFOpinions";
 import UFProcess from "@/components/uf/UFProcess";
 import UFQuestions from "@/components/uf/UFQuestions";
@@ -21,6 +22,7 @@ export default function Home() {
       <UFLeaks />
       <UFHeadcount />
       <UFProof />
+      <UFWorkProof />
       <UFOpinions />
       <UFProcess />
       <UFQuestions />

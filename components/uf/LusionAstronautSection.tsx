@@ -8,142 +8,260 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const TOTAL_FRAMES = 101;
+type LusionAudios = {
+  on: () => void;
+  off: () => void;
+  isActive?: boolean;
+  volume?: number;
+  _onBodyClick?: () => void;
+  listener?: unknown;
+};
 
+type LusionWindow = Window & {
+  scrollManager?: {
+    scrollToPixel: (px: number, immediate?: boolean) => void;
+    contentSizePixel?: number;
+  };
+  homeGoalSectionRanges?: {
+    baseY: number;
+    totalPixelCount: number;
+    items?: Record<string, { pixelFrom?: number; pixelCount?: number }>;
+  };
+  lusionAudios?: LusionAudios;
+  homePage?: { updateAudio?: boolean };
+  properties?: { hasStarted?: boolean };
+};
+
+function parentSoundOn() {
+  try {
+    const saved = sessionStorage.getItem("uf-sound");
+    // Match SoundToggle default: on unless explicitly off
+    return saved !== "off";
+  } catch {
+    return true;
+  }
+}
+
+/**
+ * Exact Lusion home-goal WebGL section, driven by parent scroll.
+ * Embeds /lusion_standalone.html and scrubs scrollManager.scrollToPixel.
+ */
 export default function LusionAstronautSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const rangeRef = useRef({ start: 7121, end: 52094 });
+  const readyRef = useRef(false);
+  const soundOnRef = useRef(false);
+
+  const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
-    const canvas = canvasRef.current;
-    if (!container || !canvas) return;
+    const iframe = iframeRef.current;
+    if (!container || !iframe) return;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    let dead = false;
+    let pollId = 0;
+    let failTimer = 0;
 
-    // Preload all 101 authentic frames (Tablet -> Tunnel -> Kaleidoscope -> Shatter -> Lens Flare -> Let's work together finale)
-    const images: HTMLImageElement[] = [];
+    const getWin = () => iframe.contentWindow as LusionWindow | null;
 
-    const renderFrame = (index: number) => {
-      const img = images[index];
-      if (!img || !img.complete || img.naturalWidth === 0) return;
+    const syncSound = (enabled: boolean) => {
+      soundOnRef.current = enabled;
+      try {
+        const win = getWin();
+        const audios = win?.lusionAudios;
+        if (!audios) return;
 
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const displayWidth = canvas.clientWidth;
-      const displayHeight = canvas.clientHeight;
+        // Unlock WebAudio listener (iframe is pointer-events:none)
+        if (enabled && !audios.listener && audios._onBodyClick) {
+          audios._onBodyClick();
+        }
 
-      if (canvas.width !== displayWidth * dpr || canvas.height !== displayHeight * dpr) {
-        canvas.width = displayWidth * dpr;
-        canvas.height = displayHeight * dpr;
+        if (win.homePage) win.homePage.updateAudio = true;
+
+        if (enabled) audios.on();
+        else audios.off();
+      } catch {
+        /* mid-load */
       }
-
-      ctx.save();
-      ctx.scale(dpr, dpr);
-
-      const imgAspect = img.naturalWidth / img.naturalHeight;
-      const canvasAspect = displayWidth / displayHeight;
-
-      let drawWidth = displayWidth;
-      let drawHeight = displayHeight;
-      let offsetX = 0;
-      let offsetY = 0;
-
-      if (canvasAspect > imgAspect) {
-        drawWidth = displayWidth;
-        drawHeight = displayWidth / imgAspect;
-        offsetY = (displayHeight - drawHeight) / 2;
-      } else {
-        drawHeight = displayHeight;
-        drawWidth = displayHeight * imgAspect;
-        offsetX = (displayWidth - drawWidth) / 2;
-      }
-
-      ctx.clearRect(0, 0, displayWidth, displayHeight);
-      ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-      ctx.restore();
     };
 
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
-      const img = new Image();
-      const pad = String(i).padStart(3, "0");
-      img.src = `/frames/lusion/frame_${pad}.webp`;
-      img.onload = () => {
-        if (i === 0) {
-          renderFrame(0);
-          setIsLoaded(true);
+    const readRange = (win: LusionWindow) => {
+      const ranges = win.homeGoalSectionRanges;
+      if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 1000) {
+        return null;
+      }
+      const start = Math.max(0, ranges.baseY || 0);
+      const end = start + ranges.totalPixelCount;
+      if (end <= start + 500) return null;
+      return { start, end };
+    };
+
+    const tryReady = () => {
+      if (dead || readyRef.current) return false;
+      try {
+        const win = getWin();
+        if (!win?.scrollManager?.scrollToPixel) return false;
+        if (win.properties && win.properties.hasStarted === false) return false;
+
+        const range = readRange(win);
+        if (!range) return false;
+
+        rangeRef.current = range;
+        readyRef.current = true;
+        setReady(true);
+        win.scrollManager.scrollToPixel(range.start, true);
+        if (win.homePage) win.homePage.updateAudio = true;
+        syncSound(parentSoundOn());
+        ScrollTrigger.refresh();
+        return true;
+      } catch {
+        /* cross-origin / mid-load */
+      }
+      return false;
+    };
+
+    const onLoad = () => {
+      if (dead) return;
+      if (tryReady()) return;
+      let attempts = 0;
+      const poll = () => {
+        if (dead || readyRef.current) return;
+        attempts += 1;
+        if (tryReady()) return;
+        if (attempts < 120) {
+          pollId = window.setTimeout(poll, 100);
+        } else {
+          setFailed(true);
         }
       };
-      images.push(img);
-    }
+      pollId = window.setTimeout(poll, 200);
+    };
 
-    let currentFrameIndex = 0;
+    const onMessage = (ev: MessageEvent) => {
+      if (ev.data?.type === "lusion-ready") tryReady();
+    };
 
-    // Master ScrollTrigger syncing parent page scroll directly to all 101 frames
+    const onSoundChange = (ev: Event) => {
+      const enabled = Boolean((ev as CustomEvent).detail?.enabled);
+      syncSound(enabled);
+    };
+
+    window.addEventListener("message", onMessage);
+    window.addEventListener("uf-sound-change", onSoundChange);
+    iframe.addEventListener("load", onLoad);
+    failTimer = window.setTimeout(() => {
+      if (!readyRef.current) setFailed(true);
+    }, 20000);
+
     const trigger = ScrollTrigger.create({
       trigger: container,
       start: "top top",
-      end: "+=340%",
+      end: "+=1400%",
       pin: true,
-      scrub: 0.15,
+      scrub: 0.45,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onEnter: () => syncSound(parentSoundOn()),
+      onEnterBack: () => syncSound(parentSoundOn()),
+      onLeave: () => {
+        try {
+          getWin()?.lusionAudios?.off();
+        } catch {
+          /* */
+        }
+      },
+      onLeaveBack: () => {
+        try {
+          getWin()?.lusionAudios?.off();
+        } catch {
+          /* */
+        }
+      },
       onUpdate: (self) => {
-        const p = self.progress;
-        setScrollProgress(p);
+        if (!readyRef.current) return;
+        try {
+          const win = getWin();
+          const sm = win?.scrollManager;
+          if (!sm?.scrollToPixel) return;
 
-        const targetIndex = Math.min(
-          TOTAL_FRAMES - 1,
-          Math.max(0, Math.floor(p * TOTAL_FRAMES))
-        );
+          const live = win ? readRange(win) : null;
+          if (live) rangeRef.current = live;
 
-        if (targetIndex !== currentFrameIndex) {
-          currentFrameIndex = targetIndex;
-          renderFrame(currentFrameIndex);
+          const { start, end } = rangeRef.current;
+          const target = start + self.progress * (end - start);
+          sm.scrollToPixel(target, true);
+
+          // Keep finale title white (footer otherwise forces is-white-bg → black text)
+          if (self.progress > 0.72) {
+            win?.document?.documentElement?.classList.remove("is-white-bg");
+            win?.document?.documentElement?.classList.add("is-black-bg");
+          }
+
+          // Re-assert audio while pinned if user enabled sound mid-scroll
+          if (soundOnRef.current && win?.lusionAudios && !win.lusionAudios.isActive) {
+            syncSound(true);
+          }
+        } catch {
+          /* ignore */
         }
       },
     });
 
-    const onResize = () => {
-      renderFrame(currentFrameIndex);
-    };
-
-    window.addEventListener("resize", onResize);
+    if (iframe.contentDocument?.readyState === "complete") {
+      onLoad();
+    }
 
     return () => {
+      dead = true;
+      iframe.removeEventListener("load", onLoad);
+      window.removeEventListener("message", onMessage);
+      window.removeEventListener("uf-sound-change", onSoundChange);
+      window.clearTimeout(pollId);
+      window.clearTimeout(failTimer);
+      try {
+        getWin()?.lusionAudios?.off();
+      } catch {
+        /* */
+      }
       trigger.kill();
-      window.removeEventListener("resize", onResize);
     };
   }, []);
-
-  const scrollToNext = () => {
-    const doorEl = document.getElementById("door");
-    if (doorEl) {
-      doorEl.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <section
       ref={containerRef}
-      id="immersive-astronaut"
-      className="relative h-screen w-full overflow-hidden bg-black text-white select-none"
+      id="lusion-immersive"
+      className="relative h-screen w-full overflow-hidden bg-black"
+      aria-label="Immersive astronaut scroll experience"
     >
-      {/* 60FPS High-DPI Canvas Frame Scroller */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 h-full w-full object-cover z-10 pointer-events-none transition-opacity duration-500"
-        style={{ opacity: isLoaded ? 1 : 0 }}
+      <iframe
+        ref={iframeRef}
+        src="/lusion_standalone.html"
+        title="Lusion astronaut interactive experience"
+        className="pointer-events-none absolute inset-0 h-full w-full border-0 bg-black"
+        allow="autoplay; fullscreen"
       />
 
-      {/* Invisible Click Target over the authentic 'CONTINUE TO SCROLL' pill */}
-      {scrollProgress >= 0.85 && (
-        <button
-          type="button"
-          onClick={scrollToNext}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 w-72 h-16 cursor-pointer opacity-0"
-          aria-label="Continue to scroll"
-        />
+      {!ready && !failed && (
+        <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center bg-black">
+          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/40">
+            Loading sequence
+          </p>
+          <div className="mt-6 h-px w-40 overflow-hidden bg-white/10">
+            <div className="h-full w-1/2 animate-pulse bg-white/50" />
+          </div>
+        </div>
+      )}
+
+      {failed && !ready && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black px-6 text-center">
+          <p className="max-w-sm font-mono text-xs leading-relaxed text-white/50">
+            The immersive sequence could not start. Refresh the page to try again.
+          </p>
+        </div>
       )}
     </section>
   );

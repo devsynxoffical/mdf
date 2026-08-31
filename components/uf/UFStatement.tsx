@@ -4,21 +4,12 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ContourBG from "./ContourBG";
+import ResultsLogos from "./ResultsLogos";
 import { playTypingClick } from "@/components/audio/SoundToggle";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-const CLIENT_LOGOS = [
-  "Auth0",
-  "Glenveagh",
-  "brinc",
-  "NOKIA",
-  "Bumble",
-  "Schibsted",
-  "OpenAI",
-];
 
 const STATEMENT_TOKENS = [
   { text: "Over", type: "word" },
@@ -56,20 +47,20 @@ const STATEMENT_TOKENS = [
 
 const STATS = [
   {
-    label: "Completed funnels across industries",
+    label: "Service businesses scaled with the system",
     value: "500+",
   },
   {
-    label: "Typical time from kickoff to launch",
-    value: "2-3mo",
+    label: "Typical time from kickoff to live traffic",
+    value: "3–4wk",
   },
   {
-    label: "Total funds raised by our clients",
-    value: "$1B+",
+    label: "Facebook ad spend managed across 11 years",
+    value: "$35M+",
   },
   {
-    label: "Recent market cap of our biggest client",
-    value: "$321B",
+    label: "Founders mentored on offer & funnel",
+    value: "100+",
   },
 ];
 
@@ -156,28 +147,8 @@ export default function UFStatement() {
           </div>
         </div>
 
-        {/* 2. TRUSTED BY 300+ GLOBAL CLIENTS BAR */}
-        <div className="mx-auto mt-20 max-w-[1100px]">
-          <div className="flex items-center justify-center gap-4 sm:gap-6 text-white/80">
-            <span className="h-px flex-1 bg-white/20" />
-            <span className="font-serif text-[15px] sm:text-[17px] italic font-normal tracking-wide text-blue-100 whitespace-nowrap">
-              Trusted by 300+ global clients
-            </span>
-            <span className="h-px flex-1 bg-white/20" />
-          </div>
-
-          {/* Logo Strip */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-8 sm:gap-14 text-white/75 font-sans font-bold text-[17px] sm:text-[21px] tracking-tight">
-            {CLIENT_LOGOS.map((name) => (
-              <span
-                key={name}
-                className="opacity-70 transition-opacity duration-200 hover:opacity-100"
-              >
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
+        {/* 2. RESULTS + TRUSTED LOGOS */}
+        <ResultsLogos tone="cobalt" className="mt-20" />
 
         {/* 3. EXPERTISE STATEMENT & SEAL BADGE WITH SCROLL-DRIVEN TYPEWRITER REVEAL & SOUND */}
         <div className="mx-auto mt-24 grid max-w-[1180px] grid-cols-1 gap-10 lg:grid-cols-[240px_1fr] items-center">
