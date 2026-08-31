@@ -85,9 +85,9 @@ export default function LusionAstronautSection() {
     const trigger = ScrollTrigger.create({
       trigger: container,
       start: "top top",
-      end: "+=750%",
+      end: "+=260%",
       pin: true,
-      scrub: 0.4,
+      scrub: 0.15,
       onUpdate: (self) => {
         const p = self.progress;
         setScrollProgress(p);
@@ -116,6 +116,13 @@ export default function LusionAstronautSection() {
     };
   }, []);
 
+  const scrollToNext = () => {
+    const doorEl = document.getElementById("door");
+    if (doorEl) {
+      doorEl.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       ref={containerRef}
@@ -125,7 +132,7 @@ export default function LusionAstronautSection() {
       {/* 60FPS High-DPI Canvas Frame Scroller */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 h-full w-full object-cover z-10 transition-opacity duration-500"
+        className="absolute inset-0 h-full w-full object-cover z-10 pointer-events-none transition-opacity duration-500"
         style={{ opacity: isLoaded ? 1 : 0 }}
       />
 
@@ -133,19 +140,20 @@ export default function LusionAstronautSection() {
       <div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 transition-all duration-500"
         style={{
-          opacity: scrollProgress >= 0.94 ? 1 : 0,
-          pointerEvents: scrollProgress >= 0.94 ? "auto" : "none",
-          transform: `translateX(-50%) translateY(${scrollProgress >= 0.94 ? "0px" : "15px"})`,
+          opacity: scrollProgress >= 0.88 ? 1 : 0,
+          pointerEvents: scrollProgress >= 0.88 ? "auto" : "none",
+          transform: `translateX(-50%) translateY(${scrollProgress >= 0.88 ? "0px" : "15px"})`,
         }}
       >
-        <a
-          href="#door"
-          className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/60 px-7 py-3 font-mono text-[11px] md:text-[12px] uppercase tracking-[0.25em] text-white backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-400 hover:text-black shadow-[0_10px_35px_rgba(0,0,0,0.8)]"
+        <button
+          type="button"
+          onClick={scrollToNext}
+          className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/60 px-7 py-3 font-mono text-[11px] md:text-[12px] uppercase tracking-[0.25em] text-white backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-400 hover:text-black hover:scale-105 shadow-[0_10px_35px_rgba(0,0,0,0.8)] cursor-pointer"
         >
           <span>↓</span>
           <span>CONTINUE TO SCROLL</span>
           <span>↓</span>
-        </a>
+        </button>
       </div>
     </section>
   );
