@@ -8,7 +8,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const TOTAL_FRAMES = 80;
+const TOTAL_FRAMES = 85;
 
 export default function LusionAstronautSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ export default function LusionAstronautSection() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Preload all 80 authentic frames (Tablet -> Tunnel -> Kaleidoscope -> Shatter -> Finale)
+    // Preload all 85 authentic frames (Tablet -> Tunnel -> Kaleidoscope -> Shatter -> Finale)
     const images: HTMLImageElement[] = [];
 
     const renderFrame = (index: number) => {
@@ -81,11 +81,11 @@ export default function LusionAstronautSection() {
 
     let currentFrameIndex = 0;
 
-    // Master ScrollTrigger syncing parent page scroll directly to the 80 frames
+    // Master ScrollTrigger syncing parent page scroll directly to the 85 frames
     const trigger = ScrollTrigger.create({
       trigger: container,
       start: "top top",
-      end: "+=650%",
+      end: "+=750%",
       pin: true,
       scrub: 0.4,
       onUpdate: (self) => {
@@ -133,9 +133,9 @@ export default function LusionAstronautSection() {
       <div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 transition-all duration-500"
         style={{
-          opacity: scrollProgress >= 0.82 ? 1 : 0,
-          pointerEvents: scrollProgress >= 0.82 ? "auto" : "none",
-          transform: `translateX(-50%) translateY(${scrollProgress >= 0.82 ? "0px" : "15px"})`,
+          opacity: scrollProgress >= 0.94 ? 1 : 0,
+          pointerEvents: scrollProgress >= 0.94 ? "auto" : "none",
+          transform: `translateX(-50%) translateY(${scrollProgress >= 0.94 ? "0px" : "15px"})`,
         }}
       >
         <a
