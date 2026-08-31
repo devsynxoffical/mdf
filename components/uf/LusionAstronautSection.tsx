@@ -8,7 +8,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const TOTAL_FRAMES = 85;
+const TOTAL_FRAMES = 101;
 
 export default function LusionAstronautSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ export default function LusionAstronautSection() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Preload all 85 authentic frames (Tablet -> Tunnel -> Kaleidoscope -> Shatter -> Finale)
+    // Preload all 101 authentic frames (Tablet -> Tunnel -> Kaleidoscope -> Shatter -> Lens Flare -> Let's work together finale)
     const images: HTMLImageElement[] = [];
 
     const renderFrame = (index: number) => {
@@ -81,11 +81,11 @@ export default function LusionAstronautSection() {
 
     let currentFrameIndex = 0;
 
-    // Master ScrollTrigger syncing parent page scroll directly to the 85 frames
+    // Master ScrollTrigger syncing parent page scroll directly to all 101 frames
     const trigger = ScrollTrigger.create({
       trigger: container,
       start: "top top",
-      end: "+=260%",
+      end: "+=340%",
       pin: true,
       scrub: 0.15,
       onUpdate: (self) => {
@@ -136,25 +136,15 @@ export default function LusionAstronautSection() {
         style={{ opacity: isLoaded ? 1 : 0 }}
       />
 
-      {/* Smooth Scroll Navigation Button at Finale */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 transition-all duration-500"
-        style={{
-          opacity: scrollProgress >= 0.88 ? 1 : 0,
-          pointerEvents: scrollProgress >= 0.88 ? "auto" : "none",
-          transform: `translateX(-50%) translateY(${scrollProgress >= 0.88 ? "0px" : "15px"})`,
-        }}
-      >
+      {/* Invisible Click Target over the authentic 'CONTINUE TO SCROLL' pill */}
+      {scrollProgress >= 0.85 && (
         <button
           type="button"
           onClick={scrollToNext}
-          className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-black/60 px-7 py-3 font-mono text-[11px] md:text-[12px] uppercase tracking-[0.25em] text-white backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-400 hover:text-black hover:scale-105 shadow-[0_10px_35px_rgba(0,0,0,0.8)] cursor-pointer"
-        >
-          <span>↓</span>
-          <span>CONTINUE TO SCROLL</span>
-          <span>↓</span>
-        </button>
-      </div>
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 w-72 h-16 cursor-pointer opacity-0"
+          aria-label="Continue to scroll"
+        />
+      )}
     </section>
   );
 }
