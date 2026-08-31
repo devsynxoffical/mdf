@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useScrollState } from "@/components/providers/ScrollProvider";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -32,10 +33,17 @@ type LusionWindow = Window & {
   properties?: { hasStarted?: boolean };
 };
 
+const TOTAL_FRAMES = 101;
+/** Skip empty early tablet bezels — astronaut sequence starts here. */
+const START_FRAME = 8;
+const PLAYABLE = TOTAL_FRAMES - START_FRAME;
+
+const frameSrc = (i: number) =>
+  `/frames/lusion/frame_${String(i).padStart(3, "0")}.webp`;
+
 function parentSoundOn() {
   try {
     const saved = sessionStorage.getItem("uf-sound");
-    // Match SoundToggle default: on unless explicitly off
     return saved !== "off";
   } catch {
     return true;
@@ -43,18 +51,253 @@ function parentSoundOn() {
 }
 
 /**
- * Exact Lusion home-goal WebGL section, driven by parent scroll.
- * Embeds /lusion_standalone.html and scrubs scrollManager.scrollToPixel.
+ * Exact Lusion home-goal WebGL on desktop.
+ * On mobile / low-memory: local 101-frame canvas scrub (WebGL iframe is unreliable on phones).
  */
 export default function LusionAstronautSection() {
+  const { isMobile, ready: scrollReady, reducedMotion } = useScrollState();
+  const [useFrames, setUseFrames] = useState(false);
+  const [probed, setProbed] = useState(false);
+
+  useEffect(() => {
+    if (!scrollReady) return;
+    const coarse =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(pointer: coarse)").matches;
+    const narrow = window.innerWidth < 900;
+    // Phones, tablets, low-memory, and touch+narrow viewports → frame scrubber
+    setUseFrames(isMobile || reducedMotion || (coarse && narrow));
+    setProbed(true);
+  }, [scrollReady, isMobile, reducedMotion]);
+
+  if (!scrollReady || !probed) {
+    return (
+      <section
+        id="lusion-immersive"
+        className="relative h-[100dvh] w-full overflow-hidden bg-black"
+        aria-label="Immersive astronaut scroll experience"
+      >
+        <LoadingOverlay label="Loading sequence" pct={null} />
+      </section>
+    );
+  }
+
+  if (useFrames) {
+    return <FrameAstronautExperience reducedMotion={reducedMotion} />;
+  }
+
+  return <IframeAstronautExperience onFail={() => setUseFrames(true)} />;
+}
+
+/* ─── Mobile / reduced-motion: canvas frame scrubber ─── */
+
+function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imagesRef = useRef<(HTMLImageElement | null)[]>([]);
+  const frameRef = useRef(START_FRAME);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+
+  const [ready, setReady] = useState(false);
+  const [loadPct, setLoadPct] = useState(0);
+  const [atFinale, setAtFinale] = useState(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const canvas = canvasRef.current;
+    if (!container || !canvas) return;
+
+    const ctx = canvas.getContext("2d", { alpha: false });
+    if (!ctx) return;
+
+    let dead = false;
+    let loaded = 0;
+    const images: (HTMLImageElement | null)[] = new Array(TOTAL_FRAMES).fill(null);
+    imagesRef.current = images;
+
+    const draw = (index: number) => {
+      let img = images[index];
+      if (!img?.complete || !img.naturalWidth) {
+        // Nearest loaded neighbor so scrub never blanks mid-load
+        for (let d = 1; d < TOTAL_FRAMES; d++) {
+          const a = images[index - d];
+          const b = images[index + d];
+          if (a?.complete && a.naturalWidth) {
+            img = a;
+            break;
+          }
+          if (b?.complete && b.naturalWidth) {
+            img = b;
+            break;
+          }
+        }
+      }
+      if (!img?.complete || !img.naturalWidth) return;
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      if (!w || !h) return;
+
+      if (canvas.width !== Math.floor(w * dpr) || canvas.height !== Math.floor(h * dpr)) {
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+      }
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.fillStyle = "#000";
+      ctx.fillRect(0, 0, w, h);
+
+      const imgAspect = img.naturalWidth / img.naturalHeight;
+      const canvasAspect = w / h;
+      let dw = w;
+      let dh = h;
+      let ox = 0;
+      let oy = 0;
+
+      // Cover
+      if (canvasAspect > imgAspect) {
+        dw = w;
+        dh = w / imgAspect;
+        oy = (h - dh) / 2;
+      } else {
+        dh = h;
+        dw = h * imgAspect;
+        ox = (w - dw) / 2;
+      }
+
+      ctx.drawImage(img, ox, oy, dw, dh);
+    };
+
+    const onImg = (i: number) => {
+      if (dead) return;
+      loaded += 1;
+      setLoadPct(Math.round((loaded / PLAYABLE) * 100));
+      if (i === START_FRAME) {
+        draw(START_FRAME);
+        setReady(true);
+        ScrollTrigger.refresh();
+      }
+      // Keep painting current frame as better neighbors arrive
+      if (Math.abs(i - frameRef.current) <= 2) draw(frameRef.current);
+    };
+
+    // Priority: start frame first, then remaining in play order
+    const order = [
+      START_FRAME,
+      ...Array.from({ length: PLAYABLE }, (_, k) => START_FRAME + k).filter(
+        (i) => i !== START_FRAME
+      ),
+    ];
+
+    for (const i of order) {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = frameSrc(i);
+      img.onload = () => onImg(i);
+      img.onerror = () => onImg(i);
+      images[i] = img;
+    }
+
+    const applyProgress = (p: number) => {
+      const idx = Math.min(
+        TOTAL_FRAMES - 1,
+        START_FRAME + Math.floor(p * (PLAYABLE - 0.0001))
+      );
+      frameRef.current = idx;
+      draw(idx);
+      setAtFinale(p >= 0.88);
+      if (progressBarRef.current) {
+        progressBarRef.current.style.transform = `scaleX(${p})`;
+      }
+    };
+
+    let trigger: ScrollTrigger | null = null;
+
+    if (reducedMotion) {
+      applyProgress(0.35);
+    } else {
+      trigger = ScrollTrigger.create({
+        trigger: container,
+        start: "top top",
+        end: "+=280%",
+        pin: true,
+        scrub: 0.35,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => applyProgress(self.progress),
+      });
+    }
+
+    const onResize = () => draw(frameRef.current);
+    window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onResize);
+
+    return () => {
+      dead = true;
+      trigger?.kill();
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("orientationchange", onResize);
+    };
+  }, [reducedMotion]);
+
+  const continueDown = () => {
+    const door = document.getElementById("door");
+    if (door) {
+      door.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" });
+  };
+
+  return (
+    <section
+      ref={containerRef}
+      id="lusion-immersive"
+      className="relative h-[100dvh] w-full overflow-hidden bg-black text-white"
+      aria-label="Immersive astronaut scroll experience"
+    >
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 z-10 h-full w-full transition-opacity duration-500"
+        style={{ opacity: ready ? 1 : 0 }}
+      />
+
+      {!ready && <LoadingOverlay label="Loading sequence" pct={loadPct} />}
+
+      {/* Progress rail */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-0.5 bg-white/10">
+        <div
+          ref={progressBarRef}
+          className="h-full origin-left scale-x-0 bg-sky shadow-[0_0_12px_#38BDF8]"
+        />
+      </div>
+
+      {/* Hit target over finale “continue” pill baked into frames */}
+      {atFinale && (
+        <button
+          type="button"
+          onClick={continueDown}
+          className="absolute bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 z-30 h-14 w-[min(18rem,80vw)] -translate-x-1/2 cursor-pointer opacity-0"
+          aria-label="Continue scrolling"
+        />
+      )}
+    </section>
+  );
+}
+
+/* ─── Desktop: live Lusion WebGL iframe ─── */
+
+function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const rangeRef = useRef({ start: 7121, end: 52094 });
   const readyRef = useRef(false);
   const soundOnRef = useRef(false);
+  const onFailRef = useRef(onFail);
+  onFailRef.current = onFail;
 
   const [ready, setReady] = useState(false);
-  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -74,7 +317,6 @@ export default function LusionAstronautSection() {
         const audios = win?.lusionAudios;
         if (!audios) return;
 
-        // Unlock WebAudio listener (iframe is pointer-events:none)
         if (enabled && !audios.listener && audios._onBodyClick) {
           audios._onBodyClick();
         }
@@ -134,7 +376,7 @@ export default function LusionAstronautSection() {
         if (attempts < 120) {
           pollId = window.setTimeout(poll, 100);
         } else {
-          setFailed(true);
+          onFailRef.current();
         }
       };
       pollId = window.setTimeout(poll, 200);
@@ -153,7 +395,7 @@ export default function LusionAstronautSection() {
     window.addEventListener("uf-sound-change", onSoundChange);
     iframe.addEventListener("load", onLoad);
     failTimer = window.setTimeout(() => {
-      if (!readyRef.current) setFailed(true);
+      if (!readyRef.current) onFailRef.current();
     }, 20000);
 
     const trigger = ScrollTrigger.create({
@@ -194,13 +436,11 @@ export default function LusionAstronautSection() {
           const target = start + self.progress * (end - start);
           sm.scrollToPixel(target, true);
 
-          // Keep finale title white (footer otherwise forces is-white-bg → black text)
           if (self.progress > 0.72) {
             win?.document?.documentElement?.classList.remove("is-white-bg");
             win?.document?.documentElement?.classList.add("is-black-bg");
           }
 
-          // Re-assert audio while pinned if user enabled sound mid-scroll
           if (soundOnRef.current && win?.lusionAudios && !win.lusionAudios.isActive) {
             syncSound(true);
           }
@@ -245,24 +485,24 @@ export default function LusionAstronautSection() {
         allow="autoplay; fullscreen"
       />
 
-      {!ready && !failed && (
-        <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center bg-black">
-          <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/40">
-            Loading sequence
-          </p>
-          <div className="mt-6 h-px w-40 overflow-hidden bg-white/10">
-            <div className="h-full w-1/2 animate-pulse bg-white/50" />
-          </div>
-        </div>
-      )}
-
-      {failed && !ready && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black px-6 text-center">
-          <p className="max-w-sm font-mono text-xs leading-relaxed text-white/50">
-            The immersive sequence could not start. Refresh the page to try again.
-          </p>
-        </div>
-      )}
+      {!ready && <LoadingOverlay label="Loading sequence" pct={null} />}
     </section>
+  );
+}
+
+function LoadingOverlay({ label, pct }: { label: string; pct: number | null }) {
+  return (
+    <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center bg-black">
+      <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/40">
+        {label}
+        {pct != null ? ` · ${pct}%` : ""}
+      </p>
+      <div className="mt-6 h-px w-40 overflow-hidden bg-white/10">
+        <div
+          className="h-full bg-white/50 transition-[width] duration-200"
+          style={{ width: pct != null ? `${Math.max(8, pct)}%` : "50%" }}
+        />
+      </div>
+    </div>
   );
 }

@@ -378,7 +378,7 @@ export default function UFLeaks() {
       </div>
 
       {/* Mobile */}
-      <div className="mx-auto max-w-[900px] px-6 py-[12vh] md:hidden">
+      <div className="mx-auto max-w-[900px] px-4 py-[12vh] sm:px-6 md:hidden">
         <p className="uf-eyebrow tracking-[0.16em] text-[#38BDF8]">
           ( 02 ) — The Leaks
         </p>

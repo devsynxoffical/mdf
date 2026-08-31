@@ -61,8 +61,8 @@ export default function ResultsLogos({
 
   const rule = isLight ? "bg-blue-200/80" : "bg-white/20";
   const title = isLight
-    ? "font-serif text-[15px] sm:text-[17px] italic tracking-wide text-slate-600"
-    : "font-serif text-[15px] sm:text-[17px] italic tracking-wide text-blue-100";
+    ? "font-serif text-[14px] sm:text-[17px] italic tracking-wide text-slate-600 text-center"
+    : "font-serif text-[14px] sm:text-[17px] italic tracking-wide text-blue-100 text-center";
   const cellBg = isLight
     ? "bg-white group-hover:bg-blue-50"
     : tone === "dark"
@@ -80,45 +80,47 @@ export default function ResultsLogos({
     <div className={`mx-auto max-w-[1180px] ${className}`}>
       {!logosOnly && (
         <>
-          <div className="flex items-center justify-center gap-4 sm:gap-6">
-            <span className={`h-px flex-1 ${rule}`} />
-            <span className={`${title} whitespace-nowrap`}>
+          <div className="flex items-center justify-center gap-3 sm:gap-6">
+            <span className={`hidden h-px flex-1 sm:block ${rule}`} />
+            <span className={`${title} max-w-[18ch] sm:max-w-none sm:whitespace-nowrap`}>
               Results that made the system famous
             </span>
-            <span className={`h-px flex-1 ${rule}`} />
+            <span className={`hidden h-px flex-1 sm:block ${rule}`} />
           </div>
 
           <a
             href="/cases/coaching-lto"
-            className={`group mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-[24px] border sm:grid-cols-4 ${border}`}
+            className={`group mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border sm:mt-10 sm:rounded-[24px] sm:grid-cols-4 ${border}`}
           >
             {FEATURED_RESULTS.map((r) => (
               <div
                 key={r.label}
-                className={`px-5 py-7 text-center backdrop-blur-md transition duration-300 sm:py-8 ${cellBg}`}
+                className={`px-3 py-5 text-center backdrop-blur-md transition duration-300 sm:px-5 sm:py-8 ${cellBg}`}
               >
                 <p
-                  className={`font-serif text-[clamp(28px,3.6vw,42px)] italic leading-none tracking-tight ${valueCls}`}
+                  className={`font-serif text-[clamp(24px,7vw,42px)] italic leading-none tracking-tight ${valueCls}`}
                 >
                   {r.value}
                 </p>
                 <p
-                  className={`mt-3 font-sans text-[11px] font-bold uppercase tracking-[0.14em] ${labelCls}`}
+                  className={`mt-2 font-sans text-[10px] font-bold uppercase tracking-[0.12em] sm:mt-3 sm:text-[11px] sm:tracking-[0.14em] ${labelCls}`}
                 >
                   {r.label}
                 </p>
-                <p className={`mt-1 font-sans text-[12px] ${subCls}`}>{r.sub}</p>
+                <p className={`mt-1 font-sans text-[11px] sm:text-[12px] ${subCls}`}>{r.sub}</p>
               </div>
             ))}
           </a>
 
           {showCaseLink && (
-            <p className={`mt-4 text-center font-sans text-[12px] ${subCls}`}>
+            <p className={`mt-4 px-2 text-center font-sans text-[11px] leading-relaxed sm:text-[12px] ${subCls}`}>
               <a href="/cases/coaching-lto" className={`font-semibold ${labelCls} hover:underline`}>
                 Watch the coaching LTO case VSL
               </a>
-              <span className="mx-2 opacity-40">·</span>
-              $255,130 spent → $847,307 collected
+              <span className="mx-2 hidden opacity-40 sm:inline">·</span>
+              <span className="mt-1 block sm:mt-0 sm:inline">
+                $255,130 spent → $847,307 collected
+              </span>
             </p>
           )}
         </>
@@ -126,10 +128,12 @@ export default function ResultsLogos({
 
       {!resultsOnly && (
         <div className={logosOnly ? "" : "mt-16"}>
-          <div className="flex items-center justify-center gap-4 sm:gap-6">
-            <span className={`h-px flex-1 ${rule}`} />
-            <span className={`${title} whitespace-nowrap`}>Trusted by 300+ global clients</span>
-            <span className={`h-px flex-1 ${rule}`} />
+          <div className="flex items-center justify-center gap-3 sm:gap-6">
+            <span className={`hidden h-px flex-1 sm:block ${rule}`} />
+            <span className={`${title} max-w-[16ch] sm:max-w-none sm:whitespace-nowrap`}>
+              Trusted by 300+ global clients
+            </span>
+            <span className={`hidden h-px flex-1 sm:block ${rule}`} />
           </div>
 
           <div className="relative mt-10">
@@ -179,19 +183,19 @@ function LogoRow({
         {[0, 1].map((copy) => (
           <div
             key={copy}
-            className="flex shrink-0 items-center gap-12 pr-12 sm:gap-16 sm:pr-16 md:gap-20 md:pr-20"
+            className="flex shrink-0 items-center gap-8 pr-8 sm:gap-16 sm:pr-16 md:gap-20 md:pr-20"
             aria-hidden={copy === 1 || undefined}
           >
             {logos.map((src, i) => (
               <div
                 key={`${copy}-${src}`}
-                className="flex h-11 shrink-0 items-center justify-center sm:h-12 md:h-14"
+                className="flex h-9 shrink-0 items-center justify-center sm:h-12 md:h-14"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`${src}?v=5`}
                   alt={`Client logo ${offset + i}`}
-                  className={`h-full w-auto max-w-[9.5rem] object-contain sm:max-w-[11rem] ${filter}`}
+                  className={`h-full w-auto max-w-[7.5rem] object-contain sm:max-w-[11rem] ${filter}`}
                   loading="eager"
                   decoding="async"
                 />

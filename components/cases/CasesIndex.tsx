@@ -10,7 +10,7 @@ export default function CasesIndex() {
     <section className="uf-dark relative min-h-screen overflow-hidden pb-[14vh] pt-[22vh]">
       <ContourBG tone="dark" />
 
-      <div className="relative mx-auto max-w-[1180px] px-6 md:px-14">
+      <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
         <p className="uf-eyebrow text-sky">( Cases ) — Real funnels. Real numbers.</p>
         <h1 className="mt-6 max-w-[14ch] font-sans text-[clamp(40px,6vw,84px)] font-extrabold leading-[1.02] tracking-tight text-white">
           <Reveal as="span">

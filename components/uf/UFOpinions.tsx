@@ -50,7 +50,7 @@ export default function UFOpinions() {
   return (
     <section className="uf-dark relative bg-gradient-to-b from-[#072151] via-[#05163F] to-[#04112E] py-[18vh]">
       {/* Header & Word Reveal Statement */}
-      <div className="mx-auto max-w-[1050px] px-6 text-center">
+      <div className="mx-auto max-w-[1050px] px-4 text-center sm:px-6">
         <p className="uf-eyebrow mb-8 text-sky tracking-[0.18em] font-sans font-semibold">
           ( 05 ) — SECOND OPINIONS
         </p>
@@ -67,7 +67,7 @@ export default function UFOpinions() {
       </div>
 
       {/* 3 Video Testimonial Cards */}
-      <div className="mx-auto mt-16 grid max-w-[1340px] grid-cols-1 gap-8 px-6 sm:px-8 md:grid-cols-3 md:px-12">
+      <div className="mx-auto mt-16 grid max-w-[1340px] grid-cols-1 gap-8 px-4 sm:px-8 md:grid-cols-3 md:px-12">
         {TESTIMONIALS.map((item, i) => (
           <Reveal as="div" key={item.id} delay={i * 120}>
             <div

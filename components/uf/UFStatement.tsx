@@ -129,7 +129,7 @@ export default function UFStatement() {
     <section className="relative overflow-hidden bg-gradient-to-b from-[#1254EC] via-[#104FE3] to-[#1254EC] pt-16 pb-24 text-white">
       <ContourBG tone="cobalt" />
 
-      <div className="relative mx-auto max-w-[1320px] px-6 md:px-12">
+      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 md:px-12">
         {/* 1. SHOWREEL / VIDEO SECTION (Empty placeholder frame ready for user video) */}
         <div className="mx-auto w-full max-w-[1200px]">
           <div className="relative rounded-[28px] sm:rounded-[36px] bg-[#818CF8]/25 p-3 sm:p-5 md:p-7 border border-white/25 shadow-[0_25px_60px_rgba(0,0,0,0.25)] backdrop-blur-xl">
@@ -207,12 +207,12 @@ export default function UFStatement() {
           {STATS.map((s) => (
             <div
               key={s.label}
-              className="flex items-center justify-between rounded-2xl bg-white px-8 py-7 text-[#070B1E] shadow-[0_20px_50px_rgba(0,0,0,0.18)] transition-transform duration-300 hover:scale-[1.01]"
+              className="flex items-center justify-between gap-4 rounded-2xl bg-white px-5 py-5 text-[#070B1E] shadow-[0_20px_50px_rgba(0,0,0,0.18)] transition-transform duration-300 hover:scale-[1.01] sm:px-8 sm:py-7"
             >
-              <p className="max-w-[22ch] font-sans text-[13px] font-medium text-slate-500 leading-snug">
+              <p className="max-w-[18ch] font-sans text-[12px] font-medium leading-snug text-slate-500 sm:max-w-[22ch] sm:text-[13px]">
                 {s.label}
               </p>
-              <span className="font-serif text-[42px] sm:text-[50px] italic font-normal tracking-tight text-[#070B1E]">
+              <span className="shrink-0 font-serif text-[34px] italic font-normal tracking-tight text-[#070B1E] sm:text-[50px]">
                 {s.value}
               </span>
             </div>

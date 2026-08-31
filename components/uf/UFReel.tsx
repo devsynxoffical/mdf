@@ -29,7 +29,7 @@ export default function UFReel() {
   return (
     <section className="uf-dark relative overflow-hidden py-16 md:py-20">
       {/* label row */}
-      <div className="mx-auto mb-8 flex max-w-[1440px] flex-wrap items-center justify-between gap-4 px-6 md:px-14">
+      <div className="mx-auto mb-8 flex max-w-[1440px] flex-wrap items-center justify-between gap-4 px-4 sm:px-6 md:px-14">
         <p className="inline-flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-mute">
           <span
             className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-brass"

@@ -86,7 +86,7 @@ export default function UFProcess() {
     <section ref={sectionRef} className="uf-dark relative bg-gradient-to-b from-[#020926] via-[#05163F] to-[#072151] overflow-hidden">
       <div className="flex h-auto flex-col py-[12vh] md:h-screen md:py-0">
         {/* header + progress line */}
-        <div className="px-6 pt-0 md:px-14 md:pt-16">
+        <div className="px-4 pt-0 sm:px-6 md:px-14 md:pt-16">
           <p className="uf-eyebrow text-sky tracking-[0.16em] font-sans">( 06 ) — The Process</p>
           <h2 className="mt-5 leading-[0.96]">
             <span className="font-sans block text-white text-[clamp(40px,5.4vw,72px)] font-extrabold tracking-tight">
@@ -116,7 +116,7 @@ export default function UFProcess() {
         <div className="mt-10 flex-1 md:mt-2">
           <div
             ref={trackRef}
-            className="flex flex-col gap-16 px-6 md:h-full md:flex-row md:items-center md:gap-0 md:px-0 md:will-change-transform"
+            className="flex flex-col gap-12 px-4 sm:gap-16 sm:px-6 md:h-full md:flex-row md:items-center md:gap-0 md:px-0 md:will-change-transform"
           >
             {STEPS.map((s) => (
               <article
@@ -126,11 +126,11 @@ export default function UFProcess() {
                 <div className="relative">
                   <span
                     aria-hidden
-                    className="font-sans font-black block leading-[0.8] text-cobalt/30 text-[clamp(110px,22vh,230px)] select-none"
+                    className="font-sans font-black block leading-[0.8] text-cobalt/30 text-[clamp(72px,18vw,230px)] select-none"
                   >
                     {s.num}
                   </span>
-                  <h3 className="mt-2 whitespace-nowrap leading-none">
+                  <h3 className="mt-2 leading-none sm:whitespace-nowrap">
                     <span className="font-sans text-white text-[clamp(30px,4.6vw,64px)] font-extrabold tracking-tight">
                       {s.plain}{" "}
                     </span>

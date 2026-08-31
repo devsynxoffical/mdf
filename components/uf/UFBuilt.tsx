@@ -43,7 +43,7 @@ export default function UFBuilt() {
   return (
     <section id="work" className="uf-light relative overflow-hidden py-[15vh]">
       <ContourBG tone="light" />
-      <div className="relative mx-auto max-w-[1440px] px-6 md:px-14">
+      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 md:px-14">
         <p className="uf-eyebrow text-mint-deep">( 06 ) — The Work</p>
 
         <div className="mt-6 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">

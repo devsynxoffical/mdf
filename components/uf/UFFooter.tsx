@@ -27,7 +27,7 @@ export default function UFFooter() {
     <footer id="site-footer" className="uf-dark relative border-t border-white/10 bg-[#020926] text-white">
       {/* CTA */}
       <div className="border-b border-white/10">
-        <div className="mx-auto flex max-w-[1180px] flex-col items-start gap-8 px-6 py-14 md:flex-row md:items-center md:justify-between md:px-14">
+        <div className="mx-auto flex max-w-[1180px] flex-col items-start gap-6 px-4 py-12 sm:px-6 sm:gap-8 md:flex-row md:items-center md:justify-between md:px-14 md:py-14">
           <div>
             <p className="font-sans text-[clamp(24px,3vw,40px)] font-extrabold leading-none tracking-tight text-white">
               Still reading?
@@ -45,7 +45,7 @@ export default function UFFooter() {
       </div>
 
       {/* Main */}
-      <div className="mx-auto max-w-[1180px] px-6 py-14 md:px-14">
+      <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6 md:py-14 md:px-14">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <p className="font-sans text-[20px] font-extrabold tracking-tight text-white">

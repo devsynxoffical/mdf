@@ -124,19 +124,19 @@ export default function VslPlayer({ src, onProgress }: Props) {
         <button
           type="button"
           onClick={play}
-          className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-5 bg-[#020926]/50 backdrop-blur-[2px] transition hover:bg-[#020926]/35"
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-[#020926]/50 px-4 backdrop-blur-[2px] transition hover:bg-[#020926]/35 sm:gap-5"
           aria-label="Play VSL"
         >
-          <span className="flex h-[88px] w-[88px] items-center justify-center rounded-full border border-white/25 bg-white text-[#070B1E] shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition hover:scale-105">
-            <svg viewBox="0 0 24 24" className="ml-1 h-9 w-9" fill="currentColor">
+          <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/25 bg-white text-[#070B1E] shadow-[0_20px_60px_rgba(0,0,0,0.4)] transition hover:scale-105 sm:h-[88px] sm:w-[88px]">
+            <svg viewBox="0 0 24 24" className="ml-0.5 h-7 w-7 sm:ml-1 sm:h-9 sm:w-9" fill="currentColor">
               <path d="M8 5v14l11-7z" />
             </svg>
           </span>
           <div className="text-center">
-            <p className="font-sans text-[13px] font-bold uppercase tracking-[0.22em] text-white">
+            <p className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-white sm:text-[13px] sm:tracking-[0.22em]">
               Click to watch first
             </p>
-            <p className="mt-2 font-sans text-[14px] text-blue-100/80">
+            <p className="mt-1.5 font-sans text-[13px] text-blue-100/80 sm:mt-2 sm:text-[14px]">
               Full case breakdown · sound on
             </p>
           </div>

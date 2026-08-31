@@ -177,7 +177,7 @@ export default function UFProof() {
       id="proof"
       className="relative overflow-hidden bg-[#0A0D14] pt-28 pb-36 text-white"
     >
-      <div className="mx-auto max-w-[1400px] px-6 md:px-14">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 md:px-14">
         {/* Section Header with Editorial Serif Typography */}
         <div className="max-w-[1020px]">
           <h2 className="font-serif text-[clamp(40px,5.8vw,88px)] font-normal leading-[1.04] tracking-[-0.02em] text-white">

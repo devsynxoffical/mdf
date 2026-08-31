@@ -337,7 +337,7 @@ export default function UFHeadcount() {
     >
       <ContourBG tone="light" />
 
-      <div className="relative z-10 mx-auto max-w-[1200px] px-6 md:px-10">
+      <div className="relative z-10 mx-auto max-w-[1200px] px-4 sm:px-6 md:px-10">
         <p className="uf-eyebrow font-sans font-bold tracking-[0.16em] text-cobalt">
           ( 03 ) — The Headcount
         </p>

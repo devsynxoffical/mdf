@@ -15,7 +15,7 @@ export default function LegalPage({ title, eyebrow, updated = "September 1, 2026
     <div className="bg-[#020926] text-white">
       <section className="relative overflow-hidden pt-28 pb-24 md:pt-36 md:pb-32">
         <ContourBG tone="dark" />
-        <div className="relative mx-auto max-w-[820px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[820px] px-4 sm:px-6 md:px-14">
           <p className="uf-eyebrow text-sky">{eyebrow}</p>
           <h1 className="mt-5 font-sans text-[clamp(32px,4.5vw,56px)] font-extrabold leading-[1.08] tracking-tight">
             {title}

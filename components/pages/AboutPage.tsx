@@ -22,7 +22,7 @@ export default function AboutPage() {
       <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-24">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(18,84,236,0.3),transparent_50%)]" />
         <ContourBG tone="dark" />
-        <div className="relative mx-auto max-w-[1180px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
           <p className="uf-eyebrow text-sky">( About ) — The operator</p>
           <h1 className="mt-5 max-w-[16ch] font-sans text-[clamp(40px,5.5vw,72px)] font-extrabold leading-[1.05] tracking-tight">
             <Reveal as="span">
@@ -75,16 +75,16 @@ export default function AboutPage() {
                 layout="featured"
                 tone="dark"
               />
-              <div className="mt-4 grid grid-cols-2 gap-4">
+              <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4">
                 {STATS.map((s) => (
                   <div
                     key={s.label}
-                    className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-6"
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-5 sm:px-5 sm:py-6"
                   >
-                    <p className="font-serif text-[clamp(28px,3vw,40px)] italic leading-none text-white">
+                    <p className="font-serif text-[clamp(24px,7vw,40px)] italic leading-none text-white">
                       {s.value}
                     </p>
-                    <p className="mt-2 font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-400">
+                    <p className="mt-2 font-sans text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-400 sm:text-[11px] sm:tracking-[0.12em]">
                       {s.label}
                     </p>
                   </div>
@@ -97,7 +97,7 @@ export default function AboutPage() {
 
       {/* Culture gallery */}
       <section className="relative overflow-hidden border-y border-white/10 py-16 md:py-20">
-        <div className="relative mx-auto max-w-[1180px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
           <p className="uf-eyebrow text-sky">( In the frame )</p>
           <h2 className="mt-4 max-w-[18ch] font-sans text-[clamp(26px,3.2vw,40px)] font-extrabold tracking-tight">
             Operators we build beside
@@ -109,7 +109,7 @@ export default function AboutPage() {
       {/* Results + logos */}
       <section className="relative overflow-hidden bg-[#020926] py-20 md:py-24">
         <ContourBG tone="dark" />
-        <div className="relative px-6 md:px-14">
+        <div className="relative px-4 sm:px-6 md:px-14">
           <ResultsLogos tone="dark" />
         </div>
       </section>
@@ -117,7 +117,7 @@ export default function AboutPage() {
       {/* Principles */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#1254EC] to-[#0B3BB3] py-24 text-white md:py-28">
         <ContourBG tone="cobalt" />
-        <div className="relative mx-auto max-w-[1100px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-14">
           <p className="uf-eyebrow text-blue-100">( Principles )</p>
           <h2 className="mt-4 max-w-[16ch] font-sans text-[clamp(28px,3.8vw,48px)] font-extrabold tracking-tight">
             What we refuse to compromise
@@ -139,7 +139,7 @@ export default function AboutPage() {
       {/* People + timeline */}
       <section className="relative overflow-hidden bg-[#F3F7FD] py-24 text-[#070B1E] md:py-32">
         <ContourBG tone="light" />
-        <div className="relative mx-auto max-w-[1180px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
           <p className="uf-eyebrow text-cobalt">( Clients in frame )</p>
           <h2 className="mt-4 font-sans text-[clamp(28px,3.6vw,48px)] font-extrabold tracking-tight">
             Operators we build beside

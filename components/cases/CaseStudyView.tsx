@@ -28,13 +28,13 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
   }, []);
 
   return (
-    <div className="bg-[#020926] text-white">
+    <div className={`bg-[#020926] text-white ${showSticky ? "pb-20" : ""}`}>
       {/* HERO VSL */}
-      <section className="relative overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20">
+      <section className="relative overflow-hidden pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(18,84,236,0.38),transparent_55%)]" />
         <ContourBG tone="dark" />
 
-        <div className="relative mx-auto max-w-[1100px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-14">
           <a
             href={CASE_STUDIES.length > 1 ? "/cases" : "/"}
             className="inline-flex items-center gap-2 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-sky/90 transition-colors hover:text-white"
@@ -101,7 +101,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
       {/* PROBLEM */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#1254EC] via-[#104FE3] to-[#0B3BB3] py-24 text-white md:py-32">
         <ContourBG tone="cobalt" />
-        <div className="relative mx-auto max-w-[1100px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-14">
           <p className="uf-eyebrow text-blue-100">( 01 ) — The Situation</p>
           <h2 className="mt-6 max-w-[22ch] font-sans text-[clamp(28px,4vw,52px)] font-extrabold leading-[1.12] tracking-tight">
             {study.problemLead}
@@ -126,7 +126,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
       {/* BEFORE / AFTER */}
       <section className="relative overflow-hidden bg-[#F3F7FD] py-24 text-[#070B1E] md:py-32">
         <ContourBG tone="light" />
-        <div className="relative mx-auto max-w-[1180px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
             <div>
               <p className="uf-eyebrow text-cobalt">( 02 ) — Before</p>
@@ -187,7 +187,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
       {/* FOUNDER */}
       <section className="relative overflow-hidden bg-[#020926] py-24 md:py-32">
         <ContourBG tone="dark" />
-        <div className="relative mx-auto max-w-[1180px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
           <p className="uf-eyebrow text-sky">( 04 ) — The Operator</p>
           <h2 className="mt-5 max-w-[16ch] font-sans text-[clamp(32px,4.4vw,58px)] font-extrabold leading-[1.05] tracking-tight">
             This Is How We
@@ -214,17 +214,17 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 sm:gap-5">
+            <div className="grid grid-cols-2 gap-3 sm:gap-5">
               {FOUNDER_STATS.map((s) => (
                 <div
                   key={s.label}
-                  className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-6 backdrop-blur-sm"
+                  className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-5 backdrop-blur-sm sm:px-5 sm:py-6"
                 >
-                  <p className="font-serif text-[clamp(36px,4vw,48px)] italic leading-none text-white">
+                  <p className="font-serif text-[clamp(28px,8vw,48px)] italic leading-none text-white">
                     {s.value}
                     <span className="text-sky">{s.suffix}</span>
                   </p>
-                  <p className="mt-3 font-sans text-[12px] font-medium uppercase tracking-[0.12em] text-slate-400">
+                  <p className="mt-2 font-sans text-[11px] font-medium uppercase tracking-[0.1em] text-slate-400 sm:mt-3 sm:text-[12px] sm:tracking-[0.12em]">
                     {s.label}
                   </p>
                 </div>
@@ -237,7 +237,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
       {/* FAQ */}
       <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#F3F7FD] to-[#EBF2FC] py-24 text-[#070B1E] md:py-32">
         <ContourBG tone="light" />
-        <div className="relative mx-auto max-w-[1100px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-14">
           <div className="grid gap-12 md:grid-cols-[0.75fr_1.25fr] md:gap-16">
             <div className="md:sticky md:top-28 md:self-start">
               <p className="uf-eyebrow text-cobalt">( 05 ) — FAQ</p>
@@ -254,11 +254,11 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
                   <div key={item.q} className="border-b border-blue-200/60">
                     <button
                       type="button"
-                      className="group flex w-full items-start justify-between gap-8 py-6 text-left"
+                      className="group flex w-full items-start justify-between gap-4 py-5 text-left sm:gap-8 sm:py-6"
                       aria-expanded={isOpen}
                       onClick={() => setOpenFaq(isOpen ? null : i)}
                     >
-                      <span className="flex gap-5">
+                      <span className="flex min-w-0 gap-3 sm:gap-5">
                         <span className="tnum mt-1 font-sans text-[13px] font-bold text-cobalt">
                           0{i + 1}
                         </span>
@@ -287,7 +287,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
                       }}
                     >
                       <div className="overflow-hidden">
-                        <p className="pb-6 pl-10 pr-8 font-sans text-[15px] leading-[1.65] text-slate-600 md:pl-12 md:text-[16px]">
+                        <p className="pb-5 pl-8 pr-2 font-sans text-[15px] leading-[1.65] text-slate-600 sm:pb-6 sm:pl-10 sm:pr-8 md:pl-12 md:text-[16px]">
                           {item.a}
                         </p>
                       </div>
@@ -303,14 +303,14 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
       {/* Trusted logos */}
       <section className="relative overflow-hidden bg-[#020926] py-20 md:py-24">
         <ContourBG tone="dark" />
-        <div className="relative px-6 md:px-14">
+        <div className="relative px-4 sm:px-6 md:px-14">
           <ResultsLogos tone="dark" logosOnly />
         </div>
       </section>
 
       {/* FINAL CTA */}
       <section className="relative overflow-hidden border-t border-white/10 bg-[#020926] py-20 md:py-28">
-        <div className="relative mx-auto flex max-w-[1100px] flex-col items-start gap-8 px-6 md:flex-row md:items-center md:justify-between md:px-14">
+        <div className="relative mx-auto flex max-w-[1100px] flex-col items-start gap-6 px-4 sm:px-6 sm:gap-8 md:flex-row md:items-center md:justify-between md:px-14">
           <div>
             <p className="font-sans text-[clamp(26px,3.4vw,44px)] font-extrabold leading-none tracking-tight text-white">
               Get My Million-Dollar Funnel
@@ -332,14 +332,15 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
         className={`fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#020926]/92 backdrop-blur-xl transition-transform duration-500 ${
           showSticky ? "translate-y-0" : "translate-y-full"
         }`}
+        style={{ paddingBottom: "max(0.5rem, env(safe-area-inset-bottom))" }}
       >
-        <div className="mx-auto flex max-w-[1100px] items-center justify-between gap-4 px-6 py-3.5 md:px-14">
+        <div className="mx-auto flex max-w-[1100px] items-center justify-between gap-3 px-4 py-3 sm:gap-4 sm:px-6 md:px-14 md:py-3.5">
           <p className="hidden font-sans text-[14px] text-slate-300 sm:block">
             Ready for the same system?
           </p>
           <a
             href="/book"
-            className="ml-auto inline-flex items-center justify-center rounded-full bg-[#1254EC] px-6 py-3 font-sans text-[12px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_10px_30px_rgba(18,84,236,0.4)] transition hover:bg-[#0B3BB3]"
+            className="ml-auto inline-flex w-full items-center justify-center rounded-full bg-[#1254EC] px-6 py-3.5 font-sans text-[12px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_10px_30px_rgba(18,84,236,0.4)] transition hover:bg-[#0B3BB3] sm:w-auto sm:py-3"
           >
             Book a Call
           </a>

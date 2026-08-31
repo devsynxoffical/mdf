@@ -67,7 +67,7 @@ export default function BookCallPage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(18,84,236,0.35),transparent_55%)]" />
         <ContourBG tone="dark" />
 
-        <div className="relative mx-auto grid max-w-[1180px] gap-14 px-6 md:px-14 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+        <div className="relative mx-auto grid max-w-[1180px] gap-14 px-4 sm:px-6 md:px-14 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
           {/* Left copy */}
           <div>
             <p className="uf-eyebrow text-sky">( Book ) — Strategy Call</p>
@@ -120,17 +120,19 @@ export default function BookCallPage() {
               ))}
             </div>
 
-            <div className="mt-4 flex -space-x-3">
-              {ABOUT_PEOPLE.slice(0, 5).map((p) => (
-                <div
-                  key={p.src}
-                  className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-[#020926]"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.src} alt={p.alt} className="h-full w-full object-cover" loading="lazy" />
-                </div>
-              ))}
-              <span className="flex h-10 items-center pl-4 font-sans text-[12px] text-slate-400">
+            <div className="mt-4 flex flex-wrap items-center gap-y-2">
+              <div className="flex -space-x-3">
+                {ABOUT_PEOPLE.slice(0, 5).map((p) => (
+                  <div
+                    key={p.src}
+                    className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-[#020926] sm:h-10 sm:w-10"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={p.src} alt={p.alt} className="h-full w-full object-cover" loading="lazy" />
+                  </div>
+                ))}
+              </div>
+              <span className="pl-3 font-sans text-[12px] text-slate-400 sm:pl-4">
                 Join operators already scaling
               </span>
             </div>
@@ -144,7 +146,7 @@ export default function BookCallPage() {
           </div>
 
           {/* Form */}
-          <div className="rounded-[28px] border border-white/12 bg-white/[0.04] p-6 backdrop-blur-md sm:p-8 md:p-10">
+          <div className="rounded-2xl border border-white/12 bg-white/[0.04] p-4 backdrop-blur-md sm:rounded-[28px] sm:p-8 md:p-10">
             {sent ? (
               <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
                 <span className="flex h-16 w-16 items-center justify-center rounded-full bg-sky/20 text-sky">
@@ -221,14 +223,14 @@ export default function BookCallPage() {
                   <label className="mb-2 block font-sans text-[12px] font-semibold uppercase tracking-[0.12em] text-slate-400">
                     Preferred call time
                   </label>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
                     {SLOTS.map((slot) => (
                       <label
                         key={slot}
                         className="cursor-pointer"
                       >
                         <input type="radio" name="slot" value={slot} required className="peer sr-only" />
-                        <span className="flex items-center justify-center rounded-xl border border-white/15 bg-[#04103A] px-2 py-3 text-center font-sans text-[13px] font-medium text-slate-300 transition peer-checked:border-sky peer-checked:bg-sky/15 peer-checked:text-white">
+                        <span className="flex items-center justify-center rounded-xl border border-white/15 bg-[#04103A] px-1 py-3 text-center font-sans text-[11px] font-medium text-slate-300 transition peer-checked:border-sky peer-checked:bg-sky/15 peer-checked:text-white sm:px-2 sm:text-[13px]">
                           {slot}
                         </span>
                       </label>
@@ -268,7 +270,7 @@ export default function BookCallPage() {
 
       <section className="relative overflow-hidden border-t border-white/10 bg-[#020926] py-20 md:py-24">
         <ContourBG tone="dark" />
-        <div className="relative px-6 md:px-14">
+        <div className="relative px-4 sm:px-6 md:px-14">
           <ResultsLogos tone="dark" />
         </div>
       </section>

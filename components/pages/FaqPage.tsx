@@ -31,7 +31,7 @@ export default function FaqPage() {
     <div className="bg-gradient-to-b from-white via-[#F3F7FD] to-[#EBF2FC] text-[#070B1E]">
       <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
         <ContourBG tone="light" />
-        <div className="relative mx-auto max-w-[1100px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-14">
           <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:gap-16">
             <div>
               <p className="uf-eyebrow text-cobalt">( FAQ )</p>
@@ -74,7 +74,7 @@ export default function FaqPage() {
       </section>
 
       <section className="relative pb-24 md:pb-32">
-        <div className="relative mx-auto max-w-[1100px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-14">
           <div className="space-y-14">
             {CATEGORIES.map((cat, ci) => (
               <div key={cat.title}>
@@ -90,12 +90,12 @@ export default function FaqPage() {
                       <div key={item.q} className="border-b border-blue-200/60">
                         <button
                           type="button"
-                          className="group flex w-full items-start justify-between gap-8 py-6 text-left"
+                          className="group flex w-full items-start justify-between gap-4 py-5 text-left sm:gap-8 sm:py-6"
                           aria-expanded={isOpen}
                           onClick={() => setOpen(isOpen ? null : id)}
                         >
-                          <span className="flex gap-5">
-                            <span className="tnum mt-1 font-sans text-[13px] font-bold text-cobalt">
+                          <span className="flex min-w-0 gap-3 sm:gap-5">
+                            <span className="tnum mt-1 shrink-0 font-sans text-[13px] font-bold text-cobalt">
                               {String(n).padStart(2, "0")}
                             </span>
                             <span
@@ -123,7 +123,7 @@ export default function FaqPage() {
                           }}
                         >
                           <div className="overflow-hidden">
-                            <p className="pb-6 pl-10 pr-4 font-sans text-[15px] leading-[1.7] text-slate-600 md:pl-12 md:text-[16px]">
+                            <p className="pb-5 pl-8 pr-2 font-sans text-[15px] leading-[1.7] text-slate-600 sm:pb-6 sm:pl-10 sm:pr-4 md:pl-12 md:text-[16px]">
                               {item.a}
                             </p>
                           </div>
@@ -136,7 +136,7 @@ export default function FaqPage() {
             ))}
           </div>
 
-          <div className="mt-16 rounded-[28px] bg-[#020926] px-8 py-10 text-white md:flex md:items-center md:justify-between md:px-12 md:py-12">
+          <div className="mt-16 rounded-2xl bg-[#020926] px-5 py-8 text-white sm:rounded-[28px] sm:px-8 sm:py-10 md:flex md:items-center md:justify-between md:px-12 md:py-12">
             <div>
               <p className="font-sans text-[clamp(22px,2.8vw,32px)] font-extrabold tracking-tight">
                 Still have a question?

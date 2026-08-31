@@ -14,7 +14,7 @@ export default function ProcessPage() {
       {/* Hero */}
       <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
         <ContourBG tone="dark" />
-        <div className="relative mx-auto max-w-[1180px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
           <p className="uf-eyebrow text-sky">( Process ) — Start to finish</p>
           <h1 className="mt-5 max-w-[12ch] font-sans text-[clamp(40px,6vw,84px)] font-extrabold leading-[1.02] tracking-tight">
             <Reveal as="span">
@@ -49,7 +49,7 @@ export default function ProcessPage() {
 
       {/* Steps with images */}
       <section className="relative overflow-hidden pb-20 md:pb-28">
-        <div className="relative mx-auto max-w-[1180px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
           <ol className="space-y-0">
             {PROCESS_STEPS.map((step, i) => {
               const visual = PROCESS_VISUALS[i];
@@ -57,7 +57,7 @@ export default function ProcessPage() {
               return (
                 <li
                   key={step.num}
-                  className="grid items-center gap-8 border-t border-white/10 py-14 lg:grid-cols-2 lg:gap-14"
+                  className="grid items-center gap-6 border-t border-white/10 py-10 sm:gap-8 sm:py-14 lg:grid-cols-2 lg:gap-14"
                 >
                   <div className={flip ? "lg:order-2" : undefined}>
                     <span className="font-serif text-[48px] italic leading-none text-sky">
@@ -91,7 +91,7 @@ export default function ProcessPage() {
 
                   {visual && (
                     <figure
-                      className={`relative aspect-[16/11] overflow-hidden rounded-[28px] border border-white/12 bg-[#04103A] ${
+                      className={`relative aspect-[16/11] overflow-hidden rounded-2xl border border-white/12 bg-[#04103A] sm:rounded-[28px] ${
                         flip ? "lg:order-1" : ""
                       }`}
                     >
@@ -121,7 +121,7 @@ export default function ProcessPage() {
 
       {/* Proof receipts */}
       <section className="relative overflow-hidden border-y border-white/10 bg-[#04103A]/40 py-16 md:py-20">
-        <div className="relative mx-auto max-w-[1180px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
           <p className="uf-eyebrow text-sky">Live receipts from real installs</p>
           <h2 className="mt-4 max-w-[18ch] font-sans text-[clamp(26px,3.2vw,40px)] font-extrabold tracking-tight">
             What the machine looks like in the wild
@@ -139,7 +139,7 @@ export default function ProcessPage() {
       {/* Results + logos */}
       <section className="relative overflow-hidden bg-[#020926] py-20 md:py-24">
         <ContourBG tone="dark" />
-        <div className="relative px-6 md:px-14">
+        <div className="relative px-4 sm:px-6 md:px-14">
           <ResultsLogos tone="dark" />
         </div>
       </section>
@@ -147,7 +147,7 @@ export default function ProcessPage() {
       {/* Stack */}
       <section className="relative overflow-hidden bg-[#F3F7FD] py-24 text-[#070B1E] md:py-32">
         <ContourBG tone="light" />
-        <div className="relative mx-auto max-w-[1100px] px-6 md:px-14">
+        <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-14">
           <p className="uf-eyebrow text-cobalt">What we build</p>
           <h2 className="mt-4 max-w-[16ch] font-sans text-[clamp(28px,3.6vw,48px)] font-extrabold tracking-tight">
             The system stack inside every install
@@ -172,7 +172,7 @@ export default function ProcessPage() {
 
       {/* CTA */}
       <section className="relative border-t border-white/10 bg-[#020926] py-20">
-        <div className="mx-auto flex max-w-[1100px] flex-col items-start gap-8 px-6 md:flex-row md:items-center md:justify-between md:px-14">
+        <div className="mx-auto flex max-w-[1100px] flex-col items-start gap-6 px-4 sm:px-6 sm:gap-8 md:flex-row md:items-center md:justify-between md:px-14">
           <div>
             <p className="font-sans text-[clamp(24px,3vw,40px)] font-extrabold tracking-tight">
               Ready to map your path?

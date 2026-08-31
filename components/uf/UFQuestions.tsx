@@ -38,7 +38,7 @@ export default function UFQuestions() {
   return (
     <section id="faq" className="uf-light relative overflow-hidden bg-gradient-to-b from-[#FFFFFF] via-[#F3F7FD] to-[#EBF2FC] py-[18vh] text-[#070B1E]">
       <ContourBG tone="light" />
-      <div className="relative mx-auto max-w-[1100px] px-6 md:px-14">
+      <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-14">
         <div className="grid gap-12 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
           <div className="md:sticky md:top-28 md:self-start">
             <p className="uf-eyebrow text-cobalt font-bold tracking-[0.16em] font-sans">( 07 ) — The Questions</p>

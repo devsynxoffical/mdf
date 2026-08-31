@@ -115,7 +115,7 @@ export default function UFWorkProof() {
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-10%,rgba(18,84,236,0.22),transparent_50%)]"
       />
 
-      <div className="relative mx-auto max-w-[1280px] px-6 md:px-10 lg:px-14">
+      <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6 md:px-10 lg:px-14">
         {/* Header */}
         <div className="grid gap-8 border-b border-white/[0.08] pb-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
@@ -153,7 +153,7 @@ export default function UFWorkProof() {
 
         {/* Filters — underline tabs */}
         <div
-          className="mt-8 flex flex-wrap gap-x-8 gap-y-3 border-b border-white/[0.06]"
+          className="mt-8 flex gap-x-6 gap-y-3 overflow-x-auto border-b border-white/[0.06] pb-px [-ms-overflow-style:none] [scrollbar-width:none] sm:flex-wrap sm:gap-x-8 [&::-webkit-scrollbar]:hidden"
           role="tablist"
           aria-label="Filter work proof"
         >
@@ -168,7 +168,7 @@ export default function UFWorkProof() {
                   setFilter(f);
                   playTick();
                 }}
-                className={`relative pb-3 font-mono text-[11px] uppercase tracking-[0.18em] transition-colors duration-300 ${
+                className={`relative shrink-0 pb-3 font-mono text-[11px] uppercase tracking-[0.18em] transition-colors duration-300 ${
                   on ? "text-white" : "text-slate-500 hover:text-slate-300"
                 }`}
               >
@@ -313,7 +313,7 @@ export default function UFWorkProof() {
 
       {/* Archive tape */}
       <div className="marquee-row relative mt-20 border-t border-white/[0.08]">
-        <div className="mx-auto flex max-w-[1280px] items-baseline justify-between px-6 py-5 md:px-10 lg:px-14">
+        <div className="mx-auto flex max-w-[1280px] items-baseline justify-between px-4 py-5 sm:px-6 md:px-10 lg:px-14">
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">
             Archive · {ALL_THUMBS.length} frames
           </p>
