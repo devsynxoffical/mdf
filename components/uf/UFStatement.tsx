@@ -56,7 +56,7 @@ const STATS = [
   },
   {
     label: "Facebook ad spend managed across 11 years",
-    value: "$35M+",
+    value: "$50M+",
   },
   {
     label: "Founders mentored on offer & funnel",
@@ -130,11 +130,10 @@ export default function UFStatement() {
       <ContourBG tone="cobalt" />
 
       <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 md:px-12">
-        {/* 1. SHOWREEL / VIDEO SECTION (Empty placeholder frame ready for user video) */}
+        {/* 1. SHOWREEL / VIDEO SECTION */}
         <div className="mx-auto w-full max-w-[1200px]">
-          <div className="relative rounded-[28px] sm:rounded-[36px] bg-[#818CF8]/25 p-3 sm:p-5 md:p-7 border border-white/25 shadow-[0_25px_60px_rgba(0,0,0,0.25)] backdrop-blur-xl">
-            {/* Inner Video Player Frame (Auto-playing Video 1, 2, and 3 seamlessly merged, completely muted) */}
-            <div className="group relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden rounded-[20px] sm:rounded-[26px] bg-[#020926] border border-white/15 shadow-2xl">
+          <div className="relative rounded-[28px] border border-white/25 bg-[#818CF8]/25 p-3 shadow-[0_25px_60px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:rounded-[36px] sm:p-5 md:p-7">
+            <div className="group relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden rounded-[20px] border border-white/15 bg-[#020926] shadow-2xl sm:rounded-[26px]">
               <video
                 src="/video/showreel_merged.mp4"
                 autoPlay
@@ -146,12 +145,14 @@ export default function UFStatement() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* 2. RESULTS + TRUSTED LOGOS */}
-        <ResultsLogos tone="cobalt" className="mt-20" />
+      {/* 2. TRUSTED LOGOS — edge-to-edge marquee (outside padded container) */}
+      <ResultsLogos tone="cobalt" className="mt-20" logosOnly fullWidthMarquee />
 
+      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 md:px-12">
         {/* 3. EXPERTISE STATEMENT & SEAL BADGE WITH SCROLL-DRIVEN TYPEWRITER REVEAL & SOUND */}
-        <div className="mx-auto mt-24 grid max-w-[1180px] grid-cols-1 gap-10 lg:grid-cols-[240px_1fr] items-center">
+        <div className="mx-auto mt-24 grid max-w-[1180px] grid-cols-1 items-center gap-10 lg:grid-cols-[240px_1fr]">
           {/* Left Seal Stamp */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
             <div className="relative flex h-20 w-20 items-center justify-center text-white">
@@ -202,7 +203,7 @@ export default function UFStatement() {
           </p>
         </div>
 
-        {/* 4. 2X2 STAT CARDS GRID (Pristine White Cards with Italic Serif Stats) */}
+        {/* 4. 2X2 STAT CARDS GRID */}
         <div className="mx-auto mt-16 grid max-w-[1180px] grid-cols-1 gap-5 sm:grid-cols-2">
           {STATS.map((s) => (
             <div

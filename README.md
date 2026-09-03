@@ -59,7 +59,7 @@ npm run build    # production build
 - Founder portrait in `Founder.tsx` (currently an SVG placeholder)
 - Video testimonial posters + real video embeds (`CaseStudy.tsx`, `Testimonials.tsx`)
 - Booking link (`#book` CTAs), contact email, social URLs, legal pages
-- **The numbers.** $1.52M, $847,307, 3.32 ROAS, 13,630 sales, $35M ad spend,
+- **The numbers.** $1.52M, $847,307, 3.32 ROAS, 13,630 sales, $50M ad spend,
   500+ businesses are from the reference content. Substitute your own evidenced
   figures before this goes live — the earnings-claim disclaimer in the footer is
   required either way (Meta ad policy on business-opportunity claims).

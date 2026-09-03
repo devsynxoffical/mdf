@@ -33,11 +33,14 @@ const config: Config = {
         mute: "#8E9EC6",
       },
       fontFamily: {
-        sans: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
-        display: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
-        body: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
-        editorial: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
-        condensed: ["Plus Jakarta Sans", "Inter", "system-ui", "sans-serif"],
+        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        serif: ["Instrument Serif", "Georgia", "serif"],
+        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+        anton: ["Anton", "Plus Jakarta Sans", "sans-serif"],
+        display: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        body: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        editorial: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        condensed: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
       },
       fontSize: {
         // strict type scale: 12 / 14 / 16 / 20 / 28 / 40 / 64 / 96 / 140

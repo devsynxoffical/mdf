@@ -242,11 +242,6 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
   }, [reducedMotion]);
 
   const continueDown = () => {
-    const door = document.getElementById("door");
-    if (door) {
-      door.scrollIntoView({ behavior: "smooth" });
-      return;
-    }
     window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" });
   };
 
@@ -260,7 +255,10 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-10 h-full w-full transition-opacity duration-500"
-        style={{ opacity: ready ? 1 : 0 }}
+        style={{
+          opacity: ready ? 1 : 0,
+          filter: "brightness(0.86) contrast(1.16) saturate(0.62)",
+        }}
       />
 
       {!ready && <LoadingOverlay label="Loading sequence" pct={loadPct} />}
@@ -479,7 +477,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
     >
       <iframe
         ref={iframeRef}
-        src="/lusion_standalone.html"
+        src="/lusion_standalone.html?v=silver2"
         title="Lusion astronaut interactive experience"
         className="pointer-events-none absolute inset-0 h-full w-full border-0 bg-black"
         allow="autoplay; fullscreen"

@@ -98,7 +98,7 @@ export default function Founder() {
           </RiseIn>
           <RiseIn delay={200}>
             <p className="mt-6 max-w-[46ch] font-body text-[17px] leading-[1.6] text-mute">
-              Eleven years and $35M+ in Facebook ad spend across the US, UK,
+              Eleven years and $50M+ in Facebook ad spend across the US, UK,
               Canada, and Australia — in tight, competitive niches. 500+ service
               businesses scaled. 100+ founders mentored.
             </p>

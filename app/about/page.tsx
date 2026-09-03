@@ -5,7 +5,7 @@ import UFFooter from "@/components/uf/UFFooter";
 export const metadata: Metadata = {
   title: "About — Million Dollar Funnel™",
   description:
-    "Gaurav Kapoor — Founder of Million Dollar Funnel™. $35M+ Facebook ad spend. 500+ businesses scaled.",
+    "Gaurav Kapoor — Founder of Million Dollar Funnel™. $50M+ Facebook ad spend. 500+ businesses scaled.",
 };
 
 export default function Page() {

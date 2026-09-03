@@ -6,6 +6,8 @@ type Props = {
   src: string;
   posterHint?: string;
   onProgress?: (pct: number) => void;
+  /** Attempt muted autoplay on mount (browser-safe). */
+  autoPlay?: boolean;
 };
 
 function formatTime(s: number) {
@@ -16,18 +18,19 @@ function formatTime(s: number) {
 }
 
 /**
- * Cinema-style VSL player — play overlay, scrub, mute, progress callback.
+ * Cinema-style VSL player — autoplay (muted), scrub, unmute, progress callback.
  */
-export default function VslPlayer({ src, onProgress }: Props) {
+export default function VslPlayer({ src, onProgress, autoPlay = false }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
   const [playing, setPlaying] = useState(false);
   const [started, setStarted] = useState(false);
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(autoPlay);
   const [progress, setProgress] = useState(0);
   const [current, setCurrent] = useState(0);
   const [duration, setDuration] = useState(0);
   const [hovering, setHovering] = useState(false);
+  const [showUnmuteHint, setShowUnmuteHint] = useState(autoPlay);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -67,11 +70,42 @@ export default function VslPlayer({ src, onProgress }: Props) {
     };
   }, [onProgress]);
 
+  useEffect(() => {
+    if (!autoPlay) return;
+    const v = videoRef.current;
+    if (!v) return;
+
+    v.muted = true;
+    setMuted(true);
+    const tryPlay = () => {
+      void v.play().then(() => {
+        setStarted(true);
+        setPlaying(true);
+        setShowUnmuteHint(true);
+      }).catch(() => {
+        /* Autoplay blocked — user can tap play */
+      });
+    };
+
+    if (v.readyState >= 2) tryPlay();
+    else v.addEventListener("loadeddata", tryPlay, { once: true });
+  }, [autoPlay, src]);
+
+  const unmuteWithSound = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = false;
+    setMuted(false);
+    setShowUnmuteHint(false);
+    void v.play();
+  };
+
   const play = () => {
     const v = videoRef.current;
     if (!v) return;
     v.muted = false;
     setMuted(false);
+    setShowUnmuteHint(false);
     void v.play();
   };
 
@@ -87,6 +121,7 @@ export default function VslPlayer({ src, onProgress }: Props) {
     if (!v) return;
     v.muted = !v.muted;
     setMuted(v.muted);
+    if (!v.muted) setShowUnmuteHint(false);
   };
 
   const seek = (clientX: number) => {
@@ -110,16 +145,17 @@ export default function VslPlayer({ src, onProgress }: Props) {
         className="h-full w-full object-cover"
         playsInline
         preload="auto"
+        muted={autoPlay ? muted : undefined}
+        loop={false}
         onClick={started ? togglePlay : play}
       />
 
-      {/* Soft vignette */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(2,9,38,0.55)_100%)]"
       />
 
-      {/* Start overlay */}
+      {/* Manual start — only if autoplay didn't start */}
       {!started && (
         <button
           type="button"
@@ -134,16 +170,29 @@ export default function VslPlayer({ src, onProgress }: Props) {
           </span>
           <div className="text-center">
             <p className="font-sans text-[11px] font-bold uppercase tracking-[0.18em] text-white sm:text-[13px] sm:tracking-[0.22em]">
-              Click to watch first
+              Watch the case breakdown
             </p>
             <p className="mt-1.5 font-sans text-[13px] text-blue-100/80 sm:mt-2 sm:text-[14px]">
-              Full case breakdown · sound on
+              Full VSL · sound on
             </p>
           </div>
         </button>
       )}
 
-      {/* Controls */}
+      {/* Unmute hint while muted autoplay runs */}
+      {started && showUnmuteHint && muted && (
+        <button
+          type="button"
+          onClick={unmuteWithSound}
+          className="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full border border-white/25 bg-black/70 px-5 py-3 font-sans text-[12px] font-bold uppercase tracking-[0.14em] text-white shadow-xl backdrop-blur-md transition hover:bg-black/85 sm:text-[13px]"
+        >
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M11 5L6 9H3v6h3l5 4V5zM15.5 8.5a5 5 0 010 7M18.5 6a9 9 0 010 12" strokeLinecap="round" />
+          </svg>
+          Tap for sound
+        </button>
+      )}
+
       {started && (
         <div
           className={`absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 pb-4 pt-16 transition-opacity duration-300 md:px-6 md:pb-5 ${

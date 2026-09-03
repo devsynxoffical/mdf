@@ -5,23 +5,17 @@ import ContourBG from "@/components/uf/ContourBG";
 import Reveal from "@/components/uf/Reveal";
 import Magnetic from "@/components/uf/Magnetic";
 import VslPlayer from "@/components/cases/VslPlayer";
-import ResultsLogos from "@/components/uf/ResultsLogos";
-import PagePhotos from "@/components/pages/PagePhotos";
+import UFOpinions from "@/components/uf/UFOpinions";
+import ProofExpandList from "@/components/workproof/ProofExpandList";
 import type { CaseStudy } from "@/lib/cases";
 import { CASE_STUDIES } from "@/lib/cases";
-import { PROOF_SHOTS, CASE_STORY_VISUALS } from "@/lib/media";
-
-const FOUNDER_STATS = [
-  { value: "500", suffix: "+", label: "Businesses scaled" },
-  { value: "1,500", suffix: "+", label: "Clients Served" },
-  { value: "100", suffix: "+", label: "Founders mentored" },
-  { value: "$35", suffix: "M+", label: "Facebook ad spend" },
-];
+import { getWorkProofFeatured } from "@/lib/workproof";
 
 export default function CaseStudyView({ study }: { study: CaseStudy }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [watched, setWatched] = useState(0);
   const showSticky = watched >= 12;
+  const featuredProof = getWorkProofFeatured();
 
   const onProgress = useCallback((pct: number) => {
     setWatched((prev) => Math.max(prev, pct));
@@ -44,7 +38,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
           </a>
 
           <div className="mt-8 text-center">
-            <p className="uf-eyebrow justify-center text-sky">{study.niche}</p>
+            <p className="uf-eyebrow justify-center text-sky">{study.navLabel}</p>
             <h1 className="mx-auto mt-5 max-w-[18ch] font-sans text-[clamp(32px,5vw,60px)] font-extrabold leading-[1.06] tracking-tight text-white">
               <Reveal as="span">
                 <span className="block">{study.title}</span>
@@ -53,19 +47,15 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
             <p className="mx-auto mt-5 max-w-[34ch] font-serif text-[clamp(18px,2.2vw,26px)] italic text-blue-100/90">
               {study.subtitle}
             </p>
-            <p className="mt-4 font-sans text-[12px] font-bold uppercase tracking-[0.2em] text-sky">
-              Click below to watch first
-            </p>
           </div>
 
           <div className="relative mt-10 -mx-6 md:mx-0">
             <div className="pointer-events-none absolute -inset-4 rounded-[36px] bg-[radial-gradient(ellipse_at_center,rgba(18,84,236,0.35),transparent_70%)] blur-2xl md:-inset-8" />
             <div className="relative">
-              <VslPlayer src={study.videoUrl} onProgress={onProgress} />
+              <VslPlayer src={study.videoUrl} onProgress={onProgress} autoPlay />
             </div>
           </div>
 
-          {/* Metric strip under VSL */}
           <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/10 sm:grid-cols-3">
             {study.metrics.map((m) => (
               <div
@@ -83,9 +73,9 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
           </div>
 
           <p className="mt-6 text-center font-sans text-[14px] text-slate-400">
-            <span className="text-white font-semibold">$255,130</span> spent →{" "}
-            <span className="text-sky font-semibold">$847,307</span> revenue collected · ROAS{" "}
-            <span className="text-white font-semibold">3.32</span>
+            <span className="font-semibold text-white">$255,130</span> spent →{" "}
+            <span className="font-semibold text-sky">$847,307</span> revenue collected · ROAS{" "}
+            <span className="font-semibold text-white">3.32</span>
           </p>
 
           <div className="mt-8 flex justify-center">
@@ -170,80 +160,65 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
               </ul>
             </div>
           </div>
-
-          <div className="mt-16">
-            <p className="font-sans text-[13px] font-bold uppercase tracking-[0.14em] text-cobalt">
-              Path rebuild — before vs wired stack
-            </p>
-            <PagePhotos items={CASE_STORY_VISUALS} layout="duo" className="mt-6" tone="light" />
-            <p className="mt-10 font-sans text-[13px] font-bold uppercase tracking-[0.14em] text-cobalt">
-              Live receipts from similar installs
-            </p>
-            <PagePhotos items={PROOF_SHOTS} layout="strip" className="mt-6" tone="light" />
-          </div>
         </div>
       </section>
 
-      {/* FOUNDER */}
-      <section className="relative overflow-hidden bg-[#020926] py-24 md:py-32">
+      {/* WORK PROOF — same expandable layout as homepage */}
+      <section className="uf-dark relative overflow-hidden bg-[#020926] py-24 text-white md:py-32">
         <ContourBG tone="dark" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(18,84,236,0.14),transparent_50%)]"
+        />
         <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
-          <p className="uf-eyebrow text-sky">( 04 ) — The Operator</p>
-          <h2 className="mt-5 max-w-[16ch] font-sans text-[clamp(32px,4.4vw,58px)] font-extrabold leading-[1.05] tracking-tight">
-            This Is How We
-            <span className="block text-sky">Make It Happen</span>
+          <p className="uf-eyebrow tracking-[0.18em] text-sky">( 04 ) — Work Proof</p>
+          <h2 className="mt-5 max-w-[16ch] font-sans text-[clamp(32px,4.4vw,52px)] font-extrabold leading-[1.05] tracking-tight">
+            Receipts from funnels
+            <span className="block text-sky">that actually run.</span>
           </h2>
-
-          <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-16">
-            <div>
-              <p className="font-sans text-[28px] font-extrabold tracking-tight text-white md:text-[34px]">
-                Gaurav Kapoor
-              </p>
-              <p className="mt-4 max-w-[42ch] font-sans text-[15px] leading-[1.65] text-slate-300 md:text-[16px]">
-                Big 4 Market Scaling Expert (US, UK, Canada, Australia) in Tight Niches. $35M+ Spent
-                in Facebook Ads Across 11 Years. 500+ Service Businesses Scaled | 100+ Founders
-                Mentored. Founder of Million Dollar Funnel™
-              </p>
-              <Magnetic strength={0.2}>
-                <a href="/book" className="btn-gold mt-8 inline-flex">
-                  Get My Million-Dollar Funnel
-                </a>
-              </Magnetic>
-              <p className="mt-3 font-sans text-[13px] text-slate-400">
-                100% Risk-Free. Performance-backed.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 sm:gap-5">
-              {FOUNDER_STATS.map((s) => (
-                <div
-                  key={s.label}
-                  className="rounded-2xl border border-white/10 bg-white/[0.04] px-3 py-5 backdrop-blur-sm sm:px-5 sm:py-6"
-                >
-                  <p className="font-serif text-[clamp(28px,8vw,48px)] italic leading-none text-white">
-                    {s.value}
-                    <span className="text-sky">{s.suffix}</span>
-                  </p>
-                  <p className="mt-2 font-sans text-[11px] font-medium uppercase tracking-[0.1em] text-slate-400 sm:mt-3 sm:text-[12px] sm:tracking-[0.12em]">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <p className="mt-5 max-w-[48ch] font-sans text-[16px] leading-[1.65] text-slate-400">
+            Hover any row — same live Meta and CRM cuts we show on the homepage.
+          </p>
+          <div className="mt-12">
+            <ProofExpandList
+              items={featuredProof}
+              expandLink={{ href: "/work-proof", label: "View all proof" }}
+            />
+          </div>
+          <div className="mt-10 flex justify-center">
+            <a
+              href="/work-proof"
+              className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-sky transition hover:text-white"
+            >
+              View all work proof →
+            </a>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* TESTIMONIALS — homepage Second Opinions layout */}
+      <UFOpinions />
+
+      {/* FAQ — homepage questions layout */}
       <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#F3F7FD] to-[#EBF2FC] py-24 text-[#070B1E] md:py-32">
         <ContourBG tone="light" />
         <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-14">
-          <div className="grid gap-12 md:grid-cols-[0.75fr_1.25fr] md:gap-16">
+          <div className="grid gap-12 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
             <div className="md:sticky md:top-28 md:self-start">
-              <p className="uf-eyebrow text-cobalt">( 05 ) — FAQ</p>
-              <h2 className="mt-5 font-sans text-[clamp(32px,4vw,52px)] font-extrabold leading-[1.05] tracking-tight">
-                Frequently Asked
-                <span className="block text-cobalt">Questions!</span>
+              <p className="uf-eyebrow font-sans font-bold tracking-[0.16em] text-cobalt">
+                ( 05 ) — The Questions
+              </p>
+              <h2 className="mt-6 text-[#070B1E]">
+                <Reveal as="span">
+                  <span className="block font-sans text-[clamp(36px,4.6vw,68px)] font-extrabold leading-[1.05] tracking-tight text-[#070B1E]">
+                    Before You
+                  </span>
+                </Reveal>
+                <Reveal as="span" delay={110}>
+                  <span className="block font-sans text-[clamp(30px,3.8vw,56px)] font-bold tracking-tight text-cobalt">
+                    Book.
+                  </span>
+                </Reveal>
               </h2>
             </div>
 
@@ -300,15 +275,6 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
         </div>
       </section>
 
-      {/* Trusted logos */}
-      <section className="relative overflow-hidden bg-[#020926] py-20 md:py-24">
-        <ContourBG tone="dark" />
-        <div className="relative px-4 sm:px-6 md:px-14">
-          <ResultsLogos tone="dark" logosOnly />
-        </div>
-      </section>
-
-      {/* FINAL CTA */}
       <section className="relative overflow-hidden border-t border-white/10 bg-[#020926] py-20 md:py-28">
         <div className="relative mx-auto flex max-w-[1100px] flex-col items-start gap-6 px-4 sm:px-6 sm:gap-8 md:flex-row md:items-center md:justify-between md:px-14">
           <div>
@@ -327,7 +293,6 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
         </div>
       </section>
 
-      {/* Sticky CTA after watching */}
       <div
         className={`fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#020926]/92 backdrop-blur-xl transition-transform duration-500 ${
           showSticky ? "translate-y-0" : "translate-y-full"

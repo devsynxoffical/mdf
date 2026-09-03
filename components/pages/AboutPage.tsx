@@ -12,7 +12,7 @@ const STATS = [
   { value: "500+", label: "Businesses scaled" },
   { value: "1,500+", label: "Clients served" },
   { value: "100+", label: "Founders mentored" },
-  { value: "$35M+", label: "Facebook ad spend" },
+  { value: "$50M+", label: "Facebook ad spend" },
 ];
 
 export default function AboutPage() {
@@ -47,7 +47,7 @@ export default function AboutPage() {
                   on tight niches where offer clarity and backend systems decide who scales.
                 </p>
                 <p>
-                  Over 11 years and $35M+ in Facebook ad spend, he watched the same pattern
+                  Over 11 years and $50M+ in Facebook ad spend, he watched the same pattern
                   repeat: founders chase high-ticket hype while their low-ticket front end can’t
                   sell consistently, tracking is broken, and follow-up leaks revenue on every
                   campaign.

@@ -1,116 +1,156 @@
 "use client";
 
-import Magnetic from "./Magnetic";
+import ContourBG from "./ContourBG";
 import { CASE_STUDIES } from "@/lib/cases";
+import { SITE } from "@/lib/site";
 
 const casesHref =
   CASE_STUDIES.length === 1
     ? `/cases/${CASE_STUDIES[0].slug}`
     : "/cases";
 
-const NAV = [
+const casesLabel =
+  CASE_STUDIES.length === 1 ? CASE_STUDIES[0].navLabel : "Cases";
+
+const EXPLORE = [
   ["Home", "/"],
-  ["Cases", casesHref],
+  [casesLabel, casesHref],
+  ["Work Proof", "/work-proof"],
+  ["Funnel Designs", "/funnels"],
   ["Process", "/process"],
+] as const;
+
+const COMPANY = [
   ["About", "/about"],
   ["FAQ", "/faq"],
-];
+  ["Book a call", "/book"],
+] as const;
 
 const LEGAL = [
   ["Terms", "/terms"],
   ["Privacy", "/privacy"],
   ["Income Disclosure", "/income-disclosure"],
-];
+  ["DMCA", "/dmca"],
+] as const;
 
-export default function UFFooter() {
+function FooterLink({ href, children }: { href: string; children: string }) {
   return (
-    <footer id="site-footer" className="uf-dark relative border-t border-white/10 bg-[#020926] text-white">
-      {/* CTA */}
-      <div className="border-b border-white/10">
-        <div className="mx-auto flex max-w-[1180px] flex-col items-start gap-6 px-4 py-12 sm:px-6 sm:gap-8 md:flex-row md:items-center md:justify-between md:px-14 md:py-14">
-          <div>
-            <p className="font-sans text-[clamp(24px,3vw,40px)] font-extrabold leading-none tracking-tight text-white">
-              Still reading?
-            </p>
-            <p className="mt-2 font-sans text-[clamp(20px,2.4vw,32px)] font-bold leading-none text-sky">
-              Let&apos;s map your funnel.
-            </p>
-          </div>
-          <Magnetic>
-            <a href="/book" className="btn-gold">
-              Book the call
-            </a>
-          </Magnetic>
-        </div>
-      </div>
+    <a
+      href={href}
+      className="group inline-flex items-center gap-2 font-sans text-[14px] text-slate-400 transition-colors hover:text-white"
+    >
+      <span className="h-px w-0 bg-sky transition-all duration-300 group-hover:w-3" aria-hidden />
+      {children}
+    </a>
+  );
+}
 
-      {/* Main */}
-      <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6 md:py-14 md:px-14">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
-          <div>
-            <p className="font-sans text-[20px] font-extrabold tracking-tight text-white">
-              Million Dollar Funnel<span className="text-sky">™</span>
-            </p>
-            <p className="mt-3 max-w-[32ch] font-sans text-[14px] leading-[1.6] text-slate-400">
-              Client acquisition for high-ticket service providers.
+/**
+ * Site footer — brand-forward close, clear columns, cobalt atmosphere.
+ */
+export default function UFFooter() {
+  const year = new Date().getFullYear();
+
+  return (
+    <footer
+      id="site-footer"
+      className="uf-dark relative overflow-hidden bg-[#020926] text-white"
+    >
+      {/* Atmosphere */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(18,84,236,0.22),transparent_45%),radial-gradient(ellipse_at_90%_100%,rgba(56,189,248,0.08),transparent_40%)]"
+      />
+      <ContourBG tone="dark" />
+
+      {/* Link grid */}
+      <div className="relative mx-auto max-w-[1180px] px-4 py-14 sm:px-6 md:px-14 md:py-16">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-10">
+          {/* Brand */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <a href="/" className="inline-flex items-center gap-2.5">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-sky/40 bg-sky/10 shadow-[0_0_16px_rgba(56,189,248,0.35)]">
+                <span className="h-2 w-2 rounded-full bg-sky" />
+              </span>
+              <span className="font-sans text-[18px] font-extrabold tracking-tight text-white">
+                MDF<span className="text-sky">™</span>
+              </span>
+            </a>
+            <p className="mt-4 max-w-[28ch] font-sans text-[14px] leading-[1.65] text-slate-400">
+              Predictable high-ticket client acquisition — built, launched, and managed
+              for you.
             </p>
             <a
-              href="mailto:hello@milliondollarfunnel.com"
-              className="mt-5 inline-block font-sans text-[14px] font-medium text-white/90 transition-colors hover:text-sky"
+              href={`mailto:${SITE.email}`}
+              className="mt-5 inline-block font-sans text-[14px] font-medium text-white transition hover:text-sky"
             >
-              hello@milliondollarfunnel.com
+              {SITE.email}
             </a>
-            <p className="mt-5 inline-flex items-center gap-2 font-sans text-[12px] font-medium text-slate-400">
+            <p className="mt-5 inline-flex items-center gap-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
               <span
-                className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-sky shadow-[0_0_8px_#38BDF8]"
+                className="live-dot h-1.5 w-1.5 rounded-full bg-sky shadow-[0_0_10px_#38BDF8]"
                 aria-hidden
               />
               Accepting 4 clients this quarter
             </p>
           </div>
 
-          <nav aria-label="Footer">
-            <p className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-slate-500">
-              Navigate
+          <nav aria-label="Explore">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-sky/80">
+              Explore
             </p>
-            <ul className="mt-5 space-y-3">
-              {NAV.map(([label, href]) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    className="font-sans text-[14px] text-slate-400 transition-colors hover:text-white"
-                  >
-                    {label}
-                  </a>
+            <ul className="mt-5 space-y-3.5">
+              {EXPLORE.map(([label, href]) => (
+                <li key={href}>
+                  <FooterLink href={href}>{label}</FooterLink>
                 </li>
               ))}
             </ul>
           </nav>
 
-          <div>
-            <p className="font-mono text-[9.5px] uppercase tracking-[0.2em] text-slate-500">
-              Legal
+          <nav aria-label="Company">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-sky/80">
+              Company
             </p>
-            <ul className="mt-5 space-y-3">
-              {LEGAL.map(([label, href]) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    className="font-sans text-[14px] text-slate-400 transition-colors hover:text-white"
-                  >
-                    {label}
-                  </a>
+            <ul className="mt-5 space-y-3.5">
+              {COMPANY.map(([label, href]) => (
+                <li key={href}>
+                  <FooterLink href={href}>{label}</FooterLink>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
+
+          <nav aria-label="Legal">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-sky/80">
+              Legal
+            </p>
+            <ul className="mt-5 space-y-3.5">
+              {LEGAL.map(([label, href]) => (
+                <li key={href}>
+                  <FooterLink href={href}>{label}</FooterLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="mx-auto max-w-[1180px] px-6 py-5 md:px-14">
-          <p className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-slate-500">
-            © {new Date().getFullYear()} Million Dollar Funnel™ — All rights reserved
+      {/* Giant brand mark */}
+      <div className="relative overflow-hidden border-t border-white/10" aria-hidden>
+        <p className="select-none px-4 py-6 text-center font-sans text-[clamp(48px,14vw,160px)] font-black leading-none tracking-[-0.06em] text-white/[0.04] sm:px-6 md:px-14 md:py-8">
+          MDF™
+        </p>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="relative border-t border-white/10">
+        <div className="mx-auto flex max-w-[1180px] flex-col gap-3 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 md:px-14">
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-slate-500">
+            © {year} {SITE.brand} — All rights reserved
+          </p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-slate-600">
+            Built for operators who measure revenue
           </p>
         </div>
       </div>

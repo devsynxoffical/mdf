@@ -128,7 +128,7 @@ export default function ProcessPage() {
           </h2>
           <PagePhotos items={PROOF_SHOTS} layout="strip" className="mt-10" tone="dark" />
           <a
-            href="/#workproof"
+            href="/work-proof"
             className="mt-6 inline-flex font-sans text-[12px] font-bold uppercase tracking-[0.14em] text-sky hover:underline"
           >
             Browse all work proof →

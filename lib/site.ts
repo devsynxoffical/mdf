@@ -156,7 +156,7 @@ export const ABOUT_TIMELINE = [
   {
     year: "11 yrs",
     label: "Paid media",
-    body: "$35M+ Facebook ad spend across service businesses and coaching offers.",
+    body: "$50M+ Facebook ad spend across service businesses and coaching offers.",
   },
   {
     year: "500+",

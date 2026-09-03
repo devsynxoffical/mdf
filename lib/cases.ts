@@ -6,6 +6,8 @@ export type CaseMetric = {
 export type CaseStudy = {
   slug: string;
   niche: string;
+  /** Short label for site header nav (e.g. "Coaching LTO") */
+  navLabel: string;
   title: string;
   subtitle: string;
   summary: string;
@@ -23,6 +25,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "coaching-lto",
     niche: "Coaching · Low-Ticket Offer",
+    navLabel: "Coaching LTO",
     title: "The Real Magic Of Million Dollar Funnel™ System",
     subtitle: "This Is What We Are Proud Of…",
     summary:

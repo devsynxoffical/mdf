@@ -83,7 +83,7 @@ export default function UFProcess() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="uf-dark relative bg-gradient-to-b from-[#020926] via-[#05163F] to-[#072151] overflow-hidden">
+    <section ref={sectionRef} id="process" className="uf-dark relative bg-gradient-to-b from-[#020926] via-[#05163F] to-[#072151] overflow-hidden">
       <div className="flex h-auto flex-col py-[12vh] md:h-screen md:py-0">
         {/* header + progress line */}
         <div className="px-4 pt-0 sm:px-6 md:px-14 md:pt-16">

@@ -41,6 +41,8 @@ type Props = {
   logosOnly?: boolean;
   /** Hide logo marquees (results only) */
   resultsOnly?: boolean;
+  /** Marquees span full viewport width (edge to edge) */
+  fullWidthMarquee?: boolean;
   className?: string;
   showCaseLink?: boolean;
 };
@@ -52,6 +54,7 @@ export default function ResultsLogos({
   tone = "cobalt",
   logosOnly = false,
   resultsOnly = false,
+  fullWidthMarquee = false,
   className = "",
   showCaseLink = true,
 }: Props) {
@@ -77,7 +80,7 @@ export default function ResultsLogos({
     : "opacity-[0.88] brightness-0 invert transition hover:opacity-100";
 
   return (
-    <div className={`mx-auto max-w-[1180px] ${className}`}>
+    <div className={fullWidthMarquee ? className : `mx-auto max-w-[1180px] ${className}`}>
       {!logosOnly && (
         <>
           <div className="flex items-center justify-center gap-3 sm:gap-6">
@@ -128,7 +131,13 @@ export default function ResultsLogos({
 
       {!resultsOnly && (
         <div className={logosOnly ? "" : "mt-16"}>
-          <div className="flex items-center justify-center gap-3 sm:gap-6">
+          <div
+            className={
+              fullWidthMarquee
+                ? "mx-auto flex max-w-[1180px] items-center justify-center gap-3 px-4 sm:gap-6 sm:px-6"
+                : "flex items-center justify-center gap-3 sm:gap-6"
+            }
+          >
             <span className={`hidden h-px flex-1 sm:block ${rule}`} />
             <span className={`${title} max-w-[16ch] sm:max-w-none sm:whitespace-nowrap`}>
               Trusted by 300+ global clients
@@ -136,14 +145,18 @@ export default function ResultsLogos({
             <span className={`hidden h-px flex-1 sm:block ${rule}`} />
           </div>
 
-          <div className="relative mt-10">
+          <div
+            className={`relative mt-10 ${
+              fullWidthMarquee ? "w-full" : ""
+            }`}
+          >
             <div
               aria-hidden
-              className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r ${fadeFrom} to-transparent sm:w-20`}
+              className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r sm:w-16 ${fadeFrom} to-transparent`}
             />
             <div
               aria-hidden
-              className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l ${fadeFrom} to-transparent sm:w-20`}
+              className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l sm:w-16 ${fadeFrom} to-transparent`}
             />
 
             <LogoRow logos={CLIENT_LOGOS_A} direction="left" duration="48s" filter={logoFilter} />

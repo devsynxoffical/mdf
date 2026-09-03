@@ -5,8 +5,8 @@ import Magnetic from "@/components/uf/Magnetic";
 import { CASE_STUDIES } from "@/lib/cases";
 
 const LINKS = [
-  ["Process", "/process"],
-  ["About", "/about"],
+  ["Work Proof", "/work-proof"],
+  ["Funnels", "/funnels"],
   ["FAQ", "/faq"],
 ] as const;
 
@@ -21,6 +21,8 @@ export default function MinimalNav() {
       : "/cases";
 
   const casesHref = showCasesDropdown ? "/cases" : singleCaseHref;
+  const casesNavLabel =
+    CASE_STUDIES.length === 1 ? CASE_STUDIES[0].navLabel : "Cases";
 
   useEffect(() => {
     if (!casesOpen) return;
@@ -130,7 +132,7 @@ export default function MinimalNav() {
               href={singleCaseHref}
               className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-slate-300 transition-colors hover:text-white"
             >
-              Cases
+              {casesNavLabel}
             </a>
           )}
 
@@ -208,7 +210,7 @@ export default function MinimalNav() {
             onClick={() => setMenuOpen(false)}
             className="rounded-xl px-4 py-3.5 font-sans text-[14px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white/[0.06]"
           >
-            Cases
+            {casesNavLabel}
           </a>
           {showCasesDropdown &&
             CASE_STUDIES.map((study) => (

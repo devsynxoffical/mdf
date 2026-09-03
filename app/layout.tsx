@@ -36,7 +36,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#000000] text-white selection:bg-[#1254EC]/40 selection:text-white">
+      <body className="bg-[#000000] font-sans text-white selection:bg-[#1254EC]/40 selection:text-white">
         <ScrollProvider>
           <Grain />
           <MinimalNav />
