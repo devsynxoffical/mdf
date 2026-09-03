@@ -13,7 +13,7 @@ if (typeof window !== "undefined") {
 
 const COL_TILT = [1.15, -1.4, 0.9];
 
-const STACK_TICKER = [...new Set(FUNNEL_DESIGNS.flatMap((f) => f.stack))];
+const STACK_TICKER = Array.from(new Set(FUNNEL_DESIGNS.flatMap((f) => f.stack)));
 
 /**
  * Homepage funnel gallery — six builds in a 3-column grid,
