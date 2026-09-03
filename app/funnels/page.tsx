@@ -5,7 +5,7 @@ import UFFooter from "@/components/uf/UFFooter";
 export const metadata: Metadata = {
   title: "Funnel Designs — Million Dollar Funnel™",
   description:
-    "The results we bring are proven through our funnel designs — eight live client architectures from mortgage to high-ticket B2B.",
+    "Funnel Systems builds, the six-layer Million Dollar Funnel™ System, and full client architectures — from ad click to booked call.",
 };
 
 export default function Page() {

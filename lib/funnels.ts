@@ -220,5 +220,5 @@ export const FUNNEL_DESIGNS: FunnelDesign[] = [
   },
 ];
 
-/** First four shown on the homepage zig-zag section */
-export const FEATURED_FUNNELS = FUNNEL_DESIGNS.slice(0, 4);
+/** Six featured on the homepage — three per row */
+export const FEATURED_FUNNELS = FUNNEL_DESIGNS.slice(0, 6);

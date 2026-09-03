@@ -6,16 +6,15 @@ import Reveal from "@/components/uf/Reveal";
 import Magnetic from "@/components/uf/Magnetic";
 import VslPlayer from "@/components/cases/VslPlayer";
 import UFOpinions from "@/components/uf/UFOpinions";
-import ProofExpandList from "@/components/workproof/ProofExpandList";
+import UFProof from "@/components/uf/UFProof";
+import UFLeaks from "@/components/uf/UFLeaks";
 import type { CaseStudy } from "@/lib/cases";
 import { CASE_STUDIES } from "@/lib/cases";
-import { getWorkProofFeatured } from "@/lib/workproof";
 
 export default function CaseStudyView({ study }: { study: CaseStudy }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [watched, setWatched] = useState(0);
   const showSticky = watched >= 12;
-  const featuredProof = getWorkProofFeatured();
 
   const onProgress = useCallback((pct: number) => {
     setWatched((prev) => Math.max(prev, pct));
@@ -163,40 +162,13 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
         </div>
       </section>
 
-      {/* WORK PROOF — same expandable layout as homepage */}
-      <section className="uf-dark relative overflow-hidden bg-[#020926] py-24 text-white md:py-32">
-        <ContourBG tone="dark" />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(18,84,236,0.14),transparent_50%)]"
-        />
-        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
-          <p className="uf-eyebrow tracking-[0.18em] text-sky">( 04 ) — Work Proof</p>
-          <h2 className="mt-5 max-w-[16ch] font-sans text-[clamp(32px,4.4vw,52px)] font-extrabold leading-[1.05] tracking-tight">
-            Receipts from funnels
-            <span className="block text-sky">that actually run.</span>
-          </h2>
-          <p className="mt-5 max-w-[48ch] font-sans text-[16px] leading-[1.65] text-slate-400">
-            Hover any row — same live Meta and CRM cuts we show on the homepage.
-          </p>
-          <div className="mt-12">
-            <ProofExpandList
-              items={featuredProof}
-              expandLink={{ href: "/work-proof", label: "View all proof" }}
-            />
-          </div>
-          <div className="mt-10 flex justify-center">
-            <a
-              href="/work-proof"
-              className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-sky transition hover:text-white"
-            >
-              View all work proof →
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* FUNNEL SYSTEMS — same gallery as homepage */}
+      <UFLeaks />
 
-      {/* TESTIMONIALS — homepage Second Opinions layout */}
+      {/* SYSTEM — same Million Dollar Funnel™ layers as homepage */}
+      <UFProof />
+
+      {/* TESTIMONIALS — homepage Second Opinions */}
       <UFOpinions />
 
       {/* FAQ — homepage questions layout */}

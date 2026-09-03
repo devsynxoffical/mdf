@@ -1,14 +1,19 @@
 "use client";
 
 const NAV_LINKS = [
+  { label: "Funnels", href: "/#funnels" },
   { label: "System", href: "/#system" },
-  { label: "Results", href: "/#results" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Case Studies", href: "/#case-studies" },
-  { label: "About", href: "/#about" },
+  { label: "Process", href: "/#process" },
+  { label: "Work Proof", href: "/work-proof" },
+  { label: "About", href: "/about" },
   { label: "FAQ", href: "/#faq" },
 ];
-const LEGAL_LINKS = ["Terms of Service", "Privacy", "DMCA Policy", "Income Disclosure"];
+const LEGAL_LINKS = [
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "DMCA Policy", href: "/dmca" },
+  { label: "Income Disclosure", href: "/income-disclosure" },
+];
 
 export default function Footer() {
   return (
@@ -66,12 +71,12 @@ export default function Footer() {
             </p>
             <ul className="mt-5 space-y-3">
               {LEGAL_LINKS.map((l) => (
-                <li key={l}>
+                <li key={l.label}>
                   <a
-                    href="#"
+                    href={l.href}
                     className="font-body text-[15px] text-mute transition-colors duration-200 hover:text-bone"
                   >
-                    {l}
+                    {l.label}
                   </a>
                 </li>
               ))}
@@ -94,7 +99,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#book"
+                  href="/book"
                   className="font-body text-[15px] text-mute transition-colors duration-200 hover:text-bone"
                 >
                   Book a call

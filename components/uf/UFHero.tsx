@@ -7,7 +7,7 @@ const CAPABILITIES = [
     num: "01",
     title: "The Funnel Engine",
     subtitle: "UX/UI, High-Ticket VSL, Architecture",
-    href: "#proof",
+    href: "#funnels",
     iconSrc: "/images/hero-link-ico1.png",
   },
   {
@@ -21,7 +21,7 @@ const CAPABILITIES = [
     num: "03",
     title: "AI Qualification",
     subtitle: "60s Response & CRM Pipeline",
-    href: "#process",
+    href: "#system",
     iconSrc: "/images/hero-link-ico3.png",
   },
 ] as const;

@@ -4,14 +4,14 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const LINKS = [
+  { label: "Funnels", href: "/#funnels" },
   { label: "System", href: "/#system" },
-  { label: "Results", href: "/#results" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "About", href: "/#about" },
+  { label: "Process", href: "/#process" },
+  { label: "Work Proof", href: "/work-proof" },
   { label: "FAQ", href: "/#faq" },
 ];
 
-const SECTION_IDS = ["system", "results", "case-studies", "about", "faq"];
+const SECTION_IDS = ["funnels", "system", "opinions", "process", "faq"];
 
 export default function Nav() {
   const [dismissed, setDismissed] = useState<boolean | null>(null);
@@ -98,7 +98,7 @@ export default function Nav() {
         style={{ marginTop: contracted ? 16 : 32 }}
       >
         <a
-          href="/#top"
+          href="/"
           className="font-display text-[18px] font-semibold text-bone shrink-0"
         >
           MDF<span className="text-brass">™</span>
@@ -140,7 +140,7 @@ export default function Nav() {
 
         <div className="flex items-center gap-3">
           <a
-            href="#book"
+            href="/book"
             className="hidden md:inline-block rounded-full bg-brass px-6 py-3.5 font-body text-s14 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(217,164,65,0.35)]"
           >
             Reserve Your Spot
@@ -208,7 +208,7 @@ export default function Nav() {
               </ul>
             </nav>
             <a
-              href="#book"
+              href="/book"
               onClick={() => setMenuOpen(false)}
               className="rounded-full bg-brass px-6 py-4 text-center font-body text-s16 font-semibold text-ink"
             >

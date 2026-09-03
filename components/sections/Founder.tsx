@@ -123,7 +123,7 @@ export default function Founder() {
 
           <RiseIn delay={200}>
             <a
-              href="#book"
+              href="/book"
               className="mt-10 block rounded-full bg-brass px-8 py-[18px] text-center font-body text-s16 font-semibold text-ink transition-[filter,box-shadow] duration-200 hover:brightness-[1.08] hover:shadow-[0_0_32px_rgba(217,164,65,0.35)]"
             >
               Get my Million Dollar Funnel

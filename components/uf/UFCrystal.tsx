@@ -14,17 +14,17 @@ const CATEGORIES = [
   {
     name: "Architecture",
     tag: "Funnel & Strategy",
-    href: "#proof",
+    href: "#funnels",
   },
   {
     name: "Acquisition",
     tag: "Paid Traffic & Ads",
-    href: "#proof",
+    href: "/work-proof",
   },
   {
     name: "Conversion",
     tag: "AI CRM & Pipeline",
-    href: "#process",
+    href: "#system",
   },
 ];
 

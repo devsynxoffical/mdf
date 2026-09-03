@@ -117,7 +117,7 @@ export default function Gallery() {
   const portfolioLink = (
     <div className="mt-8 text-center">
       <a
-        href="/portfolio"
+        href="/funnels"
         className="group relative inline-block font-body text-s16 font-medium text-brass"
       >
         View the full portfolio — {VIDEOS.length} creatives →

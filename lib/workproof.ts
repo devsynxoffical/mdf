@@ -44,11 +44,12 @@ const COLORS = [
   "#3730A3",
 ] as const;
 
-/** Curated receipts from /public/workproof — real Meta + CRM dashboards. */
-export const WORK_PROOF: WorkProofItem[] = [
-  {
-    id: "wp-001",
-    src: "/workproof/wp-001.png",
+/** Curated copy for known receipts — keyed by id. */
+const WORK_PROOF_CURATED: Record<
+  string,
+  Omit<WorkProofItem, "id" | "src">
+> = {
+  "wp-001": {
     tag: "Meta Ads",
     niche: "Roofing",
     metric: "$3.75",
@@ -56,9 +57,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "25 form leads in a day — $93 spent.",
     size: "md",
   },
-  {
-    id: "wp-006",
-    src: "/workproof/wp-006.png",
+  "wp-006": {
     tag: "Meta Ads",
     niche: "Roofing",
     metric: "$14.58",
@@ -66,9 +65,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "While owners were still paying $80+ elsewhere.",
     size: "lg",
   },
-  {
-    id: "wp-016",
-    src: "/workproof/wp-016.png",
+  "wp-016": {
     tag: "CRM",
     niche: "Roofing · TX",
     metric: "$77K",
@@ -76,9 +73,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Meta ads → roofing funnel → booked jobs.",
     size: "xl",
   },
-  {
-    id: "wp-026",
-    src: "/workproof/wp-026.png",
+  "wp-026": {
     tag: "Scale",
     niche: "Mortgage",
     metric: "10,172",
@@ -86,9 +81,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "$82K spent. Same leads agencies resell for $80–$100.",
     size: "xl",
   },
-  {
-    id: "wp-041",
-    src: "/workproof/wp-041.png",
+  "wp-041": {
     tag: "CRM",
     niche: "Roofing · FL",
     metric: "$111K",
@@ -96,9 +89,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Built from the ground up — 26 won opportunities.",
     size: "lg",
   },
-  {
-    id: "wp-003",
-    src: "/workproof/wp-003.png",
+  "wp-003": {
     tag: "Meta Ads",
     niche: "Lead Gen",
     metric: "Live",
@@ -106,9 +97,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Campaign-level cost & result cut.",
     size: "sm",
   },
-  {
-    id: "wp-008",
-    src: "/workproof/wp-008.png",
+  "wp-008": {
     tag: "Meta Ads",
     niche: "Service",
     metric: "CPL",
@@ -116,9 +105,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Million Dollar Media™ column view.",
     size: "md",
   },
-  {
-    id: "wp-012",
-    src: "/workproof/wp-012.png",
+  "wp-012": {
     tag: "Meta Ads",
     niche: "Roofing",
     metric: "Daily",
@@ -126,9 +113,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Tight budgets. Measurable leads.",
     size: "sm",
   },
-  {
-    id: "wp-018",
-    src: "/workproof/wp-018.png",
+  "wp-018": {
     tag: "CRM",
     niche: "Pipeline",
     metric: "Won",
@@ -136,9 +121,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Dashboard receipts — not screenshots of vibes.",
     size: "md",
   },
-  {
-    id: "wp-022",
-    src: "/workproof/wp-022.png",
+  "wp-022": {
     tag: "Meta Ads",
     niche: "Volume",
     metric: "Ads",
@@ -146,9 +129,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Multi-campaign visibility.",
     size: "sm",
   },
-  {
-    id: "wp-028",
-    src: "/workproof/wp-028.png",
+  "wp-028": {
     tag: "Scale",
     niche: "Lead Gen",
     metric: "High",
@@ -156,9 +137,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "When the machine is warmed up.",
     size: "md",
   },
-  {
-    id: "wp-032",
-    src: "/workproof/wp-032.png",
+  "wp-032": {
     tag: "Meta Ads",
     niche: "Service",
     metric: "CPL",
@@ -166,9 +145,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Cost per result, not vanity reach.",
     size: "sm",
   },
-  {
-    id: "wp-035",
-    src: "/workproof/wp-035.png",
+  "wp-035": {
     tag: "CRM",
     niche: "Ops",
     metric: "Pipeline",
@@ -176,9 +153,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Open vs won — in the clear.",
     size: "md",
   },
-  {
-    id: "wp-038",
-    src: "/workproof/wp-038.png",
+  "wp-038": {
     tag: "Meta Ads",
     niche: "Lead Gen",
     metric: "Spend",
@@ -186,9 +161,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Where every dollar went.",
     size: "sm",
   },
-  {
-    id: "wp-042",
-    src: "/workproof/wp-042.png",
+  "wp-042": {
     tag: "CRM",
     niche: "Roofing",
     metric: "Closed",
@@ -196,9 +169,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Revenue that hit the bank.",
     size: "lg",
   },
-  {
-    id: "wp-045",
-    src: "/workproof/wp-045.png",
+  "wp-045": {
     tag: "Meta Ads",
     niche: "Service",
     metric: "Form",
@@ -206,9 +177,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Qualified inbound at scale.",
     size: "sm",
   },
-  {
-    id: "wp-048",
-    src: "/workproof/wp-048.png",
+  "wp-048": {
     tag: "Scale",
     niche: "Multi",
     metric: "Multi",
@@ -216,9 +185,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Stacked accounts. Same system.",
     size: "md",
   },
-  {
-    id: "wp-052",
-    src: "/workproof/wp-052.png",
+  "wp-052": {
     tag: "CRM",
     niche: "Funnel",
     metric: "Conv.",
@@ -226,9 +193,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "From click to calendar.",
     size: "sm",
   },
-  {
-    id: "wp-055",
-    src: "/workproof/wp-055.png",
+  "wp-055": {
     tag: "Meta Ads",
     niche: "Lead Gen",
     metric: "CTR",
@@ -236,9 +201,7 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "Creative that earns its spend.",
     size: "md",
   },
-  {
-    id: "wp-058",
-    src: "/workproof/wp-058.png",
+  "wp-058": {
     tag: "CRM",
     niche: "Revenue",
     metric: "Won",
@@ -246,7 +209,31 @@ export const WORK_PROOF: WorkProofItem[] = [
     note: "The only scoreboard that matters.",
     size: "lg",
   },
-];
+};
+
+const TAG_CYCLE: WorkProofTag[] = ["Meta Ads", "CRM", "Scale"];
+const SIZE_CYCLE: WorkProofItem["size"][] = ["sm", "md", "lg", "xl"];
+
+/** Every screenshot in /public/workproof (wp-001 … wp-059). */
+export const WORK_PROOF: WorkProofItem[] = Array.from({ length: 59 }, (_, i) => {
+  const n = String(i + 1).padStart(3, "0");
+  const id = `wp-${n}`;
+  const curated = WORK_PROOF_CURATED[id];
+  if (curated) {
+    return { id, src: `/workproof/${id}.png`, ...curated };
+  }
+  const tag = TAG_CYCLE[i % TAG_CYCLE.length];
+  return {
+    id,
+    src: `/workproof/${id}.png`,
+    tag,
+    niche: tag === "CRM" ? "Pipeline" : tag === "Scale" ? "Lead Gen" : "Service",
+    metric: "Live",
+    metricLabel: "client receipt",
+    note: "Real Meta / CRM output from an active install.",
+    size: SIZE_CYCLE[i % SIZE_CYCLE.length],
+  };
+});
 
 type DetailMeta = {
   displayName: string;

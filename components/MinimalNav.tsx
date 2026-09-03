@@ -58,7 +58,7 @@ export default function MinimalNav() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.08] bg-[#000000]/60 backdrop-blur-xl transition-all duration-300">
       <div className="flex items-center justify-between px-4 py-3.5 sm:px-6 md:px-14 md:py-4">
         <a
-          href="/#top"
+          href="/"
           className="flex items-center gap-2 font-sans text-[17px] font-bold tracking-tight text-white transition-colors hover:text-sky sm:gap-2.5 sm:text-[18px]"
           onClick={() => setMenuOpen(false)}
         >

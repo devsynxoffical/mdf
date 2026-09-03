@@ -100,7 +100,7 @@ export default function UFBuilt() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Magnetic>
-              <a href="/portfolio" className="btn-gold">
+              <a href="/funnels" className="btn-gold">
                 See all {VIDEOS.length}
               </a>
             </Magnetic>
