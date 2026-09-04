@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const LOAD_MS = 2400;
 const EXPAND_MS = 1300;
+const FAILSAFE_MS = 7000;
 
 function DigitColumn({ digit }: { digit: number }) {
   return (
@@ -47,9 +48,8 @@ function ProgressDigits({ value, fade }: { value: number; fade: boolean }) {
 type Phase = "load" | "expand" | "done";
 
 /**
- * Start screen: count up → M grows huge → site opens out from the M.
- * Stays mounted (hidden) after finish to avoid React removeChild races
- * with browser extensions / concurrent unmounts.
+ * Start screen: count up → M grows → site opens.
+ * When finished, uses display:none (not opacity) so it can't cover the page.
  */
 export default function StartScreen() {
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -69,10 +69,31 @@ export default function StartScreen() {
       document.body.style.overflow = "";
     };
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const endIntro = () => {
+      if (cancelled) return;
       finishBoot();
+      const el = overlayRef.current;
+      if (el) {
+        el.style.webkitMaskImage = "";
+        el.style.maskImage = "";
+        el.style.transform = "";
+      }
+      if (markWrapRef.current) {
+        markWrapRef.current.style.transform = "";
+        markWrapRef.current.style.opacity = "";
+      }
       setPhase("done");
-      return;
+    };
+
+    // Never leave the site stuck behind the loader
+    timers.push(window.setTimeout(endIntro, FAILSAFE_MS));
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      endIntro();
+      return () => {
+        cancelled = true;
+        timers.forEach((id) => window.clearTimeout(id));
+      };
     }
 
     document.body.style.overflow = "hidden";
@@ -109,11 +130,7 @@ export default function StartScreen() {
           return;
         }
 
-        finishBoot();
-        // Hide after paint so React isn't tearing the tree mid-frame
-        requestAnimationFrame(() => {
-          if (!cancelled) setPhase("done");
-        });
+        endIntro();
       };
 
       expandRaf = requestAnimationFrame(tickExpand);
@@ -148,18 +165,15 @@ export default function StartScreen() {
   const expanding = phase === "expand";
   const done = phase === "done";
 
+  if (done) return null;
+
   return (
     <div
       ref={overlayRef}
-      className={`fixed inset-0 z-[200] flex bg-black ${
-        done ? "pointer-events-none invisible opacity-0" : ""
-      }`}
+      className="fixed inset-0 z-[200] flex bg-black"
       role="status"
       aria-live="polite"
-      aria-hidden={done}
-      aria-label={
-        done ? undefined : expanding ? "Opening site" : `Loading ${progress} percent`
-      }
+      aria-label={expanding ? "Opening site" : `Loading ${progress} percent`}
     >
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div
@@ -199,7 +213,7 @@ export default function StartScreen() {
       </div>
 
       <div className="absolute bottom-6 left-5 sm:bottom-8 sm:left-8 md:bottom-10 md:left-12">
-        <ProgressDigits value={progress} fade={expanding || markVisible || done} />
+        <ProgressDigits value={progress} fade={expanding || markVisible} />
       </div>
     </div>
   );

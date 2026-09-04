@@ -80,7 +80,7 @@ export default function UFFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="site-footer" className="bg-black text-white">
+    <footer id="site-footer" className="relative z-20 isolate overflow-hidden bg-black text-white">
       {/* Top — join / list CTA */}
       <div className="mx-auto max-w-[720px] px-5 pb-16 pt-20 text-center sm:px-8 md:pb-20 md:pt-24">
         <h2 className="font-serif text-[clamp(36px,5.5vw,56px)] font-normal leading-[1.15] tracking-tight text-white">
@@ -93,9 +93,9 @@ export default function UFFooter() {
         <form
           action={ROUTES.book}
           method="get"
-          className="mx-auto mt-10 flex max-w-[520px] flex-col items-stretch gap-3 sm:flex-row sm:items-end sm:gap-0"
+          className="relative z-10 mx-auto mt-10 flex max-w-[520px] flex-col items-stretch gap-3 sm:flex-row sm:items-end sm:gap-0"
         >
-          <label className="relative min-w-0 flex-1 text-left">
+          <label className="relative z-10 min-w-0 flex-1 text-left">
             <span className="mb-2 block font-sans text-[12px] text-white/80">
               Email *
             </span>
@@ -104,8 +104,8 @@ export default function UFFooter() {
               name="email"
               required
               autoComplete="email"
-              placeholder=""
-              className="h-12 w-full border border-white bg-transparent px-4 font-sans text-[15px] text-white outline-none placeholder:text-white/35 focus:border-white"
+              placeholder="you@company.com"
+              className="relative z-10 h-12 w-full border border-white bg-black px-4 font-sans text-[15px] text-white outline-none placeholder:text-white/35 focus:border-sky"
             />
           </label>
           <button
