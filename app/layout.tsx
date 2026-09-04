@@ -23,6 +23,17 @@ export default function RootLayout({
             __html: `
               (function () {
                 try { sessionStorage.removeItem('mdf-intro-seen'); } catch (e) {}
+                // Guard against browser extensions / race conditions that detach
+                // nodes before React's reconciler calls removeChild.
+                try {
+                  var orig = Node.prototype.removeChild;
+                  Node.prototype.removeChild = function (child) {
+                    if (child && child.parentNode !== this) {
+                      return child;
+                    }
+                    return orig.apply(this, arguments);
+                  };
+                } catch (e) {}
                 window.addEventListener('error', function(e) {
                   if (e.filename && e.filename.indexOf('chrome-extension://') !== -1) {
                     e.stopImmediatePropagation();

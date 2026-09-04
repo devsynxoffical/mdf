@@ -44,10 +44,12 @@ function ProgressDigits({ value, fade }: { value: number; fade: boolean }) {
   );
 }
 
-type Phase = "load" | "expand" | "gone";
+type Phase = "load" | "expand" | "done";
 
 /**
  * Start screen: count up → M grows huge → site opens out from the M.
+ * Stays mounted (hidden) after finish to avoid React removeChild races
+ * with browser extensions / concurrent unmounts.
  */
 export default function StartScreen() {
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -67,11 +69,9 @@ export default function StartScreen() {
       document.body.style.overflow = "";
     };
 
-    // Always play intro on full page load / hard refresh.
-    // Skip only for reduced-motion accessibility.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       finishBoot();
-      setPhase("gone");
+      setPhase("done");
       return;
     }
 
@@ -81,14 +81,12 @@ export default function StartScreen() {
     const runExpand = () => {
       if (cancelled) return;
       setPhase("expand");
-      // Site becomes visible under the mask hole
       document.documentElement.classList.remove("mdf-booting");
 
       const expandStart = performance.now();
       const tickExpand = (now: number) => {
         if (cancelled) return;
         const t = Math.min(1, (now - expandStart) / EXPAND_MS);
-        // Strong ease-in-out so M feels like it detonates open
         const eased =
           t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
         const hole = eased * 160;
@@ -112,7 +110,10 @@ export default function StartScreen() {
         }
 
         finishBoot();
-        setPhase("gone");
+        // Hide after paint so React isn't tearing the tree mid-frame
+        requestAnimationFrame(() => {
+          if (!cancelled) setPhase("done");
+        });
       };
 
       expandRaf = requestAnimationFrame(tickExpand);
@@ -140,20 +141,25 @@ export default function StartScreen() {
       cancelAnimationFrame(raf);
       cancelAnimationFrame(expandRaf);
       timers.forEach((id) => window.clearTimeout(id));
+      finishBoot();
     };
   }, []);
 
-  if (phase === "gone") return null;
-
   const expanding = phase === "expand";
+  const done = phase === "done";
 
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[200] flex bg-black"
+      className={`fixed inset-0 z-[200] flex bg-black ${
+        done ? "pointer-events-none invisible opacity-0" : ""
+      }`}
       role="status"
       aria-live="polite"
-      aria-label={expanding ? "Opening site" : `Loading ${progress} percent`}
+      aria-hidden={done}
+      aria-label={
+        done ? undefined : expanding ? "Opening site" : `Loading ${progress} percent`
+      }
     >
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div
@@ -193,7 +199,7 @@ export default function StartScreen() {
       </div>
 
       <div className="absolute bottom-6 left-5 sm:bottom-8 sm:left-8 md:bottom-10 md:left-12">
-        <ProgressDigits value={progress} fade={expanding || markVisible} />
+        <ProgressDigits value={progress} fade={expanding || markVisible || done} />
       </div>
     </div>
   );

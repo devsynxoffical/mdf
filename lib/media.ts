@@ -78,37 +78,37 @@ export const ABOUT_PEOPLE = [
 /** Live Meta/CRM receipts — labels match workproof data */
 export const PROOF_SHOTS = [
   {
-    src: "/workproof/wp-001.png",
+    src: "/workprof/wp-001.png",
     alt: "Roofing Meta ads — $3.75 CPL, 25 leads",
     label: "Roofing · $3.75 CPL",
     caption: "25 form leads · $93 spent",
   },
   {
-    src: "/workproof/wp-006.png",
+    src: "/workprof/wp-006.png",
     alt: "Roofing Meta ads — $14.58 CPL at volume",
     label: "Roofing · 154 leads",
     caption: "$14.58 CPL while others paid $80+",
   },
   {
-    src: "/workproof/wp-016.png",
+    src: "/workprof/wp-016.png",
     alt: "Roofing CRM — $77K closed in 30 days",
     label: "CRM · $77K closed",
     caption: "Meta → funnel → booked jobs",
   },
   {
-    src: "/workproof/wp-026.png",
+    src: "/workprof/wp-026.png",
     alt: "Mortgage scale — 10,172 leads at $8.06 CPL",
     label: "Mortgage · 10k leads",
     caption: "$8.06 CPL · $82K spent",
   },
   {
-    src: "/workproof/wp-041.png",
+    src: "/workprof/wp-041.png",
     alt: "Roofing CRM — $111K won in 31 days",
     label: "CRM · $111K won",
     caption: "26 won opportunities · 31 days",
   },
   {
-    src: "/workproof/wp-058.png",
+    src: "/workprof/wp-038.png",
     alt: "Scale receipt from live account",
     label: "Scale proof",
     caption: "Live account cut",

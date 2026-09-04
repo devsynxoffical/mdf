@@ -214,18 +214,18 @@ const WORK_PROOF_CURATED: Record<
 const TAG_CYCLE: WorkProofTag[] = ["Meta Ads", "CRM", "Scale"];
 const SIZE_CYCLE: WorkProofItem["size"][] = ["sm", "md", "lg", "xl"];
 
-/** Every screenshot in /public/workproof (wp-001 … wp-059). */
-export const WORK_PROOF: WorkProofItem[] = Array.from({ length: 59 }, (_, i) => {
+/** Every screenshot in /public/workprof (wp-001 … wp-041). */
+export const WORK_PROOF: WorkProofItem[] = Array.from({ length: 41 }, (_, i) => {
   const n = String(i + 1).padStart(3, "0");
   const id = `wp-${n}`;
   const curated = WORK_PROOF_CURATED[id];
   if (curated) {
-    return { id, src: `/workproof/${id}.png`, ...curated };
+    return { id, src: `/workprof/${id}.png`, ...curated };
   }
   const tag = TAG_CYCLE[i % TAG_CYCLE.length];
   return {
     id,
-    src: `/workproof/${id}.png`,
+    src: `/workprof/${id}.png`,
     tag,
     niche: tag === "CRM" ? "Pipeline" : tag === "Scale" ? "Lead Gen" : "Service",
     metric: "Live",
@@ -440,7 +440,7 @@ export const WORK_PROOF_FEATURED_IDS = [
   "wp-016",
   "wp-041",
   "wp-006",
-  "wp-058",
+  "wp-038",
 ] as const;
 
 export function getWorkProofFeatured(): WorkProofDetail[] {

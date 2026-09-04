@@ -26,17 +26,22 @@ export default function Reveal({
       el.classList.add("in");
       return;
     }
+    let timeoutId: number | undefined;
     const io = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
         io.disconnect();
-        const t = setTimeout(() => el.classList.add("in"), delay);
-        return () => clearTimeout(t);
+        timeoutId = window.setTimeout(() => {
+          if (el.isConnected) el.classList.add("in");
+        }, delay);
       },
       { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+    };
   }, [delay]);
 
   const Comp = Tag as any;
