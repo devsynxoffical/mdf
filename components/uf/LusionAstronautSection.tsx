@@ -70,23 +70,25 @@ export default function LusionAstronautSection() {
     setProbed(true);
   }, [scrollReady, isMobile, reducedMotion]);
 
-  if (!scrollReady || !probed) {
-    return (
-      <section
-        id="lusion-immersive"
-        className="relative h-[100dvh] w-full overflow-hidden bg-black"
-        aria-label="Immersive astronaut scroll experience"
-      >
-        <LoadingOverlay label="Loading sequence" pct={null} />
-      </section>
-    );
-  }
-
-  if (useFrames) {
-    return <FrameAstronautExperience reducedMotion={reducedMotion} />;
-  }
-
-  return <IframeAstronautExperience onFail={() => setUseFrames(true)} />;
+  // Stable outer shell — swapping the pinned <section> root remounts GSAP pin
+  // spacers and triggers React removeChild NotFoundError.
+  return (
+    <div id="lusion-immersive-root" className="relative w-full">
+      {!scrollReady || !probed ? (
+        <section
+          id="lusion-immersive"
+          className="relative h-[100dvh] w-full overflow-hidden bg-black"
+          aria-label="Immersive astronaut scroll experience"
+        >
+          <LoadingOverlay label="Loading sequence" pct={null} />
+        </section>
+      ) : useFrames ? (
+        <FrameAstronautExperience reducedMotion={reducedMotion} />
+      ) : (
+        <IframeAstronautExperience onFail={() => setUseFrames(true)} />
+      )}
+    </div>
+  );
 }
 
 /* ─── Mobile / reduced-motion: canvas frame scrubber ─── */
@@ -222,6 +224,8 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
         start: "top top",
         end: "+=280%",
         pin: true,
+        // Avoid reparenting the React-owned section into a spacer race.
+        pinReparent: false,
         scrub: 0.35,
         anticipatePin: 1,
         invalidateOnRefresh: true,
@@ -401,6 +405,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
       start: "top top",
       end: "+=1400%",
       pin: true,
+      pinReparent: false,
       scrub: 0.45,
       anticipatePin: 1,
       invalidateOnRefresh: true,

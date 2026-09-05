@@ -22,7 +22,7 @@ const TESTIMONIALS: VideoTestimonial[] = [
     subtitle: "High-ticket client acquisition",
     duration: "2:04",
     videoUrl: "/video/testimonials/edgar.mp4",
-    poster: "/images/testimonials/edgar_poster.jpg",
+    poster: "/images/testimonials/edgar_poster.webp",
   },
   {
     id: "marie-grace-berg",
@@ -31,7 +31,7 @@ const TESTIMONIALS: VideoTestimonial[] = [
     subtitle: "Summit registrations case study",
     duration: "1:12",
     videoUrl: "/video/testimonials/marie.mp4",
-    poster: "/images/testimonials/marie_poster.jpg",
+    poster: "/images/testimonials/marie_poster.webp",
   },
   {
     id: "edgar-jeremi",
@@ -40,65 +40,30 @@ const TESTIMONIALS: VideoTestimonial[] = [
     subtitle: "$4,500 MRR at $7 CPL",
     duration: "0:45",
     videoUrl: "/video/testimonials/ej.mp4",
-    poster: "/images/testimonials/edgar_jeremi_poster.jpg",
+    poster: "/images/testimonials/edgar_jeremi_poster.webp",
   },
 ];
 
+/**
+ * Card uses poster only — video loads in the modal on tap.
+ * Avoids downloading ~50MB of preview video on first paint.
+ */
 function OpinionClip({
   item,
-  dimmed,
   onOpen,
 }: {
   item: VideoTestimonial;
-  dimmed: boolean;
   onOpen: () => void;
 }) {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    const wrap = wrapRef.current;
-    const video = videoRef.current;
-    if (!wrap || !video) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !dimmed) {
-          const play = video.play();
-          if (play) play.catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.4 }
-    );
-    io.observe(wrap);
-    return () => io.disconnect();
-  }, [dimmed]);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (dimmed) video.pause();
-  }, [dimmed]);
-
   return (
-    <div
-      ref={wrapRef}
-      className="relative aspect-[3/4] w-full overflow-hidden bg-[#050508]"
-    >
-      <video
-        ref={videoRef}
-        src={item.videoUrl}
-        poster={item.poster}
-        muted
-        loop
-        playsInline
-        preload="metadata"
+    <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#050508]">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={item.poster}
+        alt=""
+        loading="lazy"
+        decoding="async"
         className="h-full w-full object-cover object-[center_18%]"
-        onCanPlay={() => setReady(true)}
       />
 
       <button
@@ -110,19 +75,25 @@ function OpinionClip({
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 to-transparent" />
 
+      <span className="pointer-events-none absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 backdrop-blur-sm">
+        <svg viewBox="0 0 24 24" className="ml-0.5 h-5 w-5 fill-white" aria-hidden>
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </span>
+
       <span className="pointer-events-none absolute right-3 top-3 font-mono text-[10px] font-semibold tabular-nums text-white/80">
         {item.duration}
       </span>
 
       <span className="pointer-events-none absolute bottom-3 left-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-white/85">
-        {ready ? "Watch" : "Loading"}
+        Watch
       </span>
     </div>
   );
 }
 
 /**
- * ( 05 ) Owner case-study videos — muted previews, fullscreen watch.
+ * ( 05 ) Owner case-study videos — poster cards, fullscreen watch on tap.
  */
 export default function UFOpinions() {
   const [activeVideo, setActiveVideo] = useState<VideoTestimonial | null>(null);
@@ -179,11 +150,7 @@ export default function UFOpinions() {
               key={item.id}
               className="flex flex-col overflow-hidden rounded-[12px] border border-white/10 bg-[#04103A]/50"
             >
-              <OpinionClip
-                item={item}
-                dimmed={!!activeVideo}
-                onOpen={() => setActiveVideo(item)}
-              />
+              <OpinionClip item={item} onOpen={() => setActiveVideo(item)} />
               <div className="flex flex-1 flex-col px-5 py-5 sm:px-6 sm:py-6">
                 <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-sky">
                   {item.subtitle}
@@ -243,6 +210,7 @@ export default function UFOpinions() {
               controls
               autoPlay
               playsInline
+              preload="auto"
               className="max-h-full w-auto max-w-full object-contain"
               style={{ maxHeight: "calc(100vh - 96px)" }}
             />

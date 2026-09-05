@@ -220,12 +220,12 @@ export const WORK_PROOF: WorkProofItem[] = Array.from({ length: 41 }, (_, i) => 
   const id = `wp-${n}`;
   const curated = WORK_PROOF_CURATED[id];
   if (curated) {
-    return { id, src: `/workprof/${id}.png`, ...curated };
+    return { id, src: `/workprof/${id}.webp`, ...curated };
   }
   const tag = TAG_CYCLE[i % TAG_CYCLE.length];
   return {
     id,
-    src: `/workprof/${id}.png`,
+    src: `/workprof/${id}.webp`,
     tag,
     niche: tag === "CRM" ? "Pipeline" : tag === "Scale" ? "Lead Gen" : "Service",
     metric: "Live",

@@ -22,76 +22,63 @@ function ProofCard({
     <button
       type="button"
       onClick={onOpen}
-      className="group flex w-full flex-col overflow-hidden rounded-2xl border border-sky/25 bg-[#0A0A0A] text-left transition duration-300 hover:border-sky/55 hover:bg-[#0F0F0F]"
+      className="group flex w-full flex-col text-left outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt"
     >
-      <div className="flex items-center gap-2.5 px-3 py-2.5 sm:px-3.5">
-        <span
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-sky/40 bg-sky/15"
-          aria-hidden
-        >
-          <span className="h-2 w-2 rounded-full bg-sky" />
-        </span>
-        <div className="min-w-0 flex-1">
-          <p className="truncate font-sans text-[12px] font-bold text-white sm:text-[13px]">
-            Million Dollar Funnel™
+      <div className="relative overflow-hidden rounded-lg border border-[#070B1E]/10 bg-white transition duration-300 group-hover:border-cobalt/40 group-hover:shadow-[0_8px_28px_rgba(18,84,236,0.1)]">
+        <div className="relative aspect-[16/11] overflow-hidden bg-[#EEF2F8]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={item.src}
+            alt={`${item.niche} — ${item.metric} ${item.metricLabel}`}
+            className="h-full w-full object-cover object-top transition duration-500 ease-out group-hover:scale-[1.04]"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#070B1E]/40 via-transparent to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+        </div>
+      </div>
+
+      <div className="mt-2.5 flex items-baseline justify-between gap-2 px-0.5">
+        <div className="min-w-0">
+          <p className="truncate font-sans text-[13px] font-bold tracking-tight text-[#070B1E]">
+            {item.metric}
+            <span className="ml-1.5 font-medium text-slate-500">
+              {item.metricLabel}
+            </span>
           </p>
-          <p className="truncate font-sans text-[10px] text-white/45 sm:text-[11px]">
+          <p className="mt-0.5 truncate font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-400">
             {item.niche} · {item.tag}
           </p>
         </div>
-        <span className="shrink-0 rounded-full border border-sky/30 bg-sky/10 px-2 py-0.5 font-mono text-[8px] font-semibold uppercase tracking-[0.1em] text-sky sm:text-[9px]">
-          {item.tag === "Meta Ads" ? "Campaign" : item.tag}
+        <span
+          aria-hidden
+          className="shrink-0 font-mono text-[10px] text-slate-300 transition group-hover:text-cobalt"
+        >
+          →
         </span>
-      </div>
-
-      <p className="px-3 pb-2.5 font-sans text-[12px] leading-[1.45] text-white/80 sm:px-3.5 sm:text-[13px]">
-        <span className="font-semibold text-white">{item.metric}</span>{" "}
-        <span className="text-white/55">{item.metricLabel}</span>
-        {" — "}
-        {item.note}
-      </p>
-
-      <div className="relative w-full overflow-hidden bg-black">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={item.src}
-          alt={`${item.niche} — ${item.metric} ${item.metricLabel}`}
-          className="block h-auto w-full object-contain object-top transition duration-500 group-hover:scale-[1.015]"
-          loading="lazy"
-        />
       </div>
     </button>
   );
 }
 
 type Props = {
-  /** Items to render. Defaults to homepage subset (8). */
   items?: WorkProofItem[];
-  /** Show filter tabs (All / Meta / CRM / Scale). */
   showFilters?: boolean;
-  /** Hide “View all work proof” link. */
   hideAllLink?: boolean;
-  /** Override section eyebrow. */
   eyebrow?: string;
-  /** Extra top padding for standalone page hero flow. */
   compactHeader?: boolean;
-  /**
-   * How many cards to show first. Further rows unlock via “See more”.
-   * Omit / 0 = show everything at once.
-   */
   initialCount?: number;
-  /** How many more cards each “See more” click adds. */
   pageSize?: number;
 };
 
 /**
- * Social-proof card grid of live workproof screenshots.
+ * Results — compact proof grid.
  */
 export default function UFWorkProofGrid({
   items,
   showFilters = false,
   hideAllLink = false,
-  eyebrow = "( Results ) — Live receipts",
+  eyebrow = "( Results ) — Live proof",
   compactHeader = false,
   initialCount = 0,
   pageSize = 8,
@@ -117,7 +104,6 @@ export default function UFWorkProofGrid({
   const canSeeMore = initialCount > 0 && remaining > 0;
 
   useEffect(() => {
-    // Reset pagination when filter changes
     setVisibleCount(initialCount > 0 ? initialCount : Number.POSITIVE_INFINITY);
   }, [filter, initialCount]);
 
@@ -138,43 +124,30 @@ export default function UFWorkProofGrid({
   return (
     <section
       id="results"
-      className={`uf-dark relative overflow-hidden bg-black text-white ${
-        compactHeader ? "pb-[10vh] pt-10 sm:pt-14" : "py-[12vh]"
+      className={`relative overflow-hidden bg-[#F5F7FB] text-[#070B1E] ${
+        compactHeader ? "pb-16 pt-10 sm:pb-20 sm:pt-12" : "py-16 sm:py-20 lg:py-24"
       }`}
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(18,84,236,0.12),transparent_50%)]"
-      />
-
-      <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-10 lg:px-14">
-        <div className="mx-auto max-w-[720px] text-center">
-          <p className="uf-eyebrow justify-center tracking-[0.18em] text-sky">
-            {eyebrow}
+      <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-10 lg:px-12">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
+          <div className="max-w-[36rem]">
+            <p className="uf-eyebrow tracking-[0.18em] text-cobalt">{eyebrow}</p>
+            <h2 className="mt-3 font-sans text-[clamp(26px,3.4vw,40px)] font-extrabold leading-[1.1] tracking-[-0.03em]">
+              <Reveal as="span">
+                <span className="text-[#070B1E]">Proof from live accounts.</span>
+              </Reveal>
+            </h2>
+            <p className="mt-3 max-w-[44ch] font-sans text-[14px] leading-[1.65] text-slate-500">
+              Real Meta and CRM screenshots — not mockups. Tap to expand.
+            </p>
+          </div>
+          <p className="shrink-0 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400 sm:pb-1">
+            {visible.length} of {filtered.length}
           </p>
-          <h2 className="mt-5 font-sans text-[clamp(32px,4.8vw,52px)] font-extrabold leading-[1.1] tracking-[-0.03em]">
-            <Reveal as="span">
-              <span className="block text-white">We are recognised by</span>
-            </Reveal>
-            <Reveal as="span" delay={80}>
-              <span className="mt-1 block text-sky">the success of our clients.</span>
-            </Reveal>
-          </h2>
-          <p className="mx-auto mt-5 max-w-[48ch] font-sans text-[16px] leading-[1.65] text-white/60">
-            Booked calendars, paid invoices, closed deals. Every screenshot below is
-            real client output — not marketing mockups.
-          </p>
-          <p className="mt-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-sky/80">
-            Showing {visible.length} of {filtered.length} receipts
-          </p>
-          <span
-            className="mx-auto mt-6 block h-1.5 w-1.5 rounded-full bg-sky"
-            aria-hidden
-          />
         </div>
 
         {showFilters && (
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+          <div className="mt-8 flex flex-wrap gap-1.5">
             {WORK_PROOF_FILTERS.map((f) => {
               const on = filter === f;
               return (
@@ -182,10 +155,10 @@ export default function UFWorkProofGrid({
                   key={f}
                   type="button"
                   onClick={() => setFilter(f)}
-                  className={`h-9 px-4 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] transition ${
+                  className={`h-8 px-3 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] transition ${
                     on
-                      ? "bg-sky text-[#020926]"
-                      : "border border-white/15 text-white/60 hover:border-sky/40 hover:text-white"
+                      ? "bg-cobalt text-white"
+                      : "border border-[#070B1E]/12 bg-white text-slate-500 hover:border-cobalt/40 hover:text-cobalt"
                   }`}
                 >
                   {f}
@@ -194,17 +167,15 @@ export default function UFWorkProofGrid({
             })}
           </div>
         )}
-      </div>
 
-      <div className="relative mx-auto mt-12 max-w-[1680px] px-3 sm:mt-14 sm:px-5 md:px-8 lg:px-10">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
           {visible.map((item) => (
             <ProofCard key={item.id} item={item} onOpen={() => setActive(item)} />
           ))}
         </div>
 
         {canSeeMore && (
-          <div className="mt-12 flex flex-col items-center gap-3">
+          <div className="mt-10 flex flex-col items-center gap-2 border-t border-[#070B1E]/08 pt-8">
             <button
               type="button"
               onClick={() =>
@@ -215,23 +186,32 @@ export default function UFWorkProofGrid({
                   )
                 )
               }
-              className="inline-flex h-12 items-center justify-center bg-white px-8 font-sans text-[14px] font-bold text-black transition hover:bg-sky"
+              className="inline-flex h-10 items-center justify-center bg-cobalt px-6 font-sans text-[13px] font-bold text-white transition hover:bg-cobalt-deep"
             >
-              See more
+              See more proof
             </button>
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-white/40">
-              {remaining} more available
+            <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-400">
+              {remaining} more
             </p>
           </div>
         )}
 
         {!hideAllLink && (
-          <div className="mt-12 flex justify-center">
+          <div className="mt-10 flex items-center justify-between gap-4 border-t border-[#070B1E]/08 pt-6">
+            <p className="font-sans text-[13px] text-slate-500">
+              Full ledger of every receipt.
+            </p>
             <Link
               href={ROUTES.workProof}
-              className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-sky transition hover:text-white"
+              className="group inline-flex items-center font-sans text-[12px] font-bold uppercase tracking-[0.12em] text-[#070B1E] transition-colors hover:text-cobalt"
             >
-              View all work proof →
+              View all
+              <span
+                aria-hidden
+                className="ml-1.5 transition-transform group-hover:translate-x-0.5"
+              >
+                →
+              </span>
             </Link>
           </div>
         )}
@@ -239,7 +219,7 @@ export default function UFWorkProofGrid({
 
       {active && (
         <div
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm sm:p-8"
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-[#070B1E]/80 p-4 backdrop-blur-md sm:p-8"
           role="dialog"
           aria-modal
           aria-label={`${active.metric} ${active.metricLabel}`}
@@ -253,23 +233,24 @@ export default function UFWorkProofGrid({
             Close ✕
           </button>
           <div
-            className="relative max-h-[90vh] w-full max-w-[920px] overflow-auto rounded-2xl border border-sky/30 bg-[#0A0A0A]"
+            className="relative max-h-[90vh] w-full max-w-[880px] overflow-auto rounded-xl border border-white/15 bg-white shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="border-b border-white/10 px-5 py-4">
-              <p className="font-sans text-[15px] font-bold text-white">
+            <div className="border-b border-[#070B1E]/08 px-4 py-3 sm:px-5">
+              <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-cobalt">
+                {active.tag} · {active.niche}
+              </p>
+              <p className="mt-0.5 font-sans text-[16px] font-extrabold tracking-tight text-[#070B1E]">
                 {active.metric}{" "}
-                <span className="font-medium text-sky">{active.metricLabel}</span>
+                <span className="font-semibold text-slate-500">{active.metricLabel}</span>
               </p>
-              <p className="mt-1 font-sans text-[13px] text-white/55">
-                {active.niche} · {active.note}
-              </p>
+              <p className="mt-0.5 font-sans text-[13px] text-slate-500">{active.note}</p>
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={active.src}
               alt={`${active.niche} receipt`}
-              className="h-auto w-full"
+              className="h-auto w-full bg-[#F5F7FB]"
             />
           </div>
         </div>

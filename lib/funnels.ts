@@ -89,7 +89,7 @@ export const FUNNEL_DESIGNS: FunnelDesign[] = [
     category: "Self-Filling Mortgage Pipeline",
     title: "Self-filling mortgage pipeline.",
     body: "Ads, offer, VSL, and booked consult — one connected mortgage acquisition path that fills itself without manual chase.",
-    image: "/images/funnels/funnel-01.png",
+    image: "/images/funnels/funnel-01.webp",
     scrollDuration: 12,
     chassis: "rose",
     highlights: [
@@ -106,7 +106,7 @@ export const FUNNEL_DESIGNS: FunnelDesign[] = [
     category: "Discreet Veteran-Led Security",
     title: "Discreet high-ticket security funnel.",
     body: "Veteran-led protection with a consult-first path — credibility, proof, and a clear schedule step for high-profile clients.",
-    image: "/images/funnels/funnel-02.png",
+    image: "/images/funnels/funnel-02.webp",
     scrollDuration: 14,
     chassis: "midnight",
     highlights: [
@@ -123,7 +123,7 @@ export const FUNNEL_DESIGNS: FunnelDesign[] = [
     category: "Invention Launchpad & Licensing",
     title: "Invention launchpad & licensing.",
     body: "Idea to drawings to patents to next step — a long-form invention funnel that turns inventors into qualified pipeline.",
-    image: "/images/funnels/funnel-03.png",
+    image: "/images/funnels/funnel-03.webp",
     scrollDuration: 20,
     chassis: "silver",
     highlights: [
@@ -140,7 +140,7 @@ export const FUNNEL_DESIGNS: FunnelDesign[] = [
     category: "Automated Policy Acquisition Engine",
     title: "Automated policy acquisition engine.",
     body: "Insurance CRM and follow-up on autopilot — from first lead to policy sold, renewals, and referrals without dropped sequences.",
-    image: "/images/funnels/funnel-04.png",
+    image: "/images/funnels/funnel-04.webp",
     scrollDuration: 16,
     chassis: "skyblue",
     highlights: [
@@ -157,7 +157,7 @@ export const FUNNEL_DESIGNS: FunnelDesign[] = [
     category: "High-Ticket B2B Scaling Funnel",
     title: "High-ticket B2B scaling funnel.",
     body: "Agency-style acquisition for B2B offers — ad creative, application funnel, and sales handoff built to scale paid spend profitably.",
-    image: "/images/funnels/funnel-05.png",
+    image: "/images/funnels/funnel-05.webp",
     scrollDuration: 26,
     chassis: "graphite",
     highlights: [
@@ -174,7 +174,7 @@ export const FUNNEL_DESIGNS: FunnelDesign[] = [
     category: "High-Converting Lead Gen Funnel",
     title: "High-converting lead gen funnel.",
     body: "Short, sharp direct-response architecture — hook, offer, form, thank-you, and immediate nurture for volume lead gen at controlled CPL.",
-    image: "/images/funnels/funnel-06.png",
+    image: "/images/funnels/funnel-06.webp",
     scrollDuration: 8,
     chassis: "cobalt",
     highlights: [
@@ -191,7 +191,7 @@ export const FUNNEL_DESIGNS: FunnelDesign[] = [
     category: "2,000+ Attendee Summit Architecture",
     title: "Global summit & course funnel.",
     body: "Registration, reminder, replay, and ascension — a full event funnel engineered for 2,000+ attendees and backend course sales.",
-    image: "/images/funnels/funnel-07.png",
+    image: "/images/funnels/funnel-07.webp",
     scrollDuration: 22,
     chassis: "sand",
     highlights: [
@@ -208,7 +208,7 @@ export const FUNNEL_DESIGNS: FunnelDesign[] = [
     category: "High-Ticket Client Acquisition Standard",
     title: "The Million Dollar Funnel™ standard.",
     body: "Our flagship install — low-ticket front end, qualification, booking, and follow-up wired as one predictable client acquisition machine.",
-    image: "/images/funnels/funnel-08.png",
+    image: "/images/funnels/funnel-08.webp",
     scrollDuration: 17,
     chassis: "indigo",
     highlights: [

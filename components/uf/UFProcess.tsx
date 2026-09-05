@@ -80,6 +80,7 @@ export default function UFProcess() {
         start: "top top",
         end: () => `+=${distance()}`,
         pin: true,
+        pinReparent: false,
         scrub: 0.6,
         invalidateOnRefresh: true,
         onUpdate: (self) => {

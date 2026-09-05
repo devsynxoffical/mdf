@@ -63,6 +63,7 @@ export default function FunnelScrollBlock({
         draggable={false}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
+        fetchPriority={priority ? "high" : "auto"}
         className="funnel-auto-scroll pointer-events-none block h-auto w-full select-none"
         style={{ "--funnel-dur": `${duration}s` } as CSSProperties}
       />

@@ -49,7 +49,8 @@ type Phase = "load" | "expand" | "done";
 
 /**
  * Start screen: count up → M grows → site opens.
- * When finished, uses display:none (not opacity) so it can't cover the page.
+ * Stays mounted when finished (display:none) — unmounting here races React's
+ * reconciler and throws NotFoundError removeChild (often with extensions / GSAP).
  */
 export default function StartScreen() {
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -57,6 +58,7 @@ export default function StartScreen() {
   const [progress, setProgress] = useState(0);
   const [phase, setPhase] = useState<Phase>("load");
   const [markVisible, setMarkVisible] = useState(false);
+  const finishedRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -70,22 +72,27 @@ export default function StartScreen() {
     };
 
     const endIntro = () => {
-      if (cancelled) return;
+      if (cancelled || finishedRef.current) return;
+      finishedRef.current = true;
       finishBoot();
+
       const el = overlayRef.current;
       if (el) {
-        el.style.webkitMaskImage = "";
-        el.style.maskImage = "";
+        el.style.webkitMaskImage = "none";
+        el.style.maskImage = "none";
         el.style.transform = "";
       }
       if (markWrapRef.current) {
         markWrapRef.current.style.transform = "";
         markWrapRef.current.style.opacity = "";
       }
-      setPhase("done");
+
+      // Defer state so we never tear the tree mid-commit / mid-paint.
+      requestAnimationFrame(() => {
+        if (!cancelled) setPhase("done");
+      });
     };
 
-    // Never leave the site stuck behind the loader
     timers.push(window.setTimeout(endIntro, FAILSAFE_MS));
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -93,6 +100,7 @@ export default function StartScreen() {
       return () => {
         cancelled = true;
         timers.forEach((id) => window.clearTimeout(id));
+        finishBoot();
       };
     }
 
@@ -100,13 +108,13 @@ export default function StartScreen() {
     const start = performance.now();
 
     const runExpand = () => {
-      if (cancelled) return;
+      if (cancelled || finishedRef.current) return;
       setPhase("expand");
       document.documentElement.classList.remove("mdf-booting");
 
       const expandStart = performance.now();
       const tickExpand = (now: number) => {
-        if (cancelled) return;
+        if (cancelled || finishedRef.current) return;
         const t = Math.min(1, (now - expandStart) / EXPAND_MS);
         const eased =
           t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -137,7 +145,7 @@ export default function StartScreen() {
     };
 
     const tick = (now: number) => {
-      if (cancelled) return;
+      if (cancelled || finishedRef.current) return;
       const t = Math.min(1, (now - start) / LOAD_MS);
       const eased = 1 - Math.pow(1 - t, 3);
       setProgress(Math.round(eased * 100));
@@ -165,20 +173,24 @@ export default function StartScreen() {
   const expanding = phase === "expand";
   const done = phase === "done";
 
-  if (done) return null;
-
   return (
     <div
       ref={overlayRef}
       className="fixed inset-0 z-[200] flex bg-black"
       role="status"
       aria-live="polite"
-      aria-label={expanding ? "Opening site" : `Loading ${progress} percent`}
+      aria-hidden={done}
+      aria-label={
+        done ? undefined : expanding ? "Opening site" : `Loading ${progress} percent`
+      }
+      // Keep in the React tree — only hide. Unmounting triggers removeChild crashes.
+      hidden={done}
+      style={done ? { display: "none" } : undefined}
     >
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div
           className={`h-[2px] w-20 overflow-hidden bg-white/15 transition-all duration-400 sm:w-24 ${
-            markVisible ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100"
+            markVisible || done ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100"
           }`}
         >
           <div
@@ -190,7 +202,7 @@ export default function StartScreen() {
         <div
           ref={markWrapRef}
           className={`absolute inset-0 flex items-center justify-center will-change-transform transition-opacity duration-500 ${
-            markVisible ? "opacity-100" : "opacity-0"
+            markVisible && !done ? "opacity-100" : "opacity-0"
           }`}
           style={{ transform: "scale(1)" }}
           aria-hidden
@@ -213,7 +225,7 @@ export default function StartScreen() {
       </div>
 
       <div className="absolute bottom-6 left-5 sm:bottom-8 sm:left-8 md:bottom-10 md:left-12">
-        <ProgressDigits value={progress} fade={expanding || markVisible} />
+        <ProgressDigits value={progress} fade={expanding || markVisible || done} />
       </div>
     </div>
   );

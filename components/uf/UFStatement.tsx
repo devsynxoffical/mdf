@@ -140,6 +140,8 @@ export default function UFStatement() {
                 loop
                 muted
                 playsInline
+                preload="metadata"
+                poster="/images/showreel/shot_06_vsl_player.webp"
                 className="h-full w-full object-cover"
               />
             </div>

@@ -98,9 +98,10 @@ export default function UFLeaks() {
     }, section);
 
     return () => {
-      // Kill triggers without a hard DOM revert (avoids removeChild races with React).
+      // kill() without args = stop tweens, do NOT revert inline styles / DOM
+      // (ctx.revert() races React and throws removeChild NotFoundError).
       try {
-        ctx.revert();
+        ctx.kill();
       } catch {
         /* ignore */
       }
