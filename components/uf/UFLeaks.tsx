@@ -164,10 +164,7 @@ export default function UFLeaks() {
               </div>
 
               <div data-funnel-copy className="mt-4 sm:mt-5">
-                <p className="font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-slate-400 sm:text-[12px]">
-                  {funnel.stack.join(" • ")}
-                </p>
-                <h3 className="mt-2 flex items-center font-sans text-[clamp(22px,2.2vw,32px)] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#070B1E]">
+                <h3 className="flex items-center font-sans text-[clamp(22px,2.2vw,32px)] font-extrabold leading-[1.15] tracking-[-0.03em] text-[#070B1E]">
                   <span
                     aria-hidden
                     className="inline-block w-0 overflow-hidden opacity-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:mr-2.5 group-hover:w-[1.05em] group-hover:opacity-100 group-focus-visible:mr-2.5 group-focus-visible:w-[1.05em] group-focus-visible:opacity-100"

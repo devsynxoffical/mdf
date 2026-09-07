@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ContourBG from "./ContourBG";
@@ -72,6 +72,21 @@ export default function UFStatement() {
   const statementRef = useRef<HTMLParagraphElement>(null);
   const wordElsRef = useRef<(HTMLElement | null)[]>([]);
   const lastIndexRef = useRef(-1);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const toggleSound = () => {
+    if (videoRef.current) {
+      const nextMuted = !videoRef.current.muted;
+      videoRef.current.muted = nextMuted;
+      setIsMuted(nextMuted);
+      if (!nextMuted) {
+        videoRef.current.play().catch(() => {});
+      }
+    } else {
+      setIsMuted((prev) => !prev);
+    }
+  };
 
   // Scroll-driven Typewriter Writing Effect with Crick-Crick Sound
   useEffect(() => {
@@ -135,15 +150,61 @@ export default function UFStatement() {
           <div className="relative rounded-[28px] border border-white/25 bg-[#818CF8]/25 p-3 shadow-[0_25px_60px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:rounded-[36px] sm:p-5 md:p-7">
             <div className="group relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden rounded-[20px] border border-white/15 bg-[#020926] shadow-2xl sm:rounded-[26px]">
               <video
-                src="/video/showreel_merged.mp4"
+                ref={videoRef}
+                src="/video/million_dollar_funnels_brand_demo_45s.mp4"
                 autoPlay
                 loop
-                muted
+                muted={isMuted}
                 playsInline
                 preload="metadata"
-                poster="/images/showreel/shot_06_vsl_player.webp"
                 className="h-full w-full object-cover"
               />
+
+              {/* Volume Toggle Icon Button */}
+              <button
+                type="button"
+                onClick={toggleSound}
+                aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+                className="group/vol absolute bottom-3 right-3 z-20 flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-black/80 hover:border-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-400 sm:bottom-5 sm:right-5 sm:px-4 sm:py-2 sm:text-sm shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-pointer"
+              >
+                {isMuted ? (
+                  <>
+                    <svg
+                      className="h-4 w-4 sm:h-5 sm:w-5 text-white/85 transition-transform group-hover/vol:scale-110"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l4-4m0 0l-4-4m4 4l-4 4" />
+                      <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+                    </svg>
+                    <span className="font-sans font-medium text-white/90">Unmute</span>
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      className="h-4 w-4 sm:h-5 sm:w-5 text-cyan-300 transition-transform group-hover/vol:scale-110 animate-pulse"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                      />
+                    </svg>
+                    <span className="font-sans font-medium text-cyan-300">Sound On</span>
+                  </>
+                )}
+              </button>
             </div>
           </div>
         </div>
