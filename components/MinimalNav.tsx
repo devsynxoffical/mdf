@@ -59,15 +59,15 @@ export default function MinimalNav() {
       <div className="flex items-center justify-between px-4 py-3.5 sm:px-6 md:px-14 md:py-4">
         <a
           href="/"
-          className="flex items-center gap-2 transition-opacity hover:opacity-90"
+          className="flex items-center gap-2 transition-transform duration-200 hover:scale-105"
           onClick={() => setMenuOpen(false)}
           aria-label="Million Dollar Funnel™ Home"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/MDF_Logo_White_transparent.png"
+            src="/images/mdf-logo-white-cropped.png"
             alt="Million Dollar Funnel™"
-            className="h-8 sm:h-9 w-auto max-w-[140px] object-contain"
+            className="h-11 sm:h-13 md:h-14 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           />
         </a>
 

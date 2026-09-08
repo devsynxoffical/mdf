@@ -99,14 +99,14 @@ export default function Nav() {
       >
         <a
           href="/"
-          className="shrink-0 transition-opacity hover:opacity-90"
+          className="shrink-0 transition-transform duration-200 hover:scale-105"
           aria-label="Million Dollar Funnel™ Home"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/MDF_Logo_White_transparent.png"
+            src="/images/mdf-logo-white-cropped.png"
             alt="Million Dollar Funnel™"
-            className="h-8 w-auto max-w-[130px] object-contain"
+            className="h-11 sm:h-12 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           />
         </a>
 
