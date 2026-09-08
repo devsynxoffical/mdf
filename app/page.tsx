@@ -22,8 +22,8 @@ export default function Home() {
       <UFHeadcount />
       <UFProof />
       <UFWorkProofGrid />
-      <UFOpinions />
       <UFProcess />
+      <UFOpinions />
       <UFQuestions />
       <LusionAstronautSection />
       <UFSquareMarquee />
