@@ -2,7 +2,35 @@
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-		gtag('config', 'G-W2XC5XK9QJ');
+		<script>
+		// Safely handle WebGL cross-origin texture errors to keep 60fps render loop smooth
+		(function() {
+			function patchWebGL(proto) {
+				if (!proto) return;
+				const origSub = proto.texSubImage2D;
+				if (origSub) {
+					proto.texSubImage2D = function() {
+						try {
+							return origSub.apply(this, arguments);
+						} catch (e) {
+							return;
+						}
+					};
+				}
+				const origImg = proto.texImage2D;
+				if (origImg) {
+					proto.texImage2D = function() {
+						try {
+							return origImg.apply(this, arguments);
+						} catch (e) {
+							return;
+						}
+					};
+				}
+			}
+			if (typeof WebGLRenderingContext !== 'undefined') patchWebGL(WebGLRenderingContext.prototype);
+			if (typeof WebGL2RenderingContext !== 'undefined') patchWebGL(WebGL2RenderingContext.prototype);
+		})();
 		</script><link rel="stylesheet" href="/_astro/about.CNa9RfUh.css"><script type="module" src="/_astro/hoisted.CUO_IjfL.js"></script>
 <style id="hide-lusion-header-style">
   html, body {
