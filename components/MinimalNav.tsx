@@ -59,15 +59,16 @@ export default function MinimalNav() {
       <div className="flex items-center justify-between px-4 py-3.5 sm:px-6 md:px-14 md:py-4">
         <a
           href="/"
-          className="flex items-center gap-2 font-sans text-[17px] font-bold tracking-tight text-white transition-colors hover:text-sky sm:gap-2.5 sm:text-[18px]"
+          className="flex items-center gap-2 transition-opacity hover:opacity-90"
           onClick={() => setMenuOpen(false)}
+          aria-label="Million Dollar Funnel™ Home"
         >
-          <span className="flex h-6 w-6 items-center justify-center rounded-full border border-sky/40 bg-sky/10 shadow-[0_0_12px_rgba(56,189,248,0.4)]">
-            <span className="h-2 w-2 rounded-full bg-sky" />
-          </span>
-          <span className="tracking-tight">
-            MDF<span className="font-semibold text-sky">™</span>
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/MDF_Logo_White_transparent.png"
+            alt="Million Dollar Funnel™"
+            className="h-8 sm:h-9 w-auto max-w-[140px] object-contain"
+          />
         </a>
 
         {/* Desktop nav */}

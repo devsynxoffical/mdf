@@ -13,10 +13,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" },
     ],
     shortcut: "/favicon.ico",
-    apple: "/favicon.svg",
+    apple: "/favicon.png",
   },
 };
 
@@ -27,7 +27,8 @@ export default function RootLayout({
     <html lang="en" className="mdf-booting" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
