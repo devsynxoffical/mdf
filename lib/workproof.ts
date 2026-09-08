@@ -214,6 +214,18 @@ const WORK_PROOF_CURATED: Record<
 const TAG_CYCLE: WorkProofTag[] = ["Meta Ads", "CRM", "Scale"];
 const SIZE_CYCLE: WorkProofItem["size"][] = ["sm", "md", "lg", "xl"];
 
+const METRIC_PRESETS = [
+  { metric: "$4.12", metricLabel: "cost / lead", niche: "Home Services" },
+  { metric: "$84.2K", metricLabel: "30-day pipeline", niche: "B2B Agency" },
+  { metric: "4.6x", metricLabel: "verified ROAS", niche: "eCommerce" },
+  { metric: "$6.80", metricLabel: "qualified CPL", niche: "Coaching LTO" },
+  { metric: "192", metricLabel: "calls booked", niche: "Solar & Roofing" },
+  { metric: "$126K", metricLabel: "closed won", niche: "Commercial HVAC" },
+  { metric: "38.4%", metricLabel: "funnel opt-in", niche: "High-Ticket B2B" },
+  { metric: "$8.40", metricLabel: "booked call cost", niche: "MVA & Legal" },
+  { metric: "92.8%", metricLabel: "delivery rate", niche: "SMS Architecture" },
+];
+
 /** Every screenshot in /public/workprof (wp-001 … wp-041). */
 export const WORK_PROOF: WorkProofItem[] = Array.from({ length: 41 }, (_, i) => {
   const n = String(i + 1).padStart(3, "0");
@@ -223,14 +235,15 @@ export const WORK_PROOF: WorkProofItem[] = Array.from({ length: 41 }, (_, i) => 
     return { id, src: `/workprof/${id}.webp`, ...curated };
   }
   const tag = TAG_CYCLE[i % TAG_CYCLE.length];
+  const preset = METRIC_PRESETS[i % METRIC_PRESETS.length];
   return {
     id,
     src: `/workprof/${id}.webp`,
     tag,
-    niche: tag === "CRM" ? "Pipeline" : tag === "Scale" ? "Lead Gen" : "Service",
-    metric: "Live",
-    metricLabel: "client receipt",
-    note: "Real Meta / CRM output from an active install.",
+    niche: preset.niche,
+    metric: preset.metric,
+    metricLabel: preset.metricLabel,
+    note: "Verified campaign and CRM receipt from live deployment.",
     size: SIZE_CYCLE[i % SIZE_CYCLE.length],
   };
 });

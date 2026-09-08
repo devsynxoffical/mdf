@@ -10,6 +10,7 @@ import {
   type WorkProofTag,
 } from "@/lib/workproof";
 import { ROUTES } from "@/lib/routes";
+import { playTick } from "@/components/audio/SoundToggle";
 
 function ProofCard({
   item,
@@ -19,68 +20,78 @@ function ProofCard({
   onOpen: () => void;
 }) {
   return (
-    <button
-      type="button"
-      onClick={onOpen}
-      className="group relative flex w-full flex-col overflow-hidden rounded-xl border border-slate-200/90 bg-white p-3 text-left shadow-[0_2px_12px_rgba(0,0,0,0.03)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1254EC]/40 hover:shadow-[0_12px_30px_rgba(18,84,236,0.12)] outline-none focus-visible:ring-2 focus-visible:ring-cobalt"
+    <div
+      onClick={() => {
+        playTick();
+        onOpen();
+      }}
+      className="group relative flex w-[320px] sm:w-[360px] md:w-[400px] shrink-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#060c24]/90 p-3.5 text-left shadow-[0_12px_36px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-400/40 hover:shadow-[0_20px_50px_rgba(18,84,236,0.3)] cursor-pointer select-none"
     >
-      {/* Top Mini Header */}
-      <div className="mb-2.5 flex items-center justify-between gap-1 border-b border-slate-100 pb-2">
-        <div className="flex items-center gap-1">
-          <span className="h-2 w-2 rounded-full bg-slate-300 group-hover:bg-red-400 transition-colors" />
-          <span className="h-2 w-2 rounded-full bg-slate-300 group-hover:bg-amber-400 transition-colors" />
-          <span className="h-2 w-2 rounded-full bg-slate-300 group-hover:bg-emerald-400 transition-colors" />
-        </div>
+      {/* Top Device Window Bar */}
+      <div className="mb-2.5 flex items-center justify-between border-b border-white/10 pb-2 px-1">
         <div className="flex items-center gap-1.5">
-          <span className="rounded-md bg-blue-50 border border-blue-100 px-2 py-0.5 font-mono text-[9px] font-bold uppercase text-blue-700">
+          <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+          <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+        </div>
+        <div className="flex items-center gap-2">
+          <span
+            className={`rounded-md px-2 py-0.5 font-mono text-[9.5px] font-bold uppercase tracking-wider ${
+              item.tag === "Meta Ads"
+                ? "bg-blue-500/15 text-blue-300 border border-blue-400/20"
+                : item.tag === "CRM"
+                ? "bg-purple-500/15 text-purple-300 border border-purple-400/20"
+                : "bg-emerald-500/15 text-emerald-300 border border-emerald-400/20"
+            }`}
+          >
             {item.tag}
           </span>
-          <span className="truncate font-sans text-[10px] font-semibold text-slate-500 max-w-[80px]">
+          <span className="font-mono text-[10.5px] font-medium text-slate-400">
             {item.niche}
           </span>
         </div>
       </div>
 
-      {/* Uncropped Fully Visible Screenshot Container */}
-      <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg border border-slate-100 bg-[#F8FAFC]">
+      {/* Uncropped Screenshot Viewport */}
+      <div className="relative flex w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#020617]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={item.src}
           alt={`${item.niche} — ${item.metric} ${item.metricLabel}`}
-          className="block h-auto w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          className="block h-auto w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]"
           loading="lazy"
           decoding="async"
         />
 
-        {/* Hover View Badge */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/25 opacity-0 backdrop-blur-[1px] transition-opacity duration-300 group-hover:opacity-100">
-          <span className="rounded-full border border-white/20 bg-black/80 px-2.5 py-1 font-sans text-[11px] font-bold text-white shadow-lg backdrop-blur-md">
-            🔍 Expand
+        {/* Hover Spotlight Glow */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
+          <span className="rounded-full border border-white/30 bg-black/80 px-3.5 py-1.5 font-sans text-[12px] font-bold text-white shadow-xl backdrop-blur-md">
+            🔍 Click to Inspect
           </span>
         </div>
       </div>
 
-      {/* Card Details Footer */}
-      <div className="mt-2.5 flex items-center justify-between gap-2 pt-0.5">
+      {/* Bottom Metric Bar */}
+      <div className="mt-3 flex items-center justify-between gap-2 px-1 pt-1 border-t border-white/5">
         <div className="min-w-0">
-          <p className="truncate font-sans text-[14px] font-extrabold tracking-tight text-[#070B1E]">
+          <p className="truncate font-sans text-[15px] font-extrabold tracking-tight text-white">
             {item.metric}
-            <span className="ml-1 font-semibold text-slate-500 text-[12px]">
+            <span className="ml-1.5 font-semibold text-cyan-300 text-[12.5px]">
               {item.metricLabel}
             </span>
           </p>
-          <p className="truncate font-sans text-[11px] text-slate-400">
-            {item.niche} · {item.tag}
+          <p className="truncate font-sans text-[11.5px] text-slate-400">
+            {item.note}
           </p>
         </div>
         <span
           aria-hidden
-          className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100 font-mono text-xs text-slate-500 transition-all duration-300 group-hover:bg-[#1254EC] group-hover:text-white group-hover:translate-x-0.5 shadow-sm"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-bold text-white transition-all duration-300 group-hover:bg-[#1254EC] group-hover:scale-110 shadow-sm"
         >
           →
         </span>
       </div>
-    </button>
+    </div>
   );
 }
 
@@ -95,41 +106,30 @@ type Props = {
 };
 
 /**
- * Results — Live Proof Grid with 4 screenshots per line on desktop.
+ * Results — Verified Performance Dual-Track Scroller & Inspector
  */
 export default function UFWorkProofGrid({
   items,
-  showFilters = false,
+  showFilters = true,
   hideAllLink = false,
-  eyebrow = "( Results ) — Live proof",
+  eyebrow = "( 03 ) — VERIFIED PERFORMANCE",
   compactHeader = false,
-  initialCount = 0,
-  pageSize = 8,
 }: Props) {
-  const source = items ?? WORK_PROOF.slice(0, 8);
+  const source = items ?? WORK_PROOF;
   const [filter, setFilter] = useState<(typeof WORK_PROOF_FILTERS)[number]>("All");
   const [active, setActive] = useState<WorkProofItem | null>(null);
-  const [visibleCount, setVisibleCount] = useState(
-    initialCount > 0 ? initialCount : Number.POSITIVE_INFINITY
-  );
+  const [isPaused, setIsPaused] = useState(false);
 
   const filtered = useMemo(() => {
     if (!showFilters || filter === "All") return source;
     return source.filter((item) => item.tag === (filter as WorkProofTag));
   }, [source, showFilters, filter]);
 
-  const visible = useMemo(
-    () => filtered.slice(0, visibleCount),
-    [filtered, visibleCount]
-  );
+  // Split into 2 rows for smooth dual marquee
+  const row1 = useMemo(() => filtered.slice(0, Math.ceil(filtered.length / 2)), [filtered]);
+  const row2 = useMemo(() => filtered.slice(Math.ceil(filtered.length / 2)), [filtered]);
 
-  const remaining = Math.max(0, filtered.length - visible.length);
-  const canSeeMore = initialCount > 0 && remaining > 0;
-
-  useEffect(() => {
-    setVisibleCount(initialCount > 0 ? initialCount : Number.POSITIVE_INFINITY);
-  }, [filter, initialCount]);
-
+  // Handle ESC key for modal
   useEffect(() => {
     if (!active) return;
     const prev = document.body.style.overflow;
@@ -147,143 +147,172 @@ export default function UFWorkProofGrid({
   return (
     <section
       id="results"
-      className={`relative overflow-hidden bg-[#F5F7FB] text-[#070B1E] ${
-        compactHeader ? "pb-16 pt-10 sm:pb-20 sm:pt-12" : "py-16 sm:py-20 lg:py-24"
+      className={`relative overflow-hidden bg-[#020926] text-white select-none ${
+        compactHeader ? "pb-16 pt-10 sm:pb-20 sm:pt-12" : "py-16 sm:py-24 lg:py-28"
       }`}
     >
+      {/* Ambient background glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(18,84,236,0.2),transparent_50%),radial-gradient(ellipse_at_70%_80%,rgba(56,189,248,0.12),transparent_50%)]"
+      />
+
       <div className="relative mx-auto max-w-[1340px] px-4 sm:px-6 md:px-10 lg:px-12">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
-          <div className="max-w-[36rem]">
-            <p className="uf-eyebrow tracking-[0.18em] text-cobalt">{eyebrow}</p>
-            <h2 className="mt-3 font-sans text-[clamp(28px,3.6vw,44px)] font-extrabold leading-[1.08] tracking-[-0.03em]">
+        {/* Section Header */}
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-[42rem]">
+            <p className="uf-eyebrow tracking-[0.18em] text-[#38BDF8] font-mono text-[12px] uppercase font-semibold">
+              {eyebrow}
+            </p>
+            <h2 className="mt-4 font-sans text-[clamp(32px,4.5vw,56px)] font-extrabold leading-[1.06] tracking-[-0.035em] text-white">
               <Reveal as="span">
-                <span className="text-[#070B1E]">Proof from live accounts.</span>
+                <span className="block">Real campaign receipts</span>
+              </Reveal>
+              <Reveal as="span" delay={80}>
+                <span className="mt-1 block bg-gradient-to-r from-[#38BDF8] via-[#818CF8] to-[#C084FC] bg-clip-text text-transparent">
+                  &amp; pipeline ROI.
+                </span>
               </Reveal>
             </h2>
-            <p className="mt-3 max-w-[48ch] font-sans text-[15px] leading-[1.65] text-slate-500">
-              Real Meta and CRM screenshots — not mockups. Tap any receipt to expand.
+            <p className="mt-5 max-w-[50ch] font-sans text-[15.5px] sm:text-[16.5px] leading-[1.65] text-slate-300">
+              Direct exports from Meta Ads Manager, GoHighLevel, and live client CRM systems.
+              Hover to pause, click any receipt to inspect full high-resolution metrics.
             </p>
           </div>
-          <p className="shrink-0 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400 sm:pb-1">
-            {visible.length} of {filtered.length} Receipts
-          </p>
+
+          {/* Filter Tabs */}
+          {showFilters && (
+            <div className="flex flex-wrap items-center gap-2">
+              {WORK_PROOF_FILTERS.map((f) => {
+                const isCurrent = filter === f;
+                return (
+                  <button
+                    key={f}
+                    type="button"
+                    onClick={() => {
+                      playTick();
+                      setFilter(f);
+                    }}
+                    className={`rounded-full px-4 py-2 font-mono text-[11.5px] font-bold uppercase tracking-wider transition-all duration-300 ${
+                      isCurrent
+                        ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.4)] scale-105"
+                        : "border border-white/15 bg-white/5 text-slate-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    {f}
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
-
-        {showFilters && (
-          <div className="mt-8 flex flex-wrap gap-2">
-            {WORK_PROOF_FILTERS.map((f) => {
-              const on = filter === f;
-              return (
-                <button
-                  key={f}
-                  type="button"
-                  onClick={() => setFilter(f)}
-                  className={`h-9 px-4 rounded-lg font-mono text-[11px] font-semibold uppercase tracking-[0.12em] transition ${
-                    on
-                      ? "bg-cobalt text-white shadow-sm"
-                      : "border border-[#070B1E]/12 bg-white text-slate-600 hover:border-cobalt/40 hover:text-cobalt"
-                  }`}
-                >
-                  {f}
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        {/* 4 Screenshots in a Single Line (4-Column Grid on Desktop) */}
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-          {visible.map((item) => (
-            <ProofCard key={item.id} item={item} onOpen={() => setActive(item)} />
-          ))}
-        </div>
-
-        {canSeeMore && (
-          <div className="mt-12 flex flex-col items-center gap-2 border-t border-[#070B1E]/08 pt-8">
-            <button
-              type="button"
-              onClick={() =>
-                setVisibleCount((n) =>
-                  Math.min(
-                    filtered.length,
-                    (Number.isFinite(n) ? n : initialCount) + pageSize
-                  )
-                )
-              }
-              className="inline-flex h-11 items-center justify-center rounded-xl bg-cobalt px-8 font-sans text-[14px] font-bold text-white shadow-md transition hover:bg-cobalt-deep hover:scale-[1.02]"
-            >
-              See more proof
-            </button>
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">
-              {remaining} more receipts available
-            </p>
-          </div>
-        )}
-
-        {!hideAllLink && (
-          <div className="mt-12 flex items-center justify-between gap-4 border-t border-[#070B1E]/08 pt-6">
-            <p className="font-sans text-[14px] text-slate-500 font-medium">
-              Full ledger of every receipt and live case.
-            </p>
-            <Link
-              href={ROUTES.workProof}
-              className="group inline-flex items-center font-sans text-[13px] font-bold uppercase tracking-[0.12em] text-[#070B1E] transition-colors hover:text-cobalt"
-            >
-              View all receipts
-              <span
-                aria-hidden
-                className="ml-1.5 transition-transform group-hover:translate-x-1"
-              >
-                →
-              </span>
-            </Link>
-          </div>
-        )}
       </div>
 
-      {/* Expanded Modal View */}
+      {/* Dual-Track Infinite Marquee Scroller */}
+      <div className="relative mt-12 sm:mt-16 space-y-6 overflow-hidden">
+        {/* Left/Right Edge Gradient Fade Masks */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 sm:w-32 bg-gradient-to-r from-[#020926] via-[#020926]/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 sm:w-32 bg-gradient-to-l from-[#020926] via-[#020926]/80 to-transparent" />
+
+        {/* Row 1: Scrolling Left */}
+        <div className="marquee-row overflow-hidden">
+          <div
+            className={`marquee-track-left flex w-max gap-5 ${
+              isPaused ? "[animation-play-state:paused]" : ""
+            }`}
+            style={{ "--marquee-duration": "55s" } as React.CSSProperties}
+          >
+            {/* Loop 1 */}
+            {row1.map((item) => (
+              <ProofCard key={`${item.id}-r1-a`} item={item} onOpen={() => setActive(item)} />
+            ))}
+            {/* Loop 2 */}
+            {row1.map((item) => (
+              <ProofCard key={`${item.id}-r1-b`} item={item} onOpen={() => setActive(item)} />
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2: Scrolling Right */}
+        <div className="marquee-row overflow-hidden">
+          <div
+            className={`marquee-track-right flex w-max gap-5 ${
+              isPaused ? "[animation-play-state:paused]" : ""
+            }`}
+            style={{ "--marquee-duration": "60s" } as React.CSSProperties}
+          >
+            {/* Loop 1 */}
+            {row2.map((item) => (
+              <ProofCard key={`${item.id}-r2-a`} item={item} onOpen={() => setActive(item)} />
+            ))}
+            {/* Loop 2 */}
+            {row2.map((item) => (
+              <ProofCard key={`${item.id}-r2-b`} item={item} onOpen={() => setActive(item)} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Footer Actions */}
+      {!hideAllLink && (
+        <div className="relative mx-auto mt-14 flex flex-col sm:flex-row items-center justify-center gap-4 px-4 text-center">
+          <Link
+            href={ROUTES.workProof}
+            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-3 font-sans text-[14px] font-bold text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]"
+          >
+            <span>Browse All 41+ Verified Receipts</span>
+            <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </Link>
+        </div>
+      )}
+
+      {/* Fullscreen Lightbox Zoom Modal */}
       {active && (
         <div
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-[#070B1E]/85 p-4 backdrop-blur-md sm:p-8"
           role="dialog"
-          aria-modal
-          aria-label={`${active.metric} ${active.metricLabel}`}
+          aria-modal="true"
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/90 p-4 sm:p-6 backdrop-blur-2xl"
           onClick={() => setActive(null)}
         >
-          <button
-            type="button"
-            className="absolute right-5 top-5 rounded-full bg-white/10 px-3.5 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-white/20 transition"
-            onClick={() => setActive(null)}
-          >
-            Close ✕
-          </button>
+          {/* Close Button */}
+          <div className="absolute top-5 right-5 z-30">
+            <button
+              type="button"
+              onClick={() => setActive(null)}
+              className="rounded-full bg-white/10 px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white hover:bg-white/25 transition"
+            >
+              Close ✕
+            </button>
+          </div>
+
           <div
-            className="relative max-h-[90vh] w-full max-w-[960px] overflow-auto rounded-2xl border border-white/20 bg-white shadow-2xl"
+            className="relative flex max-h-[92vh] max-w-[94vw] flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[#030922] p-4 sm:p-6 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="border-b border-[#070B1E]/08 bg-[#FAFBFD] px-5 py-4">
-              <div className="flex items-center gap-2">
-                <span className="rounded-full bg-blue-50 border border-blue-100 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase text-cobalt">
-                  {active.tag}
-                </span>
-                <span className="font-sans text-[12px] font-bold text-slate-600">
-                  {active.niche}
-                </span>
+            <div className="mb-3 flex w-full items-center justify-between border-b border-white/10 pb-3">
+              <div>
+                <h3 className="font-sans text-[18px] font-bold text-white">
+                  {active.metric} <span className="text-cyan-300 text-[14px]">{active.metricLabel}</span>
+                </h3>
+                <p className="font-mono text-[12px] text-slate-400">
+                  {active.niche} · {active.tag}
+                </p>
               </div>
-              <p className="mt-2 font-sans text-[18px] font-extrabold tracking-tight text-[#070B1E]">
-                {active.metric}{" "}
-                <span className="font-semibold text-slate-500">{active.metricLabel}</span>
-              </p>
-              {active.note && (
-                <p className="mt-1 font-sans text-[13px] text-slate-500">{active.note}</p>
-              )}
+              <span className="rounded-full bg-emerald-500/15 border border-emerald-400/30 px-3 py-1 font-mono text-[11px] font-bold text-emerald-300">
+                ✓ Verified Account
+              </span>
             </div>
+
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={active.src}
               alt={`${active.niche} receipt`}
-              className="h-auto w-full object-contain block bg-[#F8FAFC] p-2"
+              className="max-h-[72vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-white/10"
             />
+
+            <p className="mt-3 text-center font-sans text-[13.5px] text-slate-300 max-w-[650px]">
+              {active.note}
+            </p>
           </div>
         </div>
       )}
