@@ -6,54 +6,72 @@ import Reveal from "./Reveal";
 
 interface BentoTestimonialItem {
   id: string;
+  name: string;
+  role: string;
+  headline: string;
+  subdetail?: string;
   videoUrl: string;
   badge: string;
   gridClass: string;
-  objectFit?: "cover" | "contain";
+  isSquare?: boolean;
 }
 
 const BENTO_TESTIMONIALS: BentoTestimonialItem[] = [
   {
-    id: "portrait-1",
+    id: "edgar-portrait",
+    name: "Edgar",
+    role: "Agency Owner",
+    headline: "Landed a $4,500 High-Ticket Client at Just $7 Per Lead",
+    subdetail: "$1,500/mo × 3-month retainer",
     videoUrl: "/testimonials/portrait-1.mp4",
-    badge: "Client Feedback",
-    gridClass: "col-span-1 lg:col-span-1 lg:row-span-2 min-h-[420px] sm:min-h-[480px] lg:min-h-[560px]",
-    objectFit: "cover",
+    badge: "$4,500 Retainer Won",
+    gridClass: "col-span-1 lg:col-span-1 lg:row-span-2 min-h-[440px] sm:min-h-[500px] lg:min-h-[580px]",
   },
   {
-    id: "landscape-3",
+    id: "marie-grace-berg",
+    name: "Marie Grace Berg",
+    role: "High-Ticket Coach",
+    headline: "From Zero Results to 2,000+ Online Summit Registrations",
     videoUrl: "/testimonials/landscape-3.mp4",
-    badge: "Founder Debrief",
-    gridClass: "col-span-1 lg:col-span-1 lg:row-span-1 min-h-[240px] sm:min-h-[260px] lg:min-h-[265px]",
-    objectFit: "cover",
+    badge: "2,000+ Registrations",
+    gridClass: "col-span-1 lg:col-span-1 lg:row-span-1 min-h-[260px] sm:min-h-[280px]",
   },
   {
-    id: "portrait-2",
+    id: "muhammad-ghattas",
+    name: "Muhammad Ghattas",
+    role: "Roofing Marketing Agency",
+    headline: "Cut CPL by 50% & Getting Amazing Results for His Roofing Clients",
     videoUrl: "/testimonials/portrait-2.mp4",
-    badge: "Results Review",
-    gridClass: "col-span-1 lg:col-span-1 lg:row-span-2 min-h-[420px] sm:min-h-[480px] lg:min-h-[560px]",
-    objectFit: "cover",
+    badge: "50% CPL Reduction",
+    gridClass: "col-span-1 lg:col-span-1 lg:row-span-2 min-h-[440px] sm:min-h-[500px] lg:min-h-[580px]",
   },
   {
-    id: "square-1",
+    id: "edgar-jeremi-square",
+    name: "Edgar & Jeremi",
+    role: "Co-Founders · High-Ticket Funnel Agency",
+    headline: "Winning High-Ticket Clients While Generating Incredible Results for Their Clients Too",
     videoUrl: "/testimonials/square-1.mp4",
-    badge: "Live Verification",
-    gridClass: "col-span-1 lg:col-span-1 lg:row-span-1 min-h-[240px] sm:min-h-[260px] lg:min-h-[265px]",
-    objectFit: "cover",
+    badge: "1:1 Live Case",
+    isSquare: true,
+    gridClass: "col-span-1 lg:col-span-1 lg:row-span-1 aspect-square min-h-[260px] sm:min-h-[280px]",
   },
   {
-    id: "landscape-2",
-    videoUrl: "/testimonials/landscape-2.mp4",
-    badge: "Client Walkthrough",
-    gridClass: "col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-1 min-h-[250px] sm:min-h-[280px] lg:min-h-[300px]",
-    objectFit: "cover",
-  },
-  {
-    id: "landscape-1",
+    id: "giulia-mva",
+    name: "Giulia",
+    role: "MVA Marketing Agency Founder",
+    headline: "From 1 Lead in 3 Months to 2 Verified MVA Leads in Under 24 Hours",
     videoUrl: "/testimonials/landscape-1.mp4",
-    badge: "Case Study",
-    gridClass: "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1 min-h-[250px] sm:min-h-[280px] lg:min-h-[300px]",
-    objectFit: "cover",
+    badge: "2 Leads in 24h",
+    gridClass: "col-span-1 md:col-span-1 lg:col-span-1 lg:row-span-1 min-h-[260px] sm:min-h-[280px]",
+  },
+  {
+    id: "mohanded-smma",
+    name: "Mohanded",
+    role: "Social Media Marketing Agency Germany",
+    headline: "Massive ROAS Growth Across eCommerce, Skincare, Supplements & More",
+    videoUrl: "/testimonials/landscape-2.mp4",
+    badge: "Massive ROAS Scale",
+    gridClass: "col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-1 min-h-[260px] sm:min-h-[280px]",
   },
 ];
 
@@ -155,48 +173,71 @@ function BentoVideoCard({
           </div>
         )}
 
-        {/* Bottom Floating Controls */}
-        <div className="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between p-3.5 bg-gradient-to-t from-black/85 via-black/40 to-transparent">
-          {/* Sound Toggle */}
-          <button
-            type="button"
-            onClick={toggleSound}
-            aria-label={isMuted ? "Unmute audio" : "Mute audio"}
-            className="flex items-center gap-1.5 rounded-full border border-white/20 bg-black/65 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md transition hover:scale-105 hover:bg-black/85"
-          >
-            {isMuted ? (
-              <>
-                <svg className="h-3.5 w-3.5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l4-4m0 0l-4-4m4 4l-4 4" />
-                  <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
-                </svg>
-                <span className="font-mono text-[10px]">Unmute</span>
-              </>
-            ) : (
-              <>
-                <svg className="h-3.5 w-3.5 text-cyan-300 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                </svg>
-                <span className="font-mono text-[10px] text-cyan-300">Sound On</span>
-              </>
+        {/* Bottom Details Overlay */}
+        <div className="absolute inset-x-0 bottom-0 z-20 flex flex-col justify-end p-4 sm:p-5 bg-gradient-to-t from-black/95 via-black/70 to-transparent">
+          {/* Client Info & Headline */}
+          <div className="mb-3">
+            <div className="flex items-baseline gap-2">
+              <h4 className="font-sans text-[15px] sm:text-[16px] font-bold text-white tracking-tight">
+                {item.name}
+              </h4>
+              <span className="font-mono text-[11px] font-medium text-cyan-300">
+                · {item.role}
+              </span>
+            </div>
+            <p className="mt-1 font-sans text-[12.5px] sm:text-[13px] leading-snug text-slate-200 line-clamp-2">
+              "{item.headline}"
+            </p>
+            {item.subdetail && (
+              <span className="mt-1 inline-block font-mono text-[10.5px] text-emerald-300">
+                ⚡ {item.subdetail}
+              </span>
             )}
-          </button>
+          </div>
 
-          {/* Fullscreen Expand */}
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onExpand(item);
-            }}
-            aria-label="Expand video"
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-black/65 text-white backdrop-blur-md transition hover:scale-105 hover:bg-black/85"
-          >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
-            </svg>
-          </button>
+          {/* Bottom Controls Bar */}
+          <div className="flex items-center justify-between pt-2 border-t border-white/10">
+            {/* Sound Toggle */}
+            <button
+              type="button"
+              onClick={toggleSound}
+              aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+              className="flex items-center gap-1.5 rounded-full border border-white/20 bg-black/65 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md transition hover:scale-105 hover:bg-black/85"
+            >
+              {isMuted ? (
+                <>
+                  <svg className="h-3.5 w-3.5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l4-4m0 0l-4-4m4 4l-4 4" />
+                    <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+                  </svg>
+                  <span className="font-mono text-[10px]">Unmute</span>
+                </>
+              ) : (
+                <>
+                  <svg className="h-3.5 w-3.5 text-cyan-300 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                  </svg>
+                  <span className="font-mono text-[10px] text-cyan-300">Sound On</span>
+                </>
+              )}
+            </button>
+
+            {/* Fullscreen Expand */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onExpand(item);
+              }}
+              aria-label="Expand video"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-black/65 text-white backdrop-blur-md transition hover:scale-105 hover:bg-black/85"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -288,7 +329,7 @@ export default function UFOpinions() {
           </div>
 
           <div
-            className="relative flex max-h-[90vh] max-w-[90vw] items-center justify-center overflow-hidden rounded-2xl shadow-2xl"
+            className="relative flex flex-col max-h-[90vh] max-w-[90vw] items-center justify-center overflow-hidden rounded-2xl shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <video
@@ -297,8 +338,16 @@ export default function UFOpinions() {
               controls
               autoPlay
               playsInline
-              className="max-h-[85vh] w-auto max-w-full rounded-2xl object-contain shadow-[0_25px_60px_rgba(0,0,0,0.8)]"
+              className="max-h-[75vh] w-auto max-w-full rounded-2xl object-contain shadow-[0_25px_60px_rgba(0,0,0,0.8)]"
             />
+            <div className="mt-3 text-center">
+              <h3 className="text-lg font-bold text-white">
+                {activeVideo.name} · <span className="text-cyan-300 font-normal">{activeVideo.role}</span>
+              </h3>
+              <p className="text-sm text-slate-300 mt-0.5">
+                "{activeVideo.headline}"
+              </p>
+            </div>
           </div>
         </div>
       )}
