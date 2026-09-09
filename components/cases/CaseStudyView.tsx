@@ -130,38 +130,98 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
         </div>
       </section>
 
-      {/* ─── 2. THE SITUATION (Dark Atmospheric Narrative) ─── */}
+      {/* ─── 2. THE SITUATION (Dark Atmospheric Diagnostic Bento) ─── */}
       <section className="relative overflow-hidden border-t border-white/10 bg-gradient-to-b from-[#020926] via-[#041136] to-[#020926] py-20 md:py-28 text-white">
         <ContourBG tone="dark" />
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_80%_30%,rgba(56,189,248,0.12),transparent_50%)]" />
 
-        <div className="relative mx-auto max-w-[1140px] px-4 sm:px-6 md:px-12">
-          <div className="max-w-[800px]">
+        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-12">
+          <div className="max-w-[840px]">
             <p className="uf-eyebrow tracking-[0.18em] text-cyan-400 font-mono text-[12px] uppercase font-semibold">
-              ( 01 ) — The Situation
+              ( 01 ) — The Diagnostic Breakdown
             </p>
-            <h2 className="mt-4 font-sans text-[clamp(28px,4vw,50px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white">
+            <h2 className="mt-4 font-sans text-[clamp(28px,4vw,52px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white">
               {study.problemLead}
             </h2>
+          </div>
 
-            {/* Diagnostic Narrative Cards */}
-            <div className="mt-8 space-y-5 rounded-2xl border border-white/10 bg-[#030922]/80 p-6 sm:p-8 backdrop-blur-xl shadow-xl">
-              {study.problemBody.map((p, idx) => (
-                <p key={idx} className="font-sans text-[16px] sm:text-[17.5px] leading-[1.75] text-slate-300">
-                  {p}
-                </p>
-              ))}
-            </div>
+          {/* 3-Column Diagnostic Bento Grid */}
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {study.diagnostics && study.diagnostics.length > 0 ? (
+              study.diagnostics.map((diag, idx) => (
+                <div
+                  key={diag.tag}
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 bg-gradient-to-b from-[#061238]/90 via-[#030922]/90 to-[#020618]/90 p-6 sm:p-8 shadow-[0_16px_45px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/40 hover:shadow-[0_20px_55px_rgba(18,84,236,0.25)]"
+                >
+                  <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-cyan-500/10 blur-2xl transition-opacity duration-300 group-hover:opacity-100" />
+                  <div>
+                    <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-4">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-red-300">
+                        <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
+                        {diag.tag}
+                      </span>
+                      <span className="font-mono text-[11.5px] font-semibold text-slate-400">
+                        0{idx + 1}
+                      </span>
+                    </div>
+                    <h3 className="mt-5 font-sans text-[19px] sm:text-[21px] font-extrabold leading-snug text-white transition-colors group-hover:text-cyan-200">
+                      {diag.title}
+                    </h3>
+                    <p className="mt-3.5 font-sans text-[15px] sm:text-[15.5px] leading-[1.7] text-slate-300">
+                      {diag.desc}
+                    </p>
+                  </div>
+                  <div className="mt-8 flex items-center gap-2 border-t border-white/5 pt-4 font-mono text-[11px] font-medium text-cyan-400/80">
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                    <span>Conversion Bottleneck Identified</span>
+                  </div>
+                </div>
+              ))
+            ) : (
+              study.problemBody.map((p, idx) => (
+                <div
+                  key={idx}
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 bg-gradient-to-b from-[#061238]/90 via-[#030922]/90 to-[#020618]/90 p-6 sm:p-8 shadow-[0_16px_45px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/40"
+                >
+                  <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-4">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-red-300">
+                      <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
+                      0{idx + 1} / BOTTLENECK
+                    </span>
+                  </div>
+                  <p className="mt-5 font-sans text-[15.5px] leading-[1.7] text-slate-300">{p}</p>
+                </div>
+              ))
+            )}
+          </div>
 
-            {/* Where We Jumped In Highlight Box */}
-            <div className="mt-10 rounded-2xl border-l-4 border-cyan-400 border-y border-r border-cyan-400/20 bg-gradient-to-r from-cyan-950/40 via-[#031338]/60 to-transparent p-6 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.35)] backdrop-blur-md">
-              <div className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-400">
-                <span className="h-2 w-2 rounded-full bg-cyan-400" />
-                <span>The Turning Point</span>
+          {/* The Turning Point — Luxury Hero Card */}
+          <div className="relative mt-10 overflow-hidden rounded-3xl border border-cyan-400/35 bg-gradient-to-r from-[#03153f]/95 via-[#061f5c]/90 to-[#020d29]/95 p-7 sm:p-10 shadow-[0_25px_70px_rgba(18,84,236,0.35)] backdrop-blur-2xl">
+            <div className="pointer-events-none absolute -right-16 -bottom-16 h-72 w-72 rounded-full bg-cyan-400/15 blur-3xl" />
+            <div className="pointer-events-none absolute -left-16 -top-16 h-72 w-72 rounded-full bg-blue-600/20 blur-3xl" />
+
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+              <div className="max-w-[760px]">
+                <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/15 px-3.5 py-1.5 font-mono text-[11.5px] font-bold uppercase tracking-[0.18em] text-cyan-300">
+                  <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+                  <span>The Turning Point · MDF™ Intervention</span>
+                </div>
+                <h3 className="mt-4 font-sans text-[clamp(21px,2.7vw,34px)] font-extrabold leading-[1.3] text-white">
+                  {study.jumpIn}
+                </h3>
               </div>
-              <p className="mt-3 font-sans text-[clamp(19px,2.5vw,28px)] font-bold leading-[1.3] text-white">
-                {study.jumpIn}
-              </p>
+              <div className="shrink-0">
+                <Magnetic strength={0.15}>
+                  <a
+                    href="/book"
+                    onClick={() => playTick()}
+                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 via-sky-300 to-cyan-400 px-7 py-4 font-sans text-[14px] font-bold text-[#020926] shadow-[0_0_30px_rgba(56,189,248,0.4)] transition duration-200 hover:brightness-110 hover:scale-105"
+                  >
+                    <span>Scale Your Funnel</span>
+                    <span aria-hidden>→</span>
+                  </a>
+                </Magnetic>
+              </div>
             </div>
           </div>
         </div>
@@ -174,14 +234,14 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
 
         <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-12">
           {/* Section Heading */}
-          <div className="text-center max-w-[650px] mx-auto mb-14">
+          <div className="text-center max-w-[680px] mx-auto mb-14">
             <p className="uf-eyebrow justify-center tracking-[0.18em] text-cyan-400 font-mono text-[12px] uppercase font-semibold">
               Direct Transformation
             </p>
             <h2 className="mt-3 font-sans text-[clamp(30px,4vw,48px)] font-extrabold tracking-[-0.03em] text-white">
               Before &amp; After MDF Deployment
             </h2>
-            <p className="mt-3 font-sans text-[15px] sm:text-[16px] text-slate-400">
+            <p className="mt-3 font-sans text-[15px] sm:text-[16px] text-slate-400 leading-relaxed">
               {study.transformationSubtitle || "How eliminating tracking friction and building a hardened backend unlocked scale."}
             </p>
           </div>
@@ -192,7 +252,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
               <div>
                 <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-5">
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 font-mono text-[11px] font-bold text-red-300">
-                    <span className="h-1.5 w-1.5 rounded-full bg-red-400" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
                     {study.beforeCard?.tag || "( 02 ) — Pre-MDF"}
                   </span>
                   <span className="font-mono text-xs font-semibold text-red-400/80 uppercase">
@@ -208,7 +268,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
                   {study.cameWith.map((item, i) => (
                     <li
                       key={item}
-                      className="flex items-start gap-3.5 rounded-xl border border-white/5 bg-white/[0.02] p-4 font-sans text-[15px] sm:text-[15.5px] leading-relaxed text-slate-300"
+                      className="group flex items-start gap-3.5 rounded-2xl border border-white/5 bg-white/[0.02] p-4 font-sans text-[15px] sm:text-[15.5px] leading-relaxed text-slate-300 transition-all duration-200 hover:border-red-500/20 hover:bg-white/[0.04]"
                     >
                       <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-500/20 text-red-400 font-bold text-xs">
                         ✕
@@ -235,7 +295,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
                     {study.afterCard?.tag || "( 03 ) — Post-MDF"}
                   </span>
                   <span className="font-mono text-xs font-semibold text-cyan-300 uppercase">
-                    {study.afterCard?.subtitle || "3.32x Verified ROAS"}
+                    {study.afterCard?.subtitle || "Verified Scale"}
                   </span>
                 </div>
 
@@ -247,7 +307,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
                   {study.weDid.map((item, i) => (
                     <li
                       key={item}
-                      className="flex items-start gap-3.5 rounded-xl border border-cyan-400/20 bg-cyan-950/20 p-4 font-sans text-[15px] sm:text-[15.5px] leading-relaxed text-slate-200"
+                      className="group flex items-start gap-3.5 rounded-2xl border border-cyan-400/20 bg-cyan-950/20 p-4 font-sans text-[15px] sm:text-[15.5px] leading-relaxed text-slate-200 transition-all duration-200 hover:border-cyan-400/40 hover:bg-cyan-950/30"
                     >
                       <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500/25 text-emerald-400 font-bold text-xs">
                         ✓
@@ -410,7 +470,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
         }`}
         style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
       >
-        <div className="mx-auto flex max-w-[1140px] items-center justify-between gap-4 px-4 py-3 sm:px-6 md:px-12">
+        <div className="mx-auto flex max-w-[1140px] items-center justify-between gap-4 px-4 py-3 sm:px-6 md:px-12 pr-28 sm:pr-36">
           <div className="hidden sm:flex items-center gap-3">
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
             <p className="font-sans text-[14px] font-medium text-slate-200">

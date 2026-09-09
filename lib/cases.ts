@@ -3,6 +3,12 @@ export type CaseMetric = {
   label: string;
 };
 
+export type DiagnosticCard = {
+  tag: string;
+  title: string;
+  desc: string;
+};
+
 export type CaseStudy = {
   slug: string;
   niche: string;
@@ -36,6 +42,7 @@ export type CaseStudy = {
   stickyBarText?: string;
   problemLead: string;
   problemBody: string[];
+  diagnostics?: DiagnosticCard[];
   jumpIn: string;
   cameWith: string[];
   weDid: string[];
@@ -85,6 +92,23 @@ export const CASE_STUDIES: CaseStudy[] = [
       "When scaling past six figures, standard landing pages and disconnected ad campaigns quickly hit a ceiling. Conversion rates plummet and ad spend leaks through unoptimized touchpoints.",
       "The client possessed a strong market offer, but lacked the high-converting acquisition architecture and automated backend required to turn cold traffic into predictable, compounding revenue.",
       "The missing piece was an end-to-end engineered system: high-intent VSL framing, airtight tracking attribution, dynamic qualification, and persistent automated follow-ups.",
+    ],
+    diagnostics: [
+      {
+        tag: "01 / THE BOTTLENECK",
+        title: "The Cold Traffic Ceiling",
+        desc: "Scaling past six figures without a unified acquisition architecture caused conversion rates to collapse and ad spend to burn out before reaching profitability.",
+      },
+      {
+        tag: "02 / THE CONVERSION GAP",
+        title: "Strong Offer, Fragile Infrastructure",
+        desc: "The client had proven offer-market fit, but lacked the frictionless VSL framing, smart qualification filters, and high-converting pages needed for volume.",
+      },
+      {
+        tag: "03 / THE ATTRIBUTION BLINDSPOT",
+        title: "Tracking Gaps & Leaking Follow-Up",
+        desc: "Severe attribution leaks made it impossible to scale ad spend confidently. High-intent leads were lost due to absent omni-channel automated recovery.",
+      },
     ],
     jumpIn:
       "We engineered a complete Million Dollar Funnel™ system from scratch—connecting premium positioning, automated conversion mechanisms, and reliable scaling infrastructure.",
@@ -169,6 +193,23 @@ export const CASE_STUDIES: CaseStudy[] = [
       "This client was trying to scale his business but was struggling to sell his low-ticket offer consistently. Like many in the coaching industry, he was caught up in the “high-ticket” hype.",
       "His funnel couldn’t even sell the low-ticket offer reliably, making it impossible to scale to higher ticket clients.",
       "The real problem? A backend that wasn’t optimized for tracking, conversion, or follow-ups.",
+    ],
+    diagnostics: [
+      {
+        tag: "01 / THE BOTTLENECK",
+        title: "The High-Ticket Trap",
+        desc: "Caught up in high-ticket hype without a profitable low-ticket front-end to self-liquidate paid traffic costs and acquire buyer volume.",
+      },
+      {
+        tag: "02 / THE CONVERSION COLLAPSE",
+        title: "Inconsistent Front-End Conversions",
+        desc: "His funnel couldn't sell the low-ticket offer reliably, making it impossible to scale or ascend buyers into premium tiers.",
+      },
+      {
+        tag: "03 / THE BACKEND LEAK",
+        title: "Unoptimized Tracking & Lost Follow-Up",
+        desc: "A backend that lacked conversion attribution, automated multi-touch recovery, and unified CRM pipeline architecture.",
+      },
     ],
     jumpIn:
       "We turned chaotic revenue into a predictable system with a high-converting backend built for scale.",
