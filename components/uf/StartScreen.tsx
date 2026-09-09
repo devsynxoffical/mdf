@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const LOAD_MS = 2400;
 const EXPAND_MS = 1300;
@@ -53,6 +54,7 @@ type Phase = "load" | "expand" | "done";
  * reconciler and throws NotFoundError removeChild (often with extensions / GSAP).
  */
 export default function StartScreen() {
+  const pathname = usePathname();
   const overlayRef = useRef<HTMLDivElement>(null);
   const markWrapRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
@@ -74,6 +76,11 @@ export default function StartScreen() {
     const endIntro = () => {
       if (cancelled || finishedRef.current) return;
       finishedRef.current = true;
+      try {
+        sessionStorage.setItem("mdf-intro-seen", "1");
+      } catch {
+        /* */
+      }
       finishBoot();
 
       const el = overlayRef.current;
@@ -92,6 +99,23 @@ export default function StartScreen() {
         if (!cancelled) setPhase("done");
       });
     };
+
+    // Skip intro on inner pages or if already seen in this tab
+    const alreadySeen = (() => {
+      try {
+        return sessionStorage.getItem("mdf-intro-seen") === "1";
+      } catch {
+        return false;
+      }
+    })();
+
+    if (pathname !== "/" || alreadySeen) {
+      endIntro();
+      return () => {
+        cancelled = true;
+        finishBoot();
+      };
+    }
 
     timers.push(window.setTimeout(endIntro, FAILSAFE_MS));
 

@@ -81,7 +81,7 @@ export default function LusionAstronautSection() {
       ) : useFrames ? (
         <FrameAstronautExperience reducedMotion={reducedMotion} />
       ) : (
-        <IframeAstronautExperience onFail={() => {}} />
+        <IframeAstronautExperience onFail={() => setUseFrames(true)} />
       )}
     </div>
   );
@@ -368,23 +368,45 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
       return false;
     };
 
+    // Failsafe: If WebGL does not initialize within 3.5s (e.g. GPU, buffer 404, or cross-origin block on cPanel), fall back immediately to frame scrubber
+    failTimer = window.setTimeout(() => {
+      if (!dead && !readyRef.current) {
+        onFailRef.current();
+      }
+    }, 3500);
+
     const onLoad = () => {
       if (dead) return;
-      if (tryReady()) return;
+      if (tryReady()) {
+        window.clearTimeout(failTimer);
+        return;
+      }
       let attempts = 0;
       const poll = () => {
         if (dead || readyRef.current) return;
         attempts += 1;
-        if (tryReady()) return;
-        if (attempts < 300) {
-          pollId = window.setTimeout(poll, 100);
+        if (tryReady()) {
+          window.clearTimeout(failTimer);
+          return;
+        }
+        if (attempts < 60) {
+          pollId = window.setTimeout(poll, 60);
+        } else {
+          onFailRef.current();
         }
       };
-      pollId = window.setTimeout(poll, 150);
+      pollId = window.setTimeout(poll, 100);
+    };
+
+    const onError = () => {
+      if (dead || readyRef.current) return;
+      onFailRef.current();
     };
 
     const onMessage = (ev: MessageEvent) => {
-      if (ev.data?.type === "lusion-ready") tryReady();
+      if (ev.data?.type === "lusion-ready") {
+        if (tryReady()) window.clearTimeout(failTimer);
+      }
     };
 
     const onSoundChange = (ev: Event) => {
@@ -395,6 +417,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
     window.addEventListener("message", onMessage);
     window.addEventListener("uf-sound-change", onSoundChange);
     iframe.addEventListener("load", onLoad);
+    iframe.addEventListener("error", onError);
 
     const trigger = ScrollTrigger.create({
       trigger: container,
@@ -456,6 +479,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
     return () => {
       dead = true;
       iframe.removeEventListener("load", onLoad);
+      iframe.removeEventListener("error", onError);
       window.removeEventListener("message", onMessage);
       window.removeEventListener("uf-sound-change", onSoundChange);
       window.clearTimeout(pollId);

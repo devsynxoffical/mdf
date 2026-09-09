@@ -33,7 +33,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function () {
-                try { sessionStorage.removeItem('mdf-intro-seen'); } catch (e) {}
+                try {
+                  if (sessionStorage.getItem('mdf-intro-seen') === '1' || window.location.pathname !== '/') {
+                    document.documentElement.classList.remove('mdf-booting');
+                  }
+                } catch (e) {}
 
                 // Patch DOM removeChild to prevent React crash when extensions or translations alter text nodes
                 if (typeof Node !== 'undefined' && Node.prototype) {
