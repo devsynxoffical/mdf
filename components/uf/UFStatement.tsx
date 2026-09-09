@@ -151,7 +151,7 @@ export default function UFStatement() {
             <div className="group relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden rounded-[20px] border border-white/15 bg-[#020926] shadow-2xl sm:rounded-[26px]">
               <video
                 ref={videoRef}
-                src="/video/million_dollar_funnels_brand_demo_45s.mp4"
+                src="/video/testimonials/million_dollar_funnels_brand_demo_45s.mp4"
                 autoPlay
                 loop
                 muted={isMuted}
