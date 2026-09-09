@@ -334,19 +334,19 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
 
     const readRange = (win: LusionWindow) => {
       const ranges = win.homeGoalSectionRanges;
-      const total =
-        ranges?.totalPixelCount && ranges.totalPixelCount > 100
-          ? ranges.totalPixelCount
-          : 44973;
-      const baseY = typeof ranges?.baseY === "number" ? ranges.baseY : 7121;
-      const items = (ranges as any)?.items;
+      if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 100) {
+        return null;
+      }
+      const items = (ranges as any).items;
+      // Skip the static dwell so it immediately begins zooming into the action
       const skipDwell =
         items?.blackFrameShow?.pixelCount != null
           ? items.blackFrameShow.pixelCount
-          : Math.round(total * 0.08);
+          : Math.round(ranges.totalPixelCount * 0.08);
 
-      const start = Math.max(0, baseY + skipDwell);
-      const end = baseY + total;
+      const start = Math.max(0, (ranges.baseY || 0) + skipDwell);
+      const end = (ranges.baseY || 0) + ranges.totalPixelCount;
+      if (end <= start + 100) return null;
       return { start, end };
     };
 
@@ -355,8 +355,11 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
       try {
         const win = getWin();
         if (!win?.scrollManager?.scrollToPixel) return false;
+        if (win.properties && win.properties.hasStarted === false) return false;
 
         const range = readRange(win);
+        if (!range) return false;
+
         rangeRef.current = range;
         readyRef.current = true;
         setReady(true);
@@ -385,7 +388,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
           onFailRef.current();
         }
       };
-      pollId = window.setTimeout(poll, 150);
+      pollId = window.setTimeout(poll, 200);
     };
 
     const onMessage = (ev: MessageEvent) => {
@@ -397,25 +400,20 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
       syncSound(enabled);
     };
 
-    const onError = () => {
-      if (!readyRef.current) onFailRef.current();
-    };
-
     window.addEventListener("message", onMessage);
     window.addEventListener("uf-sound-change", onSoundChange);
     iframe.addEventListener("load", onLoad);
-    iframe.addEventListener("error", onError);
     failTimer = window.setTimeout(() => {
       if (!readyRef.current) onFailRef.current();
-    }, 12000);
+    }, 20000);
 
     const trigger = ScrollTrigger.create({
       trigger: container,
       start: "top top",
-      end: "+=650%",
+      end: "+=1400%",
       pin: true,
       pinReparent: false,
-      scrub: 0.5,
+      scrub: 0.45,
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onEnter: () => syncSound(parentSoundOn()),
@@ -435,6 +433,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
         }
       },
       onUpdate: (self) => {
+        if (!readyRef.current) return;
         try {
           const win = getWin();
           const sm = win?.scrollManager;
@@ -450,6 +449,10 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
           if (self.progress > 0.72) {
             win?.document?.documentElement?.classList.remove("is-white-bg");
             win?.document?.documentElement?.classList.add("is-black-bg");
+          }
+
+          if (soundOnRef.current && win?.lusionAudios && !win.lusionAudios.isActive) {
+            syncSound(true);
           }
         } catch {
           /* ignore */
