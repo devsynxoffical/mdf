@@ -43,29 +43,27 @@
   #scroll-nav-next,
   #scroll-indicator,
   #input-blocker,
-  #video-overlay,
-  #home-goal-context,
-  #home-goal-context-inner,
-  #home-goal-title,
-  #home-goal-texts,
-  .home-goal-texts-paragraph {
+  #video-overlay {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
   }
-  /* Keep layout height of early sections (needed for scroll ranges) but visually clear */
+  /* Keep layout height and geometry of sections (needed for scroll ranges) but visually clear */
   #home-hero,
   #home-reel,
   #home-featured,
-  #footer-section {
+  #footer-section,
+  #home-goal-context,
+  #home-goal-context-inner,
+  #home-goal-title,
+  #home-goal-texts,
+  .home-goal-texts-paragraph,
+  #home-goal-tunnel-title,
+  .home-goal-tunnel-title-line {
     visibility: hidden !important;
+    opacity: 0 !important;
     pointer-events: none !important;
-  }
-  #home-goal-image-in-outer {
-    grid-column: 2 / span 10 !important;
-    margin: 0 auto !important;
-    max-width: 1000px !important;
   }
   #end-bottom {
     display: none !important;

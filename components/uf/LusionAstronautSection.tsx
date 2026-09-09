@@ -334,11 +334,11 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
 
     const readRange = (win: LusionWindow) => {
       const ranges = win.homeGoalSectionRanges;
-      if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 1000) {
+      if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 100) {
         return null;
       }
       const items = (ranges as any).items;
-      // Skip the 1-2s static title dwell so it immediately begins zooming into the action
+      // Skip the static dwell so it immediately begins zooming into the action
       const skipDwell =
         items?.blackFrameShow?.pixelCount != null
           ? items.blackFrameShow.pixelCount
@@ -346,7 +346,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
 
       const start = Math.max(0, (ranges.baseY || 0) + skipDwell);
       const end = (ranges.baseY || 0) + ranges.totalPixelCount;
-      if (end <= start + 500) return null;
+      if (end <= start + 100) return null;
       return { start, end };
     };
 
@@ -489,7 +489,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
     >
       <iframe
         ref={iframeRef}
-        src="/lusion_standalone.html?v=silver2"
+        src="/lusion_standalone.html?v=silver3"
         title="Lusion astronaut interactive experience"
         className="pointer-events-none absolute inset-0 h-full w-full border-0 bg-black"
         allow="autoplay; fullscreen"
