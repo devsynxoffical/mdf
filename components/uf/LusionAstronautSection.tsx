@@ -9,209 +9,225 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const TOTAL_FRAMES = 101;
-/** Skip early static dwell — zoom animation starts immediately. */
-const START_FRAME = 15;
-const PLAYABLE = TOTAL_FRAMES - START_FRAME;
+type LusionAudios = {
+  on: () => void;
+  off: () => void;
+  isActive?: boolean;
+  volume?: number;
+  _onBodyClick?: () => void;
+  listener?: unknown;
+};
 
-const frameSrc = (i: number) =>
-  `/frames/lusion/frame_${String(i).padStart(3, "0")}.webp`;
+type LusionWindow = Window & {
+  scrollManager?: {
+    scrollToPixel: (px: number, immediate?: boolean) => void;
+    contentSizePixel?: number;
+  };
+  homeGoalSectionRanges?: {
+    baseY: number;
+    totalPixelCount: number;
+    items?: Record<string, { pixelFrom?: number; pixelCount?: number }>;
+  };
+  lusionAudios?: LusionAudios;
+  homePage?: { updateAudio?: boolean };
+  properties?: { hasStarted?: boolean };
+};
+
+function parentSoundOn() {
+  try {
+    const saved = sessionStorage.getItem("uf-sound");
+    return saved !== "off";
+  } catch {
+    return true;
+  }
+}
 
 /**
- * High-Performance Butter-Smooth 60fps Canvas Scrubber
- * Uses continuous requestAnimationFrame lerping & sub-frame cross-fading for cinematic fluidity.
+ * Real 3D WebGL interactive astronaut tunnel experience.
+ * Driven by smooth scroll scrub with seamless audio & spatial control.
  */
 export default function LusionAstronautSection() {
-  const { reducedMotion } = useScrollState();
+  const { ready: scrollReady } = useScrollState();
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const imagesRef = useRef<(HTMLImageElement | null)[]>([]);
-  const progressBarRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const readyRef = useRef(false);
+  const rangeRef = useRef<{ start: number; end: number }>({ start: 0, end: 4000 });
+  const soundOnRef = useRef(true);
 
   const [ready, setReady] = useState(false);
-  const [atFinale, setAtFinale] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
-    const canvas = canvasRef.current;
-    if (!container || !canvas) return;
-
-    const ctx = canvas.getContext("2d", { alpha: false });
-    if (!ctx) return;
+    const iframe = iframeRef.current;
+    if (!container || !iframe) return;
 
     let dead = false;
-    let targetProgress = 0;
-    let currentProgress = 0;
-    let rafId: number | null = null;
+    let pollId = 0;
 
-    const images: (HTMLImageElement | null)[] = new Array(TOTAL_FRAMES).fill(null);
-    imagesRef.current = images;
+    const getWin = () => iframe.contentWindow as LusionWindow | null;
 
-    // Helper to get nearest valid image
-    const getValidImage = (idx: number): HTMLImageElement | null => {
-      const clamped = Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.round(idx)));
-      if (images[clamped]?.complete && images[clamped]!.naturalWidth) {
-        return images[clamped];
-      }
-      for (let d = 1; d < TOTAL_FRAMES; d++) {
-        const a = clamped - d;
-        const b = clamped + d;
-        if (a >= 0 && images[a]?.complete && images[a]!.naturalWidth) return images[a];
-        if (b < TOTAL_FRAMES && images[b]?.complete && images[b]!.naturalWidth) return images[b];
-      }
-      return null;
-    };
+    const syncSound = (enabled: boolean) => {
+      soundOnRef.current = enabled;
+      try {
+        const win = getWin();
+        const audios = win?.lusionAudios;
+        if (!audios) return;
 
-    // Draw single image to canvas with cover sizing
-    const drawCoverImage = (img: HTMLImageElement, alpha = 1) => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
-      if (!w || !h) return;
-
-      if (canvas.width !== Math.floor(w * dpr) || canvas.height !== Math.floor(h * dpr)) {
-        canvas.width = Math.floor(w * dpr);
-        canvas.height = Math.floor(h * dpr);
-      }
-
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.globalAlpha = alpha;
-
-      const imgAspect = img.naturalWidth / img.naturalHeight;
-      const canvasAspect = w / h;
-      let dw = w;
-      let dh = h;
-      let ox = 0;
-      let oy = 0;
-
-      if (canvasAspect > imgAspect) {
-        dw = w;
-        dh = w / imgAspect;
-        oy = (h - dh) / 2;
-      } else {
-        dh = h;
-        dw = h * imgAspect;
-        ox = (w - dw) / 2;
-      }
-
-      ctx.drawImage(img, ox, oy, dw, dh);
-    };
-
-    // Render frame with sub-frame interpolation and smooth blend
-    const render = () => {
-      if (dead) return;
-
-      // Smooth lerp towards target scroll position
-      const diff = targetProgress - currentProgress;
-      if (Math.abs(diff) > 0.0001) {
-        currentProgress += diff * 0.14; // smooth fluid damping
-      } else {
-        currentProgress = targetProgress;
-      }
-
-      const p = Math.max(0, Math.min(1, currentProgress));
-      const exactFrame = START_FRAME + p * (PLAYABLE - 1);
-      const baseFrame = Math.floor(exactFrame);
-      const nextFrame = Math.min(TOTAL_FRAMES - 1, baseFrame + 1);
-      const blendFactor = exactFrame - baseFrame;
-
-      const imgA = getValidImage(baseFrame);
-      const imgB = getValidImage(nextFrame);
-
-      if (imgA) {
-        // Base frame
-        ctx.globalAlpha = 1;
-        drawCoverImage(imgA, 1);
-
-        // Cross-fade with next frame for 60fps continuity
-        if (imgB && imgB !== imgA && blendFactor > 0.02) {
-          drawCoverImage(imgB, blendFactor);
+        if (enabled && !audios.listener && audios._onBodyClick) {
+          audios._onBodyClick();
         }
-      }
 
-      setAtFinale(p >= 0.88);
-      if (progressBarRef.current) {
-        progressBarRef.current.style.transform = `scaleX(${p})`;
-      }
+        if (win.homePage) win.homePage.updateAudio = true;
 
-      rafId = requestAnimationFrame(render);
+        if (enabled) audios.on();
+        else audios.off();
+      } catch {
+        /* mid-load */
+      }
     };
 
-    // Preload images
-    const onImgLoad = (i: number) => {
+    const readRange = (win: LusionWindow) => {
+      const ranges = win.homeGoalSectionRanges;
+      if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 100) {
+        return null;
+      }
+      const items = (ranges as any).items;
+      // Skip static dwell so it immediately begins zooming into the 3D tunnel
+      const skipDwell =
+        items?.blackFrameShow?.pixelCount != null
+          ? items.blackFrameShow.pixelCount
+          : Math.round(ranges.totalPixelCount * 0.06);
+
+      const start = Math.max(0, (ranges.baseY || 0) + skipDwell);
+      const end = (ranges.baseY || 0) + ranges.totalPixelCount;
+      if (end <= start + 100) return null;
+      return { start, end };
+    };
+
+    const tryReady = () => {
+      if (dead || readyRef.current) return false;
+      try {
+        const win = getWin();
+        if (!win?.scrollManager?.scrollToPixel) return false;
+        if (win.properties && win.properties.hasStarted === false) return false;
+
+        const range = readRange(win);
+        if (!range) return false;
+
+        rangeRef.current = range;
+        readyRef.current = true;
+        setReady(true);
+        win.scrollManager.scrollToPixel(range.start, true);
+        if (win.homePage) win.homePage.updateAudio = true;
+        syncSound(parentSoundOn());
+        ScrollTrigger.refresh();
+        return true;
+      } catch {
+        /* mid-load */
+      }
+      return false;
+    };
+
+    const onLoad = () => {
       if (dead) return;
-      if (i === START_FRAME && !ready) {
+      if (tryReady()) return;
+      let attempts = 0;
+      const poll = () => {
+        if (dead || readyRef.current) return;
+        attempts += 1;
+        if (tryReady()) return;
+        if (attempts < 150) {
+          pollId = window.setTimeout(poll, 100);
+        } else {
+          // Fallback range if metadata calculation takes long
+          readyRef.current = true;
+          setReady(true);
+        }
+      };
+      pollId = window.setTimeout(poll, 150);
+    };
+
+    const onMessage = (ev: MessageEvent) => {
+      if (ev.data?.type === "lusion-ready") tryReady();
+    };
+
+    const onSoundChange = (ev: Event) => {
+      const enabled = Boolean((ev as CustomEvent).detail?.enabled);
+      syncSound(enabled);
+    };
+
+    window.addEventListener("message", onMessage);
+    window.addEventListener("uf-sound-change", onSoundChange);
+    iframe.addEventListener("load", onLoad);
+
+    // Fallback timer: ensure overlay is dismissed even if slow network
+    const fallbackTimer = window.setTimeout(() => {
+      if (!readyRef.current) {
+        readyRef.current = true;
         setReady(true);
       }
-    };
+    }, 3500);
 
-    const order = [
-      START_FRAME,
-      ...Array.from({ length: PLAYABLE }, (_, k) => START_FRAME + k).filter(
-        (i) => i !== START_FRAME
-      ),
-    ];
+    const trigger = ScrollTrigger.create({
+      trigger: container,
+      start: "top top",
+      end: "+=700%",
+      pin: true,
+      pinReparent: false,
+      scrub: 0.6,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onEnter: () => syncSound(parentSoundOn()),
+      onEnterBack: () => syncSound(parentSoundOn()),
+      onLeave: () => {
+        try {
+          getWin()?.lusionAudios?.off();
+        } catch {
+          /* */
+        }
+      },
+      onLeaveBack: () => {
+        try {
+          getWin()?.lusionAudios?.off();
+        } catch {
+          /* */
+        }
+      },
+      onUpdate: (self) => {
+        if (!readyRef.current) return;
+        try {
+          const win = getWin();
+          const sm = win?.scrollManager;
+          if (!sm?.scrollToPixel) return;
 
-    for (const i of order) {
-      const img = new Image();
-      img.decoding = "async";
-      img.src = frameSrc(i);
-      img.onload = () => onImgLoad(i);
-      img.onerror = () => onImgLoad(i);
-      images[i] = img;
+          const { start, end } = rangeRef.current;
+          const target = start + self.progress * (end - start);
+          sm.scrollToPixel(target, true);
+        } catch {
+          /* ignore */
+        }
+      },
+    });
+
+    if (iframe.contentDocument?.readyState === "complete") {
+      onLoad();
     }
-
-    // Safety fallback: ensure ready state is enabled quickly
-    const fallbackTimer = window.setTimeout(() => {
-      if (!dead) setReady(true);
-    }, 200);
-
-    // ScrollTrigger with generous scroll travel for luxurious zoom control
-    let trigger: ScrollTrigger | null = null;
-
-    if (reducedMotion) {
-      targetProgress = 0.35;
-      currentProgress = 0.35;
-    } else {
-      trigger = ScrollTrigger.create({
-        trigger: container,
-        start: "top top",
-        end: "+=550%",
-        pin: true,
-        pinReparent: false,
-        scrub: 0.8,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          targetProgress = self.progress;
-        },
-      });
-    }
-
-    // Start continuous animation loop
-    rafId = requestAnimationFrame(render);
-
-    const onResize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.floor(canvas.clientWidth * dpr);
-      canvas.height = Math.floor(canvas.clientHeight * dpr);
-    };
-    window.addEventListener("resize", onResize);
-    window.addEventListener("orientationchange", onResize);
 
     return () => {
       dead = true;
-      if (rafId) cancelAnimationFrame(rafId);
       window.clearTimeout(fallbackTimer);
-      trigger?.kill();
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("orientationchange", onResize);
+      window.clearTimeout(pollId);
+      iframe.removeEventListener("load", onLoad);
+      window.removeEventListener("message", onMessage);
+      window.removeEventListener("uf-sound-change", onSoundChange);
+      try {
+        getWin()?.lusionAudios?.off();
+      } catch {
+        /* */
+      }
+      trigger.kill();
     };
-  }, [reducedMotion, ready]);
-
-  const continueDown = () => {
-    window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" });
-  };
+  }, []);
 
   return (
     <div id="lusion-immersive-root" className="relative w-full">
@@ -219,53 +235,27 @@ export default function LusionAstronautSection() {
         ref={containerRef}
         id="lusion-immersive"
         className="relative h-screen w-full overflow-hidden bg-black select-none"
-        aria-label="Immersive astronaut scroll experience"
+        aria-label="3D Interactive Astronaut Experience"
       >
-        {/* Instant background poster while canvas starts */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${frameSrc(START_FRAME)})` }}
+        <iframe
+          ref={iframeRef}
+          src="/lusion_standalone.html"
+          title="3D Astronaut Experience"
+          className="pointer-events-none absolute inset-0 h-full w-full border-0 bg-black"
+          allow="autoplay; fullscreen"
         />
 
-        {/* 60fps Continuous Canvas Renderer */}
-        <canvas
-          ref={canvasRef}
-          className="pointer-events-none absolute inset-0 h-full w-full bg-transparent"
-        />
-
-        {/* Subtle Bottom Scrubber Progress Bar */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-0.5 bg-white/10"
-        >
-          <div
-            ref={progressBarRef}
-            className="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-sky via-cyan-300 to-white will-change-transform"
-          />
-        </div>
-
-        {/* Scroll Prompt / Continue CTA */}
-        <div
-          className={`absolute bottom-8 left-1/2 z-20 -translate-x-1/2 transition-all duration-500 ${
-            atFinale
-              ? "pointer-events-auto opacity-100 translate-y-0"
-              : "pointer-events-none opacity-0 translate-y-2"
-          }`}
-        >
-          <button
-            type="button"
-            onClick={continueDown}
-            className="group flex items-center gap-2 rounded-full border border-white/20 bg-black/70 px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-wider text-white shadow-2xl backdrop-blur-md transition hover:border-sky hover:bg-black/90 hover:text-sky cursor-pointer"
-          >
-            <span>Explore The System</span>
-            <span
-              aria-hidden
-              className="transition-transform duration-300 group-hover:translate-y-0.5"
-            >
-              ↓
-            </span>
-          </button>
-        </div>
+        {/* Transient subtle loading bar (fades out immediately when 3D scene is ready) */}
+        {!ready && (
+          <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/70 backdrop-blur-xs transition-opacity duration-700">
+            <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/60">
+              Initializing 3D Scene
+            </p>
+            <div className="mt-4 h-0.5 w-32 overflow-hidden bg-white/10 rounded-full">
+              <div className="h-full bg-cyan-400 w-1/2 animate-pulse" />
+            </div>
+          </div>
+        )}
       </section>
     </div>
   );
