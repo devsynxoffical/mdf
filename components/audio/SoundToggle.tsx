@@ -316,7 +316,12 @@ export default function SoundToggle() {
 
   // Auto-unlock audio on first gesture if previously turned on
   useEffect(() => {
-    const saved = typeof window !== "undefined" ? sessionStorage.getItem("uf-sound") : null;
+    let saved: string | null = null;
+    try {
+      saved = typeof window !== "undefined" ? sessionStorage.getItem("uf-sound") : null;
+    } catch {
+      saved = "off";
+    }
     const shouldEnable = saved === "on" || saved === null; // Default to on
 
     if (shouldEnable) {

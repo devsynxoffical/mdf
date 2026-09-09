@@ -22,7 +22,11 @@ export default function Nav() {
   const sheetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setDismissed(sessionStorage.getItem("mdf-announce-dismissed") === "1");
+    try {
+      setDismissed(sessionStorage.getItem("mdf-announce-dismissed") === "1");
+    } catch {
+      setDismissed(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -50,7 +54,9 @@ export default function Nav() {
   }, []);
 
   const dismiss = useCallback(() => {
-    sessionStorage.setItem("mdf-announce-dismissed", "1");
+    try {
+      sessionStorage.setItem("mdf-announce-dismissed", "1");
+    } catch {}
     setDismissed(true);
   }, []);
 

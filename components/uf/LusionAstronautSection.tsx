@@ -382,13 +382,13 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
         if (dead || readyRef.current) return;
         attempts += 1;
         if (tryReady()) return;
-        if (attempts < 120) {
+        if (attempts < 35) {
           pollId = window.setTimeout(poll, 100);
         } else {
           onFailRef.current();
         }
       };
-      pollId = window.setTimeout(poll, 200);
+      pollId = window.setTimeout(poll, 150);
     };
 
     const onMessage = (ev: MessageEvent) => {
@@ -400,12 +400,17 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
       syncSound(enabled);
     };
 
+    const onError = () => {
+      if (!readyRef.current) onFailRef.current();
+    };
+
     window.addEventListener("message", onMessage);
     window.addEventListener("uf-sound-change", onSoundChange);
     iframe.addEventListener("load", onLoad);
+    iframe.addEventListener("error", onError);
     failTimer = window.setTimeout(() => {
       if (!readyRef.current) onFailRef.current();
-    }, 20000);
+    }, 4500);
 
     const trigger = ScrollTrigger.create({
       trigger: container,
