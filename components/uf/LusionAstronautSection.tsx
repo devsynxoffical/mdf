@@ -85,18 +85,36 @@ export default function LusionAstronautSection() {
   );
 
   const readRange = useCallback((win: LusionWindow) => {
-    const ranges = win.homeGoalSectionRanges;
+    const ranges = (win as any).homeGoalSectionRanges;
     if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 100) {
       return null;
     }
-    const items = (ranges as any).items;
-    // Skip static dwell so the 3D zoom immediately engages on scroll
-    const skipDwell =
-      items?.blackFrameShow?.pixelCount != null
-        ? items.blackFrameShow.pixelCount
-        : Math.round(ranges.totalPixelCount * 0.08);
 
-    const start = Math.max(0, (ranges.baseY || 0) + skipDwell);
+    // Target the exact 3D Astronaut scene range (whiteFrameBreak -> astronautWait)
+    if (typeof ranges.getRange === "function") {
+      try {
+        const astroRange = ranges.getRange("whiteFrameBreak", "astronautWait");
+        if (astroRange && astroRange.pixelTo > astroRange.pixelFrom + 100) {
+          return { start: astroRange.pixelFrom, end: astroRange.pixelTo };
+        }
+      } catch {}
+    }
+
+    const items = ranges.items;
+    if (items) {
+      const start =
+        items.whiteFrameBreak?.pixelFrom ??
+        items.whiteFrameOut?.pixelFrom ??
+        (ranges.baseY || 0) + Math.round(ranges.totalPixelCount * 0.48);
+      const end =
+        items.astronautWait?.pixelTo ?? (ranges.baseY || 0) + ranges.totalPixelCount;
+      if (end > start + 100) {
+        return { start, end };
+      }
+    }
+
+    // Precise astronaut beat offset fallback
+    const start = (ranges.baseY || 0) + Math.round(ranges.totalPixelCount * 0.48);
     const end = (ranges.baseY || 0) + ranges.totalPixelCount;
     if (end <= start + 100) return null;
     return { start, end };
