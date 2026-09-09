@@ -334,19 +334,19 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
 
     const readRange = (win: LusionWindow) => {
       const ranges = win.homeGoalSectionRanges;
-      if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 100) {
-        return null;
-      }
-      const items = (ranges as any).items;
-      // Skip the static dwell so it immediately begins zooming into the action
+      const total =
+        ranges?.totalPixelCount && ranges.totalPixelCount > 100
+          ? ranges.totalPixelCount
+          : 44973;
+      const baseY = typeof ranges?.baseY === "number" ? ranges.baseY : 7121;
+      const items = (ranges as any)?.items;
       const skipDwell =
         items?.blackFrameShow?.pixelCount != null
           ? items.blackFrameShow.pixelCount
-          : Math.round(ranges.totalPixelCount * 0.08);
+          : Math.round(total * 0.08);
 
-      const start = Math.max(0, (ranges.baseY || 0) + skipDwell);
-      const end = (ranges.baseY || 0) + ranges.totalPixelCount;
-      if (end <= start + 100) return null;
+      const start = Math.max(0, baseY + skipDwell);
+      const end = baseY + total;
       return { start, end };
     };
 
@@ -355,11 +355,8 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
       try {
         const win = getWin();
         if (!win?.scrollManager?.scrollToPixel) return false;
-        if (win.properties && win.properties.hasStarted === false) return false;
 
         const range = readRange(win);
-        if (!range) return false;
-
         rangeRef.current = range;
         readyRef.current = true;
         setReady(true);
@@ -382,7 +379,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
         if (dead || readyRef.current) return;
         attempts += 1;
         if (tryReady()) return;
-        if (attempts < 100) {
+        if (attempts < 120) {
           pollId = window.setTimeout(poll, 100);
         } else {
           onFailRef.current();
@@ -410,7 +407,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
     iframe.addEventListener("error", onError);
     failTimer = window.setTimeout(() => {
       if (!readyRef.current) onFailRef.current();
-    }, 10000);
+    }, 12000);
 
     const trigger = ScrollTrigger.create({
       trigger: container,
@@ -438,7 +435,6 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
         }
       },
       onUpdate: (self) => {
-        if (!readyRef.current) return;
         try {
           const win = getWin();
           const sm = win?.scrollManager;
