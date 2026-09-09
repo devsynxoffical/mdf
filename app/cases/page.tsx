@@ -4,6 +4,8 @@ import CasesIndex from "@/components/cases/CasesIndex";
 import UFFooter from "@/components/uf/UFFooter";
 import { CASE_STUDIES } from "@/lib/cases";
 
+import MinimalNav from "@/components/MinimalNav";
+
 export const metadata: Metadata = {
   title: "Case Studies — Million Dollar Funnel™",
   description:
@@ -18,6 +20,7 @@ export default function CasesPage() {
 
   return (
     <>
+      <MinimalNav />
       <CasesIndex />
       <UFFooter />
     </>

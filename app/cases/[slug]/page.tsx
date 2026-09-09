@@ -4,6 +4,8 @@ import CaseStudyView from "@/components/cases/CaseStudyView";
 import UFFooter from "@/components/uf/UFFooter";
 import { CASE_STUDIES, getCaseBySlug } from "@/lib/cases";
 
+import MinimalNav from "@/components/MinimalNav";
+
 type Props = { params: { slug: string } };
 
 export function generateStaticParams() {
@@ -25,6 +27,7 @@ export default function CaseStudyPage({ params }: Props) {
 
   return (
     <>
+      <MinimalNav />
       <CaseStudyView study={study} />
       <UFFooter />
     </>
