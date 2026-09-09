@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useScrollState } from "@/components/providers/ScrollProvider";
@@ -26,14 +26,20 @@ type LusionWindow = Window & {
   homeGoalSectionRanges?: {
     baseY: number;
     totalPixelCount: number;
-    items?: Record<string, { pixelFrom?: number; pixelTo?: number; pixelCount?: number }>;
-    getRange?: (from: string, to?: string) => { pixelFrom: number; pixelTo: number; pixelCount: number };
+    items?: Record<string, { pixelFrom?: number; pixelCount?: number }>;
   };
   lusionAudios?: LusionAudios;
   homePage?: { updateAudio?: boolean };
   properties?: { hasStarted?: boolean };
-  jumpToAstronaut?: () => boolean;
 };
+
+const TOTAL_FRAMES = 101;
+/** Skip early static dwell — zoom animation starts immediately. */
+const START_FRAME = 15;
+const PLAYABLE = TOTAL_FRAMES - START_FRAME;
+
+const frameSrc = (i: number) =>
+  `/frames/lusion/frame_${String(i).padStart(3, "0")}.webp`;
 
 function parentSoundOn() {
   try {
@@ -45,26 +51,268 @@ function parentSoundOn() {
 }
 
 /**
- * Authentic 3D WebGL / GLB Astronaut Scroll Experience
+ * Exact Lusion home-goal WebGL on desktop.
+ * On mobile / low-memory: local 101-frame canvas scrub (WebGL iframe is unreliable on phones).
  */
 export default function LusionAstronautSection() {
-  const { reducedMotion } = useScrollState();
+  const { isMobile, ready: scrollReady, reducedMotion } = useScrollState();
+  const [useFrames, setUseFrames] = useState(false);
+  const [probed, setProbed] = useState(false);
+
+  useEffect(() => {
+    if (!scrollReady) return;
+    const coarse =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(pointer: coarse)").matches;
+    const narrow = window.innerWidth < 900;
+    // Phones, tablets, low-memory, and touch+narrow viewports → frame scrubber
+    setUseFrames(isMobile || reducedMotion || (coarse && narrow));
+    setProbed(true);
+  }, [scrollReady, isMobile, reducedMotion]);
+
+  // Stable outer shell — swapping the pinned <section> root remounts GSAP pin
+  // spacers and triggers React removeChild NotFoundError.
+  return (
+    <div id="lusion-immersive-root" className="relative w-full">
+      {!scrollReady || !probed ? (
+        <section
+          id="lusion-immersive"
+          className="relative h-[100dvh] w-full overflow-hidden bg-black"
+          aria-label="Immersive astronaut scroll experience"
+        >
+          <LoadingOverlay label="Loading sequence" pct={null} />
+        </section>
+      ) : useFrames ? (
+        <FrameAstronautExperience reducedMotion={reducedMotion} />
+      ) : (
+        <IframeAstronautExperience onFail={() => setUseFrames(true)} />
+      )}
+    </div>
+  );
+}
+
+/* ─── Mobile / reduced-motion: canvas frame scrubber ─── */
+
+function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const readyRef = useRef(false);
-  const rangeRef = useRef<{ start: number; end: number }>({ start: 0, end: 3000 });
-  const soundOnRef = useRef(true);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imagesRef = useRef<(HTMLImageElement | null)[]>([]);
+  const frameRef = useRef(START_FRAME);
+  const progressBarRef = useRef<HTMLDivElement>(null);
 
   const [ready, setReady] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [loadPct, setLoadPct] = useState(0);
+  const [atFinale, setAtFinale] = useState(false);
 
-  const getWin = useCallback(
-    () => iframeRef.current?.contentWindow as LusionWindow | null,
-    []
+  useEffect(() => {
+    const container = containerRef.current;
+    const canvas = canvasRef.current;
+    if (!container || !canvas) return;
+
+    const ctx = canvas.getContext("2d", { alpha: false });
+    if (!ctx) return;
+
+    let dead = false;
+    let loaded = 0;
+    const images: (HTMLImageElement | null)[] = new Array(TOTAL_FRAMES).fill(null);
+    imagesRef.current = images;
+
+    const draw = (index: number) => {
+      let img = images[index];
+      if (!img?.complete || !img.naturalWidth) {
+        // Nearest loaded neighbor so scrub never blanks mid-load
+        for (let d = 1; d < TOTAL_FRAMES; d++) {
+          const a = images[index - d];
+          const b = images[index + d];
+          if (a?.complete && a.naturalWidth) {
+            img = a;
+            break;
+          }
+          if (b?.complete && b.naturalWidth) {
+            img = b;
+            break;
+          }
+        }
+      }
+      if (!img?.complete || !img.naturalWidth) return;
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      if (!w || !h) return;
+
+      if (canvas.width !== Math.floor(w * dpr) || canvas.height !== Math.floor(h * dpr)) {
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+      }
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.fillStyle = "#000";
+      ctx.fillRect(0, 0, w, h);
+
+      const imgAspect = img.naturalWidth / img.naturalHeight;
+      const canvasAspect = w / h;
+      let dw = w;
+      let dh = h;
+      let ox = 0;
+      let oy = 0;
+
+      // Cover
+      if (canvasAspect > imgAspect) {
+        dw = w;
+        dh = w / imgAspect;
+        oy = (h - dh) / 2;
+      } else {
+        dh = h;
+        dw = h * imgAspect;
+        ox = (w - dw) / 2;
+      }
+
+      ctx.drawImage(img, ox, oy, dw, dh);
+    };
+
+    const onImg = (i: number) => {
+      if (dead) return;
+      loaded += 1;
+      setLoadPct(Math.round((loaded / PLAYABLE) * 100));
+      if (i === START_FRAME) {
+        draw(START_FRAME);
+        setReady(true);
+        ScrollTrigger.refresh();
+      }
+      // Keep painting current frame as better neighbors arrive
+      if (Math.abs(i - frameRef.current) <= 2) draw(frameRef.current);
+    };
+
+    // Priority: start frame first, then remaining in play order
+    const order = [
+      START_FRAME,
+      ...Array.from({ length: PLAYABLE }, (_, k) => START_FRAME + k).filter(
+        (i) => i !== START_FRAME
+      ),
+    ];
+
+    for (const i of order) {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = frameSrc(i);
+      img.onload = () => onImg(i);
+      img.onerror = () => onImg(i);
+      images[i] = img;
+    }
+
+    const applyProgress = (p: number) => {
+      const idx = Math.min(
+        TOTAL_FRAMES - 1,
+        START_FRAME + Math.floor(p * (PLAYABLE - 0.0001))
+      );
+      frameRef.current = idx;
+      draw(idx);
+      setAtFinale(p >= 0.88);
+      if (progressBarRef.current) {
+        progressBarRef.current.style.transform = `scaleX(${p})`;
+      }
+    };
+
+    let trigger: ScrollTrigger | null = null;
+
+    if (reducedMotion) {
+      applyProgress(0.35);
+    } else {
+      trigger = ScrollTrigger.create({
+        trigger: container,
+        start: "top top",
+        end: "+=280%",
+        pin: true,
+        // Avoid reparenting the React-owned section into a spacer race.
+        pinReparent: false,
+        scrub: 0.35,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => applyProgress(self.progress),
+      });
+    }
+
+    const onResize = () => draw(frameRef.current);
+    window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onResize);
+
+    return () => {
+      dead = true;
+      trigger?.kill();
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("orientationchange", onResize);
+    };
+  }, [reducedMotion]);
+
+  const continueDown = () => {
+    window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" });
+  };
+
+  return (
+    <section
+      ref={containerRef}
+      id="lusion-immersive"
+      className="relative h-[100dvh] w-full overflow-hidden bg-black text-white"
+      aria-label="Immersive astronaut scroll experience"
+    >
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 z-10 h-full w-full transition-opacity duration-500"
+        style={{
+          opacity: ready ? 1 : 0,
+          filter: "brightness(0.86) contrast(1.16) saturate(0.62)",
+        }}
+      />
+
+      {!ready && <LoadingOverlay label="Loading sequence" pct={loadPct} />}
+
+      {/* Progress rail */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-0.5 bg-white/10">
+        <div
+          ref={progressBarRef}
+          className="h-full origin-left scale-x-0 bg-sky shadow-[0_0_12px_#38BDF8]"
+        />
+      </div>
+
+      {/* Hit target over finale “continue” pill baked into frames */}
+      {atFinale && (
+        <button
+          type="button"
+          onClick={continueDown}
+          className="absolute bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 z-30 h-14 w-[min(18rem,80vw)] -translate-x-1/2 cursor-pointer opacity-0"
+          aria-label="Continue scrolling"
+        />
+      )}
+    </section>
   );
+}
 
-  const syncSound = useCallback(
-    (enabled: boolean) => {
+/* ─── Desktop: live Lusion WebGL iframe ─── */
+
+function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const rangeRef = useRef({ start: 7121, end: 52094 });
+  const readyRef = useRef(false);
+  const soundOnRef = useRef(false);
+  const onFailRef = useRef(onFail);
+  onFailRef.current = onFail;
+
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const iframe = iframeRef.current;
+    if (!container || !iframe) return;
+
+    let dead = false;
+    let pollId = 0;
+    let failTimer = 0;
+
+    const getWin = () => iframe.contentWindow as LusionWindow | null;
+
+    const syncSound = (enabled: boolean) => {
       soundOnRef.current = enabled;
       try {
         const win = getWin();
@@ -80,70 +328,34 @@ export default function LusionAstronautSection() {
         if (enabled) audios.on();
         else audios.off();
       } catch {
-        /* cross-origin */
+        /* mid-load */
       }
-    },
-    [getWin]
-  );
+    };
 
-  const readRange = useCallback((win: LusionWindow) => {
-    const ranges = win.homeGoalSectionRanges;
-    if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 100) {
-      return null;
-    }
-
-    const baseY = typeof ranges.baseY === "number" ? ranges.baseY : 0;
-    const items = ranges.items;
-
-    // Use items directly with absolute baseY
-    if (items && items.whiteFrameBreak && items.astronautWait) {
-      const start = baseY + (items.whiteFrameBreak.pixelFrom ?? 0);
-      const end = baseY + (items.astronautWait.pixelTo ?? ranges.totalPixelCount);
-      if (end > start + 50) {
-        return { start, end };
+    const readRange = (win: LusionWindow) => {
+      const ranges = win.homeGoalSectionRanges;
+      if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 100) {
+        return null;
       }
-    }
+      const items = (ranges as any).items;
+      // Skip the static dwell so it immediately begins zooming into the action
+      const skipDwell =
+        items?.blackFrameShow?.pixelCount != null
+          ? items.blackFrameShow.pixelCount
+          : Math.round(ranges.totalPixelCount * 0.08);
 
-    if (typeof ranges.getRange === "function") {
-      try {
-        const astroRange = ranges.getRange("whiteFrameBreak", "astronautWait");
-        if (astroRange && astroRange.pixelCount > 50) {
-          return {
-            start: baseY + astroRange.pixelFrom,
-            end: baseY + astroRange.pixelTo,
-          };
-        }
-      } catch {}
-    }
-
-    // Proportional fallback
-    const start = baseY + Math.round(ranges.totalPixelCount * 0.5);
-    const end = baseY + ranges.totalPixelCount;
-    return { start, end };
-  }, []);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    const iframe = iframeRef.current;
-    if (!container || !iframe) return;
-
-    let dead = false;
-    let pollId = 0;
-
-    const applyScroll = (targetPx: number) => {
-      try {
-        const win = getWin();
-        if (win?.scrollManager?.scrollToPixel) {
-          win.scrollManager.scrollToPixel(targetPx, true);
-        }
-      } catch {}
+      const start = Math.max(0, (ranges.baseY || 0) + skipDwell);
+      const end = (ranges.baseY || 0) + ranges.totalPixelCount;
+      if (end <= start + 100) return null;
+      return { start, end };
     };
 
     const tryReady = () => {
-      if (dead) return false;
+      if (dead || readyRef.current) return false;
       try {
         const win = getWin();
         if (!win?.scrollManager?.scrollToPixel) return false;
+        if (win.properties && win.properties.hasStarted === false) return false;
 
         const range = readRange(win);
         if (!range) return false;
@@ -151,14 +363,13 @@ export default function LusionAstronautSection() {
         rangeRef.current = range;
         readyRef.current = true;
         setReady(true);
-
-        applyScroll(range.start);
+        win.scrollManager.scrollToPixel(range.start, true);
         if (win.homePage) win.homePage.updateAudio = true;
         syncSound(parentSoundOn());
         ScrollTrigger.refresh();
         return true;
       } catch {
-        /* cross-origin */
+        /* cross-origin / mid-load */
       }
       return false;
     };
@@ -172,10 +383,12 @@ export default function LusionAstronautSection() {
         attempts += 1;
         if (tryReady()) return;
         if (attempts < 100) {
-          pollId = window.setTimeout(poll, 80);
+          pollId = window.setTimeout(poll, 100);
+        } else {
+          onFailRef.current();
         }
       };
-      pollId = window.setTimeout(poll, 100);
+      pollId = window.setTimeout(poll, 150);
     };
 
     const onMessage = (ev: MessageEvent) => {
@@ -187,23 +400,25 @@ export default function LusionAstronautSection() {
       syncSound(enabled);
     };
 
+    const onError = () => {
+      if (!readyRef.current) onFailRef.current();
+    };
+
     window.addEventListener("message", onMessage);
     window.addEventListener("uf-sound-change", onSoundChange);
     iframe.addEventListener("load", onLoad);
+    iframe.addEventListener("error", onError);
+    failTimer = window.setTimeout(() => {
+      if (!readyRef.current) onFailRef.current();
+    }, 10000);
 
-    // Fade overlay quickly
-    const autoReadyTimer = window.setTimeout(() => {
-      if (!readyRef.current) setReady(true);
-    }, 400);
-
-    // Smooth ScrollTrigger pinning and scrubbing
     const trigger = ScrollTrigger.create({
       trigger: container,
       start: "top top",
-      end: "+=320%",
+      end: "+=650%",
       pin: true,
       pinReparent: false,
-      scrub: reducedMotion ? 0.2 : 0.6,
+      scrub: 0.5,
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onEnter: () => syncSound(parentSoundOn()),
@@ -211,24 +426,38 @@ export default function LusionAstronautSection() {
       onLeave: () => {
         try {
           getWin()?.lusionAudios?.off();
-        } catch {}
+        } catch {
+          /* */
+        }
       },
       onLeaveBack: () => {
         try {
           getWin()?.lusionAudios?.off();
-        } catch {}
+        } catch {
+          /* */
+        }
       },
       onUpdate: (self) => {
-        setProgress(self.progress);
+        if (!readyRef.current) return;
         try {
           const win = getWin();
           const sm = win?.scrollManager;
           if (!sm?.scrollToPixel) return;
 
+          const live = win ? readRange(win) : null;
+          if (live) rangeRef.current = live;
+
           const { start, end } = rangeRef.current;
           const target = start + self.progress * (end - start);
           sm.scrollToPixel(target, true);
-        } catch {}
+
+          if (self.progress > 0.72) {
+            win?.document?.documentElement?.classList.remove("is-white-bg");
+            win?.document?.documentElement?.classList.add("is-black-bg");
+          }
+        } catch {
+          /* ignore */
+        }
       },
     });
 
@@ -242,100 +471,49 @@ export default function LusionAstronautSection() {
       window.removeEventListener("message", onMessage);
       window.removeEventListener("uf-sound-change", onSoundChange);
       window.clearTimeout(pollId);
-      window.clearTimeout(autoReadyTimer);
+      window.clearTimeout(failTimer);
       try {
         getWin()?.lusionAudios?.off();
-      } catch {}
+      } catch {
+        /* */
+      }
       trigger.kill();
     };
-  }, [getWin, readRange, syncSound, reducedMotion]);
+  }, []);
 
   return (
-    <div id="lusion-immersive-root" className="relative w-full bg-black">
-      <section
-        ref={containerRef}
-        id="lusion-immersive"
-        className="relative h-screen w-full overflow-hidden bg-black select-none"
-        aria-label="3D WebGL Astronaut Experience"
-      >
-        {/* Background glow effects */}
-        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_40%,rgba(14,165,233,0.12)_0%,transparent_60%)]" />
+    <section
+      ref={containerRef}
+      id="lusion-immersive"
+      className="relative h-screen w-full overflow-hidden bg-black"
+      aria-label="Immersive astronaut scroll experience"
+    >
+      <iframe
+        ref={iframeRef}
+        src="/lusion_standalone.html?v=silver3"
+        title="Lusion astronaut interactive experience"
+        className="pointer-events-none absolute inset-0 h-full w-full border-0 bg-black"
+        allow="autoplay; fullscreen"
+      />
 
-        {/* 3D WebGL Canvas Viewport */}
-        <iframe
-          ref={iframeRef}
-          src="/lusion_standalone.html?v=mdf_orbit1"
-          title="3D Astronaut interactive experience"
-          className="pointer-events-none absolute inset-0 h-full w-full border-0 bg-black"
-          allow="autoplay; fullscreen"
-        />
-
-        {/* Ambient Dark Vignette Edges for smooth blending */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black via-black/60 to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
-
-        {/* HUD Top Status Bar */}
-        <div className="pointer-events-none absolute top-8 inset-x-0 z-20 flex items-center justify-between px-6 md:px-12">
-          <div className="flex items-center gap-3">
-            <div className="h-2 w-2 rounded-full bg-cyan-400 animate-ping" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/70">
-              3D Zero-G Telemetry // MDF Core
-            </span>
-          </div>
-          <div className="hidden sm:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[10px] text-white/50 backdrop-blur-md">
-            <span>SCROLL CONTROL</span>
-            <span className="text-cyan-400 font-bold">{Math.round(progress * 100)}%</span>
-          </div>
-        </div>
-
-        {/* HUD Interactive Overlay Titles */}
-        <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-between p-8 md:p-14">
-          <div className="mt-16 max-w-xl">
-            <span className="inline-block font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan-400">
-              Autonomous Systems
-            </span>
-            <h2 className="mt-2 font-mono text-2xl font-bold uppercase tracking-tight text-white md:text-4xl drop-shadow-2xl">
-              Break Into The Future
-            </h2>
-            <p className="mt-2 max-w-md text-xs font-sans text-white/60 leading-relaxed drop-shadow-md">
-              High-ticket infrastructure engineered to scale your conversion architecture effortlessly across every channel.
-            </p>
-          </div>
-
-          <div className="flex items-end justify-between">
-            <div className="font-mono text-[10px] text-white/40 uppercase tracking-widest space-y-1">
-              <div>// MODEL: LUSION 3D ENGINE</div>
-              <div>// COORDINATES: 0G-ORBIT-MDF</div>
-            </div>
-
-            {/* Scroll Indicator */}
-            <div className="flex flex-col items-center gap-2">
-              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/40">
-                Scroll To Orbit
-              </span>
-              <div className="h-10 w-5 rounded-full border border-white/20 p-1 flex justify-center backdrop-blur-sm">
-                <div
-                  className="h-2 w-1.5 rounded-full bg-cyan-400 transition-transform duration-100"
-                  style={{ transform: `translateY(${progress * 18}px)` }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Fast Loading Transition */}
-        {!ready && (
-          <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center bg-black transition-opacity duration-300">
-            <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/70">
-              Initializing 3D Environment
-            </p>
-            <div className="mt-4 h-0.5 w-32 overflow-hidden bg-white/10 rounded-full">
-              <div className="h-full w-2/3 bg-cyan-400 animate-pulse" />
-            </div>
-          </div>
-        )}
-      </section>
-    </div>
+      {!ready && <LoadingOverlay label="Loading sequence" pct={null} />}
+    </section>
   );
 }
 
+function LoadingOverlay({ label, pct }: { label: string; pct: number | null }) {
+  return (
+    <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center bg-black">
+      <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/40">
+        {label}
+        {pct != null ? ` · ${pct}%` : ""}
+      </p>
+      <div className="mt-6 h-px w-40 overflow-hidden bg-white/10">
+        <div
+          className="h-full bg-white/50 transition-[width] duration-200"
+          style={{ width: pct != null ? `${Math.max(8, pct)}%` : "50%" }}
+        />
+      </div>
+    </div>
+  );
+}
