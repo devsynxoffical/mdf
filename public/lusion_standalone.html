@@ -217,16 +217,190 @@
         if (b.threshold < MIN_THRESHOLD) b.threshold = MIN_THRESHOLD;
         if (b.haloStrength > MAX_HALO) b.haloStrength = MAX_HALO;
       }
+<style id="hide-lusion-header-style">
+  html, body {
+    margin: 0 !important;
+    background: #000 !important;
+    overflow: hidden !important;
+  }
+  canvas#canvas {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+    filter: brightness(0.96) contrast(1.08) saturate(0.88);
+  }
+  #ui {
+    position: relative;
+    z-index: 2;
+  }
+  #header,
+  #header-container,
+  #header-logo,
+  #header-right,
+  #header-right-talk-btn,
+  #header-right-menu-btn,
+  #header-menu,
+  #header-center,
+  #header-right-sound-btn,
+  #header-right-talk-btn-placeholder,
+  #preloader,
+  #preloader-percent-digits,
+  .preloader-percent-digit,
+  #transition-overlay,
+  #scroll-nav-section,
+  #scroll-nav-content,
+  #scroll-nav-next-bar,
+  #scroll-nav-next,
+  #scroll-indicator,
+  #input-blocker,
+  #video-overlay {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  /* Keep layout height and geometry of sections (needed for scroll ranges) but visually clear */
+  #home-hero,
+  #home-reel,
+  #home-featured,
+  #footer-section,
+  #home-goal-context,
+  #home-goal-context-inner,
+  #home-goal-title,
+  #home-goal-texts,
+  .home-goal-texts-paragraph,
+  #home-goal-tunnel-title,
+  .home-goal-tunnel-title-line,
+  #end-section-content {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  #end-bottom {
+    display: none !important;
+  }
+</style>
+<script>
+(function () {
+  /* Cap bloom + pull exposure toward a crisp metallic astronaut */
+  var MAX_BLOOM = 0.12;
+  var MIN_THRESHOLD = 0.92;
+  var MAX_HALO = 0.05;
+  var MAX_BLOOM_SAT = 1;
+  var MAX_SATURATION = 0.85;
+  var MAX_BRIGHTNESS = 0.95;
+
+  function installBloomSoftener() {
+    var p = window.properties;
+    if (!p || p.__bloomSoftened) return !!p;
+
+    var store = {
+      bloomAmount: p.bloomAmount,
+      bloomThreshold: p.bloomThreshold,
+      haloStrength: p.haloStrength,
+      bloomSaturation: p.bloomSaturation,
+      saturation: p.saturation,
+      brightness: p.brightness,
+    };
+
+    Object.defineProperty(p, "bloomAmount", {
+      get: function () {
+        return Math.min(store.bloomAmount, MAX_BLOOM);
+      },
+      set: function (v) {
+        store.bloomAmount = v;
+      },
+      configurable: true,
+      enumerable: true,
+    });
+    Object.defineProperty(p, "bloomThreshold", {
+      get: function () {
+        return Math.max(store.bloomThreshold, MIN_THRESHOLD);
+      },
+      set: function (v) {
+        store.bloomThreshold = v;
+      },
+      configurable: true,
+      enumerable: true,
+    });
+    Object.defineProperty(p, "haloStrength", {
+      get: function () {
+        return Math.min(store.haloStrength, MAX_HALO);
+      },
+      set: function (v) {
+        store.haloStrength = v;
+      },
+      configurable: true,
+      enumerable: true,
+    });
+    Object.defineProperty(p, "bloomSaturation", {
+      get: function () {
+        return Math.min(store.bloomSaturation, MAX_BLOOM_SAT);
+      },
+      set: function (v) {
+        store.bloomSaturation = v;
+      },
+      configurable: true,
+      enumerable: true,
+    });
+    Object.defineProperty(p, "saturation", {
+      get: function () {
+        return Math.min(store.saturation, MAX_SATURATION);
+      },
+      set: function (v) {
+        store.saturation = v;
+      },
+      configurable: true,
+      enumerable: true,
+    });
+    Object.defineProperty(p, "brightness", {
+      get: function () {
+        return Math.min(store.brightness, MAX_BRIGHTNESS);
+      },
+      set: function (v) {
+        store.brightness = v;
+      },
+      configurable: true,
+      enumerable: true,
+    });
+
+    p.__bloomSoftened = true;
+
+    (function patchBloomInstance() {
+      var b = p.bloom;
+      if (b) {
+        if (b.amount > MAX_BLOOM) b.amount = MAX_BLOOM;
+        if (b.threshold < MIN_THRESHOLD) b.threshold = MIN_THRESHOLD;
+        if (b.haloStrength > MAX_HALO) b.haloStrength = MAX_HALO;
+      }
       requestAnimationFrame(patchBloomInstance);
     })();
 
     return true;
   }
 
+  function jumpToAstronaut() {
+    try {
+      if (window.scrollManager && window.homeGoalSectionRanges && window.homeGoalSectionRanges.totalPixelCount > 0) {
+        var r = window.homeGoalSectionRanges;
+        var baseY = typeof r.baseY === "number" ? r.baseY : 0;
+        var breakPx = r.items?.whiteFrameBreak?.pixelFrom ?? Math.round(r.totalPixelCount * 0.5);
+        var target = baseY + breakPx;
+        window.scrollManager.scrollToPixel(target, true);
+        return true;
+      }
+    } catch (e) {}
+    return false;
+  }
+
   function notifyReady() {
     try {
       installBloomSoftener();
       if (window.scrollManager && window.homeGoalSectionRanges && window.homeGoalSectionRanges.totalPixelCount > 0) {
+        jumpToAstronaut();
         window.parent && window.parent.postMessage({ type: "lusion-ready" }, "*");
         return true;
       }
@@ -234,14 +408,17 @@
     return false;
   }
 
+  window.jumpToAstronaut = jumpToAstronaut;
+
   var n = 0;
   var id = setInterval(function () {
     n += 1;
     installBloomSoftener();
     if (notifyReady() || n > 200) clearInterval(id);
   }, 100);
+
   window.addEventListener("load", function () {
-    setTimeout(notifyReady, 400);
+    setTimeout(notifyReady, 250);
   });
 })();
 </script>

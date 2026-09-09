@@ -26,11 +26,13 @@ type LusionWindow = Window & {
   homeGoalSectionRanges?: {
     baseY: number;
     totalPixelCount: number;
-    items?: Record<string, { pixelFrom?: number; pixelCount?: number }>;
+    items?: Record<string, { pixelFrom?: number; pixelTo?: number; pixelCount?: number }>;
+    getRange?: (from: string, to?: string) => { pixelFrom: number; pixelTo: number; pixelCount: number };
   };
   lusionAudios?: LusionAudios;
   homePage?: { updateAudio?: boolean };
   properties?: { hasStarted?: boolean };
+  jumpToAstronaut?: () => boolean;
 };
 
 function parentSoundOn() {
@@ -43,7 +45,7 @@ function parentSoundOn() {
 }
 
 /**
- * Real 3D WebGL / GLB Astronaut Experience with Butter-Smooth Scroll Scrubbing
+ * Authentic 3D WebGL / GLB Astronaut Scroll Experience
  */
 export default function LusionAstronautSection() {
   const { reducedMotion } = useScrollState();
@@ -54,7 +56,7 @@ export default function LusionAstronautSection() {
   const soundOnRef = useRef(true);
 
   const [ready, setReady] = useState(false);
-  const [atFinale, setAtFinale] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const getWin = useCallback(
     () => iframeRef.current?.contentWindow as LusionWindow | null,
@@ -78,45 +80,45 @@ export default function LusionAstronautSection() {
         if (enabled) audios.on();
         else audios.off();
       } catch {
-        /* mid-load */
+        /* cross-origin */
       }
     },
     [getWin]
   );
 
   const readRange = useCallback((win: LusionWindow) => {
-    const ranges = (win as any).homeGoalSectionRanges;
+    const ranges = win.homeGoalSectionRanges;
     if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 100) {
       return null;
     }
 
-    // Target the exact 3D Astronaut scene range (whiteFrameBreak -> astronautWait)
-    if (typeof ranges.getRange === "function") {
-      try {
-        const astroRange = ranges.getRange("whiteFrameBreak", "astronautWait");
-        if (astroRange && astroRange.pixelTo > astroRange.pixelFrom + 100) {
-          return { start: astroRange.pixelFrom, end: astroRange.pixelTo };
-        }
-      } catch {}
-    }
-
+    const baseY = typeof ranges.baseY === "number" ? ranges.baseY : 0;
     const items = ranges.items;
-    if (items) {
-      const start =
-        items.whiteFrameBreak?.pixelFrom ??
-        items.whiteFrameOut?.pixelFrom ??
-        (ranges.baseY || 0) + Math.round(ranges.totalPixelCount * 0.48);
-      const end =
-        items.astronautWait?.pixelTo ?? (ranges.baseY || 0) + ranges.totalPixelCount;
-      if (end > start + 100) {
+
+    // Use items directly with absolute baseY
+    if (items && items.whiteFrameBreak && items.astronautWait) {
+      const start = baseY + (items.whiteFrameBreak.pixelFrom ?? 0);
+      const end = baseY + (items.astronautWait.pixelTo ?? ranges.totalPixelCount);
+      if (end > start + 50) {
         return { start, end };
       }
     }
 
-    // Precise astronaut beat offset fallback
-    const start = (ranges.baseY || 0) + Math.round(ranges.totalPixelCount * 0.48);
-    const end = (ranges.baseY || 0) + ranges.totalPixelCount;
-    if (end <= start + 100) return null;
+    if (typeof ranges.getRange === "function") {
+      try {
+        const astroRange = ranges.getRange("whiteFrameBreak", "astronautWait");
+        if (astroRange && astroRange.pixelCount > 50) {
+          return {
+            start: baseY + astroRange.pixelFrom,
+            end: baseY + astroRange.pixelTo,
+          };
+        }
+      } catch {}
+    }
+
+    // Proportional fallback
+    const start = baseY + Math.round(ranges.totalPixelCount * 0.5);
+    const end = baseY + ranges.totalPixelCount;
     return { start, end };
   }, []);
 
@@ -128,8 +130,17 @@ export default function LusionAstronautSection() {
     let dead = false;
     let pollId = 0;
 
+    const applyScroll = (targetPx: number) => {
+      try {
+        const win = getWin();
+        if (win?.scrollManager?.scrollToPixel) {
+          win.scrollManager.scrollToPixel(targetPx, true);
+        }
+      } catch {}
+    };
+
     const tryReady = () => {
-      if (dead || readyRef.current) return false;
+      if (dead) return false;
       try {
         const win = getWin();
         if (!win?.scrollManager?.scrollToPixel) return false;
@@ -140,13 +151,14 @@ export default function LusionAstronautSection() {
         rangeRef.current = range;
         readyRef.current = true;
         setReady(true);
-        win.scrollManager.scrollToPixel(range.start, true);
+
+        applyScroll(range.start);
         if (win.homePage) win.homePage.updateAudio = true;
         syncSound(parentSoundOn());
         ScrollTrigger.refresh();
         return true;
       } catch {
-        /* cross-origin / mid-load */
+        /* cross-origin */
       }
       return false;
     };
@@ -160,10 +172,10 @@ export default function LusionAstronautSection() {
         attempts += 1;
         if (tryReady()) return;
         if (attempts < 100) {
-          pollId = window.setTimeout(poll, 100);
+          pollId = window.setTimeout(poll, 80);
         }
       };
-      pollId = window.setTimeout(poll, 150);
+      pollId = window.setTimeout(poll, 100);
     };
 
     const onMessage = (ev: MessageEvent) => {
@@ -179,19 +191,19 @@ export default function LusionAstronautSection() {
     window.addEventListener("uf-sound-change", onSoundChange);
     iframe.addEventListener("load", onLoad);
 
-    // Fade out overlay after 800ms safety window
+    // Fade overlay quickly
     const autoReadyTimer = window.setTimeout(() => {
       if (!readyRef.current) setReady(true);
-    }, 800);
+    }, 400);
 
-    // Smooth ScrollTrigger scrubbing the 3D scene
+    // Smooth ScrollTrigger pinning and scrubbing
     const trigger = ScrollTrigger.create({
       trigger: container,
       start: "top top",
-      end: "+=500%",
+      end: "+=320%",
       pin: true,
       pinReparent: false,
-      scrub: reducedMotion ? 0.2 : 0.8,
+      scrub: reducedMotion ? 0.2 : 0.6,
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onEnter: () => syncSound(parentSoundOn()),
@@ -207,7 +219,7 @@ export default function LusionAstronautSection() {
         } catch {}
       },
       onUpdate: (self) => {
-        setAtFinale(self.progress >= 0.88);
+        setProgress(self.progress);
         try {
           const win = getWin();
           const sm = win?.scrollManager;
@@ -216,9 +228,7 @@ export default function LusionAstronautSection() {
           const { start, end } = rangeRef.current;
           const target = start + self.progress * (end - start);
           sm.scrollToPixel(target, true);
-        } catch {
-          /* ignore */
-        }
+        } catch {}
       },
     });
 
@@ -240,55 +250,84 @@ export default function LusionAstronautSection() {
     };
   }, [getWin, readRange, syncSound, reducedMotion]);
 
-  const continueDown = () => {
-    window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" });
-  };
-
   return (
-    <div id="lusion-immersive-root" className="relative w-full">
+    <div id="lusion-immersive-root" className="relative w-full bg-black">
       <section
         ref={containerRef}
         id="lusion-immersive"
         className="relative h-screen w-full overflow-hidden bg-black select-none"
-        aria-label="3D WebGL Astronaut Scroll Experience"
+        aria-label="3D WebGL Astronaut Experience"
       >
-        {/* 3D WebGL Experience Viewport */}
+        {/* Background glow effects */}
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_40%,rgba(14,165,233,0.12)_0%,transparent_60%)]" />
+
+        {/* 3D WebGL Canvas Viewport */}
         <iframe
           ref={iframeRef}
-          src="/lusion_standalone.html?v=silver3"
+          src="/lusion_standalone.html?v=mdf_orbit1"
           title="3D Astronaut interactive experience"
           className="pointer-events-none absolute inset-0 h-full w-full border-0 bg-black"
           allow="autoplay; fullscreen"
         />
 
-        {/* Scroll Prompt / Continue CTA */}
-        <div
-          className={`absolute bottom-8 left-1/2 z-20 -translate-x-1/2 transition-all duration-500 ${
-            atFinale
-              ? "pointer-events-auto opacity-100 translate-y-0"
-              : "pointer-events-none opacity-0 translate-y-2"
-          }`}
-        >
-          <button
-            type="button"
-            onClick={continueDown}
-            className="group flex items-center gap-2 rounded-full border border-white/20 bg-black/70 px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-wider text-white shadow-2xl backdrop-blur-md transition hover:border-sky hover:bg-black/90 hover:text-sky cursor-pointer"
-          >
-            <span>Explore The System</span>
-            <span
-              aria-hidden
-              className="transition-transform duration-300 group-hover:translate-y-0.5"
-            >
-              ↓
+        {/* Ambient Dark Vignette Edges for smooth blending */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black via-black/60 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
+
+        {/* HUD Top Status Bar */}
+        <div className="pointer-events-none absolute top-8 inset-x-0 z-20 flex items-center justify-between px-6 md:px-12">
+          <div className="flex items-center gap-3">
+            <div className="h-2 w-2 rounded-full bg-cyan-400 animate-ping" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/70">
+              3D Zero-G Telemetry // MDF Core
             </span>
-          </button>
+          </div>
+          <div className="hidden sm:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[10px] text-white/50 backdrop-blur-md">
+            <span>SCROLL CONTROL</span>
+            <span className="text-cyan-400 font-bold">{Math.round(progress * 100)}%</span>
+          </div>
         </div>
 
-        {/* Seamless Transient Fade (fades out immediately to reveal 3D canvas) */}
+        {/* HUD Interactive Overlay Titles */}
+        <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-between p-8 md:p-14">
+          <div className="mt-16 max-w-xl">
+            <span className="inline-block font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan-400">
+              Autonomous Systems
+            </span>
+            <h2 className="mt-2 font-mono text-2xl font-bold uppercase tracking-tight text-white md:text-4xl drop-shadow-2xl">
+              Break Into The Future
+            </h2>
+            <p className="mt-2 max-w-md text-xs font-sans text-white/60 leading-relaxed drop-shadow-md">
+              High-ticket infrastructure engineered to scale your conversion architecture effortlessly across every channel.
+            </p>
+          </div>
+
+          <div className="flex items-end justify-between">
+            <div className="font-mono text-[10px] text-white/40 uppercase tracking-widest space-y-1">
+              <div>// MODEL: LUSION 3D ENGINE</div>
+              <div>// COORDINATES: 0G-ORBIT-MDF</div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <div className="flex flex-col items-center gap-2">
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/40">
+                Scroll To Orbit
+              </span>
+              <div className="h-10 w-5 rounded-full border border-white/20 p-1 flex justify-center backdrop-blur-sm">
+                <div
+                  className="h-2 w-1.5 rounded-full bg-cyan-400 transition-transform duration-100"
+                  style={{ transform: `translateY(${progress * 18}px)` }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Fast Loading Transition */}
         {!ready && (
-          <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/75 backdrop-blur-xs transition-opacity duration-500">
-            <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/60">
-              Initializing 3D Sequence
+          <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center bg-black transition-opacity duration-300">
+            <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/70">
+              Initializing 3D Environment
             </p>
             <div className="mt-4 h-0.5 w-32 overflow-hidden bg-white/10 rounded-full">
               <div className="h-full w-2/3 bg-cyan-400 animate-pulse" />
@@ -299,3 +338,4 @@ export default function LusionAstronautSection() {
     </div>
   );
 }
+
