@@ -261,18 +261,6 @@ export default function WorkProofPage() {
   const [activeBentoVideo, setActiveBentoVideo] = useState<BentoTestimonialItem | null>(null);
   const [visibleCount, setVisibleCount] = useState<number>(24);
 
-  // Close modals on Escape
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setActiveReceipt(null);
-        setActiveBentoVideo(null);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
   const filteredReceipts = useMemo(() => {
     return WORK_PROOF.filter((item) => {
       const matchTag = selectedTag === "All" || item.tag === selectedTag;
@@ -289,6 +277,41 @@ export default function WorkProofPage() {
   const visibleReceipts = useMemo(() => {
     return filteredReceipts.slice(0, visibleCount);
   }, [filteredReceipts, visibleCount]);
+
+  const activeReceiptIndex = useMemo(() => {
+    if (!activeReceipt) return -1;
+    return filteredReceipts.findIndex((item) => item.id === activeReceipt.id);
+  }, [activeReceipt, filteredReceipts]);
+
+  const goPrevReceipt = useCallback(() => {
+    if (activeReceiptIndex < 0) return;
+    const prevIdx = (activeReceiptIndex - 1 + filteredReceipts.length) % filteredReceipts.length;
+    setActiveReceipt(filteredReceipts[prevIdx]);
+    playTick();
+  }, [activeReceiptIndex, filteredReceipts]);
+
+  const goNextReceipt = useCallback(() => {
+    if (activeReceiptIndex < 0) return;
+    const nextIdx = (activeReceiptIndex + 1) % filteredReceipts.length;
+    setActiveReceipt(filteredReceipts[nextIdx]);
+    playTick();
+  }, [activeReceiptIndex, filteredReceipts]);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveReceipt(null);
+        setActiveBentoVideo(null);
+      }
+      if (activeReceipt) {
+        if (e.key === "ArrowLeft") goPrevReceipt();
+        if (e.key === "ArrowRight") goNextReceipt();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeReceipt, goPrevReceipt, goNextReceipt]);
 
   const loadMore = useCallback(() => {
     playTick();
@@ -448,61 +471,75 @@ export default function WorkProofPage() {
             <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               {visibleReceipts.map((item, index) => (
                 <div
-                  key={item.src}
+                  key={item.id}
                   onClick={() => {
                     playTick();
                     setActiveReceipt(item);
                   }}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/12 bg-[#030922] p-3.5 shadow-xl transition-all duration-300 hover:border-sky/50 hover:shadow-[0_16px_40px_rgba(18,84,236,0.2)] cursor-pointer"
+                  className="group relative flex flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#060c24] p-3.5 shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-400/40 hover:shadow-[0_20px_50px_rgba(18,84,236,0.3)] cursor-pointer"
                 >
-                  {/* Image Viewport */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-black">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={item.src}
-                      alt={`${item.niche} proof receipt`}
-                      loading="lazy"
-                      className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
-
-                    {/* Top Tag & Number */}
-                    <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between">
-                      <span className="rounded-md bg-black/75 px-2 py-0.5 font-mono text-[9.5px] font-bold uppercase tracking-wider text-sky border border-white/15 backdrop-blur-md">
+                  {/* Top Device Bar */}
+                  <div className="mb-2.5 flex items-center justify-between border-b border-white/10 pb-2 px-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`rounded-md px-2 py-0.5 font-mono text-[9.5px] font-bold uppercase tracking-wider ${
+                          item.tag === "Meta Ads"
+                            ? "bg-blue-500/15 text-blue-300 border border-blue-400/20"
+                            : item.tag === "CRM"
+                            ? "bg-purple-500/15 text-purple-300 border border-purple-400/20"
+                            : "bg-emerald-500/15 text-emerald-300 border border-emerald-400/20"
+                        }`}
+                      >
                         {item.tag}
                       </span>
-                      <span className="font-mono text-[10px] text-slate-400 bg-black/60 px-2 py-0.5 rounded backdrop-blur-md">
-                        #{String(index + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-
-                    {/* Hover Zoom Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
-                      <span className="rounded-full bg-white/20 border border-white/40 px-3 py-1 font-mono text-[11px] font-bold text-white shadow-lg">
-                        🔍 Click to Zoom Receipt
+                      <span className="font-mono text-[10.5px] font-medium text-slate-400">
+                        {item.niche}
                       </span>
                     </div>
                   </div>
 
-                  {/* Receipt Information */}
-                  <div className="mt-3 flex flex-1 flex-col justify-between pt-1">
-                    <div>
-                      <div className="flex items-baseline justify-between gap-2">
-                        <span className="font-sans text-[18px] font-extrabold text-white">
-                          {item.metric}
-                        </span>
-                        <span className="font-mono text-[11px] font-semibold text-cyan-300 truncate">
+                  {/* Image Viewport (Uncropped Contain) */}
+                  <div className="relative flex w-full min-h-[200px] sm:min-h-[220px] items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#020617]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={item.src}
+                      alt={`${item.niche} — ${item.metric} ${item.metricLabel}`}
+                      loading="lazy"
+                      className="block h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.025]"
+                    />
+
+                    {/* Hover Zoom Overlay */}
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
+                      <span className="rounded-full border border-white/30 bg-black/80 px-3.5 py-1.5 font-sans text-[12px] font-bold text-white shadow-xl backdrop-blur-md">
+                        🔍 Click to Inspect
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Bottom Metric Bar */}
+                  <div className="mt-3 flex items-center justify-between gap-2 px-1 pt-1 border-t border-white/5">
+                    <div className="min-w-0">
+                      <p className="truncate font-sans text-[15px] font-extrabold tracking-tight text-white">
+                        {item.metric}
+                        <span className="ml-1.5 font-semibold text-cyan-300 text-[12.5px]">
                           {item.metricLabel}
                         </span>
-                      </div>
-                      <p className="mt-1 font-mono text-[11px] text-slate-400 truncate">
-                        {item.niche}
+                      </p>
+                      <p className="truncate font-sans text-[11.5px] text-slate-400">
+                        {item.note}
                       </p>
                     </div>
-
-                    <p className="mt-2 text-[12.5px] font-sans text-slate-300 line-clamp-2 leading-relaxed border-t border-white/8 pt-2">
-                      {item.note}
-                    </p>
+                    <span
+                      aria-hidden
+                      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-bold text-white transition-all duration-300 group-hover:bg-[#1254EC] group-hover:scale-110 shadow-sm"
+                    >
+                      →
+                    </span>
                   </div>
                 </div>
               ))}
@@ -636,32 +673,62 @@ export default function WorkProofPage() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/90 p-4 sm:p-6 backdrop-blur-2xl"
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/85 p-3 sm:p-6 backdrop-blur-md transition-all duration-300"
           onClick={() => setActiveReceipt(null)}
         >
-          <div className="absolute top-5 right-5 z-30">
+          {/* Close Button */}
+          <div className="absolute top-4 right-4 z-30 flex items-center gap-3">
+            <span className="hidden sm:inline-block rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] text-slate-300">
+              {activeReceiptIndex + 1} / {filteredReceipts.length}
+            </span>
             <button
               type="button"
               onClick={() => setActiveReceipt(null)}
-              className="rounded-full bg-white/10 px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white hover:bg-white/25 transition cursor-pointer"
+              className="rounded-full bg-white/15 px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white hover:bg-white/30 transition shadow-lg cursor-pointer"
             >
               Close ✕
             </button>
           </div>
 
+          {/* Left Arrow Button */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              goPrevReceipt();
+            }}
+            aria-label="Previous receipt"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 flex h-11 w-11 sm:h-13 sm:w-13 items-center justify-center rounded-full border border-white/20 bg-black/70 text-lg font-bold text-white shadow-2xl backdrop-blur-md hover:bg-white hover:text-black hover:scale-110 transition-all duration-200 cursor-pointer"
+          >
+            ←
+          </button>
+
+          {/* Right Arrow Button */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              goNextReceipt();
+            }}
+            aria-label="Next receipt"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 flex h-11 w-11 sm:h-13 sm:w-13 items-center justify-center rounded-full border border-white/20 bg-black/70 text-lg font-bold text-white shadow-2xl backdrop-blur-md hover:bg-white hover:text-black hover:scale-110 transition-all duration-200 cursor-pointer"
+          >
+            →
+          </button>
+
           <div
-            className="relative flex max-h-[92vh] max-w-[94vw] flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[#030922] p-4 sm:p-6 shadow-2xl"
+            className="relative flex max-h-[92vh] max-w-[94vw] sm:max-w-[90vw] md:max-w-[850px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[#030922] p-4 sm:p-6 shadow-2xl transition-all duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-3 flex w-full items-center justify-between border-b border-white/10 pb-3">
               <div>
-                <h3 className="font-sans text-[18px] font-bold text-white">
+                <h3 className="font-sans text-[17px] sm:text-[19px] font-bold text-white">
                   {activeReceipt.metric}{" "}
-                  <span className="text-cyan-300 text-[14px]">
+                  <span className="text-cyan-300 text-[13.5px] sm:text-[14.5px]">
                     {activeReceipt.metricLabel}
                   </span>
                 </h3>
-                <p className="font-mono text-[12px] text-slate-400">
+                <p className="font-mono text-[11.5px] text-slate-400">
                   {activeReceipt.niche} · {activeReceipt.tag}
                 </p>
               </div>
@@ -672,12 +739,13 @@ export default function WorkProofPage() {
 
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              key={activeReceipt.src}
               src={activeReceipt.src}
               alt={`${activeReceipt.niche} receipt`}
-              className="max-h-[72vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-white/10"
+              className="max-h-[66vh] sm:max-h-[72vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-white/10"
             />
 
-            <p className="mt-3 text-center font-sans text-[13.5px] text-slate-300 max-w-[650px]">
+            <p className="mt-3 text-center font-sans text-[13px] sm:text-[14px] text-slate-300 max-w-[650px]">
               {activeReceipt.note}
             </p>
           </div>
