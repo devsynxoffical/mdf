@@ -4,10 +4,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const LINKS = [
+  { label: "$1.52M Case Study", href: "/cases/1-52m-case-study" },
+  { label: "Coaching LTO", href: "/cases/coaching-lto" },
+  { label: "Work Proof", href: "/work-proof" },
   { label: "Funnels", href: "/#funnels" },
   { label: "System", href: "/#system" },
   { label: "Process", href: "/#process" },
-  { label: "Work Proof", href: "/work-proof" },
   { label: "FAQ", href: "/#faq" },
 ];
 
