@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Reveal from "./Reveal";
 import {
@@ -11,8 +11,6 @@ import {
 } from "@/lib/workproof";
 import { ROUTES } from "@/lib/routes";
 import { playTick } from "@/components/audio/SoundToggle";
-
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function ProofCard({
   item,
@@ -27,7 +25,7 @@ function ProofCard({
         playTick();
         onOpen();
       }}
-      className="group relative flex w-[320px] sm:w-[360px] md:w-[400px] shrink-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#060c24]/90 p-3.5 text-left shadow-[0_12px_36px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-400/40 hover:shadow-[0_20px_50px_rgba(18,84,236,0.3)] cursor-pointer select-none"
+      className="group relative flex w-[320px] sm:w-[360px] md:w-[400px] shrink-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#060c24] p-3.5 text-left shadow-[0_12px_36px_rgba(0,0,0,0.45)] transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-400/40 hover:shadow-[0_20px_50px_rgba(18,84,236,0.3)] cursor-pointer select-none [contain:paint_layout]"
     >
       {/* Top Device Window Bar */}
       <div className="mb-2.5 flex items-center justify-between border-b border-white/10 pb-2 px-1">
@@ -63,11 +61,6 @@ function ProofCard({
           className="block h-auto w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]"
           loading="lazy"
           decoding="async"
-          onLoad={() => {
-            if (typeof window !== "undefined") {
-              ScrollTrigger.refresh();
-            }
-          }}
         />
 
         {/* Hover Spotlight Glow */}
@@ -136,20 +129,41 @@ export default function UFWorkProofGrid({
   const row1 = useMemo(() => filtered.slice(0, Math.ceil(filtered.length / 2)), [filtered]);
   const row2 = useMemo(() => filtered.slice(Math.ceil(filtered.length / 2)), [filtered]);
 
-  // Handle ESC key for modal
+  const activeIndex = useMemo(() => {
+    if (!active) return -1;
+    return filtered.findIndex((item) => item.id === active.id);
+  }, [active, filtered]);
+
+  const goPrev = useCallback(() => {
+    if (activeIndex < 0) return;
+    const prevIdx = (activeIndex - 1 + filtered.length) % filtered.length;
+    setActive(filtered[prevIdx]);
+    playTick();
+  }, [activeIndex, filtered]);
+
+  const goNext = useCallback(() => {
+    if (activeIndex < 0) return;
+    const nextIdx = (activeIndex + 1) % filtered.length;
+    setActive(filtered[nextIdx]);
+    playTick();
+  }, [activeIndex, filtered]);
+
+  // Handle keyboard navigation for modal
   useEffect(() => {
     if (!active) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setActive(null);
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
     };
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
     };
-  }, [active]);
+  }, [active, goPrev, goNext]);
 
   return (
     <section
@@ -216,7 +230,11 @@ export default function UFWorkProofGrid({
       </div>
 
       {/* Dual-Track Infinite Marquee Scroller */}
-      <div className="relative mt-12 sm:mt-16 space-y-6 overflow-hidden">
+      <div
+        className="relative mt-12 sm:mt-16 space-y-6 overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         {/* Left/Right Edge Gradient Fade Masks */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 sm:w-32 bg-gradient-to-r from-[#020926] via-[#020926]/80 to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 sm:w-32 bg-gradient-to-l from-[#020926] via-[#020926]/80 to-transparent" />
@@ -267,7 +285,7 @@ export default function UFWorkProofGrid({
             href={ROUTES.workProof}
             className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-3 font-sans text-[14px] font-bold text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]"
           >
-            <span>Browse All 41+ Verified Receipts</span>
+            <span>Browse All 59+ Verified Receipts</span>
             <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </Link>
         </div>
@@ -278,30 +296,59 @@ export default function UFWorkProofGrid({
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/90 p-4 sm:p-6 backdrop-blur-2xl"
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/85 p-3 sm:p-6 backdrop-blur-md transition-all duration-300"
           onClick={() => setActive(null)}
         >
           {/* Close Button */}
-          <div className="absolute top-5 right-5 z-30">
+          <div className="absolute top-4 right-4 z-30 flex items-center gap-3">
+            <span className="hidden sm:inline-block rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] text-slate-300">
+              {activeIndex + 1} / {filtered.length}
+            </span>
             <button
               type="button"
               onClick={() => setActive(null)}
-              className="rounded-full bg-white/10 px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white hover:bg-white/25 transition"
+              className="rounded-full bg-white/15 px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white hover:bg-white/30 transition shadow-lg"
             >
               Close ✕
             </button>
           </div>
 
+          {/* Left Arrow Button */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              goPrev();
+            }}
+            aria-label="Previous receipt"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 flex h-11 w-11 sm:h-13 sm:w-13 items-center justify-center rounded-full border border-white/20 bg-black/70 text-lg font-bold text-white shadow-2xl backdrop-blur-md hover:bg-white hover:text-black hover:scale-110 transition-all duration-200"
+          >
+            ←
+          </button>
+
+          {/* Right Arrow Button */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              goNext();
+            }}
+            aria-label="Next receipt"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 flex h-11 w-11 sm:h-13 sm:w-13 items-center justify-center rounded-full border border-white/20 bg-black/70 text-lg font-bold text-white shadow-2xl backdrop-blur-md hover:bg-white hover:text-black hover:scale-110 transition-all duration-200"
+          >
+            →
+          </button>
+
           <div
-            className="relative flex max-h-[92vh] max-w-[94vw] flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[#030922] p-4 sm:p-6 shadow-2xl"
+            className="relative flex max-h-[92vh] max-w-[94vw] sm:max-w-[90vw] md:max-w-[850px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[#030922] p-4 sm:p-6 shadow-2xl transition-all duration-200"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-3 flex w-full items-center justify-between border-b border-white/10 pb-3">
               <div>
-                <h3 className="font-sans text-[18px] font-bold text-white">
-                  {active.metric} <span className="text-cyan-300 text-[14px]">{active.metricLabel}</span>
+                <h3 className="font-sans text-[17px] sm:text-[19px] font-bold text-white">
+                  {active.metric} <span className="text-cyan-300 text-[13.5px] sm:text-[14.5px]">{active.metricLabel}</span>
                 </h3>
-                <p className="font-mono text-[12px] text-slate-400">
+                <p className="font-mono text-[11.5px] text-slate-400">
                   {active.niche} · {active.tag}
                 </p>
               </div>
@@ -312,12 +359,13 @@ export default function UFWorkProofGrid({
 
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              key={active.src}
               src={active.src}
               alt={`${active.niche} receipt`}
-              className="max-h-[72vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-white/10"
+              className="max-h-[66vh] sm:max-h-[72vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-white/10"
             />
 
-            <p className="mt-3 text-center font-sans text-[13.5px] text-slate-300 max-w-[650px]">
+            <p className="mt-3 text-center font-sans text-[13px] sm:text-[14px] text-slate-300 max-w-[650px]">
               {active.note}
             </p>
           </div>

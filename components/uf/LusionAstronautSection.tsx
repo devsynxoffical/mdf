@@ -439,21 +439,9 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
           const sm = win?.scrollManager;
           if (!sm?.scrollToPixel) return;
 
-          const live = win ? readRange(win) : null;
-          if (live) rangeRef.current = live;
-
           const { start, end } = rangeRef.current;
           const target = start + self.progress * (end - start);
           sm.scrollToPixel(target, true);
-
-          if (self.progress > 0.72) {
-            win?.document?.documentElement?.classList.remove("is-white-bg");
-            win?.document?.documentElement?.classList.add("is-black-bg");
-          }
-
-          if (soundOnRef.current && win?.lusionAudios && !win.lusionAudios.isActive) {
-            syncSound(true);
-          }
         } catch {
           /* ignore */
         }
