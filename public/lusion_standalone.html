@@ -231,7 +231,7 @@
   function notifyReady() {
     try {
       installBloomSoftener();
-      if (window.scrollManager && window.homeGoalSectionRanges && window.homeGoalSectionRanges.totalPixelCount > 0) {
+      if (window.scrollManager && (window.homeGoalSectionRanges || window.scrollManager.scrollToPixel)) {
         window.parent && window.parent.postMessage({ type: "lusion-ready" }, "*");
         return true;
       }

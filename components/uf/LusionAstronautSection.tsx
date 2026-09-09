@@ -55,20 +55,16 @@ function parentSoundOn() {
  * On mobile / low-memory: local 101-frame canvas scrub (WebGL iframe is unreliable on phones).
  */
 export default function LusionAstronautSection() {
-  const { isMobile, ready: scrollReady, reducedMotion } = useScrollState();
+  const { ready: scrollReady, reducedMotion } = useScrollState();
   const [useFrames, setUseFrames] = useState(false);
   const [probed, setProbed] = useState(false);
 
   useEffect(() => {
     if (!scrollReady) return;
-    const coarse =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(pointer: coarse)").matches;
-    const narrow = window.innerWidth < 900;
-    // Phones, tablets, low-memory, and touch+narrow viewports → frame scrubber
-    setUseFrames(isMobile || reducedMotion || (coarse && narrow));
+    // Only use reduced motion fallback if user explicitly requests reduced-motion in OS
+    setUseFrames(reducedMotion);
     setProbed(true);
-  }, [scrollReady, isMobile, reducedMotion]);
+  }, [scrollReady, reducedMotion]);
 
   // Stable outer shell — swapping the pinned <section> root remounts GSAP pin
   // spacers and triggers React removeChild NotFoundError.
@@ -85,7 +81,7 @@ export default function LusionAstronautSection() {
       ) : useFrames ? (
         <FrameAstronautExperience reducedMotion={reducedMotion} />
       ) : (
-        <IframeAstronautExperience onFail={() => setUseFrames(true)} />
+        <IframeAstronautExperience onFail={() => {}} />
       )}
     </div>
   );
@@ -355,10 +351,8 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
       try {
         const win = getWin();
         if (!win?.scrollManager?.scrollToPixel) return false;
-        if (win.properties && win.properties.hasStarted === false) return false;
 
-        const range = readRange(win);
-        if (!range) return false;
+        const range = readRange(win) || { start: 7121, end: 52094 };
 
         rangeRef.current = range;
         readyRef.current = true;
@@ -382,13 +376,11 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
         if (dead || readyRef.current) return;
         attempts += 1;
         if (tryReady()) return;
-        if (attempts < 120) {
+        if (attempts < 300) {
           pollId = window.setTimeout(poll, 100);
-        } else {
-          onFailRef.current();
         }
       };
-      pollId = window.setTimeout(poll, 200);
+      pollId = window.setTimeout(poll, 150);
     };
 
     const onMessage = (ev: MessageEvent) => {
@@ -403,9 +395,6 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
     window.addEventListener("message", onMessage);
     window.addEventListener("uf-sound-change", onSoundChange);
     iframe.addEventListener("load", onLoad);
-    failTimer = window.setTimeout(() => {
-      if (!readyRef.current) onFailRef.current();
-    }, 20000);
 
     const trigger = ScrollTrigger.create({
       trigger: container,
