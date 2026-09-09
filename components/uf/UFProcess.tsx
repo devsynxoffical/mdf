@@ -71,27 +71,44 @@ export default function UFProcess() {
     )
       return;
 
-    const distance = () => track.scrollWidth - window.innerWidth;
-    const tween = gsap.to(track, {
-      x: () => -distance(),
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: () => `+=${distance()}`,
-        pin: true,
-        pinReparent: false,
-        scrub: 0.6,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          const sq = squiggleRef.current;
-          if (sq) sq.style.left = `calc(${8 + self.progress * 78}% )`;
+    const ctx = gsap.context(() => {
+      const getDistance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+
+      gsap.to(track, {
+        x: () => -getDistance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${getDistance()}`,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          pinReparent: false,
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const sq = squiggleRef.current;
+            if (sq) sq.style.left = `calc(${8 + self.progress * 78}% )`;
+          },
         },
-      },
-    });
+      });
+    }, section);
+
+    // Refresh ScrollTrigger once fonts and DOM layout are fully ready
+    if (typeof document !== "undefined" && document.fonts) {
+      document.fonts.ready.then(() => {
+        ScrollTrigger.refresh();
+      });
+    }
+
+    const t1 = setTimeout(() => ScrollTrigger.refresh(), 300);
+    const t2 = setTimeout(() => ScrollTrigger.refresh(), 1000);
+
     return () => {
-      tween.scrollTrigger?.kill();
-      tween.kill();
+      clearTimeout(t1);
+      clearTimeout(t2);
+      ctx.revert();
     };
   }, []);
 

@@ -34,8 +34,8 @@ type LusionWindow = Window & {
 };
 
 const TOTAL_FRAMES = 101;
-/** Skip empty early tablet bezels — astronaut sequence starts here. */
-const START_FRAME = 8;
+/** Skip early static dwell — zoom animation starts immediately. */
+const START_FRAME = 15;
 const PLAYABLE = TOTAL_FRAMES - START_FRAME;
 
 const frameSrc = (i: number) =>
@@ -337,8 +337,15 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
       if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 1000) {
         return null;
       }
-      const start = Math.max(0, ranges.baseY || 0);
-      const end = start + ranges.totalPixelCount;
+      const items = (ranges as any).items;
+      // Skip the 1-2s static title dwell so it immediately begins zooming into the action
+      const skipDwell =
+        items?.blackFrameShow?.pixelCount != null
+          ? items.blackFrameShow.pixelCount
+          : Math.round(ranges.totalPixelCount * 0.08);
+
+      const start = Math.max(0, (ranges.baseY || 0) + skipDwell);
+      const end = (ranges.baseY || 0) + ranges.totalPixelCount;
       if (end <= start + 500) return null;
       return { start, end };
     };

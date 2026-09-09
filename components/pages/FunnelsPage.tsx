@@ -1,144 +1,244 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import Link from "next/link";
+import ContourBG from "@/components/uf/ContourBG";
+import Reveal from "@/components/uf/Reveal";
 import Magnetic from "@/components/uf/Magnetic";
-import UFLeaks from "@/components/uf/UFLeaks";
-import UFProof from "@/components/uf/UFProof";
-import UFOpinions from "@/components/uf/UFOpinions";
+import { playTick } from "@/components/audio/SoundToggle";
 import FunnelDetailCard from "@/components/funnels/FunnelDetailCard";
 import { FUNNEL_DESIGNS } from "@/lib/funnels";
 import { ROUTES } from "@/lib/routes";
 
+const CATEGORIES = [
+  "All Builds",
+  "Mortgage & Finance",
+  "High-Ticket Security",
+  "Coaching & Info",
+  "Insurance CRM",
+  "B2B & Agencies",
+] as const;
+
 export default function FunnelsPage() {
+  const [selectedCategory, setSelectedCategory] = useState<string>("All Builds");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredFunnels = useMemo(() => {
+    return FUNNEL_DESIGNS.filter((funnel) => {
+      const matchesSearch =
+        searchQuery === "" ||
+        funnel.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        funnel.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        funnel.body.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        funnel.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        funnel.stack.some((s) => s.toLowerCase().includes(searchQuery.toLowerCase()));
+
+      if (!matchesSearch) return false;
+
+      if (selectedCategory === "All Builds") return true;
+      if (selectedCategory === "Mortgage & Finance") {
+        return funnel.category.toLowerCase().includes("mortgage") || funnel.id.includes("mortgage");
+      }
+      if (selectedCategory === "High-Ticket Security") {
+        return funnel.category.toLowerCase().includes("security") || funnel.id.includes("rowan");
+      }
+      if (selectedCategory === "Coaching & Info") {
+        return (
+          funnel.category.toLowerCase().includes("summit") ||
+          funnel.category.toLowerCase().includes("invention") ||
+          funnel.id.includes("summit") ||
+          funnel.id.includes("invention")
+        );
+      }
+      if (selectedCategory === "Insurance CRM") {
+        return funnel.category.toLowerCase().includes("insurance") || funnel.category.toLowerCase().includes("policy");
+      }
+      if (selectedCategory === "B2B & Agencies") {
+        return (
+          funnel.category.toLowerCase().includes("b2b") ||
+          funnel.category.toLowerCase().includes("lead gen") ||
+          funnel.category.toLowerCase().includes("standard") ||
+          funnel.id.includes("scale") ||
+          funnel.id.includes("mdf")
+        );
+      }
+      return true;
+    });
+  }, [selectedCategory, searchQuery]);
+
   return (
-    <>
-      {/* Hero */}
-      <section className="uf-light relative overflow-hidden border-b border-[#070B1E]/10 bg-[#F5F7FB] pb-14 pt-[22vh] text-[#070B1E] sm:pb-16">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(18,84,236,0.1),transparent_55%)]"
-        />
+    <div className="bg-[#020926] text-white">
+      {/* ─── 1. HERO SECTION ─── */}
+      <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24 border-b border-white/10">
+        <ContourBG tone="dark" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(18,84,236,0.3),transparent_65%)]" />
 
-        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-10 lg:px-14">
-          <p className="uf-eyebrow tracking-[0.18em] text-cobalt">
-            ( Funnels ) — Proven designs
-          </p>
-          <h1 className="mt-6 font-sans text-[clamp(36px,5.5vw,64px)] font-extrabold leading-[1.08] tracking-[-0.03em] text-[#070B1E]">
-            <span className="block">The results we bring</span>
-            <span className="block text-cobalt">are proven through our funnel designs.</span>
-          </h1>
-          <p className="mt-6 max-w-[52ch] font-sans text-[16px] leading-[1.7] text-slate-600 sm:text-[17px]">
-            Scroll the live Funnel Systems gallery, inspect the six-layer Million Dollar
-            Funnel™ System, then open every full client build below.
+        <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 md:px-10 lg:px-14">
+          <p className="uf-eyebrow text-sky">
+            ( Portfolio ) — Full Architecture Builds
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href="#funnels"
-              className="inline-flex h-11 items-center bg-cobalt px-5 font-sans text-[13px] font-bold text-white transition hover:bg-cobalt-deep"
-            >
-              Funnel Systems
-            </a>
-            <a
-              href="#system"
-              className="inline-flex h-11 items-center border border-[#070B1E]/15 px-5 font-sans text-[13px] font-bold text-[#070B1E] transition hover:border-cobalt hover:text-cobalt"
-            >
-              The System
-            </a>
-            <a
-              href="#all-builds"
-              className="inline-flex h-11 items-center border border-[#070B1E]/15 px-5 font-sans text-[13px] font-bold text-[#070B1E] transition hover:border-cobalt hover:text-cobalt"
-            >
-              All builds
-            </a>
-          </div>
-
-          <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-[#070B1E]/10 pt-8">
+          <div className="mt-6 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div>
-              <p className="font-serif text-[clamp(32px,4vw,44px)] italic leading-none text-[#070B1E]">
-                {FUNNEL_DESIGNS.length}
-              </p>
-              <p className="mt-2 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-cobalt">
-                Full funnel builds
+              <h1 className="font-sans text-[clamp(36px,5.5vw,64px)] font-extrabold leading-[1.08] tracking-[-0.03em] text-white">
+                <Reveal as="span">
+                  <span className="block">Custom Funnel Systems.</span>
+                </Reveal>
+                <Reveal as="span" delay={90}>
+                  <span className="block bg-gradient-to-r from-sky via-cyan-300 to-amber-300 bg-clip-text text-transparent">
+                    Engineered to Convert.
+                  </span>
+                </Reveal>
+              </h1>
+              <p className="mt-6 max-w-[56ch] font-sans text-[16px] leading-[1.7] text-slate-300 sm:text-[17.5px]">
+                Every funnel here is an end-to-end bespoke client acquisition system —
+                from high-intent ad creative and qualifying VSLs to automated CRM pipelines and booked calls.
               </p>
             </div>
-            <div className="hidden h-12 w-px bg-[#070B1E]/10 sm:block" aria-hidden />
-            <p className="max-w-[36ch] font-sans text-[14px] leading-relaxed text-slate-500">
-              Mortgage, security, insurance, B2B, lead gen, events, and the Million Dollar
-              Funnel™ core — each mapped from ad click to booked call.
-            </p>
+
+            {/* Quick Metrics & Highlights */}
+            <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-white/12 bg-white/[0.04] p-5 backdrop-blur-md sm:p-6">
+              <div className="flex-1 min-w-[120px]">
+                <p className="font-serif text-[clamp(32px,4vw,42px)] italic leading-none text-white">
+                  {FUNNEL_DESIGNS.length}
+                </p>
+                <p className="mt-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-sky">
+                  Flagship Builds
+                </p>
+              </div>
+              <div className="h-10 w-px bg-white/15" aria-hidden />
+              <div className="flex-1 min-w-[120px]">
+                <p className="font-serif text-[clamp(32px,4vw,42px)] italic leading-none text-amber-300">
+                  100%
+                </p>
+                <p className="mt-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-amber-300/90">
+                  Custom Code & Copy
+                </p>
+              </div>
+              <div className="h-10 w-px bg-white/15 hidden sm:block" aria-hidden />
+              <div className="flex-1 min-w-[120px] hidden sm:block">
+                <p className="font-serif text-[clamp(32px,4vw,42px)] italic leading-none text-emerald-400">
+                  Zero
+                </p>
+                <p className="mt-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-emerald-400/90">
+                  Generic Templates
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* ─── Search & Category Filters Bar ─── */}
+          <div className="mt-12 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between border-t border-white/10 pt-8">
+            {/* Category Tabs */}
+            <div className="flex flex-wrap gap-2">
+              {CATEGORIES.map((cat) => {
+                const isActive = selectedCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => {
+                      playTick();
+                      setSelectedCategory(cat);
+                    }}
+                    className={`rounded-full px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                      isActive
+                        ? "bg-sky text-[#020926] shadow-[0_0_20px_rgba(56,189,248,0.4)]"
+                        : "bg-white/[0.06] text-slate-300 hover:bg-white/15 hover:text-white border border-white/10"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Search Input */}
+            <div className="relative min-w-[240px] sm:w-[280px]">
+              <input
+                type="text"
+                placeholder="Search niche or tech stack..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 pl-9 font-sans text-[13px] text-white placeholder-slate-400 outline-none transition focus:border-sky focus:bg-white/[0.1]"
+              />
+              <span className="absolute left-3 top-2.5 text-slate-400 text-xs">
+                🔍
+              </span>
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3 top-2 font-mono text-[11px] text-slate-400 hover:text-white"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </section>
 
-      <UFLeaks />
-      <UFProof />
-      <UFOpinions />
-
-      {/* Full catalog */}
-      <section
-        id="all-builds"
-        className="relative scroll-mt-24 border-t border-[#070B1E]/10 bg-[#F5F7FB] pt-16 text-[#070B1E] sm:pt-20"
-      >
-        <div className="mx-auto max-w-[1180px] px-4 sm:px-6 md:px-10 lg:px-14">
-          <p className="uf-eyebrow tracking-[0.18em] text-cobalt">
-            ( Catalog ) — Every architecture
-          </p>
-          <h2 className="mt-4 font-sans text-[clamp(28px,4vw,44px)] font-extrabold leading-[1.08] tracking-[-0.03em]">
-            Inspect each build
-            <span className="block text-cobalt">in full detail.</span>
-          </h2>
-        </div>
-
-        <div className="sticky top-[72px] z-20 mt-10 border-y border-[#070B1E]/10 bg-[#F5F7FB]/95 backdrop-blur-md">
-          <div className="mx-auto flex max-w-[1180px] gap-1 overflow-x-auto px-4 py-3 sm:px-6 md:px-10 lg:px-14">
-            {FUNNEL_DESIGNS.map((f) => (
-              <a
-                key={f.id}
-                href={`#${f.id}`}
-                className="shrink-0 border border-transparent px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.1em] text-slate-500 transition hover:border-cobalt/20 hover:bg-white hover:text-cobalt"
+      {/* ─── 2. FUNNEL SHOWCASE GRID ─── */}
+      <section className="relative py-16 sm:py-24">
+        <ContourBG tone="dark" />
+        <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 md:px-10 lg:px-14">
+          {filteredFunnels.length === 0 ? (
+            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-12 text-center">
+              <p className="font-sans text-[18px] text-slate-300">
+                No funnels match &ldquo;{searchQuery}&rdquo;.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchQuery("");
+                  setSelectedCategory("All Builds");
+                }}
+                className="mt-4 text-sky hover:underline font-mono text-xs uppercase font-bold"
               >
-                {f.num} · {f.name.split(" ")[0]}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div className="relative pb-[14vh] pt-12 sm:pt-16">
-          <div className="relative mx-auto max-w-[1180px] space-y-10 px-4 sm:space-y-12 sm:px-6 md:px-10 lg:px-14">
-            {FUNNEL_DESIGNS.map((funnel, i) => (
-              <FunnelDetailCard key={funnel.id} funnel={funnel} index={i} />
-            ))}
-          </div>
+                Reset filters
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 sm:gap-8 lg:gap-10 items-stretch">
+              {filteredFunnels.map((funnel, i) => (
+                <FunnelDetailCard key={funnel.id} funnel={funnel} index={i} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="border-t border-[#070B1E]/10 bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-[640px] px-4 text-center sm:px-6">
-          <p className="uf-eyebrow justify-center text-cobalt">Next step</p>
-          <h2 className="mt-4 font-sans text-[clamp(28px,4vw,40px)] font-extrabold tracking-[-0.03em] text-[#070B1E]">
-            Want a funnel built like these?
+      {/* ─── 3. STRATEGY CALL CTA ─── */}
+      <section className="relative border-t border-white/10 bg-[#030B2E] py-20 sm:py-28 overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(18,84,236,0.25),transparent_60%)]" />
+        <div className="relative mx-auto max-w-[720px] px-4 text-center sm:px-6">
+          <p className="uf-eyebrow justify-center text-sky">Next Step</p>
+          <h2 className="mt-4 font-sans text-[clamp(30px,4.5vw,48px)] font-extrabold tracking-[-0.03em] text-white leading-tight">
+            Want a Custom Funnel Built Like These for Your Business?
           </h2>
-          <p className="mt-4 font-sans text-[16px] leading-relaxed text-slate-600">
-            Book a strategy call — we&apos;ll map your offer, path, and whether Million Dollar
-            Funnel™ is the right fit.
+          <p className="mt-4 font-sans text-[16px] sm:text-[17.5px] leading-relaxed text-slate-300">
+            Book a 1-on-1 strategy call with our team. We’ll review your offer, map your conversion flow, and engineer your acquisition architecture.
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Magnetic strength={0.16}>
-              <Link href={ROUTES.book} className="uf-pill">
-                Book a strategy call
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+            <Magnetic strength={0.2}>
+              <Link
+                href={ROUTES.book}
+                onClick={() => playTick()}
+                className="btn-gold shadow-[0_12px_40px_rgba(234,179,8,0.35)]"
+              >
+                Book a Strategy Call →
               </Link>
             </Magnetic>
             <Link
               href={ROUTES.home}
-              className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 transition hover:text-cobalt"
+              className="rounded-full border border-white/15 bg-white/5 px-6 py-3 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-slate-300 transition hover:bg-white/10 hover:text-white"
             >
-              ← Back to homepage
+              ← Back to Homepage
             </Link>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

@@ -12,6 +12,8 @@ import {
 import { ROUTES } from "@/lib/routes";
 import { playTick } from "@/components/audio/SoundToggle";
 
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 function ProofCard({
   item,
   onOpen,
@@ -53,7 +55,7 @@ function ProofCard({
       </div>
 
       {/* Uncropped Screenshot Viewport */}
-      <div className="relative flex w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#020617]">
+      <div className="relative flex w-full min-h-[220px] sm:min-h-[240px] items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#020617]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={item.src}
@@ -61,6 +63,11 @@ function ProofCard({
           className="block h-auto w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]"
           loading="lazy"
           decoding="async"
+          onLoad={() => {
+            if (typeof window !== "undefined") {
+              ScrollTrigger.refresh();
+            }
+          }}
         />
 
         {/* Hover Spotlight Glow */}

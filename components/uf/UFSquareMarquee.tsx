@@ -20,7 +20,7 @@ const RANDOM_PHOTOS = [
  */
 export default function UFSquareMarquee() {
   return (
-    <section className="marquee-row relative w-full overflow-hidden border-y border-white/[0.08] bg-[#050508]">
+    <section className="marquee-row relative w-full overflow-hidden border-y border-white/[0.08] bg-[#050508] mt-24 sm:mt-32 lg:mt-40 py-6 sm:py-10">
       <div
         className="marquee-track-left flex w-max"
         style={{ "--marquee-duration": "42s" } as React.CSSProperties}
