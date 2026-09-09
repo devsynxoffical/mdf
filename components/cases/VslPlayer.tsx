@@ -17,10 +17,21 @@ function formatTime(s: number) {
   return `${m}:${sec.toString().padStart(2, "0")}`;
 }
 
+function getYouTubeId(url: string): string | null {
+  if (!url) return null;
+  const match = url.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/
+  );
+  return match ? match[1] : null;
+}
+
 /**
- * Cinema-style VSL player — autoplay (muted), scrub, unmute, progress callback.
+ * Cinema-style VSL player — supports YouTube embeds and native MP4 with autoplay, scrub, unmute.
  */
 export default function VslPlayer({ src, onProgress, autoPlay = false }: Props) {
+  const youtubeId = getYouTubeId(src);
+  const [ytPlaying, setYtPlaying] = useState(autoPlay);
+
   const videoRef = useRef<HTMLVideoElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -31,6 +42,21 @@ export default function VslPlayer({ src, onProgress, autoPlay = false }: Props) 
   const [duration, setDuration] = useState(0);
   const [hovering, setHovering] = useState(false);
   const [showUnmuteHint, setShowUnmuteHint] = useState(autoPlay);
+
+  if (youtubeId) {
+    return (
+      <div className="group relative aspect-video w-full overflow-hidden bg-[#010618] rounded-2xl md:rounded-[28px] md:border md:border-white/15 md:shadow-[0_40px_100px_rgba(0,0,0,0.55)]">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
+          title="Million Dollar Funnels™ Case Study VSL"
+          className="h-full w-full border-0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          onLoad={() => onProgress?.(50)}
+        />
+      </div>
+    );
+  }
 
   useEffect(() => {
     const v = videoRef.current;

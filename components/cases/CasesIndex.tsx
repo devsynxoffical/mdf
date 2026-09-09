@@ -52,15 +52,41 @@ export default function CasesIndex() {
                 </div>
 
                 <div className="relative min-h-[200px] overflow-hidden border-t border-white/10 bg-black/40 lg:min-h-full lg:border-l lg:border-t-0">
-                  <video
-                    src={study.videoUrl}
-                    className="absolute inset-0 h-full w-full object-cover opacity-70 transition duration-500 group-hover:scale-105 group-hover:opacity-90"
-                    muted
-                    playsInline
-                    preload="metadata"
-                    loop
-                    autoPlay
-                  />
+                  {study.videoUrl.includes("youtube.com") || study.videoUrl.includes("youtu.be") ? (
+                    (() => {
+                      const match = study.videoUrl.match(
+                        /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/
+                      );
+                      const id = match ? match[1] : "X-L8GQjHOYA";
+                      return (
+                        <div className="absolute inset-0">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`}
+                            alt={study.title}
+                            className="h-full w-full object-cover opacity-75 transition duration-500 group-hover:scale-105 group-hover:opacity-95"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-md transition group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black">
+                              <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" fill="currentColor">
+                                <path d="M8 5v14l11-7z" />
+                              </svg>
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })()
+                  ) : (
+                    <video
+                      src={study.videoUrl}
+                      className="absolute inset-0 h-full w-full object-cover opacity-70 transition duration-500 group-hover:scale-105 group-hover:opacity-90"
+                      muted
+                      playsInline
+                      preload="metadata"
+                      loop
+                      autoPlay
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#04103A] via-transparent to-transparent" />
                   <div className="relative z-10 flex h-full flex-col justify-end gap-5 p-8 sm:flex-row sm:items-end lg:flex-col lg:items-stretch lg:p-10">
                     {study.metrics.map((m) => (

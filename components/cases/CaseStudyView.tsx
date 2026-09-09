@@ -99,12 +99,22 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
           {/* ROI Metric Badge Pill */}
           <div className="mt-8 flex justify-center">
             <div className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-center font-sans text-[13.5px] sm:text-[14.5px] text-slate-300 backdrop-blur-md shadow-sm">
-              <span><strong className="text-white font-semibold">$255,130</strong> ad spend</span>
+              <span>
+                <strong className="text-white font-semibold">
+                  {study.roiBadge?.spendValue || "$255,130"}
+                </strong>{" "}
+                {study.roiBadge?.spendLabel || "ad spend"}
+              </span>
               <span className="text-cyan-400">→</span>
-              <span><strong className="text-cyan-300 font-bold">$847,307</strong> collected</span>
+              <span>
+                <strong className="text-cyan-300 font-bold">
+                  {study.roiBadge?.collectedValue || "$847,307"}
+                </strong>{" "}
+                {study.roiBadge?.collectedLabel || "collected"}
+              </span>
               <span className="text-white/20">|</span>
               <span className="rounded-md bg-emerald-500/15 border border-emerald-400/30 px-2 py-0.5 font-mono text-[11px] font-bold text-emerald-300">
-                3.32x ROAS
+                {study.roiBadge?.roasBadge || "3.32x ROAS"}
               </span>
             </div>
           </div>
@@ -172,7 +182,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
               Before &amp; After MDF Deployment
             </h2>
             <p className="mt-3 font-sans text-[15px] sm:text-[16px] text-slate-400">
-              How eliminating tracking friction and building a hardened backend unlocked 13,630 sales.
+              {study.transformationSubtitle || "How eliminating tracking friction and building a hardened backend unlocked scale."}
             </p>
           </div>
 
@@ -183,15 +193,15 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
                 <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-5">
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 font-mono text-[11px] font-bold text-red-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-red-400" />
-                    ( 02 ) — Pre-MDF
+                    {study.beforeCard?.tag || "( 02 ) — Pre-MDF"}
                   </span>
                   <span className="font-mono text-xs font-semibold text-red-400/80 uppercase">
-                    Leaking Funnel
+                    {study.beforeCard?.subtitle || "Leaking Funnel"}
                   </span>
                 </div>
 
                 <h3 className="mt-6 font-sans text-[22px] sm:text-[26px] font-extrabold text-white">
-                  This Is How He Came To Us
+                  {study.beforeCard?.title || "This Is How He Came To Us"}
                 </h3>
 
                 <ul className="mt-8 space-y-4">
@@ -211,7 +221,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
 
               <div className="mt-8 pt-5 border-t border-white/10">
                 <p className="font-mono text-[11.5px] text-red-400/90 font-medium">
-                  Result: Inconsistent ad spend &amp; lost conversions.
+                  {study.beforeCard?.footer || "Result: Inconsistent ad spend & lost conversions."}
                 </p>
               </div>
             </div>
@@ -222,15 +232,15 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
                 <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-5">
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 font-mono text-[11px] font-bold text-emerald-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    ( 03 ) — Post-MDF
+                    {study.afterCard?.tag || "( 03 ) — Post-MDF"}
                   </span>
                   <span className="font-mono text-xs font-semibold text-cyan-300 uppercase">
-                    3.32x Verified ROAS
+                    {study.afterCard?.subtitle || "3.32x Verified ROAS"}
                   </span>
                 </div>
 
                 <h3 className="mt-6 font-sans text-[22px] sm:text-[26px] font-extrabold text-white">
-                  The Million Dollar Funnel™ System Did
+                  {study.afterCard?.title || "The Million Dollar Funnel™ System Did"}
                 </h3>
 
                 <ul className="mt-8 space-y-4">
@@ -250,7 +260,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
 
               <div className="mt-8 pt-5 border-t border-cyan-400/20">
                 <p className="font-mono text-[11.5px] text-emerald-300 font-medium">
-                  ✓ $847,307 Revenue Collected · 13,630 Sales at Scale
+                  {study.afterCard?.footer || "✓ Revenue Collected at Scale"}
                 </p>
               </div>
             </div>
@@ -404,7 +414,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
           <div className="hidden sm:flex items-center gap-3">
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
             <p className="font-sans text-[14px] font-medium text-slate-200">
-              Ready to duplicate this 3.32 ROAS infrastructure for your offer?
+              {study.stickyBarText || "Ready to duplicate this infrastructure for your offer?"}
             </p>
           </div>
           <a
