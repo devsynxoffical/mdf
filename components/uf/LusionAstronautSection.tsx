@@ -41,6 +41,11 @@ const PLAYABLE = TOTAL_FRAMES - START_FRAME;
 const frameSrc = (i: number) =>
   `/frames/lusion/frame_${String(i).padStart(3, "0")}.webp`;
 
+if (typeof window !== "undefined") {
+  const pre = new Image();
+  pre.src = frameSrc(START_FRAME);
+}
+
 function parentSoundOn() {
   try {
     const saved = sessionStorage.getItem("uf-sound");
@@ -403,12 +408,12 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
       return false;
     };
 
-    // Failsafe: If WebGL does not initialize within 15s (e.g. GPU, buffer 404, or cross-origin block), fall back gracefully to frame scrubber
+    // Failsafe: If WebGL does not initialize within 1.2s (e.g. GPU, slow network, or cross-origin block), fall back gracefully to frame scrubber
     failTimer = window.setTimeout(() => {
       if (!dead && !readyRef.current) {
         onFailRef.current();
       }
-    }, 15000);
+    }, 1200);
 
     const onLoad = () => {
       if (dead) return;
@@ -424,7 +429,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
           window.clearTimeout(failTimer);
           return;
         }
-        if (attempts < 180) {
+        if (attempts < 15) {
           pollId = window.setTimeout(poll, 80);
         } else {
           onFailRef.current();
