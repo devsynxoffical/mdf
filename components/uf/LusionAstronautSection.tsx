@@ -513,7 +513,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
     >
       <iframe
         ref={iframeRef}
-        src="/lusion_standalone.html?v=silver3"
+        src="/lusion_standalone.html?v=20260910b"
         title="Lusion astronaut interactive experience"
         className="pointer-events-none absolute inset-0 h-full w-full border-0 bg-black"
         allow="autoplay; fullscreen"
