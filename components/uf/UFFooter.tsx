@@ -219,7 +219,7 @@ export default function UFFooter() {
               WebkitTextStroke: "1px rgba(255, 255, 255, 0.2)",
             }}
           >
-            MILLION DOLLAR FUNNEL
+            MILLION DOLLAR FUNNELS
           </h2>
         </div>
       </div>
