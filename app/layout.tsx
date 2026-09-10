@@ -39,28 +39,40 @@ export default function RootLayout({
                   }
                 } catch (e) {}
 
-                // Patch DOM removeChild to prevent React crash when extensions or translations alter text nodes
+                // Patch DOM removeChild and insertBefore to prevent React crash when GSAP or extensions alter DOM
                 if (typeof Node !== 'undefined' && Node.prototype) {
                   const origRemove = Node.prototype.removeChild;
                   Node.prototype.removeChild = function (child) {
-                    if (child && child.parentNode !== this) {
-                      if (child.parentNode) {
-                        return child.parentNode.removeChild(child);
+                    try {
+                      if (child && child.parentNode !== this) {
+                        if (child.parentNode) {
+                          return child.parentNode.removeChild(child);
+                        }
+                        return child;
                       }
+                      return origRemove.call(this, child);
+                    } catch (e) {
                       return child;
                     }
-                    return origRemove.call(this, child);
                   };
 
                   const origInsert = Node.prototype.insertBefore;
                   Node.prototype.insertBefore = function (newNode, refNode) {
-                    if (refNode && refNode.parentNode !== this) {
-                      if (refNode.parentNode) {
-                        return refNode.parentNode.insertBefore(newNode, refNode);
+                    try {
+                      if (refNode && refNode.parentNode !== this) {
+                        if (refNode.parentNode) {
+                          return refNode.parentNode.insertBefore(newNode, refNode);
+                        }
+                        return this.appendChild(newNode);
                       }
-                      return newNode;
+                      return origInsert.call(this, newNode, refNode);
+                    } catch (e) {
+                      try {
+                        return this.appendChild(newNode);
+                      } catch (e2) {
+                        return newNode;
+                      }
                     }
-                    return origInsert.call(this, newNode, refNode);
                   };
                 }
 
@@ -69,7 +81,7 @@ export default function RootLayout({
                     e.stopImmediatePropagation();
                     e.preventDefault();
                   }
-                  if (e.message && e.message.indexOf("Failed to execute 'removeChild' on 'Node'") !== -1) {
+                  if (e.message && (e.message.indexOf("removeChild") !== -1 || e.message.indexOf("insertBefore") !== -1)) {
                     e.stopImmediatePropagation();
                     e.preventDefault();
                   }
@@ -80,7 +92,7 @@ export default function RootLayout({
                     e.stopImmediatePropagation();
                     e.preventDefault();
                   }
-                  if (e.reason && String(e.reason).indexOf("removeChild") !== -1) {
+                  if (e.reason && (String(e.reason).indexOf("removeChild") !== -1 || String(e.reason).indexOf("insertBefore") !== -1)) {
                     e.stopImmediatePropagation();
                     e.preventDefault();
                   }
