@@ -55,16 +55,15 @@ function parentSoundOn() {
  * On mobile / low-memory: local 101-frame canvas scrub (WebGL iframe is unreliable on phones).
  */
 export default function LusionAstronautSection() {
-  const { ready: scrollReady, reducedMotion } = useScrollState();
+  const { ready: scrollReady, reducedMotion, isMobile } = useScrollState();
   const [useFrames, setUseFrames] = useState(false);
   const [probed, setProbed] = useState(false);
 
   useEffect(() => {
     if (!scrollReady) return;
-    // Only use reduced motion fallback if user explicitly requests reduced-motion in OS
-    setUseFrames(reducedMotion);
+    setUseFrames(reducedMotion || isMobile);
     setProbed(true);
-  }, [scrollReady, reducedMotion]);
+  }, [scrollReady, reducedMotion, isMobile]);
 
   // Stable outer shell — swapping the pinned <section> root remounts GSAP pin
   // spacers and triggers React removeChild NotFoundError.
@@ -167,33 +166,45 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
       ctx.drawImage(img, ox, oy, dw, dh);
     };
 
-    const onImg = (i: number) => {
+    let milestonesLoaded = 0;
+    const onImg = (i: number, isMilestone: boolean) => {
       if (dead) return;
       loaded += 1;
+      if (isMilestone) milestonesLoaded += 1;
       setLoadPct(Math.round((loaded / PLAYABLE) * 100));
-      if (i === START_FRAME) {
-        draw(START_FRAME);
-        setReady(true);
-        ScrollTrigger.refresh();
+
+      if (i === START_FRAME || milestonesLoaded >= 3) {
+        if (!ready) {
+          draw(frameRef.current);
+          setReady(true);
+          ScrollTrigger.refresh();
+        }
       }
       // Keep painting current frame as better neighbors arrive
-      if (Math.abs(i - frameRef.current) <= 2) draw(frameRef.current);
+      if (Math.abs(i - frameRef.current) <= 3) draw(frameRef.current);
     };
 
-    // Priority: start frame first, then remaining in play order
-    const order = [
-      START_FRAME,
-      ...Array.from({ length: PLAYABLE }, (_, k) => START_FRAME + k).filter(
-        (i) => i !== START_FRAME
-      ),
-    ];
-
-    for (const i of order) {
+    // Priority 1: Milestone keyframes distributed evenly across entire animation
+    const milestones = [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
+    for (const i of milestones) {
       const img = new Image();
       img.decoding = "async";
       img.src = frameSrc(i);
-      img.onload = () => onImg(i);
-      img.onerror = () => onImg(i);
+      img.onload = () => onImg(i, true);
+      img.onerror = () => onImg(i, true);
+      images[i] = img;
+    }
+
+    // Priority 2: Remaining in-between frames for buttery 60fps
+    const remaining = Array.from({ length: PLAYABLE }, (_, k) => START_FRAME + k).filter(
+      (i) => !milestones.includes(i)
+    );
+    for (const i of remaining) {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = frameSrc(i);
+      img.onload = () => onImg(i, false);
+      img.onerror = () => onImg(i, false);
       images[i] = img;
     }
 
@@ -218,7 +229,7 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
       trigger = ScrollTrigger.create({
         trigger: container,
         start: "top top",
-        end: "+=280%",
+        end: "+=350%",
         pin: true,
         // Avoid reparenting the React-owned section into a spacer race.
         pinReparent: false,
@@ -422,10 +433,10 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
     const trigger = ScrollTrigger.create({
       trigger: container,
       start: "top top",
-      end: "+=1400%",
+      end: "+=450%",
       pin: true,
       pinReparent: false,
-      scrub: 0.45,
+      scrub: 0.35,
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onEnter: () => syncSound(parentSoundOn()),
