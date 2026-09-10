@@ -3,7 +3,18 @@
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
 		gtag('config', 'G-W2XC5XK9QJ');
-		</script><link rel="stylesheet" href="/_astro/about.CNa9RfUh.css"><script type="module" src="/_astro/hoisted.CUO_IjfL.js?v=20260910b"></script>
+		</script><script>
+(function() {
+  var OrigImage = window.Image;
+  window.Image = function(w, h) {
+    var img = new OrigImage(w, h);
+    img.crossOrigin = "anonymous";
+    return img;
+  };
+  window.Image.prototype = OrigImage.prototype;
+})();
+</script>
+<link rel="stylesheet" href="/_astro/about.CNa9RfUh.css"><script type="module" src="/_astro/hoisted.CUO_IjfL.js?v=20260910c"></script>
 <style id="hide-lusion-header-style">
   html, body {
     margin: 0 !important;

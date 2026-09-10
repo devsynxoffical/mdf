@@ -167,21 +167,21 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
     };
 
     let milestonesLoaded = 0;
+    let isReady = false;
     const onImg = (i: number, isMilestone: boolean) => {
       if (dead) return;
       loaded += 1;
       if (isMilestone) milestonesLoaded += 1;
       setLoadPct(Math.round((loaded / PLAYABLE) * 100));
 
-      if (i === START_FRAME || milestonesLoaded >= 3) {
-        if (!ready) {
-          draw(frameRef.current);
-          setReady(true);
-          ScrollTrigger.refresh();
-        }
+      if (!isReady && (i === START_FRAME || milestonesLoaded >= 2)) {
+        isReady = true;
+        draw(frameRef.current);
+        setReady(true);
+        ScrollTrigger.refresh();
       }
       // Keep painting current frame as better neighbors arrive
-      if (Math.abs(i - frameRef.current) <= 3) draw(frameRef.current);
+      if (Math.abs(i - frameRef.current) <= 4) draw(frameRef.current);
     };
 
     // Priority 1: Milestone keyframes distributed evenly across entire animation
@@ -513,7 +513,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
     >
       <iframe
         ref={iframeRef}
-        src="/lusion_standalone.html?v=20260910b"
+        src="/lusion_standalone.html?v=20260910c"
         title="Lusion astronaut interactive experience"
         className="pointer-events-none absolute inset-0 h-full w-full border-0 bg-black"
         allow="autoplay; fullscreen"
