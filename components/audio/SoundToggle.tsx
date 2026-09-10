@@ -314,7 +314,7 @@ export default function SoundToggle() {
     };
   }, [isOn]);
 
-  // Auto-unlock audio on first gesture if previously turned on
+  // Auto-unlock audio on first user gesture (pointerdown/click/touchstart)
   useEffect(() => {
     let saved: string | null = null;
     try {
@@ -322,7 +322,7 @@ export default function SoundToggle() {
     } catch {
       saved = "off";
     }
-    const shouldEnable = saved === "on" || saved === null; // Default to on
+    const shouldEnable = saved === "on" || saved === null;
 
     if (shouldEnable) {
       const unlock = () => {
@@ -335,10 +335,10 @@ export default function SoundToggle() {
           );
         } catch {}
         window.removeEventListener("pointerdown", unlock);
-        window.removeEventListener("scroll", unlock);
+        window.removeEventListener("touchstart", unlock);
       };
       window.addEventListener("pointerdown", unlock, { once: true });
-      window.addEventListener("scroll", unlock, { once: true });
+      window.addEventListener("touchstart", unlock, { once: true });
     }
   }, []);
 
