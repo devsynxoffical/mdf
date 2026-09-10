@@ -13,8 +13,24 @@
   };
   window.Image.prototype = OrigImage.prototype;
 })();
+
+// Backup ready notifier to parent
+(function() {
+  var check = setInterval(function() {
+    if (window.scrollManager && window.scrollManager.scrollToPixel && window.properties && window.properties.hasStarted) {
+      clearInterval(check);
+      window.__LUSION_READY__ = true;
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: "lusion-ready" }, "*");
+        }
+      } catch (e) {}
+    }
+  }, 40);
+  setTimeout(function() { clearInterval(check); }, 30000);
+})();
 </script>
-<link rel="stylesheet" href="/_astro/about.CNa9RfUh.css"><script type="module" src="/_astro/hoisted.CUO_IjfL.js?v=20260910c"></script>
+<link rel="stylesheet" href="/_astro/about.CNa9RfUh.css"><script type="module" src="/_astro/hoisted.CUO_IjfL.js?v=20260910d"></script>
 <style id="hide-lusion-header-style">
   html, body {
     margin: 0 !important;

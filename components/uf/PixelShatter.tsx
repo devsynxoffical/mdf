@@ -176,20 +176,33 @@ export default function PixelShatter({
       ctx.globalAlpha = 1;
     };
 
+    let isTicking = false;
+
     const tick = () => {
+      if (!hovering && particles.length === 0) {
+        isTicking = false;
+        ctx.clearRect(0, 0, w, h);
+        return;
+      }
       drawField();
       raf = requestAnimationFrame(tick);
     };
 
+    const startTicking = () => {
+      if (!isTicking) {
+        isTicking = true;
+        raf = requestAnimationFrame(tick);
+      }
+    };
+
     const onEnter = () => {
       hovering = true;
+      startTicking();
     };
 
     const onLeave = () => {
       hovering = false;
       mx = my = -9999;
-      particles.length = 0;
-      ctx.clearRect(0, 0, w, h);
     };
 
     const onMove = (e: PointerEvent) => {
@@ -199,6 +212,7 @@ export default function PixelShatter({
       mx = e.clientX - rect.left;
       my = e.clientY - rect.top;
       hovering = true;
+      startTicking();
 
       const speed = Math.min(
         1,
@@ -210,7 +224,6 @@ export default function PixelShatter({
     };
 
     resize();
-    raf = requestAnimationFrame(tick);
 
     const ro = new ResizeObserver(resize);
     ro.observe(parent);

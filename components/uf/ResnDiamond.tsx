@@ -230,11 +230,11 @@ export default function ResnDiamond({
   showClickAndHoldPrompt = true,
 }: ResnDiamondProps) {
   const mountRef = useRef<HTMLDivElement>(null);
+  const fallbackRef = useRef<HTMLDivElement>(null);
   const isHoldingRef = useRef(false);
   const [isHolding, setIsHolding] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasWebGL, setHasWebGL] = useState(true);
-  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const container = mountRef.current;
@@ -365,7 +365,11 @@ export default function ResnDiamond({
         const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
         targetRotationY = x * 0.75;
         targetRotationX = -y * 0.45;
-        setMouseOffset({ x, y });
+        if (fallbackRef.current) {
+          fallbackRef.current.style.transform = `perspective(1000px) rotateX(${y * 8}deg) rotateY(${x * 10}deg) scale(${
+            isHoldingRef.current ? 1.08 : 1.0
+          })`;
+        }
       };
 
       const handlePointerDown = () => {
@@ -380,7 +384,7 @@ export default function ResnDiamond({
         targetWeight = 0.0;
       };
 
-      window.addEventListener("pointermove", handlePointerMove);
+      window.addEventListener("pointermove", handlePointerMove, { passive: true });
       container.addEventListener("pointerdown", handlePointerDown);
       window.addEventListener("pointerup", handlePointerUp);
 
@@ -456,18 +460,11 @@ export default function ResnDiamond({
       ) : (
         /* High-Res Interactive Fallback */
         <div
-          className="relative flex h-full w-full items-center justify-center cursor-grab active:cursor-grabbing"
+          ref={fallbackRef}
+          className="relative flex h-full w-full items-center justify-center cursor-grab active:cursor-grabbing transition-transform duration-300 ease-out"
           onMouseDown={() => setIsHolding(true)}
           onMouseUp={() => setIsHolding(false)}
           onMouseLeave={() => setIsHolding(false)}
-          style={{
-            transform: `perspective(1000px) rotateX(${mouseOffset.y * -8}deg) rotateY(${mouseOffset.x * 10}deg) scale(${
-              isHolding ? 1.08 : 1.0
-            })`,
-            transition: isHolding
-              ? "transform 0.15s cubic-bezier(0.1, 0.9, 0.2, 1)"
-              : "transform 0.4s ease-out",
-          }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

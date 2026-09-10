@@ -174,39 +174,63 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
       if (isMilestone) milestonesLoaded += 1;
       setLoadPct(Math.round((loaded / PLAYABLE) * 100));
 
-      if (!isReady && (i === START_FRAME || milestonesLoaded >= 2)) {
+      if (!isReady && (i === START_FRAME || milestonesLoaded >= 1)) {
         isReady = true;
         draw(frameRef.current);
         setReady(true);
         ScrollTrigger.refresh();
       }
       // Keep painting current frame as better neighbors arrive
-      if (Math.abs(i - frameRef.current) <= 4) draw(frameRef.current);
+      if (Math.abs(i - frameRef.current) <= 3) draw(frameRef.current);
     };
 
-    // Priority 1: Milestone keyframes distributed evenly across entire animation
-    const milestones = [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
-    for (const i of milestones) {
-      const img = new Image();
-      img.decoding = "async";
-      img.src = frameSrc(i);
-      img.onload = () => onImg(i, true);
-      img.onerror = () => onImg(i, true);
-      images[i] = img;
-    }
+    // Priority 1: First frame immediately for zero-delay paint
+    const firstImg = new Image();
+    firstImg.decoding = "async";
+    firstImg.src = frameSrc(START_FRAME);
+    firstImg.onload = () => onImg(START_FRAME, true);
+    firstImg.onerror = () => onImg(START_FRAME, true);
+    images[START_FRAME] = firstImg;
 
-    // Priority 2: Remaining in-between frames for buttery 60fps
+    // Priority 2: Key milestones spaced out
+    const milestones = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
+    setTimeout(() => {
+      if (dead) return;
+      for (const i of milestones) {
+        const img = new Image();
+        img.decoding = "async";
+        img.src = frameSrc(i);
+        img.onload = () => onImg(i, true);
+        img.onerror = () => onImg(i, true);
+        images[i] = img;
+      }
+    }, 50);
+
+    // Priority 3: Remaining frames in gentle background batches to prevent thread lag
     const remaining = Array.from({ length: PLAYABLE }, (_, k) => START_FRAME + k).filter(
-      (i) => !milestones.includes(i)
+      (i) => i !== START_FRAME && !milestones.includes(i)
     );
-    for (const i of remaining) {
-      const img = new Image();
-      img.decoding = "async";
-      img.src = frameSrc(i);
-      img.onload = () => onImg(i, false);
-      img.onerror = () => onImg(i, false);
-      images[i] = img;
-    }
+    setTimeout(() => {
+      if (dead) return;
+      let batchIdx = 0;
+      const loadNextBatch = () => {
+        if (dead) return;
+        const chunk = remaining.slice(batchIdx, batchIdx + 8);
+        for (const i of chunk) {
+          const img = new Image();
+          img.decoding = "async";
+          img.src = frameSrc(i);
+          img.onload = () => onImg(i, false);
+          img.onerror = () => onImg(i, false);
+          images[i] = img;
+        }
+        batchIdx += 8;
+        if (batchIdx < remaining.length) {
+          setTimeout(loadNextBatch, 60);
+        }
+      };
+      loadNextBatch();
+    }, 300);
 
     const applyProgress = (p: number) => {
       const idx = Math.min(
@@ -379,12 +403,12 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
       return false;
     };
 
-    // Failsafe: If WebGL does not initialize within 3.5s (e.g. GPU, buffer 404, or cross-origin block on cPanel), fall back immediately to frame scrubber
+    // Failsafe: If WebGL does not initialize within 15s (e.g. GPU, buffer 404, or cross-origin block), fall back gracefully to frame scrubber
     failTimer = window.setTimeout(() => {
       if (!dead && !readyRef.current) {
         onFailRef.current();
       }
-    }, 3500);
+    }, 15000);
 
     const onLoad = () => {
       if (dead) return;
@@ -400,13 +424,13 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
           window.clearTimeout(failTimer);
           return;
         }
-        if (attempts < 60) {
-          pollId = window.setTimeout(poll, 60);
+        if (attempts < 180) {
+          pollId = window.setTimeout(poll, 80);
         } else {
           onFailRef.current();
         }
       };
-      pollId = window.setTimeout(poll, 100);
+      pollId = window.setTimeout(poll, 80);
     };
 
     const onError = () => {
@@ -513,7 +537,7 @@ function IframeAstronautExperience({ onFail }: { onFail: () => void }) {
     >
       <iframe
         ref={iframeRef}
-        src="/lusion_standalone.html?v=20260910c"
+        src="/lusion_standalone.html?v=20260910d"
         title="Lusion astronaut interactive experience"
         className="pointer-events-none absolute inset-0 h-full w-full border-0 bg-black"
         allow="autoplay; fullscreen"
