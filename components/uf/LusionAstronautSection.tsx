@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useScrollState } from "@/components/providers/ScrollProvider";
@@ -34,7 +34,6 @@ type LusionWindow = Window & {
 };
 
 const TOTAL_FRAMES = 101;
-/** Skip early static dwell — zoom animation starts immediately. */
 const START_FRAME = 15;
 const PLAYABLE = TOTAL_FRAMES - START_FRAME;
 
@@ -56,20 +55,318 @@ function parentSoundOn() {
 }
 
 /**
- * High-performance zero-delay canvas frame scrubber.
- * Instant initial paint (<50ms) with staged background frame caching.
+ * 3D WebGL + Canvas Fallback Astronaut Experience
+ * - High-end Desktop: Full interactive 3D WebGL with mouse tracking, dynamic camera & audio sync
+ * - Mobile / Constrained: Instant 60fps canvas frame scrubber
  */
 export default function LusionAstronautSection() {
-  const { reducedMotion } = useScrollState();
+  const { reducedMotion, isMobile } = useScrollState();
 
   return (
     <div id="lusion-immersive-root" className="relative w-full">
-      <FrameAstronautExperience reducedMotion={reducedMotion} />
+      {reducedMotion || isMobile ? (
+        <FrameAstronautExperience reducedMotion={reducedMotion} />
+      ) : (
+        <HybridAstronautExperience />
+      )}
     </div>
   );
 }
 
-/* ─── Mobile / reduced-motion: canvas frame scrubber ─── */
+/* ─── Desktop: Interactive 3D WebGL Engine with Seamless Canvas Background ─── */
+
+function HybridAstronautExperience() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const rangeRef = useRef({ start: 7121, end: 52094 });
+  const ready3DRef = useRef(false);
+  const soundOnRef = useRef(false);
+  const frameRef = useRef(START_FRAME);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+
+  const [ready3D, setReady3D] = useState(false);
+  const [atFinale, setAtFinale] = useState(false);
+
+  const getWin = useCallback(
+    () => iframeRef.current?.contentWindow as LusionWindow | null,
+    []
+  );
+
+  const syncSound = useCallback(
+    (enabled: boolean) => {
+      soundOnRef.current = enabled;
+      try {
+        const win = getWin();
+        const audios = win?.lusionAudios;
+        if (!audios) return;
+
+        if (enabled && !audios.listener && audios._onBodyClick) {
+          audios._onBodyClick();
+        }
+
+        if (win.homePage) win.homePage.updateAudio = true;
+
+        if (enabled) audios.on();
+        else audios.off();
+      } catch {
+        /* mid-load */
+      }
+    },
+    [getWin]
+  );
+
+  const readRange = useCallback((win: LusionWindow) => {
+    const ranges = win.homeGoalSectionRanges;
+    if (!ranges || !ranges.totalPixelCount || ranges.totalPixelCount < 100) {
+      return null;
+    }
+    const items = (ranges as any).items;
+    const skipDwell =
+      items?.blackFrameShow?.pixelCount != null
+        ? items.blackFrameShow.pixelCount
+        : Math.round(ranges.totalPixelCount * 0.08);
+
+    const start = Math.max(0, (ranges.baseY || 0) + skipDwell);
+    const end = (ranges.baseY || 0) + ranges.totalPixelCount;
+    if (end <= start + 100) return null;
+    return { start, end };
+  }, []);
+
+  // 1. Initial 2D Canvas Instant Render so screen is NEVER blank
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d", { alpha: false });
+    if (!ctx) return;
+
+    const img = new Image();
+    img.src = frameSrc(START_FRAME);
+    img.onload = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = canvas.clientWidth || window.innerWidth;
+      const h = canvas.clientHeight || window.innerHeight;
+      if (!w || !h) return;
+
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.fillStyle = "#000";
+      ctx.fillRect(0, 0, w, h);
+
+      const imgAspect = img.naturalWidth / img.naturalHeight;
+      const canvasAspect = w / h;
+      let dw = w;
+      let dh = h;
+      let ox = 0;
+      let oy = 0;
+
+      if (canvasAspect > imgAspect) {
+        dw = w;
+        dh = w / imgAspect;
+        oy = (h - dh) / 2;
+      } else {
+        dh = h;
+        dw = h * imgAspect;
+        ox = (w - dw) / 2;
+      }
+
+      ctx.drawImage(img, ox, oy, dw, dh);
+    };
+  }, []);
+
+  // 2. 3D WebGL Lifecycle & GSAP Scroll Sync
+  useEffect(() => {
+    const container = containerRef.current;
+    const iframe = iframeRef.current;
+    if (!container || !iframe) return;
+
+    let dead = false;
+    let pollId = 0;
+
+    const tryReady = () => {
+      if (dead || ready3DRef.current) return false;
+      try {
+        const win = getWin();
+        if (!win?.scrollManager?.scrollToPixel) return false;
+
+        const range = readRange(win);
+        if (!range) return false;
+
+        rangeRef.current = range;
+        ready3DRef.current = true;
+        setReady3D(true);
+        win.scrollManager.scrollToPixel(range.start, true);
+        if (win.homePage) win.homePage.updateAudio = true;
+        syncSound(parentSoundOn());
+        ScrollTrigger.refresh();
+        return true;
+      } catch {
+        /* cross-origin / mid-load */
+      }
+      return false;
+    };
+
+    const onLoad = () => {
+      if (dead) return;
+      if (tryReady()) return;
+      let attempts = 0;
+      const poll = () => {
+        if (dead || ready3DRef.current) return;
+        attempts += 1;
+        if (tryReady()) return;
+        if (attempts < 100) {
+          pollId = window.setTimeout(poll, 80);
+        }
+      };
+      pollId = window.setTimeout(poll, 100);
+    };
+
+    const onMessage = (ev: MessageEvent) => {
+      if (ev.data?.type === "lusion-ready") tryReady();
+    };
+
+    const onSoundChange = (ev: Event) => {
+      const enabled = Boolean((ev as CustomEvent).detail?.enabled);
+      syncSound(enabled);
+    };
+
+    window.addEventListener("message", onMessage);
+    window.addEventListener("uf-sound-change", onSoundChange);
+    iframe.addEventListener("load", onLoad);
+
+    const trigger = ScrollTrigger.create({
+      trigger: container,
+      start: "top top",
+      end: "+=450%",
+      pin: true,
+      pinReparent: false,
+      scrub: 0.35,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onEnter: () => syncSound(parentSoundOn()),
+      onEnterBack: () => syncSound(parentSoundOn()),
+      onLeave: () => {
+        try {
+          getWin()?.lusionAudios?.off();
+        } catch {}
+      },
+      onLeaveBack: () => {
+        try {
+          getWin()?.lusionAudios?.off();
+        } catch {}
+      },
+      onUpdate: (self) => {
+        setAtFinale(self.progress >= 0.88);
+        if (progressBarRef.current) {
+          progressBarRef.current.style.transform = `scaleX(${self.progress})`;
+        }
+        if (!ready3DRef.current) return;
+        try {
+          const win = getWin();
+          const sm = win?.scrollManager;
+          if (!sm?.scrollToPixel) return;
+
+          const live = win ? readRange(win) : null;
+          if (live) rangeRef.current = live;
+
+          const { start, end } = rangeRef.current;
+          const target = start + self.progress * (end - start);
+          sm.scrollToPixel(target, true);
+
+          if (self.progress > 0.72) {
+            win?.document?.documentElement?.classList.remove("is-white-bg");
+            win?.document?.documentElement?.classList.add("is-black-bg");
+          }
+
+          if (soundOnRef.current && win?.lusionAudios && !win.lusionAudios.isActive) {
+            syncSound(true);
+          }
+        } catch {
+          /* ignore */
+        }
+      },
+    });
+
+    if (iframe.contentDocument?.readyState === "complete") {
+      onLoad();
+    }
+
+    return () => {
+      dead = true;
+      iframe.removeEventListener("load", onLoad);
+      window.removeEventListener("message", onMessage);
+      window.removeEventListener("uf-sound-change", onSoundChange);
+      window.clearTimeout(pollId);
+      try {
+        getWin()?.lusionAudios?.off();
+      } catch {}
+      trigger.kill();
+    };
+  }, [getWin, readRange, syncSound]);
+
+  const continueDown = () => {
+    window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" });
+  };
+
+  return (
+    <section
+      ref={containerRef}
+      id="lusion-immersive"
+      className="relative h-[100dvh] w-full overflow-hidden bg-black text-white"
+      aria-label="3D Astronaut Scroll Experience"
+    >
+      {/* Background Instant Canvas Frame */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 z-0 h-full w-full object-cover"
+        style={{ filter: "brightness(0.86) contrast(1.16) saturate(0.62)" }}
+      />
+
+      {/* Interactive 3D WebGL Iframe */}
+      <iframe
+        ref={iframeRef}
+        src="/lusion_standalone.html?v=silver4"
+        title="3D Astronaut interactive experience"
+        className={`pointer-events-none absolute inset-0 z-10 h-full w-full border-0 bg-transparent transition-opacity duration-700 ${
+          ready3D ? "opacity-100" : "opacity-0"
+        }`}
+        allow="autoplay; fullscreen"
+      />
+
+      {/* Progress rail */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-0.5 bg-white/10">
+        <div
+          ref={progressBarRef}
+          className="h-full origin-left scale-x-0 bg-sky shadow-[0_0_12px_#38BDF8]"
+        />
+      </div>
+
+      {/* Finale CTA Pill */}
+      {atFinale && (
+        <div className="absolute bottom-8 left-1/2 z-30 -translate-x-1/2">
+          <button
+            type="button"
+            onClick={continueDown}
+            className="group flex items-center gap-2 rounded-full border border-white/20 bg-black/75 px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-wider text-white shadow-2xl backdrop-blur-md transition hover:border-sky hover:bg-black/90 hover:text-sky cursor-pointer"
+          >
+            <span>Explore The System</span>
+            <span
+              aria-hidden
+              className="transition-transform duration-300 group-hover:translate-y-0.5"
+            >
+              ↓
+            </span>
+          </button>
+        </div>
+      )}
+    </section>
+  );
+}
+
+/* ─── Mobile / Reduced-Motion Canvas Frame Scrubber ─── */
 
 function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -98,7 +395,6 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
     const draw = (index: number) => {
       let img = images[index];
       if (!img?.complete || !img.naturalWidth) {
-        // Nearest loaded neighbor so scrub never blanks mid-load
         for (let d = 1; d < TOTAL_FRAMES; d++) {
           const a = images[index - d];
           const b = images[index + d];
@@ -115,8 +411,8 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
       if (!img?.complete || !img.naturalWidth) return;
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
+      const w = canvas.clientWidth || window.innerWidth;
+      const h = canvas.clientHeight || window.innerHeight;
       if (!w || !h) return;
 
       if (canvas.width !== Math.floor(w * dpr) || canvas.height !== Math.floor(h * dpr)) {
@@ -135,7 +431,6 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
       let ox = 0;
       let oy = 0;
 
-      // Cover
       if (canvasAspect > imgAspect) {
         dw = w;
         dh = w / imgAspect;
@@ -163,11 +458,9 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
         setReady(true);
         ScrollTrigger.refresh();
       }
-      // Keep painting current frame as better neighbors arrive
       if (Math.abs(i - frameRef.current) <= 3) draw(frameRef.current);
     };
 
-    // Priority 1: First frame immediately for zero-delay paint
     const firstImg = new Image();
     firstImg.decoding = "async";
     firstImg.src = frameSrc(START_FRAME);
@@ -175,7 +468,6 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
     firstImg.onerror = () => onImg(START_FRAME, true);
     images[START_FRAME] = firstImg;
 
-    // Priority 2: Key milestones spaced out
     const milestones = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
     setTimeout(() => {
       if (dead) return;
@@ -189,7 +481,6 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
       }
     }, 50);
 
-    // Priority 3: Remaining frames in gentle background batches to prevent thread lag
     const remaining = Array.from({ length: PLAYABLE }, (_, k) => START_FRAME + k).filter(
       (i) => i !== START_FRAME && !milestones.includes(i)
     );
@@ -238,7 +529,6 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
         start: "top top",
         end: "+=350%",
         pin: true,
-        // Avoid reparenting the React-owned section into a spacer race.
         pinReparent: false,
         scrub: 0.35,
         anticipatePin: 1,
@@ -268,7 +558,7 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
       ref={containerRef}
       id="lusion-immersive"
       className="relative h-[100dvh] w-full overflow-hidden bg-black text-white"
-      aria-label="Immersive astronaut scroll experience"
+      aria-label="Astronaut scroll experience"
     >
       <canvas
         ref={canvasRef}
@@ -289,7 +579,6 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
         />
       </div>
 
-      {/* Hit target over finale “continue” pill baked into frames */}
       {atFinale && (
         <button
           type="button"
