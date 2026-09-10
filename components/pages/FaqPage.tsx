@@ -125,46 +125,55 @@ export default function FaqPage() {
   return (
     <div className="bg-[#020926] text-white">
       {/* ─── 1. HERO SECTION ─── */}
-      <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20 border-b border-white/10">
+      <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28 border-b border-white/10">
         <ContourBG tone="dark" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(18,84,236,0.3),transparent_65%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(18,84,236,0.4),transparent_70%)]" />
+        <div className="pointer-events-none absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 h-[450px] w-[700px] bg-gradient-to-tr from-sky/15 via-blue-600/10 to-purple-600/10 blur-[120px]" />
 
         <div className="relative mx-auto max-w-[1040px] px-4 sm:px-6 md:px-10">
-          <p className="uf-eyebrow text-sky">( FAQ ) — Direct Answers</p>
+          {/* Eyebrow Pill */}
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-sky/30 bg-sky/10 px-4 py-1.5 backdrop-blur-md">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-sky" />
+            </span>
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-sky">
+              Direct Answers · System Clearance
+            </span>
+          </div>
 
-          <div className="mt-6 grid gap-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
+          <div className="mt-8 grid gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-end">
             <div>
-              <h1 className="font-sans text-[clamp(36px,5vw,60px)] font-extrabold leading-[1.08] tracking-tight text-white">
+              <h1 className="font-sans text-[clamp(40px,5.8vw,68px)] font-extrabold leading-[1.04] tracking-[-0.035em] text-white">
                 <Reveal as="span">
                   <span className="block">Everything You Need to Know</span>
                 </Reveal>
                 <Reveal as="span" delay={90}>
-                  <span className="block bg-gradient-to-r from-sky via-cyan-300 to-amber-300 bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-sky via-[#93C5FD] to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(56,189,248,0.3)]">
                     Before Booking.
                   </span>
                 </Reveal>
               </h1>
-              <p className="mt-5 max-w-[50ch] font-sans text-[16px] leading-[1.7] text-slate-300 sm:text-[17px]">
+              <p className="mt-6 max-w-[50ch] font-sans text-[16.5px] leading-[1.75] text-slate-300 sm:text-[18px]">
                 Transparent, unfiltered answers on client fit, funnel deliverables, tech integrations, ad management, and launch timelines.
               </p>
             </div>
 
-            {/* Quick Metrics */}
-            <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-white/12 bg-white/[0.04] p-5 backdrop-blur-md">
-              <div className="flex-1 min-w-[110px]">
-                <p className="font-serif text-[28px] italic leading-none text-sky">
-                  10 Key Q&apos;s
+            {/* Quick Metrics Glass Pods */}
+            <div className="grid grid-cols-2 gap-3 rounded-2xl border border-white/15 bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] p-4 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl">
+              <div className="text-center sm:text-left">
+                <p className="font-sans text-[clamp(30px,3.8vw,40px)] font-black leading-none text-sky">
+                  10 Core
                 </p>
-                <p className="mt-1 font-mono text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                  Covered Below
+                <p className="mt-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                  Topics Covered
                 </p>
               </div>
-              <div className="h-8 w-px bg-white/15" aria-hidden />
-              <div className="flex-1 min-w-[110px]">
-                <p className="font-serif text-[28px] italic leading-none text-amber-300">
+              <div className="border-l border-white/10 pl-3 text-center sm:text-left">
+                <p className="font-sans text-[clamp(30px,3.8vw,40px)] font-black leading-none text-amber-300">
                   3–4 Wks
                 </p>
-                <p className="mt-1 font-mono text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                <p className="mt-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-amber-300/90">
                   Go-Live Speed
                 </p>
               </div>

@@ -45,15 +45,22 @@ export default function VslPlayer({ src, onProgress, autoPlay = false }: Props) 
 
   if (youtubeId) {
     return (
-      <div className="group relative aspect-video w-full overflow-hidden bg-[#010618] rounded-2xl md:rounded-[28px] md:border md:border-white/15 md:shadow-[0_40px_100px_rgba(0,0,0,0.55)]">
-        <iframe
-          src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
-          title="Million Dollar Funnels™ Case Study VSL"
-          className="h-full w-full border-0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          onLoad={() => onProgress?.(50)}
-        />
+      <div className="group relative aspect-video w-full overflow-hidden rounded-2xl bg-[#010618] md:rounded-[28px] md:border md:border-white/15 md:shadow-[0_40px_100px_rgba(0,0,0,0.65)]">
+        {/* Cinema-Crop Wrapper to hide YouTube top banner, channel info, and watermark */}
+        <div className="relative h-full w-full overflow-hidden scale-[1.16] origin-center pointer-events-auto">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&controls=1&iv_load_policy=3&showinfo=0&disablekb=0&fs=1&color=white`}
+            title="Million Dollar Funnels™ Case Study VSL"
+            className="h-full w-full border-0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            onLoad={() => onProgress?.(50)}
+          />
+        </div>
+
+        {/* Ambient Top and Bottom Cinema Glass Lighting */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-4 bg-gradient-to-b from-black/40 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-4 bg-gradient-to-t from-black/40 to-transparent z-10" />
       </div>
     );
   }
