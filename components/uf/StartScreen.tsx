@@ -109,24 +109,12 @@ export default function StartScreen() {
       }
     })();
 
-    if (pathname !== "/" || alreadySeen) {
-      endIntro();
-      return () => {
-        cancelled = true;
-        finishBoot();
-      };
-    }
-
-    timers.push(window.setTimeout(endIntro, FAILSAFE_MS));
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      endIntro();
-      return () => {
-        cancelled = true;
-        timers.forEach((id) => window.clearTimeout(id));
-        finishBoot();
-      };
-    }
+    // Open site immediately with zero delay
+    endIntro();
+    return () => {
+      cancelled = true;
+      finishBoot();
+    };
 
     document.body.style.overflow = "hidden";
     const start = performance.now();

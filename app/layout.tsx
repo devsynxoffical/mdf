@@ -24,7 +24,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="mdf-booting" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.png" type="image/png" />
@@ -34,9 +34,7 @@ export default function RootLayout({
             __html: `
               (function () {
                 try {
-                  if (sessionStorage.getItem('mdf-intro-seen') === '1' || window.location.pathname !== '/') {
-                    document.documentElement.classList.remove('mdf-booting');
-                  }
+                  document.documentElement.classList.remove('mdf-booting');
                 } catch (e) {}
 
                 // Patch DOM removeChild and insertBefore to prevent React crash when GSAP or extensions alter DOM

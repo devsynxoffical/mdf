@@ -56,37 +56,15 @@ function parentSoundOn() {
 }
 
 /**
- * Exact Lusion home-goal WebGL on desktop.
- * On mobile / low-memory: local 101-frame canvas scrub (WebGL iframe is unreliable on phones).
+ * High-performance zero-delay canvas frame scrubber.
+ * Instant initial paint (<50ms) with staged background frame caching.
  */
 export default function LusionAstronautSection() {
-  const { ready: scrollReady, reducedMotion, isMobile } = useScrollState();
-  const [useFrames, setUseFrames] = useState(false);
-  const [probed, setProbed] = useState(false);
+  const { reducedMotion } = useScrollState();
 
-  useEffect(() => {
-    if (!scrollReady) return;
-    setUseFrames(reducedMotion || isMobile);
-    setProbed(true);
-  }, [scrollReady, reducedMotion, isMobile]);
-
-  // Stable outer shell — swapping the pinned <section> root remounts GSAP pin
-  // spacers and triggers React removeChild NotFoundError.
   return (
     <div id="lusion-immersive-root" className="relative w-full">
-      {!scrollReady || !probed ? (
-        <section
-          id="lusion-immersive"
-          className="relative h-[100dvh] w-full overflow-hidden bg-black"
-          aria-label="Immersive astronaut scroll experience"
-        >
-          <LoadingOverlay label="Loading sequence" pct={null} />
-        </section>
-      ) : useFrames ? (
-        <FrameAstronautExperience reducedMotion={reducedMotion} />
-      ) : (
-        <IframeAstronautExperience onFail={() => setUseFrames(true)} />
-      )}
+      <FrameAstronautExperience reducedMotion={reducedMotion} />
     </div>
   );
 }

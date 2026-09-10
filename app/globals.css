@@ -39,27 +39,10 @@ html {
   overflow-x: hidden;
 }
 
-/* Start screen: hide chrome until intro finishes (or session skip removes class). */
-html.mdf-booting {
-  overflow: hidden;
-}
-html.mdf-booting body {
-  overflow: hidden;
-}
-html.mdf-booting header,
-html.mdf-booting main,
-html.mdf-booting .grain {
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.92);
-  transform-origin: 50% 45%;
-}
 header,
 main,
 .grain {
-  transition:
-    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 1;
 }
 
 html.lenis,
