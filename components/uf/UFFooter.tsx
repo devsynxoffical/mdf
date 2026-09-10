@@ -200,46 +200,27 @@ export default function UFFooter() {
         </p>
       </div>
 
-      {/* ─── 2. PROMINENT HIGH-VISIBILITY TYPOGRAPHY BANNER ─── */}
-      <div className="relative w-full select-none border-y border-white/10 bg-gradient-to-b from-white/[0.04] via-white/[0.01] to-transparent py-5 sm:py-8 px-3 sm:px-6 overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(56,189,248,0.12),transparent_70%)]" />
-        <div className="mx-auto w-full max-w-[1400px]">
-          <svg
-            viewBox="0 0 1350 110"
-            className="w-full h-auto select-none block"
-            aria-hidden="true"
+      {/* ─── 2. PROMINENT HIGH-VISIBILITY TYPOGRAPHY BANNER WITH MOVING GRADIENT ─── */}
+      <div className="relative w-full select-none border-y border-white/10 bg-gradient-to-b from-white/[0.04] via-white/[0.01] to-transparent py-6 sm:py-10 md:py-12 px-3 sm:px-6 overflow-hidden flex items-center justify-center">
+        {/* Luminous Ambient Spotlight */}
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(56,189,248,0.18),transparent_70%)] animate-pulse"
+          style={{ animationDuration: "4s" }}
+        />
+
+        <div className="mx-auto w-full max-w-[1400px] text-center">
+          <h2
+            className="select-none font-black tracking-tighter uppercase whitespace-nowrap text-[clamp(2.4rem,7.5vw,7.2rem)] leading-none text-transparent bg-clip-text animate-footer-gradient"
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg, #FFFFFF 0%, #E0F2FE 15%, #38BDF8 30%, #818CF8 50%, #C084FC 68%, #38BDF8 85%, #FFFFFF 100%)",
+              filter:
+                "drop-shadow(0 0 24px rgba(56, 189, 248, 0.4)) drop-shadow(0 4px 18px rgba(18, 84, 236, 0.5))",
+              WebkitTextStroke: "1px rgba(255, 255, 255, 0.2)",
+            }}
           >
-            <defs>
-              <linearGradient id="footer-watermark-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.88" />
-                <stop offset="35%" stopColor="#E0F2FE" stopOpacity="0.95" />
-                <stop offset="65%" stopColor="#38BDF8" stopOpacity="0.95" />
-                <stop offset="100%" stopColor="#818CF8" stopOpacity="0.88" />
-              </linearGradient>
-              <filter id="footer-text-glow" x="-10%" y="-20%" width="120%" height="140%">
-                <feDropShadow dx="0" dy="4" stdDeviation="14" floodColor="rgba(18, 84, 236, 0.45)" />
-              </filter>
-            </defs>
-            <text
-              x="50%"
-              y="54%"
-              dominantBaseline="central"
-              textAnchor="middle"
-              fill="url(#footer-watermark-gradient)"
-              stroke="rgba(255, 255, 255, 0.25)"
-              strokeWidth="1.2"
-              filter="url(#footer-text-glow)"
-              className="uppercase tracking-tight select-none"
-              style={{
-                fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-                fontSize: "92px",
-                fontWeight: 950,
-                letterSpacing: "-0.025em",
-              }}
-            >
-              MILLION DOLLAR FUNNEL
-            </text>
-          </svg>
+            MILLION DOLLAR FUNNEL
+          </h2>
         </div>
       </div>
 
