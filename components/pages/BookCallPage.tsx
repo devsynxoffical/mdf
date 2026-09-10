@@ -458,7 +458,7 @@ export default function BookCallPage() {
                 onClick={() => playTick()}
                 className="inline-flex items-center gap-1.5 rounded-full border border-sky/30 bg-sky/10 px-4 py-1.5 font-mono text-[11px] font-bold uppercase tracking-wider text-sky hover:bg-sky/20 transition"
               >
-                <span>View All 59 Receipts</span>
+                <span>View All Verified Receipts</span>
                 <span>→</span>
               </Link>
             </div>

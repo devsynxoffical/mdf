@@ -526,26 +526,29 @@ const WORK_PROOF_CURATED: Record<
 const TAG_CYCLE: WorkProofTag[] = ["Meta Ads", "CRM", "Scale"];
 const SIZE_CYCLE: WorkProofItem["size"][] = ["sm", "md", "lg", "xl"];
 
-/** All 59 verified screenshot receipts in /public/workprof (wp-001 … wp-059). */
+/** All verified screenshot receipts in /public/workprof (excluding wp-002). */
 export const WORK_PROOF: WorkProofItem[] = Array.from({ length: 59 }, (_, i) => {
   const n = String(i + 1).padStart(3, "0");
-  const id = `wp-${n}`;
-  const curated = WORK_PROOF_CURATED[id];
-  if (curated) {
-    return { id, src: `/workprof/${id}.webp`, ...curated };
-  }
-  const tag = TAG_CYCLE[i % TAG_CYCLE.length];
-  return {
-    id,
-    src: `/workprof/${id}.webp`,
-    tag,
-    niche: "Direct Response",
-    metric: "Verified",
-    metricLabel: "campaign receipt",
-    note: "Verified campaign and CRM receipt from live deployment.",
-    size: SIZE_CYCLE[i % SIZE_CYCLE.length],
-  };
-});
+  return `wp-${n}`;
+})
+  .filter((id) => id !== "wp-002")
+  .map((id, i) => {
+    const curated = WORK_PROOF_CURATED[id];
+    if (curated) {
+      return { id, src: `/workprof/${id}.webp`, ...curated };
+    }
+    const tag = TAG_CYCLE[i % TAG_CYCLE.length];
+    return {
+      id,
+      src: `/workprof/${id}.webp`,
+      tag,
+      niche: "Direct Response",
+      metric: "Verified",
+      metricLabel: "campaign receipt",
+      note: "Verified campaign and CRM receipt from live deployment.",
+      size: SIZE_CYCLE[i % SIZE_CYCLE.length],
+    };
+  });
 
 type DetailMeta = {
   displayName: string;

@@ -359,7 +359,7 @@ export default function WorkProofPage() {
             <div className="grid grid-cols-3 gap-3 rounded-2xl border border-white/15 bg-gradient-to-b from-white/[0.08] via-white/[0.03] to-white/[0.01] p-4 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl">
               <div className="text-center sm:text-left">
                 <p className="font-sans text-[clamp(32px,4vw,44px)] font-black leading-none text-white">
-                  59
+                  {WORK_PROOF.length}
                 </p>
                 <p className="mt-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-sky">
                   Receipts
@@ -391,7 +391,7 @@ export default function WorkProofPage() {
               onClick={() => playTick()}
               className="group inline-flex items-center gap-2.5 rounded-full border border-sky/40 bg-sky/15 px-5 py-2.5 font-mono text-[11.5px] font-bold uppercase tracking-wider text-sky shadow-[0_0_20px_rgba(56,189,248,0.2)] hover:bg-sky hover:text-black transition-all duration-300"
             >
-              <span>1. Inspect 59 Screenshot Receipts</span>
+              <span>1. Inspect {WORK_PROOF.length} Screenshot Receipts</span>
               <span className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
             </a>
             <a
@@ -406,7 +406,7 @@ export default function WorkProofPage() {
         </div>
       </section>
 
-      {/* ─── 2. SECTION 1: PROOF FIRST (59 SCREENSHOT RECEIPTS) ─── */}
+      {/* ─── 2. SECTION 1: PROOF FIRST (SCREENSHOT RECEIPTS) ─── */}
       <section id="receipts" className="relative py-16 sm:py-24 border-b border-white/10">
         <ContourBG tone="dark" />
         <div className="relative mx-auto max-w-[1240px] px-4 sm:px-6 md:px-10 lg:px-14">
@@ -416,7 +416,7 @@ export default function WorkProofPage() {
                 SECTION 01 · VERIFIED RECEIPTS
               </span>
               <h2 className="mt-3 font-sans text-[clamp(28px,4vw,44px)] font-extrabold tracking-tight text-white">
-                The Proof Vault (59 Live Accounts)
+                The Proof Vault ({WORK_PROOF.length} Live Accounts)
               </h2>
               <p className="mt-2 font-sans text-[15px] sm:text-[16px] text-slate-300 max-w-[54ch]">
                 Click any screenshot receipt to inspect high-resolution ad spend, CPL, ROAS, and booked revenue data.
@@ -442,7 +442,7 @@ export default function WorkProofPage() {
                           : "bg-white/[0.06] text-slate-300 hover:bg-white/15 hover:text-white border border-white/10"
                       }`}
                     >
-                      {tag === "All" ? "All (59)" : tag}
+                      {tag === "All" ? `All (${WORK_PROOF.length})` : tag}
                     </button>
                   );
                 })}
