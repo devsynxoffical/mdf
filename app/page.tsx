@@ -5,6 +5,7 @@ import UFHeadcount from "@/components/uf/UFHeadcount";
 import UFProof from "@/components/uf/UFProof";
 import UFWorkProofGrid from "@/components/uf/UFWorkProofGrid";
 import UFOpinions from "@/components/uf/UFOpinions";
+import UFPricing from "@/components/uf/UFPricing";
 import UFProcess from "@/components/uf/UFProcess";
 import UFQuestions from "@/components/uf/UFQuestions";
 import UFCrystal from "@/components/uf/UFCrystal";
@@ -24,6 +25,7 @@ export default function Home() {
       <UFWorkProofGrid />
       <UFProcess />
       <UFOpinions />
+      <UFPricing />
       <UFQuestions />
       <LusionAstronautSection />
       <UFSquareMarquee />

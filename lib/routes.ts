@@ -20,6 +20,7 @@ export const SECTIONS = {
   results: "results",
   opinions: "opinions",
   process: "process",
+  pricing: "pricing",
   faq: "faq",
 } as const;
 
