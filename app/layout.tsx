@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
     apple: "/favicon.png",
   },
+  verification: {
+    google: "31uRlYDrv59uI7OGYd-uiu9t8uP9w0Acz5UMCMwfj9I",
+  },
 };
 
 export default function RootLayout({
@@ -26,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="google-site-verification" content="31uRlYDrv59uI7OGYd-uiu9t8uP9w0Acz5UMCMwfj9I" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/favicon.png" />
