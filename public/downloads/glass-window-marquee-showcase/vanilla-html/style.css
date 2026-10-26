@@ -1,0 +1,253 @@
+/* ==========================================================================
+   GLASS WINDOW MARQUEE - PURE VANILLA CSS
+   Modern 3D macOS Glassmorphic Window Cards Infinite Marquee
+   ========================================================================== */
+
+:root {
+  --bg-dark: #020512;
+  --cyan-accent: #38BDF8;
+  --cobalt-blue: #1254EC;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Container Section */
+.marquee-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: var(--bg-dark);
+  padding: 48px 0;
+}
+
+/* Background Ambient Radial Glow */
+.marquee-ambient-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(18, 84, 236, 0.15), transparent 70%);
+}
+
+/* Left and Right Gradient Vignettes */
+.marquee-vignette-left,
+.marquee-vignette-right {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 20;
+  width: clamp(60px, 12vw, 200px);
+}
+
+.marquee-vignette-left {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-dark) 0%, rgba(2, 5, 18, 0.85) 50%, transparent 100%);
+}
+
+.marquee-vignette-right {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-dark) 0%, rgba(2, 5, 18, 0.85) 50%, transparent 100%);
+}
+
+/* Continuous Infinite Track */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-scroll var(--marquee-speed, 48s) linear infinite;
+}
+
+.marquee-section:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Repeat Group */
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.5vw, 36px);
+  padding: 16px clamp(12px, 1.5vw, 24px);
+  flex-shrink: 0;
+}
+
+/* Window Card Wrapper with 3D Tilt Transitions */
+.window-card-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.45s;
+}
+
+.window-card-wrapper:hover {
+  transform: scale(1.06) rotate(0deg) !important;
+  z-index: 30;
+}
+
+/* Card Tilt Variations */
+.tilt-neg-2 { transform: rotate(-2deg); }
+.tilt-neg-1 { transform: rotate(-1deg); }
+.tilt-pos-1 { transform: rotate(1deg); }
+.tilt-pos-2 { transform: rotate(2deg); }
+
+/* Glass Window Frame */
+.window-card {
+  position: relative;
+  width: clamp(280px, 26vw, 390px);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.01) 100%);
+  padding: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.window-card-wrapper:hover .window-card {
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.3);
+}
+
+/* Top Window Header Bar */
+.window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 10px;
+}
+
+/* macOS Traffic Light Dots */
+.window-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-red { background: #f43f5e; opacity: 0.85; }
+.dot-yellow { background: #f59e0b; opacity: 0.85; }
+.dot-green { background: #10b981; opacity: 0.85; }
+
+/* Status Tag Badge */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  background: rgba(56, 189, 248, 0.1);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cyan-accent);
+}
+
+.pulse-circle {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--cyan-accent);
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Screen Display Area */
+.window-screen {
+  position: relative;
+  width: 100%;
+  height: clamp(155px, 14vw, 215px);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #060816;
+}
+
+.window-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.window-card-wrapper:hover .window-screen img {
+  transform: scale(1.05);
+}
+
+/* Top-Right Glass Reflection Glare */
+.window-glare {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+}
+
+/* Bottom Caption Bar */
+.window-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 4px 0;
+  font-family: var(--font-mono);
+}
+
+.window-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: #cbd5e1;
+  transition: color 0.2s;
+}
+
+.window-card-wrapper:hover .window-title {
+  color: #ffffff;
+}
+
+.window-meta {
+  font-size: 9.5px;
+  color: #64748b;
+  letter-spacing: 0.05em;
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+  }
+}
