@@ -4,6 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./mdf-sections.css";
+
 :root {
   --ink: #061335;
   --slate: #0B2052;
@@ -36,7 +38,7 @@ html {
   color: var(--bone);
   scroll-behavior: auto;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 header,
@@ -61,7 +63,7 @@ body {
   background: var(--ink);
   color: var(--bone);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection {

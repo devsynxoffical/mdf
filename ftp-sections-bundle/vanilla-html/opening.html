@@ -1,0 +1,118 @@
+<!-- ==========================================================================
+     OPENING SECTION (INTRO LOADER + PIXEL DISSOLVE + HERO BANNER)
+     Funnels That Print - Integration Snippet
+     ========================================================================== -->
+
+<!-- 1. Intro Loader & Pixel Matrix (Self-removing) -->
+<div id="pix" aria-hidden="true" hidden></div>
+<div id="loader" aria-hidden="true">
+  <div class="wd" id="lw">Funnels</div>
+  <div class="l">Funnels That Print &nbsp;/&nbsp; Loading</div>
+  <div class="n" id="ln">0%</div>
+  <div class="bar"><i id="lb"></i></div>
+</div>
+
+<!-- 2. Opening Hero Section -->
+<header class="hero" id="top">
+  <!-- Background Video Loop -->
+  <video class="hbg" autoplay muted loop playsinline aria-hidden="true">
+    <source src="assets/img/hero/bg.webm" type="video/webm">
+    <source src="assets/img/hero/bg.mp4" type="video/mp4">
+  </video>
+
+  <div class="box">
+    <!-- Main Headline with Animated Typewriter -->
+    <h1 class="h1 d rise" style="--rd:.1s">
+      We build funnels that print <span class="type" id="type">booked calls.</span>
+    </h1>
+
+    <!-- Word-by-Word Reveal Lead Subheading -->
+    <p class="lead hl" id="hlead">
+      Define the offer, connect your traffic, and let the funnel, the follow-up and the AI agent do the work while you focus on closing.
+    </p>
+
+    <!-- Hero CTA Buttons -->
+    <div class="hcta rise" style="--rd:.3s">
+      <a class="btn grad" href="#contact">
+        Build my funnel <i>&#8599;</i>
+      </a>
+      <a class="tag" href="case-studies.html">
+        <i>&#9679;</i> Backed by <b>275+</b> case studies 
+        <span class="tg2">See results <i>&#8599;</i></span>
+      </a>
+    </div>
+
+    <!-- Floating Interactive 3D Stage with Mouse Parallax -->
+    <div class="stage" id="stage">
+      <!-- Central AI Agent Video -->
+      <div class="agent rise" style="--rd:.4s">
+        <video poster="assets/img/hero/agent.webp" autoplay muted loop playsinline aria-label="AI agent">
+          <source src="assets/img/hero/agent.webm" type="video/webm">
+          <source src="assets/img/hero/agent.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- Real-Time Live Funnel Conversion Card -->
+      <div class="ui lead" style="left:0;top:14%;--d:1s" data-m="22">
+        <div class="uh">
+          <b>Live funnel</b>
+          <span class="pl"><i>&#9679;</i> Running</span>
+        </div>
+        <div class="fs">
+          <div class="fr" style="--w:100%;--d:0s">
+            <span>Ad clicks</span><i></i><b>1,284</b>
+          </div>
+          <div class="fr" style="--w:72%;--d:.15s">
+            <span>Page views</span><i></i><b>912</b>
+          </div>
+          <div class="fr" style="--w:40%;--d:.3s">
+            <span>Applications</span><i></i><b>163</b>
+          </div>
+          <div class="fr" style="--w:24%;--d:.45s">
+            <span>AI qualified</span><i></i><b>74</b>
+          </div>
+          <div class="fr hot" style="--w:16%;--d:.6s">
+            <span>Booked calls</span><i></i><b>41</b>
+          </div>
+        </div>
+        <div class="fe">
+          <div class="ev1">
+            <i>AI</i>
+            <span><b>Lead qualified by the agent</b>Call booked, Thu 14:30</span>
+            <em>now</em>
+          </div>
+          <div class="ev1">
+            <i class="f">&#10003;</i>
+            <span><b>Application submitted</b>Coaching offer, $3K</span>
+            <em>2m</em>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connected CRM Card -->
+      <div class="ui src" style="right:0;top:8%;--d:1.2s" data-m="-20">
+        <b style="font-size:16px;margin-bottom:4px">Connected</b>
+        <div class="rw"><i>CRM</i>GoHighLevel</div>
+        <div class="rw"><i style="background:#2d4fe6">CAL</i>Calendar + reminders</div>
+        <div class="rw add">+ Add source(s)</div>
+      </div>
+
+      <!-- Pill Badge -->
+      <div class="ui chip" style="left:10%;bottom:10%;--d:1.5s" data-m="14">
+        <i>&#9679;</i>Qualifies, books, follows up
+      </div>
+
+      <!-- Tech Stack Badges -->
+      <div class="ui tools" style="right:4%;bottom:8%;--d:1.7s" data-m="-14">
+        <b>Stack and automations</b>
+        <div class="ic">
+          <span title="HighLevel"><img src="assets/img/tools/highlevel.webp" alt="HighLevel"></span>
+          <span title="ClickFunnels"><img src="assets/img/tools/clickfunnels.webp" alt="ClickFunnels"></span>
+          <span title="Zapier"><img src="assets/img/tools/zapier.svg" alt="Zapier"></span>
+          <span title="OpenAI"><img src="assets/img/tools/openai.svg" alt="OpenAI"></span>
+          <span title="Twilio"><img src="assets/img/tools/twilio.svg" alt="Twilio"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

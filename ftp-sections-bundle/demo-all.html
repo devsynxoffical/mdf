@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>All Sections Bundle Demo | Funnels That Print</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="vanilla-html/css/opening.css">
+  <link rel="stylesheet" href="vanilla-html/css/portfolio-iphone.css">
+  <link rel="stylesheet" href="vanilla-html/css/case-studies.css">
+  <style>
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      overflow-x: clip;
+    }
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 70;
+      padding: 16px var(--gut);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .top-nav .logo {
+      font-family: var(--disp);
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--fg);
+      text-decoration: none;
+    }
+    .top-nav .links {
+      display: flex;
+      gap: 10px;
+    }
+    .top-nav .links a {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--body);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 999px;
+      transition: all .2s;
+    }
+    .top-nav .links a:hover {
+      background: var(--fg);
+      color: #fff;
+    }
+    .section-divider {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: var(--bg);
+    }
+    .section-divider h2 {
+      font-family: var(--disp);
+      font-size: clamp(28px, 4vw, 52px);
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="top-nav">
+  <a class="logo" href="#top">FTP Export Bundle</a>
+  <div class="links">
+    <a href="#top">Opening</a>
+    <a href="#portwrap">iPhone Portfolio</a>
+    <a href="#cases-hub">Case Studies</a>
+    <a href="demo-case-studies.html">Explore Library</a>
+  </div>
+</nav>
+
+<!-- 1. INTRO LOADER & PIXEL MATRIX -->
+<div id="pix" aria-hidden="true" hidden></div>
+<div id="loader" aria-hidden="true">
+  <div class="wd" id="lw">Funnels</div>
+  <div class="l">Funnels That Print &nbsp;/&nbsp; Loading</div>
+  <div class="n" id="ln">0%</div>
+  <div class="bar"><i id="lb"></i></div>
+</div>
+
+<!-- ==========================================================================
+     SECTION 1: OPENING HERO
+     ========================================================================== -->
+<header class="hero" id="top">
+  <video class="hbg" autoplay muted loop playsinline aria-hidden="true">
+    <source src="assets/img/hero/bg.webm" type="video/webm">
+    <source src="assets/img/hero/bg.mp4" type="video/mp4">
+  </video>
+
+  <div class="box">
+    <h1 class="h1 d rise" style="--rd:.1s">
+      We build funnels that print <span class="type" id="type">booked calls.</span>
+    </h1>
+
+    <p class="lead hl" id="hlead">
+      Define the offer, connect your traffic, and let the funnel, the follow-up and the AI agent do the work while you focus on closing.
+    </p>
+
+    <div class="hcta rise" style="--rd:.3s">
+      <a class="btn grad" href="#portwrap">
+        Explore Portfolio <i>&#8599;</i>
+      </a>
+      <a class="tag" href="#cases-hub">
+        <i>&#9679;</i> Backed by <b>275+</b> case studies 
+        <span class="tg2">See results <i>&#8599;</i></span>
+      </a>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="agent rise" style="--rd:.4s">
+        <video poster="assets/img/hero/agent.webp" autoplay muted loop playsinline aria-label="AI agent">
+          <source src="assets/img/hero/agent.webm" type="video/webm">
+          <source src="assets/img/hero/agent.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="ui lead" style="left:0;top:14%;--d:1s" data-m="22">
+        <div class="uh">
+          <b>Live funnel</b>
+          <span class="pl"><i>&#9679;</i> Running</span>
+        </div>
+        <div class="fs">
+          <div class="fr" style="--w:100%;--d:0s"><span>Ad clicks</span><i></i><b>1,284</b></div>
+          <div class="fr" style="--w:72%;--d:.15s"><span>Page views</span><i></i><b>912</b></div>
+          <div class="fr" style="--w:40%;--d:.3s"><span>Applications</span><i></i><b>163</b></div>
+          <div class="fr" style="--w:24%;--d:.45s"><span>AI qualified</span><i></i><b>74</b></div>
+          <div class="fr hot" style="--w:16%;--d:.6s"><span>Booked calls</span><i></i><b>41</b></div>
+        </div>
+        <div class="fe">
+          <div class="ev1"><i>AI</i><span><b>Lead qualified by the agent</b>Call booked, Thu 14:30</span><em>now</em></div>
+          <div class="ev1"><i class="f">&#10003;</i><span><b>Application submitted</b>Coaching offer, $3K</span><em>2m</em></div>
+        </div>
+      </div>
+
+      <div class="ui src" style="right:0;top:8%;--d:1.2s" data-m="-20">
+        <b style="font-size:16px;margin-bottom:4px">Connected</b>
+        <div class="rw"><i>CRM</i>GoHighLevel</div>
+        <div class="rw"><i style="background:#2d4fe6">CAL</i>Calendar + reminders</div>
+        <div class="rw add">+ Add source(s)</div>
+      </div>
+
+      <div class="ui chip" style="left:10%;bottom:10%;--d:1.5s" data-m="14">
+        <i>&#9679;</i>Qualifies, books, follows up
+      </div>
+
+      <div class="ui tools" style="right:4%;bottom:8%;--d:1.7s" data-m="-14">
+        <b>Stack and automations</b>
+        <div class="ic">
+          <span title="HighLevel"><img src="assets/img/tools/highlevel.webp" alt="HighLevel"></span>
+          <span title="ClickFunnels"><img src="assets/img/tools/clickfunnels.webp" alt="ClickFunnels"></span>
+          <span title="Zapier"><img src="assets/img/tools/zapier.svg" alt="Zapier"></span>
+          <span title="OpenAI"><img src="assets/img/tools/openai.svg" alt="OpenAI"></span>
+          <span title="Twilio"><img src="assets/img/tools/twilio.svg" alt="Twilio"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ==========================================================================
+     SECTION 2: FUNNELS PORTFOLIO IPHONE DUO LAYOUT
+     ========================================================================== -->
+<div id="portwrap">
+  <section class="port" id="work">
+    <div class="top">
+      <div>
+        <div class="eyebrow mono">Portfolio</div>
+        <h2 class="h3 d">Funnels we built. Live, not mockups.</h2>
+      </div>
+      <span class="mono" style="text-align:right;max-width:30ch">
+        Scroll to unfold, then pick any of the 6 funnels below.
+      </span>
+    </div>
+
+    <div class="giant" aria-hidden="true">
+      <span id="gl">FTP</span>
+      <span id="gr">Work</span>
+    </div>
+
+    <div class="fstage">
+      <div class="fshadow" id="fsh"></div>
+
+      <div class="fold" id="dev">
+        <div class="pane pr" id="pr">
+          <div class="scr">
+            <div class="site" id="site2">
+              <img class="fimg" id="fimg2" src="assets/img/funnels/f8.webp" alt="" decoding="async">
+            </div>
+            <span class="sb r">5G<i></i></span>
+          </div>
+        </div>
+
+        <div class="pane pl" id="pl">
+          <div class="scr">
+            <div class="site" id="site">
+              <img class="fimg" id="fimg" src="assets/img/funnels/f8.webp" alt="Mortgage AI System funnel" decoding="async">
+            </div>
+            <span class="sb l">09:41</span>
+          </div>
+        </div>
+
+        <div class="cover" id="cover">
+          <div class="cin">
+            <img class="cph" src="assets/img/hero/agent.webp" alt="" loading="lazy">
+            <div class="clock" id="clock">14:32</div>
+            <div class="sub">Funnels That Print &middot; Portfolio</div>
+
+            <div class="notifs">
+              <div class="notif">
+                <img src="assets/img/funnels/f8-t.webp" alt="">
+                <div>
+                  <b>Mortgage AI System is live</b>
+                  <span class="mono">WEBINAR FUNNEL &middot; NOW</span>
+                </div>
+              </div>
+              <div class="notif">
+                <img src="assets/img/funnels/f7-t.webp" alt="">
+                <div>
+                  <b>Rowan Security, 41 calls booked</b>
+                  <span class="mono">HIGH-TICKET FUNNEL &middot; 2H AGO</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cf">
+              <a href="#work" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+                </svg>
+              </a>
+              <span>Scroll to unfold</span>
+              <a href="#work" aria-label="X">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9.1L1 2h7l4.8 6.4L18.2 2zm-1.2 18h1.9L7.1 3.9H5.1L17 20z"/>
+                </svg>
+              </a>
+            </div>
+
+            <div class="ccall">
+              <div class="cn">Funnels That Print</div>
+              <div class="cs">Incoming call &middot; about your next funnel</div>
+              <div class="cav">
+                <img src="assets/img/team/gaurav.webp" alt="Gaurav Kapoor">
+              </div>
+
+              <div class="slide" id="slide" role="slider" aria-label="Slide to talk" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+                <span class="sk" id="sk">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff">
+                    <path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/>
+                  </svg>
+                </span>
+                <span class="st">slide to talk</span>
+              </div>
+              <a class="cm" href="mailto:info@funnelsthatprint.com">INFO@FUNNELSTHATPRINT.COM</a>
+            </div>
+
+            <div class="cform" id="pcall" data-lenis-prevent aria-hidden="true">
+              <div class="cfh">
+                <span class="cfl">
+                  <i></i>Connected <b id="ctime">00:00</b>
+                </span>
+                <button type="button" class="cend" id="cend" aria-label="End call">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff">
+                    <path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85a1 1 0 0 1-1.41-.02L.29 13.08a1 1 0 0 1 0-1.4C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.68a1 1 0 0 1 0 1.4l-2.48 2.48a1 1 0 0 1-1.41.02 11.2 11.2 0 0 0-2.67-1.85 1 1 0 0 1-.56-.9v-3.1A15 15 0 0 0 12 9z"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="cfw">
+                <div class="cfa">
+                  <img src="assets/img/team/gaurav.webp" alt="Gaurav Kapoor">
+                  <div>
+                    <b>Gaurav Kapoor</b>
+                    <span>Founder &middot; on the line</span>
+                  </div>
+                  <span class="wave" aria-hidden="true">
+                    <i></i><i></i><i></i><i></i><i></i>
+                  </span>
+                </div>
+
+                <h3>Tell me about your funnel.</h3>
+
+                <form id="pform" class="pform" novalidate>
+                  <fieldset>
+                    <legend>What do you need?</legend>
+                    <div class="pch">
+                      <label><input type="checkbox" name="need" value="AC Funnel" checked><span>AC Funnel</span></label>
+                      <label><input type="checkbox" name="need" value="VSL Funnel"><span>VSL Funnel</span></label>
+                      <label><input type="checkbox" name="need" value="Landing page"><span>Landing page</span></label>
+                      <label><input type="checkbox" name="need" value="Automation"><span>Automation</span></label>
+                      <label><input type="checkbox" name="need" value="AI calling"><span>AI calling</span></label>
+                    </div>
+                  </fieldset>
+
+                  <div class="pg2">
+                    <label><span>Name</span><input name="name" autocomplete="name" placeholder="Jane Smith" required></label>
+                    <label><span>Email</span><input name="email" type="email" autocomplete="email" placeholder="jane@company.com" required></label>
+                  </div>
+
+                  <div class="pg2">
+                    <label><span>Website</span><input name="site" placeholder="company.com"></label>
+                    <label><span>Monthly ad spend</span>
+                      <select name="spend">
+                        <option>Not running ads yet</option>
+                        <option>Under $5K</option>
+                        <option>$5K to $20K</option>
+                        <option>$20K to $50K</option>
+                        <option>$50K+</option>
+                      </select>
+                    </label>
+                  </div>
+
+                  <label>
+                    <span>What are you selling?</span>
+                    <textarea name="msg" rows="3" placeholder="Offer, price point, audience, and what is not working right now."></textarea>
+                  </label>
+
+                  <button type="submit" class="psend">Send to Gaurav <i>&#8599;</i></button>
+                  <p class="perr" id="perr" role="alert"></p>
+                </form>
+
+                <div class="pdone" id="pdone" hidden>
+                  <span class="ok">&#10003;</span>
+                  <b>Message ready to send</b>
+                  <p>Your email app opened with everything filled in. Press send and we reply within one business day.</p>
+                  <button type="button" class="psend" id="pagain">Back to the call</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flab" id="flab">
+          <button type="button" id="fprev" aria-label="Previous funnel">&larr;</button>
+          <span>
+            <b id="fnum">01 / 06</b>
+            <em id="fname" style="font-style:normal">Mortgage AI System</em>
+          </span>
+          <button type="button" id="fnext" aria-label="Next funnel">&rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <span class="hint">Pick a funnel</span>
+    <div class="fsel" id="fsel" role="tablist" aria-label="Funnels"></div>
+  </section>
+</div>
+
+<!-- ==========================================================================
+     SECTION 3: CASE STUDIES (HUB & FULL LIBRARIES)
+     ========================================================================== -->
+<div class="box" id="cases-hub" style="padding-top: 60px;">
+  <header class="cshero">
+    <h1 class="h1 d">
+      Case <span class="it">studies</span>
+    </h1>
+    <p class="lead">
+      Two libraries of real, verified results. Pick the one that matches your business.
+    </p>
+  </header>
+
+  <div class="hub">
+    <a class="hc lg" href="vanilla-html/case-leadgen.html">
+      <div class="fan">
+        <img src="assets/img/lg/Dd9D3rnSCMT.webp" alt="Lead generation case study proof" loading="lazy" style="--r: -8deg; --x: -30%;">
+        <img src="assets/img/lg/DdN7bs-xSg7.webp" alt="Lead generation case study proof" loading="lazy" style="--r: 0deg; --x: 0%;">
+        <img src="assets/img/lg/DbHD8X3ksnz.webp" alt="Lead generation case study proof" loading="lazy" style="--r: 8deg; --x: 30%;">
+      </div>
+      <div class="hb">
+        <span class="ht">QualifiedLeadsX&trade;</span>
+        <h2>Lead generation</h2>
+        <div class="hn"><b>125</b><span>case studies</span></div>
+        <p>Booked calls, verified leads and lower cost per lead for service businesses, agencies, coaches and local trades.</p>
+        <div class="hch">
+          <span>Roofing</span><span>Legal / MVA</span><span>Mortgage</span><span>MedSpa</span><span>Coaching</span><span>Low-ticket</span>
+        </div>
+        <span class="btn hbtn">Explore lead gen cases <i>&#8599;</i></span>
+      </div>
+    </a>
+
+    <a class="hc ec" href="vanilla-html/case-ecom.html">
+      <div class="fan">
+        <img src="assets/img/cs2/C9b-l3yS6GW.webp" alt="eCommerce case study proof" loading="lazy" style="--r: -8deg; --x: -30%;">
+        <img src="assets/img/cs2/C9RU-C9yhfU.webp" alt="eCommerce case study proof" loading="lazy" style="--r: 0deg; --x: 0%;">
+        <img src="assets/img/cs2/C83tKltSXUp.webp" alt="eCommerce case study proof" loading="lazy" style="--r: 8deg; --x: 30%;">
+      </div>
+      <div class="hb">
+        <span class="ht">Brand Scaling Hacks</span>
+        <h2>eCommerce &amp; DTC</h2>
+        <div class="hn"><b>126</b><span>case studies</span></div>
+        <p>Direct-response creative engines, paid ads and conversion funnels scaling consumer brands from 5 to 7 figures.</p>
+        <div class="hch">
+          <span>Apparel</span><span>Supplements</span><span>Jewelry</span><span>Skincare</span><span>Home &amp; Living</span><span>DTC</span>
+        </div>
+        <span class="btn hbtn">Explore ecom cases <i>&#8599;</i></span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<footer style="text-align: center; padding: 60px 20px; border-top: 1px solid var(--line);">
+  <p class="mono">&copy; 2026 Funnels That Print &middot; Modular Sections Bundle</p>
+</footer>
+
+<!-- Scripts -->
+<script src="vanilla-html/js/opening.js"></script>
+<script src="vanilla-html/js/portfolio-iphone.js"></script>
+</body>
+</html>

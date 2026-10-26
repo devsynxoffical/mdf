@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Case Studies Demo (Lead Gen & Ecom) | Funnels That Print</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="vanilla-html/css/case-studies.css">
+  <style>
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      overflow-x: clip;
+      padding-bottom: 80px;
+    }
+    .demo-bar {
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 80;
+      display: inline-flex;
+      gap: 10px;
+      padding: 6px 14px;
+      background: rgba(20,20,20,0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      color: #fff;
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+    .demo-bar a {
+      color: var(--lime);
+      text-decoration: none;
+    }
+    .switcher-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .sw-btn {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--line2);
+      background: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all .25s;
+    }
+    .sw-btn.active {
+      background: var(--or);
+      color: #fff;
+      border-color: var(--or);
+    }
+  </style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <span>Case Studies (Lead Gen &amp; Ecom)</span>
+  <a href="demo-all.html">View All &rarr;</a>
+</div>
+
+<!-- 1. Case Studies Hub Preview -->
+<div class="box" style="padding-top: 80px;">
+  <header class="cshero">
+    <h1 class="h1 d">
+      Case <span class="it">studies</span>
+    </h1>
+    <p class="lead">
+      Two libraries of real, verified results. Pick the one that matches your business.
+    </p>
+  </header>
+
+  <div class="hub">
+    <a class="hc lg" href="#live-library" onclick="switchLibrary('lg')">
+      <div class="fan">
+        <img src="assets/img/lg/Dd9D3rnSCMT.webp" alt="Lead generation case study proof" loading="lazy" style="--r: -8deg; --x: -30%;">
+        <img src="assets/img/lg/DdN7bs-xSg7.webp" alt="Lead generation case study proof" loading="lazy" style="--r: 0deg; --x: 0%;">
+        <img src="assets/img/lg/DbHD8X3ksnz.webp" alt="Lead generation case study proof" loading="lazy" style="--r: 8deg; --x: 30%;">
+      </div>
+      <div class="hb">
+        <span class="ht">QualifiedLeadsX&trade;</span>
+        <h2>Lead generation</h2>
+        <div class="hn"><b>125</b><span>case studies</span></div>
+        <p>Booked calls, verified leads and lower cost per lead for service businesses, agencies, coaches and local trades.</p>
+        <div class="hch">
+          <span>Roofing</span><span>Legal / MVA</span><span>Mortgage</span><span>MedSpa</span><span>Coaching</span><span>Low-ticket</span>
+        </div>
+        <span class="btn hbtn">Explore lead gen cases <i>&#8599;</i></span>
+      </div>
+    </a>
+
+    <a class="hc ec" href="#live-library" onclick="switchLibrary('ec')">
+      <div class="fan">
+        <img src="assets/img/cs2/C9b-l3yS6GW.webp" alt="eCommerce case study proof" loading="lazy" style="--r: -8deg; --x: -30%;">
+        <img src="assets/img/cs2/C9RU-C9yhfU.webp" alt="eCommerce case study proof" loading="lazy" style="--r: 0deg; --x: 0%;">
+        <img src="assets/img/cs2/C83tKltSXUp.webp" alt="eCommerce case study proof" loading="lazy" style="--r: 8deg; --x: 30%;">
+      </div>
+      <div class="hb">
+        <span class="ht">Brand Scaling Hacks</span>
+        <h2>eCommerce &amp; DTC</h2>
+        <div class="hn"><b>126</b><span>case studies</span></div>
+        <p>Direct-response creative engines, paid ads and conversion funnels scaling consumer brands from 5 to 7 figures.</p>
+        <div class="hch">
+          <span>Apparel</span><span>Supplements</span><span>Jewelry</span><span>Skincare</span><span>Home &amp; Living</span><span>DTC</span>
+        </div>
+        <span class="btn hbtn">Explore ecom cases <i>&#8599;</i></span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- 2. Live Interactive Library Grid -->
+<main class="box" id="live-library">
+  <div class="switcher-row">
+    <button class="sw-btn active" id="btn-lg" onclick="switchLibrary('lg')">Lead Gen Library (125)</button>
+    <button class="sw-btn" id="btn-ec" onclick="switchLibrary('ec')">eCommerce Library (126)</button>
+  </div>
+
+  <header class="cshero" style="padding-top: 20px;">
+    <span class="cstag" id="lib-tag">QualifiedLeadsX™ &middot; 125 case studies</span>
+    <h1 class="h1 d" id="lib-title">Lead gen <span class="it">case studies</span></h1>
+    <p class="lead" id="lib-desc">125 QualifiedLeadsX™ campaigns across roofing, legal, mortgage, MedSpa, coaching, low-ticket offers and more.</p>
+  </header>
+
+  <div class="cfil">
+    <div class="cchips" id="cchips"></div>
+    <label class="csrch">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+      </svg>
+      <input id="cq" type="search" placeholder="Search revenue, niche, keyword" aria-label="Search case studies">
+    </label>
+  </div>
+
+  <div class="cgrid2" id="cgrid"></div>
+  <p class="cnone" id="cnone" hidden>No case studies match that search.</p>
+
+  <div class="cmore">
+    <button type="button" class="btn lm2" id="lmore">Load more <i>&#8599;</i></button>
+    <span class="mono" id="lcount"></span>
+  </div>
+</main>
+
+<script src="vanilla-html/js/cases.js"></script>
+<script src="vanilla-html/js/leads.js"></script>
+<script src="vanilla-html/js/case-studies.js"></script>
+<script>
+  let currentSet = 'lg';
+
+  function switchLibrary(set) {
+    currentSet = set;
+    document.getElementById('btn-lg').classList.toggle('active', set === 'lg');
+    document.getElementById('btn-ec').classList.toggle('active', set === 'ec');
+
+    if (set === 'lg') {
+      document.getElementById('lib-tag').textContent = 'QualifiedLeadsX™ · 125 case studies';
+      document.getElementById('lib-title').innerHTML = 'Lead gen <span class="it">case studies</span>';
+      document.getElementById('lib-desc').textContent = '125 QualifiedLeadsX™ campaigns across roofing, legal, mortgage, MedSpa, coaching, low-ticket offers and more.';
+    } else {
+      document.getElementById('lib-tag').textContent = 'Brand Scaling Hacks · 126 case studies';
+      document.getElementById('lib-title').innerHTML = 'Ecom <span class="it">case studies</span>';
+      document.getElementById('lib-desc').textContent = '126 direct-response eCommerce and DTC brands scaled with Meta ads, creative engines and funnels.';
+    }
+
+    window.initCaseStudies({
+      set: set,
+      detailUrl: 'vanilla-html/case-detail.html',
+      step: 8
+    });
+  }
+
+  // Start with Lead Gen
+  switchLibrary('lg');
+</script>
+</body>
+</html>

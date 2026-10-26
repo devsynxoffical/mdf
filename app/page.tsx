@@ -1,6 +1,7 @@
 import UFHero from "@/components/uf/UFHero";
+import MDFIphoneDuoPortfolio from "@/components/portfolio/MDFIphoneDuoPortfolio";
+import MDFCaseStudiesHub from "@/components/cases/MDFCaseStudiesHub";
 import UFStatement from "@/components/uf/UFStatement";
-import UFLeaks from "@/components/uf/UFLeaks";
 import UFHeadcount from "@/components/uf/UFHeadcount";
 import UFProof from "@/components/uf/UFProof";
 import UFWorkProofGrid from "@/components/uf/UFWorkProofGrid";
@@ -16,13 +17,27 @@ import UFFooter from "@/components/uf/UFFooter";
 export default function Home() {
   return (
     <div id="top">
+      {/* User's Original Opening Hero with 3D Resn Diamond & Infinite Headline */}
       <UFHero />
+
+      {/* Statement & 3D Crystal */}
       <UFStatement />
       <UFCrystal />
-      <UFLeaks />
+
+      {/* Funnels Portfolio in iPhone Duo 3D Layout */}
+      <div id="funnels">
+        <MDFIphoneDuoPortfolio />
+      </div>
+
+      {/* Headcount Proof */}
       <UFHeadcount />
       <UFProof />
       <UFWorkProofGrid />
+
+      {/* 251+ Case Studies Hub (Lead Gen & eCommerce) */}
+      <MDFCaseStudiesHub />
+
+      {/* Process & Proof Sections */}
       <UFProcess />
       <UFOpinions />
       <UFPricing />

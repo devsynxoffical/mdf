@@ -91,6 +91,9 @@ export default function ScrollProvider({ children }: { children: ReactNode }) {
     }
 
     const lenis = new Lenis({ lerp: 0.08 });
+    if (typeof window !== "undefined") {
+      (window as any).lenis = lenis;
+    }
 
     lenis.on("scroll", ScrollTrigger.update);
     const raf = (time: number) => {
@@ -113,6 +116,9 @@ export default function ScrollProvider({ children }: { children: ReactNode }) {
       st.kill();
       gsap.ticker.remove(raf);
       lenis.destroy();
+      if (typeof window !== "undefined") {
+        delete (window as any).lenis;
+      }
     };
   }, [reducedMotion]);
 

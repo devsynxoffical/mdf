@@ -1,25 +1,18 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
-import CasesIndex from "@/components/cases/CasesIndex";
+import MDFCaseStudiesHub from "@/components/cases/MDFCaseStudiesHub";
 import UFFooter from "@/components/uf/UFFooter";
-import { CASE_STUDIES } from "@/lib/cases";
 
 export const metadata: Metadata = {
-  title: "Case Studies — Million Dollar Funnel™",
+  title: "251+ Verified Case Studies — Million Dollar Funnel™",
   description:
-    "Real Million Dollar Funnel™ builds — coaching LTO scale-ups, tracking rebuilds, and revenue systems with proof.",
+    "Explore 251+ verified client acquisitions across Lead Generation and eCommerce — real dashboards, video proofs, ROAS metrics, and system breakdowns.",
 };
 
 export default function CasesPage() {
-  // With a single case, skip the index and open the full VSL page.
-  if (CASE_STUDIES.length === 1) {
-    redirect(`/cases/${CASE_STUDIES[0].slug}`);
-  }
-
   return (
-    <>
-      <CasesIndex />
+    <main className="min-h-screen bg-[#050508] text-white pt-16">
+      <MDFCaseStudiesHub />
       <UFFooter />
-    </>
+    </main>
   );
 }

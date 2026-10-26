@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import MDFIphoneDuoPortfolio from "@/components/portfolio/MDFIphoneDuoPortfolio";
 import FunnelsPage from "@/components/pages/FunnelsPage";
 import UFFooter from "@/components/uf/UFFooter";
 
@@ -10,9 +11,10 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <>
+    <main className="min-h-screen bg-[#050508] text-white pt-16">
+      <MDFIphoneDuoPortfolio />
       <FunnelsPage />
       <UFFooter />
-    </>
+    </main>
   );
 }

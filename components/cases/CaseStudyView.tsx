@@ -7,7 +7,6 @@ import Magnetic from "@/components/uf/Magnetic";
 import VslPlayer from "@/components/cases/VslPlayer";
 import UFOpinions from "@/components/uf/UFOpinions";
 import UFProof from "@/components/uf/UFProof";
-import UFLeaks from "@/components/uf/UFLeaks";
 import { playTick } from "@/components/audio/SoundToggle";
 import type { CaseStudy } from "@/lib/cases";
 import { CASE_STUDIES } from "@/lib/cases";
@@ -329,7 +328,6 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
       </section>
 
       {/* ─── 4. SHARED SYSTEM ARCHITECTURE & PROOF ─── */}
-      <UFLeaks />
       <UFProof />
       <UFOpinions />
 

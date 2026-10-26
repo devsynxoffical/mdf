@@ -5,6 +5,7 @@ import Magnetic from "@/components/uf/Magnetic";
 import { CASE_STUDIES } from "@/lib/cases";
 
 const LINKS = [
+  ["Case Studies", "/cases"],
   ["Work Proof", "/work-proof"],
   ["Funnels", "/funnels"],
   ["FAQ", "/faq"],
