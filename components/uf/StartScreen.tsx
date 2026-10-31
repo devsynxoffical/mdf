@@ -2,9 +2,47 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const LOAD_MS = 2000;
+const LOAD_MS = 2800;
 const EXPAND_MS = 1100;
-const FAILSAFE_MS = 5500;
+const FAILSAFE_MS = 6500;
+
+const LOAD_WORDS = [
+  "Funnels",
+  "AI",
+  "Automations",
+  "SMS",
+  "Emails",
+  "Workflows",
+  "Landing Pages",
+  "GHL",
+  "ClickFunnels",
+];
+
+function WordCycler({ progress, hide }: { progress: number; hide: boolean }) {
+  // Counter eases out; undo that so each word gets an equal slice of time.
+  const t = 1 - Math.cbrt(1 - Math.min(100, progress) / 100);
+  const idx = Math.min(LOAD_WORDS.length - 1, Math.floor(t * LOAD_WORDS.length));
+  return (
+    <div
+      className={`flex flex-col items-center transition-opacity duration-300 ${
+        hide ? "opacity-0" : "opacity-100"
+      }`}
+      aria-hidden
+    >
+      <span className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[#38BDF8]/80 sm:text-[11px]">
+        {String(idx + 1).padStart(2, "0")} / {String(LOAD_WORDS.length).padStart(2, "0")}
+      </span>
+      <span className="relative block h-[1.1em] overflow-hidden px-2 font-sans text-[clamp(40px,9vw,112px)] font-extrabold leading-[1.1] tracking-[-0.04em]">
+        <span
+          key={idx}
+          className="mdf-load-word block whitespace-nowrap bg-gradient-to-b from-white via-white to-[#38BDF8] bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(18,84,236,0.45)]"
+        >
+          {LOAD_WORDS[idx]}
+        </span>
+      </span>
+    </div>
+  );
+}
 
 function DigitColumn({ digit }: { digit: number }) {
   return (
@@ -191,7 +229,8 @@ export default function StartScreen() {
       hidden={done}
       style={done ? { display: "none" } : undefined}
     >
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+      <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-6">
+        <WordCycler progress={progress} hide={markVisible || expanding || done} />
         <div
           className={`h-[2px] w-20 overflow-hidden bg-white/15 transition-all duration-400 sm:w-24 ${
             markVisible || done ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100"

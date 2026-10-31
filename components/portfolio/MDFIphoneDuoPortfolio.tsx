@@ -175,7 +175,6 @@ export default function MDFIphoneDuoPortfolio() {
       document.getElementById("site"),
       document.getElementById("site2"),
     ].filter(Boolean) as HTMLElement[];
-    const scr = document.querySelector("#pl .scr");
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -247,8 +246,11 @@ export default function MDFIphoneDuoPortfolio() {
           }
         }
 
+        // Measure the visible screen: the left pane is hidden on mobile.
+        const scr = pr.querySelector(".scr");
         if (sites.length && scr) {
-          const siteMax = Math.max(0, sites[0].scrollHeight - scr.clientHeight);
+          const visibleSite = pr.querySelector<HTMLElement>(".site") || sites[0];
+          const siteMax = Math.max(0, visibleSite.scrollHeight - scr.clientHeight);
           const sc = cl((p - 0.20) / 0.64);
           const yy = Math.round(sc * siteMax);
           if (yy !== lastYY) {

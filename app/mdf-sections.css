@@ -670,7 +670,8 @@
 
 /* --------------------------------------------------------------------------
    2. FUNNELS PORTFOLIO — IPHONE DUO 3D FOLDFOLIO (PRECISE SIZING & MOBILE PHYSICS)
-   ------------------------------------------------------------------------:root {
+   -------------------------------------------------------------------------- */
+#portwrap {
   --or: #1254EC;
   --sky: #38BDF8;
   --fg: #ffffff;
@@ -709,8 +710,8 @@
   padding-right: var(--gut);
   box-sizing: border-box;
   /* Headroom tuned: navbar (76px) + header (~65px) + footer selector (~60px) + spacing */
-  --H: min(calc(100svh - clamp(220px, 26vh, 275px)), 600px);
-  --P: calc(var(--H) * 0.7306);
+  --H: min(calc(100svh - clamp(180px, 21vh, 230px)), 920px);
+  --P: min(calc(var(--H) * 0.7306), calc(50vw - var(--gut) - 8px));
   background: radial-gradient(ellipse at 50% 20%, #060d26 0%, #000000 70%);
   isolation: isolate;
 }
@@ -1393,8 +1394,8 @@
 @media (max-width: 980px) {
   /* 1. Mobile Phone Dimensions */
   .port {
-    --P: 86vw;                                      /* Phone Width: 86% of mobile screen */
-    --H: min(66svh, calc(86vw / 0.73));             /* Phone Height: proportional to width */
+    --P: min(92vw, 520px);                          /* Phone Width: nearly full mobile screen */
+    --H: min(calc(100svh - 190px), calc(var(--P) * 2.1)); /* Tall phone, fills the viewport */
   }
   .port .giant {
     font-size: clamp(70px, 22vw, 160px);
@@ -1457,7 +1458,7 @@
     height: 32px;
   }
   .flab {
-    left: 75%;
+    left: 100%;                                     /* fold is shifted by -P/2, so 100% = phone centre */
   }
   .flab span {
     padding: 0 6px;
