@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReveal } from "./useReveal";
 
 export const SERVICES: { id: number; title: string; desc: string; category: "build" | "system"; badge: string }[] = [
@@ -80,9 +80,33 @@ export const SERVICES: { id: number; title: string; desc: string; category: "bui
  * ( 03 ) What we do — ported from Funnels That Print and re-themed for MDF.
  * Styles live in app/ftp-sections.css, scoped under `.mdf-ftp`.
  */
+const CYCLE_MS = 5200;
+const slug = (t: string) => t.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-");
+
 export default function MDFServicesSection() {
   const [selectedId, setSelectedId] = useState(0);
+  const [paused, setPaused] = useState(false);
   const revealRef = useReveal<HTMLElement>();
+  const inViewRef = useRef(false);
+
+  // Auto-cycle through the services while the section is on screen.
+  useEffect(() => {
+    const el = revealRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => {
+      inViewRef.current = e.isIntersecting;
+    });
+    io.observe(el);
+    const id = window.setInterval(() => {
+      if (inViewRef.current && !paused) {
+        setSelectedId((i) => (i + 1) % SERVICES.length);
+      }
+    }, CYCLE_MS);
+    return () => {
+      io.disconnect();
+      window.clearInterval(id);
+    };
+  }, [paused, revealRef]);
 
   const buildServices = SERVICES.filter((s) => s.category === "build");
   const systemServices = SERVICES.filter((s) => s.category === "system");
@@ -462,106 +486,73 @@ export default function MDFServicesSection() {
     }
   };
 
+  const renderRow = (svc: (typeof SERVICES)[number]) => {
+    const on = selectedId === svc.id;
+    return (
+      <div
+        key={svc.id}
+        className={`row ${on ? "on" : ""}`}
+        data-i={svc.id}
+        tabIndex={0}
+        onClick={() => setSelectedId(svc.id)}
+        onMouseEnter={() => setSelectedId(svc.id)}
+        onFocus={() => setSelectedId(svc.id)}
+      >
+        <span className="n">{svc.badge}</span>
+        <div>
+          <h3>{svc.title}</h3>
+          <p>
+            <span>{svc.desc}</span>
+          </p>
+        </div>
+        <span className="ar">&#8599;</span>
+        {on && <i key={`bar-${svc.id}`} className={`rbar ${paused ? "hold" : ""}`} />}
+      </div>
+    );
+  };
+
   return (
-    <div className="mdf-ftp">
+    <div className="mdf-ftp mdf-svc-v2">
     <section ref={revealRef} className="sec box" id="services">
-      <div className="head">
+      <div className="mhead">
         <div className="rv">
           <div className="eyebrow mono">( 03 ) — What we do</div>
-          <h2 className="h2 d">
-            Everything you need to turn traffic into{" "}
-            <span className="it">customers.</span>
+          <h2 className="mh2">
+            <span>Traffic In.</span>
+            <span className="sky">Customers Out.</span>
           </h2>
         </div>
-        <p className="lead rv" style={{ "--rv": 2 } as React.CSSProperties}>
-          Your funnel is more than a landing page. We build the complete
-          conversion journey, from the first click to the booked appointment:
-          strategy, funnel development, automation, qualification and follow-up.
-        </p>
-      </div>
-
-      <div className="svc">
-        <div className="rv" style={{ "--rv": 3 } as React.CSSProperties}>
-          {/* Build Services */}
-          <div className="grp">
-            <div className="gt">
-              <span className="big">Funnel &amp; page builds</span>
-              <span className="mono">(service001) Six formats</span>
-            </div>
-            <div id="g1">
-              {buildServices.map((svc) => (
-                <div
-                  key={svc.id}
-                  className={`row ${selectedId === svc.id ? "on" : ""}`}
-                  data-i={svc.id}
-                  tabIndex={0}
-                  onClick={() => setSelectedId(svc.id)}
-                  onMouseEnter={() => setSelectedId(svc.id)}
-                  onFocus={() => setSelectedId(svc.id)}
-                >
-                  <span className="n">
-                    <b>{svc.badge}</b>
-                    service
-                  </span>
-                  <div>
-                    <h3>{svc.title}</h3>
-                    <p>
-                      <span>{svc.desc}</span>
-                    </p>
-                  </div>
-                  <span className="ar">&#8599;</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* System Services */}
-          <div className="grp">
-            <div className="gt">
-              <span className="big">Automation &amp; follow-up</span>
-              <span className="mono">
-                (service002) Turn every lead into a follow-up
-              </span>
-            </div>
-            <div id="g2">
-              {systemServices.map((svc) => (
-                <div
-                  key={svc.id}
-                  className={`row ${selectedId === svc.id ? "on" : ""}`}
-                  data-i={svc.id}
-                  tabIndex={0}
-                  onClick={() => setSelectedId(svc.id)}
-                  onMouseEnter={() => setSelectedId(svc.id)}
-                  onFocus={() => setSelectedId(svc.id)}
-                >
-                  <span className="n">
-                    <b>{svc.badge}</b>
-                    service
-                  </span>
-                  <div>
-                    <h3>{svc.title}</h3>
-                    <p>
-                      <span>{svc.desc}</span>
-                    </p>
-                  </div>
-                  <span className="ar">&#8599;</span>
-                </div>
-              ))}
-            </div>
+        <div className="rv" style={{ "--rv": 2 } as React.CSSProperties}>
+          <p className="lead">
+            Your funnel is more than a landing page. We build the complete
+            conversion journey, from the first click to the booked appointment:
+            strategy, funnel development, automation, qualification and follow-up.
+          </p>
+          <div className="mstats">
+            <span><b>{SERVICES.length}</b> services</span>
+            <span><b>1</b> team</span>
+            <span><b>0</b> hand-offs</span>
           </div>
         </div>
+      </div>
 
-        {/* Dynamic Interactive Preview Card */}
+      <div
+        className="svc"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        {/* Live preview inside an MDF device frame */}
         <aside
           className="prev rv"
-          style={{ "--rv": 5 } as React.CSSProperties}
+          style={{ "--rv": 3 } as React.CSSProperties}
           id="prev"
           data-c={selectedId % 4}
           aria-label="Service Visual Preview"
         >
           <div className="pt">
-            <span id="pvt">{currentService.title}</span>
-            <span>Live</span>
+            <span className="dots" aria-hidden="true"><i /><i /><i /></span>
+            <span className="url">mdf.build/<b>{slug(currentService.title)}</b></span>
+            <span className="live">Live</span>
           </div>
 
           <div className="pb" id="pvb">
@@ -578,7 +569,32 @@ export default function MDFServicesSection() {
               </div>
             ))}
           </div>
+
+          <div className="pfoot">
+            <span>{currentService.badge} / {String(SERVICES.length).padStart(2, "0")}</span>
+            <span>{currentService.category === "build" ? "Build" : "Automate"}</span>
+          </div>
         </aside>
+
+        <div className="rv" style={{ "--rv": 4 } as React.CSSProperties}>
+          <div className="grp">
+            <div className="gt">
+              <span className="gchip">Build</span>
+              <span className="big">Funnel &amp; page builds</span>
+              <span className="mono">{String(buildServices.length).padStart(2, "0")} formats</span>
+            </div>
+            <div id="g1">{buildServices.map(renderRow)}</div>
+          </div>
+
+          <div className="grp">
+            <div className="gt">
+              <span className="gchip">Automate</span>
+              <span className="big">Automation &amp; follow-up</span>
+              <span className="mono">{String(systemServices.length).padStart(2, "0")} systems</span>
+            </div>
+            <div id="g2">{systemServices.map(renderRow)}</div>
+          </div>
+        </div>
       </div>
     </section>
     </div>
