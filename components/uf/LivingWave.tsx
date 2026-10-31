@@ -21,10 +21,12 @@ export default function LivingWave({
   const glowPathRef = useRef<SVGPathElement>(null);
   const orbRef = useRef<SVGCircleElement>(null);
   const orbGlowRef = useRef<SVGCircleElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let animId: number;
+    let animId = 0;
     let time = 0;
+    let onScreen = true;
 
     const midY = height / 2;
     const pointsCount = 42;
@@ -78,18 +80,26 @@ export default function LivingWave({
         orbGlowRef.current.setAttribute("cy", peakY.toFixed(2));
       }
 
-      animId = requestAnimationFrame(render);
+      animId = onScreen ? requestAnimationFrame(render) : 0;
     };
+
+    // Stop the loop while the wave is off screen.
+    const io = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      if (onScreen && !animId) animId = requestAnimationFrame(render);
+    });
+    if (wrapRef.current) io.observe(wrapRef.current);
 
     animId = requestAnimationFrame(render);
 
     return () => {
       cancelAnimationFrame(animId);
+      io.disconnect();
     };
   }, [width, height]);
 
   return (
-    <div className={`relative ${className}`} style={{ width, height }}>
+    <div ref={wrapRef} className={`relative ${className}`} style={{ width, height }}>
       <svg
         viewBox={`0 0 ${width} ${height}`}
         fill="none"

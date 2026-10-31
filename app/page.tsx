@@ -2,13 +2,13 @@ import UFHero from "@/components/uf/UFHero";
 import MDFIphoneDuoPortfolio from "@/components/portfolio/MDFIphoneDuoPortfolio";
 import MDFCaseStudiesHub from "@/components/cases/MDFCaseStudiesHub";
 import UFStatement from "@/components/uf/UFStatement";
-import UFHeadcount from "@/components/uf/UFHeadcount";
-import UFProof from "@/components/uf/UFProof";
+import MDFServicesSection from "@/components/ftp/MDFServicesSection";
+import MDFWhoSection from "@/components/ftp/MDFWhoSection";
 import UFWorkProofGrid from "@/components/uf/UFWorkProofGrid";
 import UFOpinions from "@/components/uf/UFOpinions";
 import UFPricing from "@/components/uf/UFPricing";
 import UFProcess from "@/components/uf/UFProcess";
-import UFQuestions from "@/components/uf/UFQuestions";
+import MDFFaqSection from "@/components/ftp/MDFFaqSection";
 import UFCrystal from "@/components/uf/UFCrystal";
 import LusionAstronautSection from "@/components/uf/LusionAstronautSection";
 import UFSquareMarquee from "@/components/uf/UFSquareMarquee";
@@ -29,9 +29,9 @@ export default function Home() {
         <MDFIphoneDuoPortfolio />
       </div>
 
-      {/* Headcount Proof */}
-      <UFHeadcount />
-      <UFProof />
+      {/* ( 03 ) What we do  ·  ( 04 ) Who we work with */}
+      <MDFServicesSection />
+      <MDFWhoSection />
       <UFWorkProofGrid />
 
       {/* 251+ Case Studies Hub (Lead Gen & eCommerce) */}
@@ -41,7 +41,7 @@ export default function Home() {
       <UFProcess />
       <UFOpinions />
       <UFPricing />
-      <UFQuestions />
+      <MDFFaqSection />
       <LusionAstronautSection />
       <UFSquareMarquee />
       <UFFooter />

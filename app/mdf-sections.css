@@ -837,7 +837,7 @@
   -webkit-backface-visibility: hidden;
 }
 
-.pl {
+:where(#portwrap) .pl {
   left: 0;
   width: calc(var(--P) + 1.5px);
   padding: 4px 0 4px 4px;
@@ -848,7 +848,7 @@
   box-shadow: none !important;
 }
 
-.pr {
+:where(#portwrap) .pr {
   left: 50%;
   padding: 4px 4px 4px 0;
   border-radius: 0 46px 46px 0;
@@ -856,7 +856,7 @@
   box-shadow: none !important;
 }
 
-.pr::before, .pr::after, .cover::before, .cover::after {
+:where(#portwrap) .pr::before, :where(#portwrap) .pr::after, .cover::before, .cover::after {
   content: "";
   position: absolute;
   right: -3px;
@@ -867,8 +867,8 @@
   box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.5);
   z-index: -1;
 }
-.pr::before, .cover::before { top: 17%; }
-.pr::after, .cover::after { top: 31%; height: 6%; }
+:where(#portwrap) .pr::before, .cover::before { top: 17%; }
+:where(#portwrap) .pr::after, .cover::after { top: 31%; height: 6%; }
 
 .pane .scr {
   position: relative;
@@ -879,12 +879,12 @@
   border: 9px solid #050505;
 }
 
-.pl .scr {
+:where(#portwrap) .pl .scr {
   border-radius: 42px 0 0 42px;
   border-right: 0 !important;
 }
 
-.pr .scr {
+:where(#portwrap) .pr .scr {
   border-radius: 0 42px 42px 0;
   border-left: 0 !important;
 }
@@ -903,8 +903,8 @@
   left: calc(-1 * (var(--P) - 26px));
 }
 
-.pl .scr::after,
-.pr .scr::after {
+:where(#portwrap) .pl .scr::after,
+:where(#portwrap) .pr .scr::after {
   display: none !important;
 }
 
@@ -917,7 +917,7 @@
   will-change: transform;
 }
 
-.pr .site {
+:where(#portwrap) .pr .site {
   left: calc(-1 * (var(--P) - 13px));
 }
 
@@ -1407,21 +1407,21 @@
   .fold {
     transform: translate3d(calc(var(--P) * -0.5), 0, 0) !important;
   }
-  .pl {
+  :where(#portwrap) .pl {
     display: none !important;                       /* Hide left folded pane */
   }
-  .pr {
+  :where(#portwrap) .pr {
     border-radius: 46px;                            /* Fully rounded right pane */
     padding-left: 4px;
   }
-  .pr .scr {
+  :where(#portwrap) .pr .scr {
     border-radius: 36px;
     border-left: 9px solid #050505 !important;
   }
-  .pr .scr::after {
+  :where(#portwrap) .pr .scr::after {
     display: none;
   }
-  .pr .site {
+  :where(#portwrap) .pr .site {
     left: 0 !important;
     width: calc(var(--P) - 26px);                   /* Full inner screen width */
   }
