@@ -136,7 +136,7 @@ export default function MDFWhoSection() {
   const numStr = String(selectedIdx + 1).padStart(2, "0");
 
   return (
-    <div className="mdf-ftp">
+    <div className="mdf-ftp mdf-who-v2">
     <section
       ref={sectionRef}
       className="sec box"
@@ -144,12 +144,12 @@ export default function MDFWhoSection() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="head">
+      <div className="mhead">
         <div className="rv">
           <div className="eyebrow mono">( 04 ) — Who we work with</div>
-          <h2 className="h2 d">
-            Built for businesses that sell through{" "}
-            <span className="it">conversation.</span>
+          <h2 className="mh2">
+            <span>Built For</span>
+            <span className="sky">Conversations.</span>
           </h2>
         </div>
         <p className="lead rv" style={{ "--rv": 2 } as React.CSSProperties}>
@@ -158,48 +158,45 @@ export default function MDFWhoSection() {
         </p>
       </div>
 
-      <div className="who">
-        <div className="sect rv" id="sect" style={{ "--rv": 3 } as React.CSSProperties}>
-          {WHO.map((item, index) => (
-            <a
-              key={item.name}
-              href="#who"
-              data-i={index}
-              className={selectedIdx === index ? "on" : ""}
-              onClick={(e) => {
-                e.preventDefault();
-                setWho(index);
-              }}
-              onMouseEnter={() => setWho(index)}
-              onFocus={() => setWho(index)}
-            >
-              <span className="n">{String(index + 1).padStart(2, "0")}</span>
-              <h3>{item.name}</h3>
-              <em>{item.out}</em>
-            </a>
-          ))}
-        </div>
+      {/* Business-type rail */}
+      <div className="wrail rv" role="tablist" style={{ "--rv": 3 } as React.CSSProperties}>
+        {WHO.map((item, index) => (
+          <button
+            key={item.name}
+            type="button"
+            role="tab"
+            aria-selected={selectedIdx === index}
+            className={selectedIdx === index ? "on" : ""}
+            onClick={() => setWho(index)}
+            onMouseEnter={() => setWho(index)}
+            onFocus={() => setWho(index)}
+          >
+            <span className="n">{String(index + 1).padStart(2, "0")}</span>
+            <b>{item.name}</b>
+            <em>{item.out}</em>
+            {selectedIdx === index && (
+              <i key={`prog-${animKey}`} className={`tprog ${isHovered ? "hold" : ""}`} />
+            )}
+          </button>
+        ))}
+      </div>
 
-        <aside
-          ref={cardRef}
-          className="wcard wb rv"
-          style={{ "--rv": 5 } as React.CSSProperties}
-          id="wb"
-          onPointerMove={handlePointerMove}
-        >
-          <span key={`big-${animKey}`} className="wbig go" id="wbig" aria-hidden="true">
-            {numStr}
+      {/* Detail board */}
+      <div
+        ref={cardRef}
+        className="wboard rv"
+        style={{ "--rv": 4 } as React.CSSProperties}
+        onPointerMove={handlePointerMove}
+      >
+        <span key={`big-${animKey}`} className="wbig go" aria-hidden="true">
+          {numStr}
+        </span>
+
+        <div className="wleft">
+          <span className="wt">
+            <b>{numStr}</b> / 06 &middot; {current.name}
           </span>
-          <div className="top">
-            <span className="wt">
-              <b id="wn">{numStr}</b> / 06 &middot; <span id="wname">{current.name}</span>
-            </span>
-            <span className="wfit">
-              <i />Best fit
-            </span>
-          </div>
-
-          <p key={`p-${animKey}`} className="go" id="wp">
+          <p key={`p-${animKey}`} className="wdesc go">
             {current.desc.split(" ").map((w, k) => (
               <span key={k} style={{ "--k": k } as React.CSSProperties}>
                 {w}
@@ -207,54 +204,34 @@ export default function MDFWhoSection() {
               </span>
             ))}
           </p>
-
-          <div
-            key={`wj-${animKey}`}
-            className="wj"
-            id="wj"
-            aria-label="Typical funnel journey"
-          >
-            <div className="wl" aria-hidden="true">
-              <s />
-              <b />
-            </div>
-            {current.journey.map((s, k) => (
-              <div
-                key={k}
-                className={`ws${k === current.journey.length - 1 ? " end" : ""}`}
-                style={{ "--k": k } as React.CSSProperties}
-              >
-                <span className="wi">{s.icon}</span>
-                <em>{s.label}</em>
-              </div>
+          <div className="wch">
+            {current.chips.map((c) => (
+              <span key={c}>{c}</span>
             ))}
-            <span className="wout" style={{ "--k": 5 } as React.CSSProperties}>
-              {current.out}
-            </span>
           </div>
+          <Link className="btn g" href={ROUTES.book}>
+            Map my funnel <i>&#8599;</i>
+          </Link>
+        </div>
 
-          <div className="wfoot">
-            <div className="wch" id="wch">
-              {current.chips.map((c) => (
-                <span key={c}>{c}</span>
-              ))}
+        <ol key={`wj-${animKey}`} className="wtimeline" aria-label="Typical funnel journey">
+          {current.journey.map((step, k) => (
+            <li key={k} style={{ "--k": k } as React.CSSProperties}>
+              <span className="wi">{step.icon}</span>
+              <div>
+                <small>Step {String(k + 1).padStart(2, "0")}</small>
+                <em>{step.label}</em>
+              </div>
+            </li>
+          ))}
+          <li className="wres" style={{ "--k": current.journey.length } as React.CSSProperties}>
+            <span className="wi">&#10003;</span>
+            <div>
+              <small>Outcome</small>
+              <em>{current.out}</em>
             </div>
-            <Link className="btn g" href={ROUTES.book}>
-              Map my funnel <i>&#8599;</i>
-            </Link>
-          </div>
-
-          <div className="wprog">
-            <i
-              key={`prog-${animKey}`}
-              id="wpi"
-              style={{
-                width: "100%",
-                transition: "width 4.2s linear",
-              }}
-            />
-          </div>
-        </aside>
+          </li>
+        </ol>
       </div>
     </section>
     </div>

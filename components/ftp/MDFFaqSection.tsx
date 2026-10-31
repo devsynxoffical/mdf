@@ -199,17 +199,18 @@ export default function MDFFaqSection() {
   }, [selectedIdx, currentFaq]);
 
   return (
-    <div className="mdf-ftp">
+    <div className="mdf-ftp mdf-faq-v2">
     <section className="sec box" id="faq">
       <div className="fx-head">
         <div>
           <div className="eyebrow mono">( 07 ) — The Questions</div>
-          <h2 className="h2 d">
-            Questions, <span className="it">answered.</span>
+          <h2 className="mh2">
+            <span>Before You</span>
+            <span className="sky">Book.</span>
           </h2>
           <p className="lead">
-            Pick a question and get a straight answer, the same way we would
-            answer on a call.
+            Tap any question and our strategy desk answers it straight, the
+            same way we would on a call.
           </p>
         </div>
         <div className="fx-stats">
@@ -295,7 +296,7 @@ export default function MDFFaqSection() {
                   >
                     <span className="n">{String(idx + 1).padStart(2, "0")}</span>
                     <span>{item.q}</span>
-                    <i>&rarr;</i>
+                    <i aria-hidden="true">+</i>
                   </button>
                 </li>
               );
@@ -311,10 +312,15 @@ export default function MDFFaqSection() {
 
         <div className="fx-r">
           <div className="fx-top">
-            <span className="fx-av">MDF</span>
+            <span className="fx-av">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/MDF_Logo_White_transparent.png" alt="" />
+            </span>
             <div>
-              <b>Million Dollar Funnel™</b>
-              <small>Usually replies within a day</small>
+              <b>MDF Strategy Desk</b>
+              <small>
+                <i className="fx-online" /> Online · replies within a day
+              </small>
             </div>
             <span className="fx-ct" id="fxc">
               <em>{String(selectedIdx + 1).padStart(2, "0")}</em> /{" "}
@@ -345,7 +351,7 @@ export default function MDFFaqSection() {
               <>
                 <div className="fx-m u">{userSubmittedQ}</div>
                 <div className="fx-m b">
-                  <span className="who">MDF Team</span>
+                  <span className="who">MDF Strategy Desk</span>
                   Good question. Opening your email app so it reaches us
                   directly, we reply within a day.
                 </div>
@@ -354,7 +360,7 @@ export default function MDFFaqSection() {
               <>
                 <div className="fx-m u">{currentFaq?.q}</div>
                 <div className="fx-m b">
-                  <span className="who">MDF Team</span>
+                  <span className="who">MDF Strategy Desk</span>
                   {isTyping ? (
                     <span className="fx-dots">
                       <i />
