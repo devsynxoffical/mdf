@@ -400,10 +400,29 @@ export default function ResnDiamond({
       window.addEventListener("resize", handleResize);
 
       // 9. Animation Loop
-      let animationFrameId: number;
+      let animationFrameId = 0;
       let clock = new THREE.Clock();
 
+      // Only render while the hero is on screen and the tab is visible.
+      let onScreen = true;
+      const resume = () => {
+        if (!animationFrameId && onScreen && !document.hidden) {
+          clock.getDelta();
+          animationFrameId = requestAnimationFrame(animate);
+        }
+      };
+      const visibilityIO = new IntersectionObserver(([entry]) => {
+        onScreen = entry.isIntersecting;
+        resume();
+      });
+      visibilityIO.observe(container);
+      document.addEventListener("visibilitychange", resume);
+
       const animate = () => {
+        if (!onScreen || document.hidden) {
+          animationFrameId = 0;
+          return;
+        }
         animationFrameId = requestAnimationFrame(animate);
         const delta = clock.getDelta();
         const elapsedTime = clock.getElapsedTime();
@@ -427,6 +446,8 @@ export default function ResnDiamond({
 
       return () => {
         cancelAnimationFrame(animationFrameId);
+        visibilityIO.disconnect();
+        document.removeEventListener("visibilitychange", resume);
         window.removeEventListener("pointermove", handlePointerMove);
         container.removeEventListener("pointerdown", handlePointerDown);
         window.removeEventListener("pointerup", handlePointerUp);

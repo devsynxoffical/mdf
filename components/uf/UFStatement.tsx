@@ -88,6 +88,18 @@ export default function UFStatement() {
     }
   };
 
+  // Pause the showreel while it is off screen so it isn't decoding the whole time
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) v.play().catch(() => {});
+      else v.pause();
+    });
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
+
   // Scroll-driven Typewriter Writing Effect with Crick-Crick Sound
   useEffect(() => {
     const el = statementRef.current;

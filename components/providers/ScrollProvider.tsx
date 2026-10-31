@@ -90,7 +90,7 @@ export default function ScrollProvider({ children }: { children: ReactNode }) {
       return () => window.removeEventListener("scroll", onScroll);
     }
 
-    const lenis = new Lenis({ lerp: 0.08 });
+    const lenis = new Lenis({ lerp: 0.12 });
     if (typeof window !== "undefined") {
       (window as any).lenis = lenis;
     }

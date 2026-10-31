@@ -301,6 +301,55 @@ function HybridAstronautExperience() {
     };
   }, [getWin, readRange, syncSound]);
 
+  // Freeze the embedded WebGL loop while the section is well off screen. The
+  // iframe is same-origin, so its requestAnimationFrame can be gated from here.
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    const root = containerRef.current?.parentElement ?? containerRef.current;
+    if (!iframe || !root) return;
+
+    let nearView = false;
+    let queued: FrameRequestCallback[] = [];
+
+    const patch = () => {
+      const win = iframe.contentWindow as (Window & { __mdfRafGated?: boolean }) | null;
+      if (!win || win.__mdfRafGated) return;
+      const nativeRaf = win.requestAnimationFrame.bind(win);
+      win.requestAnimationFrame = (cb: FrameRequestCallback) => {
+        if (nearView) return nativeRaf(cb);
+        queued.push(cb);
+        return 0;
+      };
+      win.__mdfRafGated = true;
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        nearView = entry.isIntersecting;
+        if (nearView && queued.length) {
+          const win = iframe.contentWindow;
+          const pending = queued;
+          queued = [];
+          pending.forEach((cb) => win?.requestAnimationFrame(cb));
+        }
+      },
+      { rootMargin: "25% 0px" }
+    );
+    io.observe(root);
+
+    iframe.addEventListener("load", patch);
+    try {
+      if (iframe.contentDocument?.readyState === "complete") patch();
+    } catch {
+      /* not ready */
+    }
+
+    return () => {
+      io.disconnect();
+      iframe.removeEventListener("load", patch);
+    };
+  }, []);
+
   const continueDown = () => {
     window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" });
   };
