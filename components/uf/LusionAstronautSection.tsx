@@ -93,22 +93,16 @@ function HybridAstronautExperience() {
     []
   );
 
+  // The embedded scene ships its own ambient background music. It is always
+  // kept off; only the site's short interaction effects use the sound toggle.
   const syncSound = useCallback(
-    (enabled: boolean) => {
-      soundOnRef.current = enabled;
+    (_enabled: boolean) => {
+      soundOnRef.current = false;
       try {
-        const win = getWin();
-        const audios = win?.lusionAudios;
+        const audios = getWin()?.lusionAudios;
         if (!audios) return;
-
-        if (enabled && !audios.listener && audios._onBodyClick) {
-          audios._onBodyClick();
-        }
-
-        if (win.homePage) win.homePage.updateAudio = true;
-
-        if (enabled) audios.on();
-        else audios.off();
+        audios.on = () => {};
+        audios.off();
       } catch {
         /* mid-load */
       }
@@ -328,7 +322,7 @@ function HybridAstronautExperience() {
       {/* Interactive 3D WebGL Iframe */}
       <iframe
         ref={iframeRef}
-        src="/lusion_standalone.html?v=silver4"
+        src="/lusion_standalone.html?v=silver5"
         title="3D Astronaut interactive experience"
         className={`pointer-events-none absolute inset-0 z-10 h-full w-full border-0 bg-transparent transition-opacity duration-700 ${
           ready3D ? "opacity-100" : "opacity-0"
