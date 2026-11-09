@@ -71,24 +71,24 @@ export default function MDFCaseStudiesHub() {
           <div className="mdf-fan">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/img/cs2/C9b-l3yS6GW.webp"
+              src="/img/cs2/DPI2h3TARq_.webp"
               alt="eCommerce proof"
               loading="lazy"
-              style={{ "--r": "-8deg", "--x": "-30%" } as React.CSSProperties}
+              style={{ "--r": "-8deg", "--x": "-30%", objectPosition: "88% 50%" } as React.CSSProperties}
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/img/cs2/C9RU-C9yhfU.webp"
+              src="/img/cs2/C-FI5E4SYBZ.webp"
               alt="eCommerce proof"
               loading="lazy"
-              style={{ "--r": "0deg", "--x": "0%" } as React.CSSProperties}
+              style={{ "--r": "0deg", "--x": "0%", objectPosition: "50% 92%" } as React.CSSProperties}
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/img/cs2/C83tKltSXUp.webp"
+              src="/img/cs2/C-FI5E4SYBZ.webp"
               alt="eCommerce proof"
               loading="lazy"
-              style={{ "--r": "8deg", "--x": "30%" } as React.CSSProperties}
+              style={{ "--r": "8deg", "--x": "30%", objectPosition: "50% 36%" } as React.CSSProperties}
             />
           </div>
           <div className="mdf-hb">
