@@ -1,3 +1,7 @@
+import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
+import { faqJsonLd, pageMetadata } from "@/lib/seo";
+import { FAQS_DATA } from "@/lib/homeFaq";
 import UFHero from "@/components/uf/UFHero";
 import MDFIphoneDuoPortfolio from "@/components/portfolio/MDFIphoneDuoPortfolio";
 import MDFCaseStudiesHub from "@/components/cases/MDFCaseStudiesHub";
@@ -14,9 +18,17 @@ import LusionAstronautSection from "@/components/uf/LusionAstronautSection";
 import UFSquareMarquee from "@/components/uf/UFSquareMarquee";
 import UFFooter from "@/components/uf/UFFooter";
 
+export const metadata: Metadata = pageMetadata({
+  path: "/",
+  title: "Million Dollar Funnel™ — Predictable High-Ticket Client Acquisition",
+  description:
+    "Done-for-you funnels, CRM automation, SMS & email follow-up, AI calling and paid ads for high-ticket service businesses, coaches and agencies. 200+ live client results.",
+});
+
 export default function Home() {
   return (
     <div id="top">
+      <JsonLd data={faqJsonLd(FAQS_DATA)} />
       {/* User's Original Opening Hero with 3D Resn Diamond & Infinite Headline */}
       <UFHero />
 

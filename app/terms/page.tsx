@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import LegalPage from "@/components/pages/LegalPage";
 import UFFooter from "@/components/uf/UFFooter";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/terms",
   title: "Terms of Service — Million Dollar Funnel™",
-};
+  description:
+    "The terms that govern use of Million Dollar Funnel™ websites, content and services.",
+});
 
 export default function Page() {
   return (

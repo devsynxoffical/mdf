@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import LegalPage from "@/components/pages/LegalPage";
 import UFFooter from "@/components/uf/UFFooter";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/privacy",
   title: "Privacy Policy — Million Dollar Funnel™",
-};
+  description:
+    "How Million Dollar Funnel™ collects, uses and protects personal information submitted through this website.",
+});
 
 export default function Page() {
   return (

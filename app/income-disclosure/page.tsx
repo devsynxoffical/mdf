@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import LegalPage from "@/components/pages/LegalPage";
 import UFFooter from "@/components/uf/UFFooter";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/income-disclosure",
   title: "Income Disclosure — Million Dollar Funnel™",
-};
+  description:
+    "Income and results disclosure for Million Dollar Funnel™: client results are not typical and depend on offer, market and execution.",
+});
 
 export default function Page() {
   return (
