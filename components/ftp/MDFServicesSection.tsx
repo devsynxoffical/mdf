@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useReveal } from "./useReveal";
 
 export const SERVICES: { id: number; title: string; desc: string; category: "build" | "system"; badge: string }[] = [
@@ -594,6 +595,12 @@ export default function MDFServicesSection() {
             </div>
             <div id="g2">{systemServices.map(renderRow)}</div>
           </div>
+          <p className="svc-more">
+            Go deeper: <Link href="/services/vsl-funnels">VSL funnels</Link> ·{" "}
+            <Link href="/services/gohighlevel-agency">GoHighLevel builds</Link> ·{" "}
+            <Link href="/services/ai-appointment-setter">AI appointment setter</Link> ·{" "}
+            <Link href="/services">all services</Link>
+          </p>
         </div>
       </div>
     </section>

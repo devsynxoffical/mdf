@@ -24,7 +24,7 @@ const CATEGORIES = [
   {
     name: "Conversion",
     tag: "AI CRM & Pipeline",
-    href: "#system",
+    href: "#services",
   },
 ];
 

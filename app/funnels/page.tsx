@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import MDFIphoneDuoPortfolio from "@/components/portfolio/MDFIphoneDuoPortfolio";
 import FunnelsPage from "@/components/pages/FunnelsPage";
 import UFFooter from "@/components/uf/UFFooter";
 
-export const metadata: Metadata = {
-  title: "Funnel Designs — Million Dollar Funnel™",
+export const metadata: Metadata = pageMetadata({
+  path: "/funnels",
+  title: "Sales Funnel Examples: 8 Live Funnels We Built | MDF™",
   description:
-    "Funnel Systems builds, the six-layer Million Dollar Funnel™ System, and full client architectures — from ad click to booked call.",
-};
+    "Eight live sales funnel examples we built for mortgage, insurance, security, B2B and coaching offers, plus the six-layer system behind each one.",
+});
 
 export default function Page() {
   return (

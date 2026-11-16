@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import LegalPage from "@/components/pages/LegalPage";
 import UFFooter from "@/components/uf/UFFooter";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/dmca",
   title: "DMCA Policy — Million Dollar Funnel™",
-};
+  description:
+    "How to report a copyright concern about content on Million Dollar Funnel™ websites, what to include in a DMCA notice and how we respond to it.",
+});
 
 export default function Page() {
   return (
