@@ -7,9 +7,9 @@ import UFFooter from "@/components/uf/UFFooter";
 
 export const metadata: Metadata = pageMetadata({
   path: "/faq",
-  title: "FAQ — Million Dollar Funnel™",
+  title: "Sales Funnel Agency FAQ: Scope, Timelines & Fit | MDF™",
   description:
-    "Frequently asked questions about the Million Dollar Funnel™ system, what’s included, and how we work.",
+    "Answers to the questions we hear most: what a Million Dollar Funnel™ install includes, how long it takes, who it suits and how we work with your team.",
 });
 
 export default function Page() {

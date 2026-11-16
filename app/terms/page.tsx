@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/terms",
   title: "Terms of Service — Million Dollar Funnel™",
   description:
-    "The terms that govern use of Million Dollar Funnel™ websites, content and services.",
+    "The terms that govern your use of Million Dollar Funnel™ websites, content and services, covering our services, results disclaimer and intellectual property.",
 });
 
 export default function Page() {

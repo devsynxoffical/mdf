@@ -378,7 +378,7 @@ export default function MDFIphoneDuoPortfolio() {
                 <div className="notifs">
                   <div className="notif">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/img/funnels/f8-t.webp" alt="" />
+                    <img src="/img/funnels/f8-t.webp" alt="Mortgage AI System webinar funnel" />
                     <div>
                       <b>Mortgage AI System is live</b>
                       <span className="mono">WEBINAR FUNNEL &middot; NOW</span>
@@ -386,7 +386,7 @@ export default function MDFIphoneDuoPortfolio() {
                   </div>
                   <div className="notif">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/img/funnels/f7-t.webp" alt="" />
+                    <img src="/img/funnels/f7-t.webp" alt="Rowan Security high-ticket funnel" />
                     <div>
                       <b>Rowan Security, 41 calls booked</b>
                       <span className="mono">HIGH-TICKET FUNNEL &middot; 2H AGO</span>
@@ -594,7 +594,7 @@ export default function MDFIphoneDuoPortfolio() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={`/img/funnels/f${f.id}-t.webp`}
-                alt=""
+                alt={`${f.name} funnel thumbnail`}
                 loading="lazy"
               />
             </button>

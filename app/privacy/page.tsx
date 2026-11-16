@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/privacy",
   title: "Privacy Policy — Million Dollar Funnel™",
   description:
-    "How Million Dollar Funnel™ collects, uses and protects personal information submitted through this website.",
+    "How Million Dollar Funnel™ handles the personal information you submit through this website: what we collect, how we use it and when it is shared.",
 });
 
 export default function Page() {

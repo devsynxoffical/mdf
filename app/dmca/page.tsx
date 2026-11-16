@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/dmca",
   title: "DMCA Policy — Million Dollar Funnel™",
   description:
-    "How to report copyright concerns about Million Dollar Funnel™ content and how we respond to DMCA notices.",
+    "How to report a copyright concern about content on Million Dollar Funnel™ websites, what to include in a DMCA notice and how we respond to it.",
 });
 
 export default function Page() {

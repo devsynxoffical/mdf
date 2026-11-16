@@ -4,7 +4,8 @@ import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { CASE_STUDIES } from "@/lib/cases";
 import { SITE } from "@/lib/site";
-import { ROUTES, sectionHref, SECTIONS } from "@/lib/routes";
+import { ROUTES } from "@/lib/routes";
+import { WORK_PROOF } from "@/lib/workproof";
 import Magnetic from "@/components/uf/Magnetic";
 import { playTick } from "@/components/audio/SoundToggle";
 
@@ -26,9 +27,10 @@ type FooterLinkItem = {
 const EXPLORE_LINKS: FooterLinkItem[] = [
   { label: "Home", href: ROUTES.home },
   { label: casesLabel, href: casesHref, badge: "New" },
-  { label: "Verified Receipts", href: ROUTES.workProof, badge: "41+" },
+  { label: "Verified Receipts", href: ROUTES.workProof, badge: `${WORK_PROOF.length}` },
   { label: "Funnel Architectures", href: ROUTES.funnels },
-  { label: "The 6-Layer System", href: sectionHref(SECTIONS.system) },
+  { label: "Funnel & Automation Services", href: "/services" },
+  { label: "Funnel & Follow-Up Guides", href: "/blog" },
 ];
 
 const COMPANY_LINKS: FooterLinkItem[] = [

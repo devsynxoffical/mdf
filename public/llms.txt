@@ -40,12 +40,22 @@ Most installs are live on real traffic in three to four weeks.
 ## Key pages
 
 - [Home](https://milliondollarfunnels.us/): services, who it is for, process, pricing and FAQ
+- [Services](https://milliondollarfunnels.us/services): every funnel, automation and AI follow-up service
+- [VSL Funnels](https://milliondollarfunnels.us/services/vsl-funnels): done-for-you video sales letter funnels
+- [GoHighLevel Agency](https://milliondollarfunnels.us/services/gohighlevel-agency): HighLevel funnels, pipelines, workflows and A2P setup
+- [AI Appointment Setter](https://milliondollarfunnels.us/services/ai-appointment-setter): qualifies and books new leads in under 60 seconds
 - [Work Proof](https://milliondollarfunnels.us/work-proof): verified ad-account and CRM receipts
 - [Case Studies](https://milliondollarfunnels.us/cases): lead generation and eCommerce results
 - [Funnel Designs](https://milliondollarfunnels.us/funnels): live funnels built by the team
 - [About](https://milliondollarfunnels.us/about): the team and principles behind the system
 - [FAQ](https://milliondollarfunnels.us/faq): what is included, timelines and fit
 - [Book a Call](https://milliondollarfunnels.us/book): 15–20 minute strategy call
+
+## Guides
+
+- [What is a VSL?](https://milliondollarfunnels.us/blog/what-is-a-vsl): video sales letter meaning, structure and VSL funnels
+- [A2P 10DLC registration](https://milliondollarfunnels.us/blog/a2p-10dlc-registration): requirements, steps and common rejections
+- [Speed to lead](https://milliondollarfunnels.us/blog/speed-to-lead): why response time decides the sale and how to improve it
 
 ## Contact
 

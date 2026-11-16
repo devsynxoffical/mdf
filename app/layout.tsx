@@ -4,7 +4,6 @@ import ScrollProvider from "@/components/providers/ScrollProvider";
 import MinimalNav from "@/components/MinimalNav";
 import Grain from "@/components/uf/Grain";
 import SoundToggle from "@/components/audio/SoundToggle";
-import StartScreen from "@/components/uf/StartScreen";
 import JsonLd from "@/components/seo/JsonLd";
 import { SEO, SITE_URL, siteJsonLd } from "@/lib/seo";
 
@@ -147,7 +146,6 @@ export default function RootLayout({
       </head>
       <body className="bg-[#000000] font-sans text-white selection:bg-[#1254EC]/40 selection:text-white" suppressHydrationWarning>
         <ScrollProvider>
-          <StartScreen />
           <Grain />
           <MinimalNav />
           <main className="relative">{children}</main>

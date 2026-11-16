@@ -456,3 +456,6 @@
   .mdf-who-v2 .wtimeline li,.mdf-who-v2 .wdesc span{opacity:1;transform:none;animation:none}
   .mdf-who-v2 .wtimeline::after{transform:none;animation:none}
 }
+.mdf-svc-v2 .svc-more{margin:6px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#64748b;line-height:2}
+.mdf-svc-v2 .svc-more a{color:#38BDF8;text-decoration:none;border-bottom:1px solid rgba(56,189,248,.35);transition:color .3s,border-color .3s}
+.mdf-svc-v2 .svc-more a:hover{color:#fff;border-color:#fff}

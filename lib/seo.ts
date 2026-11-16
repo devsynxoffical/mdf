@@ -49,12 +49,14 @@ export const SEO_SERVICES = [
 /** Every indexable static route, with crawl hints for the sitemap. */
 export const STATIC_ROUTES: { path: string; priority: number; changeFrequency: "weekly" | "monthly" | "yearly" }[] = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
+  { path: "/services", priority: 0.9, changeFrequency: "monthly" },
   { path: "/work-proof", priority: 0.9, changeFrequency: "weekly" },
   { path: "/cases", priority: 0.9, changeFrequency: "weekly" },
   { path: "/funnels", priority: 0.8, changeFrequency: "monthly" },
   { path: "/book", priority: 0.8, changeFrequency: "monthly" },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/blog", priority: 0.7, changeFrequency: "weekly" },
   { path: "/income-disclosure", priority: 0.2, changeFrequency: "yearly" },
   { path: "/privacy", priority: 0.2, changeFrequency: "yearly" },
   { path: "/terms", priority: 0.2, changeFrequency: "yearly" },
