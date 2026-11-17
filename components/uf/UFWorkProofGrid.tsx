@@ -103,6 +103,8 @@ type Props = {
   compactHeader?: boolean;
   initialCount?: number;
   pageSize?: number;
+  /** Render inside another section (case-studies hub): compact header, no own background. */
+  embedded?: boolean;
 };
 
 /**
@@ -114,7 +116,9 @@ export default function UFWorkProofGrid({
   hideAllLink = false,
   eyebrow = "( 03 ) — VERIFIED PERFORMANCE",
   compactHeader = false,
+  embedded = false,
 }: Props) {
+  const fade = embedded ? "#050508" : "#020926";
   const source = items ?? WORK_PROOF;
   const [filter, setFilter] = useState<(typeof WORK_PROOF_FILTERS)[number]>("All");
   const [active, setActive] = useState<WorkProofItem | null>(null);
@@ -165,22 +169,45 @@ export default function UFWorkProofGrid({
     };
   }, [active, goPrev, goNext]);
 
+  const Wrapper = embedded ? "div" : "section";
+
   return (
-    <section
-      id="results"
-      className={`relative overflow-hidden bg-[#020926] text-white select-none ${
-        compactHeader ? "pb-16 pt-10 sm:pb-20 sm:pt-12" : "py-16 sm:py-24 lg:py-28"
+    <Wrapper
+      id={embedded ? undefined : "results"}
+      className={`relative overflow-hidden text-white select-none ${
+        embedded
+          ? "pt-14 sm:pt-20"
+          : `bg-[#020926] ${compactHeader ? "pb-16 pt-10 sm:pb-20 sm:pt-12" : "py-16 sm:py-24 lg:py-28"}`
       }`}
     >
       {/* Ambient background glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(18,84,236,0.2),transparent_50%),radial-gradient(ellipse_at_70%_80%,rgba(56,189,248,0.12),transparent_50%)]"
-      />
+      {!embedded && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(18,84,236,0.2),transparent_50%),radial-gradient(ellipse_at_70%_80%,rgba(56,189,248,0.12),transparent_50%)]"
+        />
+      )}
 
       <div className="relative mx-auto max-w-[1340px] px-4 sm:px-6 md:px-10 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          {embedded ? (
+            <div className="max-w-[42rem]">
+              <p className="uf-eyebrow tracking-[0.18em] text-[#38BDF8] font-mono text-[12px] uppercase font-semibold">
+                Lead generation receipts
+              </p>
+              <h3 className="mt-3 font-sans text-[clamp(24px,2.8vw,36px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white">
+                Real campaign receipts{" "}
+                <span className="bg-gradient-to-r from-[#38BDF8] via-[#818CF8] to-[#C084FC] bg-clip-text text-transparent">
+                  &amp; pipeline ROI.
+                </span>
+              </h3>
+              <p className="mt-3 max-w-[56ch] font-sans text-[15px] leading-[1.65] text-slate-400">
+                Direct exports from Meta Ads Manager, GoHighLevel and live client CRMs. Hover to pause, click any
+                receipt to inspect it.
+              </p>
+            </div>
+          ) : (
           <div className="max-w-[42rem]">
             <p className="uf-eyebrow tracking-[0.18em] text-[#38BDF8] font-mono text-[12px] uppercase font-semibold">
               {eyebrow}
@@ -200,6 +227,7 @@ export default function UFWorkProofGrid({
               Hover to pause, click any receipt to inspect full high-resolution metrics.
             </p>
           </div>
+          )}
 
           {/* Filter Tabs */}
           {showFilters && (
@@ -236,8 +264,14 @@ export default function UFWorkProofGrid({
         onMouseLeave={() => setIsPaused(false)}
       >
         {/* Left/Right Edge Gradient Fade Masks */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 sm:w-32 bg-gradient-to-r from-[#020926] via-[#020926]/80 to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 sm:w-32 bg-gradient-to-l from-[#020926] via-[#020926]/80 to-transparent" />
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 sm:w-32"
+          style={{ background: `linear-gradient(to right, ${fade}, ${fade}cc, transparent)` }}
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 sm:w-32"
+          style={{ background: `linear-gradient(to left, ${fade}, ${fade}cc, transparent)` }}
+        />
 
         {/* Row 1: Scrolling Left */}
         <div className="marquee-row overflow-hidden">
@@ -285,7 +319,7 @@ export default function UFWorkProofGrid({
             href={ROUTES.workProof}
             className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-3 font-sans text-[14px] font-bold text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]"
           >
-            <span>Browse All 59+ Verified Receipts</span>
+            <span>Browse All {WORK_PROOF.length} Verified Receipts</span>
             <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </Link>
         </div>
@@ -371,6 +405,6 @@ export default function UFWorkProofGrid({
           </div>
         </div>
       )}
-    </section>
+    </Wrapper>
   );
 }

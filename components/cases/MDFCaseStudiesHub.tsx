@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 import { WORK_PROOF } from "@/lib/workproof";
+import UFWorkProofGrid from "@/components/uf/UFWorkProofGrid";
 
 const FAN_PROOFS = WORK_PROOF.filter((p) => p.tag === "Meta Ads").slice(0, 3);
 const FAN_POSITIONS = [
@@ -113,6 +114,11 @@ export default function MDFCaseStudiesHub({ standalone = false }: { standalone?:
             </span>
           </div>
         </Link>
+      </div>
+
+      {/* Lead-gen receipts (formerly the standalone "Verified Performance" section) */}
+      <div style={{ marginInline: "calc(-1 * clamp(16px, 4vw, 56px))" }}>
+        <UFWorkProofGrid embedded />
       </div>
     </section>
   );
