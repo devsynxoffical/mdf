@@ -9,7 +9,6 @@ import MDFCaseStudiesHub from "@/components/cases/MDFCaseStudiesHub";
 import UFStatement from "@/components/uf/UFStatement";
 import MDFServicesSection from "@/components/ftp/MDFServicesSection";
 import MDFWhoSection from "@/components/ftp/MDFWhoSection";
-import UFWorkProofGrid from "@/components/uf/UFWorkProofGrid";
 import UFOpinions from "@/components/uf/UFOpinions";
 import UFPricing from "@/components/uf/UFPricing";
 import UFProcess from "@/components/uf/UFProcess";
@@ -47,7 +46,6 @@ export default function Home() {
       {/* ( 03 ) What we do  ·  ( 04 ) Who we work with */}
       <MDFServicesSection />
       <MDFWhoSection />
-      <UFWorkProofGrid />
 
       {/* 251+ Case Studies Hub (Lead Gen & eCommerce) */}
       <MDFCaseStudiesHub />

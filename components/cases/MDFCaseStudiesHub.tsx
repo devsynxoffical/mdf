@@ -2,14 +2,7 @@
 
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
-import { WORK_PROOF } from "@/lib/workproof";
-
-const FAN_PROOFS = WORK_PROOF.filter((p) => p.tag === "Meta Ads").slice(0, 3);
-const FAN_POSITIONS = [
-  { "--r": "-8deg", "--x": "-30%" },
-  { "--r": "0deg", "--x": "0%" },
-  { "--r": "8deg", "--x": "30%" },
-];
+import LeadReceiptsStrip from "@/components/cases/LeadReceiptsStrip";
 
 /** `standalone` is true on /cases, where this is the page's H1; on the homepage it is an H2. */
 export default function MDFCaseStudiesHub({ standalone = false }: { standalone?: boolean }) {
@@ -34,19 +27,8 @@ export default function MDFCaseStudiesHub({ standalone = false }: { standalone?:
       {/* Top Split Hero Cards (Lead Gen & eCommerce) */}
       <div className="mdf-hub-cards">
         {/* Card 1: Lead Gen — real receipts from the Work Proof page */}
-        <Link href={ROUTES.workProof} className="mdf-hc active">
-          <div className="mdf-fan">
-            {FAN_PROOFS.map((item, i) => (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                key={item.id}
-                src={item.src}
-                alt={`${item.niche} — ${item.metric} ${item.metricLabel}`}
-                loading="lazy"
-                style={FAN_POSITIONS[i] as React.CSSProperties}
-              />
-            ))}
-          </div>
+        <div className="mdf-hc active">
+          <LeadReceiptsStrip />
           <div className="mdf-hb">
             <span className="mdf-ht">High-Ticket Client Acquisition</span>
             <h2>Lead Generation & Appointments</h2>
@@ -62,11 +44,11 @@ export default function MDFCaseStudiesHub({ standalone = false }: { standalone?:
               <span>Coaching</span>
               <span>B2B & Agencies</span>
             </div>
-            <span className="mdf-btn-primary mt-auto self-start">
+            <Link href={ROUTES.workProof} className="mdf-btn-primary mt-auto self-start">
               View Work Proof <i>&#8599;</i>
-            </span>
+            </Link>
           </div>
-        </Link>
+        </div>
 
         {/* Card 2: eCommerce */}
         <Link href={ROUTES.cases} className="mdf-hc">
@@ -114,6 +96,7 @@ export default function MDFCaseStudiesHub({ standalone = false }: { standalone?:
           </div>
         </Link>
       </div>
+
     </section>
   );
 }
