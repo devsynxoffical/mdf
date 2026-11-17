@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import Reveal from "./Reveal";
 import {
@@ -11,6 +11,7 @@ import {
 } from "@/lib/workproof";
 import { ROUTES } from "@/lib/routes";
 import { playTick } from "@/components/audio/SoundToggle";
+import ReceiptLightbox from "./ReceiptLightbox";
 
 function ProofCard({
   item,
@@ -103,8 +104,6 @@ type Props = {
   compactHeader?: boolean;
   initialCount?: number;
   pageSize?: number;
-  /** Render inside another section (case-studies hub): compact header, no own background. */
-  embedded?: boolean;
 };
 
 /**
@@ -116,9 +115,7 @@ export default function UFWorkProofGrid({
   hideAllLink = false,
   eyebrow = "( 03 ) — VERIFIED PERFORMANCE",
   compactHeader = false,
-  embedded = false,
 }: Props) {
-  const fade = embedded ? "#050508" : "#020926";
   const source = items ?? WORK_PROOF;
   const [filter, setFilter] = useState<(typeof WORK_PROOF_FILTERS)[number]>("All");
   const [active, setActive] = useState<WorkProofItem | null>(null);
@@ -152,62 +149,23 @@ export default function UFWorkProofGrid({
     playTick();
   }, [activeIndex, filtered]);
 
-  // Handle keyboard navigation for modal
-  useEffect(() => {
-    if (!active) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActive(null);
-      if (e.key === "ArrowLeft") goPrev();
-      if (e.key === "ArrowRight") goNext();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = prev;
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [active, goPrev, goNext]);
-
-  const Wrapper = embedded ? "div" : "section";
 
   return (
-    <Wrapper
-      id={embedded ? undefined : "results"}
-      className={`relative overflow-hidden text-white select-none ${
-        embedded
-          ? "pt-14 sm:pt-20"
-          : `bg-[#020926] ${compactHeader ? "pb-16 pt-10 sm:pb-20 sm:pt-12" : "py-16 sm:py-24 lg:py-28"}`
+    <section
+      id="results"
+      className={`relative overflow-hidden bg-[#020926] text-white select-none ${
+        compactHeader ? "pb-16 pt-10 sm:pb-20 sm:pt-12" : "py-16 sm:py-24 lg:py-28"
       }`}
     >
       {/* Ambient background glow */}
-      {!embedded && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(18,84,236,0.2),transparent_50%),radial-gradient(ellipse_at_70%_80%,rgba(56,189,248,0.12),transparent_50%)]"
-        />
-      )}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(18,84,236,0.2),transparent_50%),radial-gradient(ellipse_at_70%_80%,rgba(56,189,248,0.12),transparent_50%)]"
+      />
 
       <div className="relative mx-auto max-w-[1340px] px-4 sm:px-6 md:px-10 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          {embedded ? (
-            <div className="max-w-[42rem]">
-              <p className="uf-eyebrow tracking-[0.18em] text-[#38BDF8] font-mono text-[12px] uppercase font-semibold">
-                Lead generation receipts
-              </p>
-              <h3 className="mt-3 font-sans text-[clamp(24px,2.8vw,36px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white">
-                Real campaign receipts{" "}
-                <span className="bg-gradient-to-r from-[#38BDF8] via-[#818CF8] to-[#C084FC] bg-clip-text text-transparent">
-                  &amp; pipeline ROI.
-                </span>
-              </h3>
-              <p className="mt-3 max-w-[56ch] font-sans text-[15px] leading-[1.65] text-slate-400">
-                Direct exports from Meta Ads Manager, GoHighLevel and live client CRMs. Hover to pause, click any
-                receipt to inspect it.
-              </p>
-            </div>
-          ) : (
           <div className="max-w-[42rem]">
             <p className="uf-eyebrow tracking-[0.18em] text-[#38BDF8] font-mono text-[12px] uppercase font-semibold">
               {eyebrow}
@@ -227,7 +185,6 @@ export default function UFWorkProofGrid({
               Hover to pause, click any receipt to inspect full high-resolution metrics.
             </p>
           </div>
-          )}
 
           {/* Filter Tabs */}
           {showFilters && (
@@ -264,14 +221,8 @@ export default function UFWorkProofGrid({
         onMouseLeave={() => setIsPaused(false)}
       >
         {/* Left/Right Edge Gradient Fade Masks */}
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 sm:w-32"
-          style={{ background: `linear-gradient(to right, ${fade}, ${fade}cc, transparent)` }}
-        />
-        <div
-          className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 sm:w-32"
-          style={{ background: `linear-gradient(to left, ${fade}, ${fade}cc, transparent)` }}
-        />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 sm:w-32 bg-gradient-to-r from-[#020926] via-[#020926]/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 sm:w-32 bg-gradient-to-l from-[#020926] via-[#020926]/80 to-transparent" />
 
         {/* Row 1: Scrolling Left */}
         <div className="marquee-row overflow-hidden">
@@ -325,86 +276,14 @@ export default function UFWorkProofGrid({
         </div>
       )}
 
-      {/* Fullscreen Lightbox Zoom Modal */}
-      {active && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/85 p-3 sm:p-6 backdrop-blur-md transition-all duration-300"
-          onClick={() => setActive(null)}
-        >
-          {/* Close Button */}
-          <div className="absolute top-4 right-4 z-30 flex items-center gap-3">
-            <span className="hidden sm:inline-block rounded-full bg-white/10 px-3 py-1 font-mono text-[11px] text-slate-300">
-              {activeIndex + 1} / {filtered.length}
-            </span>
-            <button
-              type="button"
-              onClick={() => setActive(null)}
-              className="rounded-full bg-white/15 px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white hover:bg-white/30 transition shadow-lg"
-            >
-              Close ✕
-            </button>
-          </div>
-
-          {/* Left Arrow Button */}
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              goPrev();
-            }}
-            aria-label="Previous receipt"
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 flex h-11 w-11 sm:h-13 sm:w-13 items-center justify-center rounded-full border border-white/20 bg-black/70 text-lg font-bold text-white shadow-2xl backdrop-blur-md hover:bg-white hover:text-black hover:scale-110 transition-all duration-200"
-          >
-            ←
-          </button>
-
-          {/* Right Arrow Button */}
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              goNext();
-            }}
-            aria-label="Next receipt"
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 flex h-11 w-11 sm:h-13 sm:w-13 items-center justify-center rounded-full border border-white/20 bg-black/70 text-lg font-bold text-white shadow-2xl backdrop-blur-md hover:bg-white hover:text-black hover:scale-110 transition-all duration-200"
-          >
-            →
-          </button>
-
-          <div
-            className="relative flex max-h-[92vh] max-w-[94vw] sm:max-w-[90vw] md:max-w-[850px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/15 bg-[#030922] p-4 sm:p-6 shadow-2xl transition-all duration-200"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="mb-3 flex w-full items-center justify-between border-b border-white/10 pb-3">
-              <div>
-                <h3 className="font-sans text-[17px] sm:text-[19px] font-bold text-white">
-                  {active.metric} <span className="text-cyan-300 text-[13.5px] sm:text-[14.5px]">{active.metricLabel}</span>
-                </h3>
-                <p className="font-mono text-[11.5px] text-slate-400">
-                  {active.niche} · {active.tag}
-                </p>
-              </div>
-              <span className="rounded-full bg-emerald-500/15 border border-emerald-400/30 px-3 py-1 font-mono text-[11px] font-bold text-emerald-300">
-                ✓ Verified Account
-              </span>
-            </div>
-
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              key={active.src}
-              src={active.src}
-              alt={`${active.niche} receipt`}
-              className="max-h-[66vh] sm:max-h-[72vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-white/10"
-            />
-
-            <p className="mt-3 text-center font-sans text-[13px] sm:text-[14px] text-slate-300 max-w-[650px]">
-              {active.note}
-            </p>
-          </div>
-        </div>
-      )}
-    </Wrapper>
+      <ReceiptLightbox
+        active={active}
+        index={activeIndex}
+        total={filtered.length}
+        onClose={() => setActive(null)}
+        onPrev={goPrev}
+        onNext={goNext}
+      />
+    </section>
   );
 }
