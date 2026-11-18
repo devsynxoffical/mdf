@@ -36,7 +36,7 @@ export default function AboutPage() {
           <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-start lg:gap-14">
             <div>
               <p className="font-sans text-[28px] font-extrabold tracking-tight md:text-[34px]">
-                Gaurav Kapoor
+                Vaishali Kapoor
               </p>
               <p className="mt-2 font-sans text-[14px] font-semibold uppercase tracking-[0.14em] text-sky">
                 Founder · Million Dollar Funnel™
@@ -47,7 +47,7 @@ export default function AboutPage() {
                   on tight niches where offer clarity and backend systems decide who scales.
                 </p>
                 <p>
-                  Over 11 years and $50M+ in Facebook ad spend, he watched the same pattern
+                  Over 11 years and $50M+ in Facebook ad spend, she watched the same pattern
                   repeat: founders chase high-ticket hype while their low-ticket front end can’t
                   sell consistently, tracking is broken, and follow-up leaks revenue on every
                   campaign.

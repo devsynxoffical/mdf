@@ -114,6 +114,7 @@ export function siteJsonLd() {
         name: SEO.name,
         alternateName: [SEO.shortName, "Million Dollar Funnels", "MDF", "milliondollarfunnels.us"],
         foundingDate: "2024",
+        founder: { "@type": "Person", name: "Vaishali Kapoor", jobTitle: "Founder", url: `${SITE_URL}/about` },
         url: SITE_URL,
         logo: absoluteUrl(SEO.logo),
         image: absoluteUrl(SEO.ogImage),
