@@ -5,6 +5,9 @@
 
 export type ServiceSection = { heading: string; body: string[]; bullets?: string[] };
 
+/** Side-by-side comparison rendered as a table (answer-engine friendly). */
+export type ServiceComparison = { heading: string; intro?: string; columns: [string, string, string]; rows: [string, string, string][] };
+
 export type ServicePage = {
   slug: string;
   name: string;
@@ -15,6 +18,7 @@ export type ServicePage = {
   intro: string;
   primaryKeyword: string;
   sections: ServiceSection[];
+  comparison?: ServiceComparison;
   faq: { q: string; a: string }[];
   related: { label: string; href: string }[];
 };
@@ -231,6 +235,171 @@ export const SERVICE_PAGES: ServicePage[] = [
       { label: "Speed to lead: why the first minutes decide the sale", href: "/blog/speed-to-lead" },
       { label: "GoHighLevel agency service", href: "/services/gohighlevel-agency" },
       { label: "Book a strategy call", href: "/book" },
+    ],
+  },
+  {
+    slug: "webinar-funnels",
+    name: "Webinar Funnels",
+    primaryKeyword: "webinar funnel",
+    metaTitle: "Webinar Funnel Agency: Registrations, Show-Ups & Sales Calls",
+    metaDescription:
+      "Done-for-you webinar funnels: registration page, ads, reminder sequences, replay and booking flow. Our webinar receipts show $4.34–$5.27 cost per registration.",
+    eyebrow: "( Service ) — Webinar Funnels",
+    h1: "Webinar Funnels That Fill the Room and Book the Calls",
+    intro:
+      "A webinar funnel turns cold traffic into registrants, registrants into live attendees, and attendees into applications or sales. We build every step — the ads, the registration page, the reminders, the replay and the booking flow — so the webinar is not just watched but acted on.",
+    sections: [
+      {
+        heading: "What a webinar funnel is",
+        body: [
+          "A webinar funnel is a sequence built around a live, scheduled or on-demand presentation. Ads or emails send people to a registration page; a confirmation and reminder sequence gets them to show up; the webinar teaches and makes an offer; and a follow-up sequence with the replay converts the people who did not act live.",
+          "Because the registration is a small ask, webinar funnels usually generate leads more cheaply than a direct call booking — but the real result depends on show-up rate and on what happens after the webinar.",
+        ],
+      },
+      {
+        heading: "What our webinar receipts show",
+        body: ["These figures come from client ad accounts shown on our Work Proof page:"],
+        bullets: [
+          "800 paid registrants ($5 ticket) at $4.34 per registration",
+          "835 webinar leads at $4.57 per lead",
+          "680 webinar registrations at $5.27 per lead in under three weeks",
+          "1,018 registrations at about $4.50 per registrant across 21 ad sets",
+          "1,515 registrations at a 27% opt-in rate on a ClickFunnels registration page",
+        ],
+      },
+      {
+        heading: "What we build",
+        body: ["A webinar funnel install includes:"],
+        bullets: [
+          "Offer and webinar angle: the one promise the presentation is built to deliver",
+          "Registration page and thank-you page designed for opt-in rate",
+          "Meta and Google ad campaigns and tracking for registrations",
+          "Email and SMS confirmation and reminder sequences to lift show-up rate",
+          "Replay page and post-webinar follow-up for people who did not buy or book live",
+          "Application or calendar booking for high-ticket offers, or checkout for direct sales",
+          "CRM pipeline so every registrant, attendee and buyer is tracked",
+        ],
+      },
+      {
+        heading: "Who a webinar funnel suits",
+        body: [
+          "Coaches, consultants, course creators, agencies and B2B companies with an offer that is easier to sell after teaching something. It is especially effective when buyers need a new way of thinking before they will consider a premium offer.",
+        ],
+      },
+    ],
+    comparison: {
+      heading: "Webinar funnel vs. VSL funnel",
+      intro: "Both educate before they sell. The difference is format and commitment:",
+      columns: ["", "Webinar funnel", "VSL funnel"],
+      rows: [
+        ["Format", "Live, scheduled or on-demand presentation", "Single on-demand sales video on one page"],
+        ["Viewer commitment", "Registers and attends at a set time", "Watches immediately, no registration needed"],
+        ["Best for", "Teaching a new idea, launches, events, higher engagement", "Evergreen offers, faster path from click to call or checkout"],
+        ["Key numbers", "Cost per registration, show-up rate, attendee conversion", "Play rate, watch-time drop-off, CTA clicks"],
+        ["Follow-up", "Reminders before, replay and offer sequence after", "Retargeting and nurture for viewers who did not act"],
+      ],
+    },
+    faq: [
+      {
+        q: "How much does a webinar registration cost on Meta Ads?",
+        a: "It depends on the offer, audience and market. On the webinar receipts we publish, cost per registration ranged from $4.34 to $5.27, with one campaign averaging about $4.50 across 21 ad sets.",
+      },
+      {
+        q: "Should my webinar be live or automated?",
+        a: "Live webinars usually convert better and suit launches; automated or on-demand webinars scale more easily. Many clients run live first, then automate the version that converts.",
+      },
+      {
+        q: "How do you improve webinar show-up rates?",
+        a: "With a clear confirmation page, calendar invites, and email and SMS reminders before the start time — plus a replay sequence for people who miss it.",
+      },
+      {
+        q: "Which platform do you build webinar funnels on?",
+        a: "Usually GoHighLevel or ClickFunnels for the pages and follow-up, connected to your webinar software, CRM and calendar.",
+      },
+    ],
+    related: [
+      { label: "See the webinar receipts and cost-per-lead benchmarks", href: "/work-proof#benchmarks" },
+      { label: "VSL funnel service", href: "/services/vsl-funnels" },
+      { label: "Speed to lead guide", href: "/blog/speed-to-lead" },
+    ],
+  },
+  {
+    slug: "low-ticket-funnels",
+    name: "Low-Ticket Funnels",
+    primaryKeyword: "low ticket funnel",
+    metaTitle: "Low-Ticket Funnels: Tripwire & Self-Liquidating Offer Funnels",
+    metaDescription:
+      "We build low-ticket (tripwire) funnels with order bumps and upsells that pay for ad spend and feed your high-ticket offer — 13,630 sales in one coaching case study.",
+    eyebrow: "( Service ) — Low-Ticket Funnels",
+    h1: "Low-Ticket Funnels That Pay for Your Ads and Feed High-Ticket Sales",
+    intro:
+      "A low-ticket funnel sells an inexpensive front-end offer to cold traffic, then raises the order value with bumps and upsells. Done well, it covers the cost of advertising and builds a list of buyers who are far more likely to take your high-ticket offer.",
+    sections: [
+      {
+        heading: "What a low-ticket funnel is",
+        body: [
+          "A low-ticket funnel (also called a tripwire funnel) starts with a low-priced product — a mini-course, template, challenge or workshop — sold on a simple sales page. At checkout the buyer is offered an order bump; after purchase, one or more upsells or downsells. Then a follow-up sequence introduces the core or high-ticket offer.",
+          "The goal is not profit on the first sale. It is to turn strangers into buyers as cheaply as possible, because a buyer is much easier to sell to again than a lead.",
+        ],
+      },
+      {
+        heading: "Results from our low-ticket installs",
+        body: [
+          "For one coaching client stuck chasing high-ticket sales, we rebuilt the backend and tracking around a low-ticket front end: 13,630 low-ticket sales, $847,307 in revenue and 3.32 ROAS. Another install closed 1,650 low-ticket buyers in 20 days for $77,460 in revenue. Both are documented with screenshots on this site.",
+        ],
+      },
+      {
+        heading: "What we build",
+        body: ["A low-ticket funnel install includes:"],
+        bullets: [
+          "Front-end offer design: price point, promise and how it leads to the core offer",
+          "Sales page and checkout with an order bump",
+          "One-click upsell and downsell pages",
+          "Ad campaigns and purchase tracking with pixel and conversions API",
+          "Delivery, onboarding and ascension sequences by email and SMS",
+          "Reporting on cost per purchase, average order value and ROAS",
+        ],
+      },
+      {
+        heading: "When a low-ticket funnel makes sense",
+        body: [
+          "When cold traffic is too expensive to send straight to a sales call, when high-ticket sales are inconsistent, or when you want ad spend to pay for itself before scaling. It is less useful for offers that can only be sold through a conversation, where an application funnel is usually the better front end.",
+        ],
+      },
+    ],
+    comparison: {
+      heading: "Tripwire vs. self-liquidating offer",
+      intro: "The terms overlap, but they describe different goals:",
+      columns: ["", "Tripwire offer", "Self-liquidating offer (SLO)"],
+      rows: [
+        ["Main goal", "Turn a lead into a first-time buyer", "Recover the ad spend used to acquire the buyer"],
+        ["Price", "Usually very low to remove friction", "Priced, with bumps and upsells, to cover acquisition cost"],
+        ["Success measure", "Conversion rate from lead to buyer", "Front-end ROAS of about 1.0 or better"],
+        ["What comes next", "Core offer sold to the new buyer", "Core or high-ticket offer, with ads now paid for"],
+      ],
+    },
+    faq: [
+      {
+        q: "What is a low-ticket offer?",
+        a: "An inexpensive product — often a mini-course, template, challenge or workshop — sold to cold traffic to turn strangers into buyers before introducing a bigger offer.",
+      },
+      {
+        q: "What is a self-liquidating offer?",
+        a: "A front-end offer, with its order bumps and upsells, priced so that its revenue covers the advertising cost of acquiring the buyer, letting you acquire customers for roughly free.",
+      },
+      {
+        q: "Do I need a low-ticket offer before high-ticket?",
+        a: "Not always. It helps most when high-ticket sales are inconsistent or cold traffic is expensive. If your offer can only be sold through a conversation, an application funnel may suit better.",
+      },
+      {
+        q: "What makes a low-ticket funnel profitable?",
+        a: "Average order value. Order bumps and upsells usually decide whether the front end breaks even, so we design and track them from day one.",
+      },
+    ],
+    related: [
+      { label: "Coaching low-ticket case study: 13,630 sales", href: "/cases/coaching-lto" },
+      { label: "Verified receipts", href: "/work-proof" },
+      { label: "VSL funnel service", href: "/services/vsl-funnels" },
     ],
   },
 ];

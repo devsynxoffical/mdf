@@ -42,6 +42,36 @@ function Block({ b }: { b: BlogBlock }) {
           ))}
         </ol>
       );
+    case "table":
+      return (
+        <div className="overflow-x-auto rounded-2xl border border-white/10">
+          <table className="w-full min-w-[520px] border-collapse text-left text-[14.5px]">
+            <thead className="bg-white/[0.04] font-mono text-[11px] uppercase tracking-[0.12em] text-slate-400">
+              <tr>
+                {b.columns.map((c, i) => (
+                  <th key={i} scope="col" className="px-4 py-3">
+                    {c}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {b.rows.map((r) => (
+                <tr key={r[0]} className="border-t border-white/5">
+                  <th scope="row" className="px-4 py-3 font-semibold text-white">
+                    {r[0]}
+                  </th>
+                  {r.slice(1).map((c, i) => (
+                    <td key={i} className="px-4 py-3">
+                      {c}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
     default:
       return <p>{b.text}</p>;
   }

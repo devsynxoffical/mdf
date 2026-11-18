@@ -44,7 +44,7 @@ const COLORS = [
   "#3730A3",
 ] as const;
 
-/** Curated copy for all 59 receipts — verified directly from screenshot dashboards. */
+/** Curated copy for the receipts — verified directly from screenshot dashboards. */
 const WORK_PROOF_CURATED: Record<
   string,
   Omit<WorkProofItem, "id" | "src">
@@ -526,12 +526,19 @@ const WORK_PROOF_CURATED: Record<
 const TAG_CYCLE: WorkProofTag[] = ["Meta Ads", "CRM", "Scale"];
 const SIZE_CYCLE: WorkProofItem["size"][] = ["sm", "md", "lg", "xl"];
 
-/** All verified screenshot receipts in /public/workprof (excluding wp-002). */
+/**
+ * wp-042 … wp-059 are re-saved copies of the same screenshots as wp-024 … wp-041
+ * (identical posts, figures and captions), so they are left out to keep the
+ * receipt count honest.
+ */
+const DUPLICATE_RECEIPTS = new Set(Array.from({ length: 18 }, (_, i) => `wp-${String(42 + i).padStart(3, "0")}`));
+
+/** All unique verified screenshot receipts in /public/workprof (excluding wp-002 and duplicates). */
 export const WORK_PROOF: WorkProofItem[] = Array.from({ length: 59 }, (_, i) => {
   const n = String(i + 1).padStart(3, "0");
   return `wp-${n}`;
 })
-  .filter((id) => id !== "wp-002")
+  .filter((id) => id !== "wp-002" && !DUPLICATE_RECEIPTS.has(id))
   .map((id, i) => {
     const curated = WORK_PROOF_CURATED[id];
     if (curated) {

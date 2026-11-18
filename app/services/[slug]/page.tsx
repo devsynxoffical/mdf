@@ -63,6 +63,36 @@ export default function ServicePage({ params }: Props) {
             )}
           </section>
         ))}
+        {s.comparison && (
+          <section>
+            <h2>{s.comparison.heading}</h2>
+            {s.comparison.intro && <p className="mt-4">{s.comparison.intro}</p>}
+            <div className="mt-5 overflow-x-auto rounded-2xl border border-white/10">
+              <table className="w-full min-w-[520px] border-collapse text-left text-[14.5px]">
+                <thead className="bg-white/[0.04] font-mono text-[11px] uppercase tracking-[0.12em] text-slate-400">
+                  <tr>
+                    {s.comparison.columns.map((c, i) => (
+                      <th key={i} scope="col" className="px-4 py-3">
+                        {c}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {s.comparison.rows.map((r) => (
+                    <tr key={r[0]} className="border-t border-white/5">
+                      <th scope="row" className="px-4 py-3 font-semibold text-white">
+                        {r[0]}
+                      </th>
+                      <td className="px-4 py-3">{r[1]}</td>
+                      <td className="px-4 py-3">{r[2]}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
         <ContentFaq items={s.faq} />
         <h2>Related</h2>
         <ul>

@@ -8,7 +8,8 @@ export type BlogBlock =
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
   | { type: "ul"; items: string[] }
-  | { type: "ol"; items: string[] };
+  | { type: "ol"; items: string[] }
+  | { type: "table"; columns: string[]; rows: string[][] };
 
 export type BlogPost = {
   slug: string;
@@ -295,6 +296,95 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
     cta: { label: "Answer every lead in under 60 seconds", href: "/services/ai-appointment-setter" },
+  },
+  {
+    slug: "sales-funnel-stages",
+    title: "Sales Funnel Stages: Top, Middle and Bottom of the Funnel Explained",
+    metaTitle: "Sales Funnel Stages: TOFU vs MOFU vs BOFU, With Examples",
+    metaDescription:
+      "The stages of a sales funnel — awareness, consideration, decision and retention — and how top-of-funnel and bottom-of-funnel content, offers and metrics differ.",
+    primaryKeyword: "sales funnel stages",
+    published: "2026-11-18",
+    readMinutes: 8,
+    summary:
+      "A sales funnel has four main stages: awareness (top of funnel), consideration (middle of funnel), decision (bottom of funnel) and retention. Top-of-funnel work attracts people who have never heard of you; bottom-of-funnel work converts people who are ready to buy.",
+    blocks: [
+      { type: "h2", text: "The four sales funnel stages" },
+      {
+        type: "ol",
+        items: [
+          "Awareness (top of funnel, TOFU): a potential buyer notices a problem and discovers you exist — through an ad, a post, a video or a search.",
+          "Consideration (middle of funnel, MOFU): they compare ways to solve the problem and decide whether you are credible — through case studies, a webinar, a VSL or a lead magnet.",
+          "Decision (bottom of funnel, BOFU): they choose whether to buy from you — through a sales page, an application, a sales call or a checkout.",
+          "Retention and expansion: after the first purchase, onboarding, results and follow-up turn customers into repeat buyers and referrers.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Some models split the stages further — for example interest, evaluation and purchase — but every version describes the same journey from stranger to customer. What matters is that each stage has a clear job and a clear next step.",
+      },
+      { type: "h2", text: "Top of funnel vs. bottom of funnel" },
+      {
+        type: "table",
+        columns: ["", "Top of funnel (TOFU)", "Bottom of funnel (BOFU)"],
+        rows: [
+          ["Who is there", "People who may not know they need a solution", "People comparing options and ready to decide"],
+          ["Goal", "Attention and first contact", "A purchase, application or booked call"],
+          ["Typical content", "Short videos, posts, ads, educational articles", "Case studies, pricing, demos, sales pages, strategy calls"],
+          ["Typical offer", "Free content, a lead magnet or a low-cost entry offer", "The core offer itself"],
+          ["Main metrics", "Reach, click-through rate, cost per lead", "Conversion rate, show-up rate, close rate, cost per sale"],
+        ],
+      },
+      {
+        type: "p",
+        text: "Most businesses that struggle with paid traffic are not short of top-of-funnel attention; they are leaking at the bottom. Leads arrive and are not followed up fast enough, calls are booked and not attended, or the sales page does not answer the buyer's last objections.",
+      },
+      { type: "h2", text: "What the middle of the funnel does" },
+      {
+        type: "p",
+        text: "The middle of the funnel turns attention into trust. For high-ticket service businesses this is usually where a VSL, a webinar, a case study or a qualifying application sits. It filters out people who are not a fit and gives the right people enough proof to want a conversation.",
+      },
+      { type: "h2", text: "Sales funnel stages for a high-ticket service business" },
+      { type: "p", text: "A typical path we build for coaches, consultants and agencies looks like this:" },
+      {
+        type: "ol",
+        items: [
+          "Top: Meta or Google ads, or organic content, aimed at one clearly defined buyer.",
+          "Middle: a VSL or webinar that explains the method and shows proof, or a low-ticket offer that turns strangers into buyers.",
+          "Bottom: an application or booking page, followed by instant SMS and email follow-up and reminders so booked calls show up.",
+          "After the sale: onboarding, results tracking and a follow-up sequence that produces reviews, referrals and repeat purchases.",
+        ],
+      },
+      { type: "h2", text: "How to measure each stage" },
+      {
+        type: "ul",
+        items: [
+          "Top: cost per thousand impressions, click-through rate, cost per landing-page view.",
+          "Middle: opt-in rate, cost per lead, video watch time or webinar attendance.",
+          "Bottom: application or booking rate, show-up rate, close rate, cost per acquisition.",
+          "Retention: refund rate, repeat purchase rate, referrals.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Track every stage in one CRM so you can see where people drop out. Fixing the weakest stage is almost always cheaper than buying more traffic at the top.",
+      },
+    ],
+    faq: [
+      {
+        q: "What are the stages of a sales funnel?",
+        a: "Awareness (top of funnel), consideration (middle of funnel), decision (bottom of funnel) and retention. Each stage moves a prospect one step closer to buying, then to buying again.",
+      },
+      {
+        q: "What is the difference between top of funnel and bottom of funnel?",
+        a: "Top of funnel reaches people who may not know they need a solution and aims for attention. Bottom of funnel serves people ready to decide and aims for a purchase, application or booked call.",
+      },
+      {
+        q: "What does MOFU mean?",
+        a: "MOFU stands for middle of funnel: the consideration stage, where prospects evaluate whether you can solve their problem, often through case studies, webinars, VSLs or lead magnets.",
+      },
+    ],
+    cta: { label: "Get a funnel built for every stage", href: "/services" },
   },
 ];
 

@@ -599,6 +599,8 @@ export default function MDFServicesSection() {
             Go deeper: <Link href="/services/vsl-funnels">VSL funnels</Link> ·{" "}
             <Link href="/services/gohighlevel-agency">GoHighLevel builds</Link> ·{" "}
             <Link href="/services/ai-appointment-setter">AI appointment setter</Link> ·{" "}
+            <Link href="/services/webinar-funnels">webinar funnels</Link> ·{" "}
+            <Link href="/services/low-ticket-funnels">low-ticket funnels</Link> ·{" "}
             <Link href="/services">all services</Link>
           </p>
         </div>
