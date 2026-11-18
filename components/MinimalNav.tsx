@@ -5,9 +5,11 @@ import Magnetic from "@/components/uf/Magnetic";
 import { CASE_STUDIES } from "@/lib/cases";
 
 const LINKS = [
+  ["Services", "/services"],
   ["Case Studies", "/cases"],
   ["Work Proof", "/work-proof"],
   ["Funnels", "/funnels"],
+  ["Guides", "/blog"],
   ["FAQ", "/faq"],
 ] as const;
 
@@ -48,12 +50,13 @@ export default function MinimalNav() {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 lg:gap-8 md:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-6 xl:gap-7 lg:flex" aria-label="Main navigation">
+          {/* Case-study shortcuts only where there is room; "Case Studies" covers them below xl */}
           {CASE_STUDIES.map((study) => (
             <a
               key={study.slug}
               href={`/cases/${study.slug}`}
-              className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-slate-300 transition-colors hover:text-white"
+              className="hidden whitespace-nowrap font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-slate-300 transition-colors hover:text-white xl:inline"
             >
               {study.navLabel}
             </a>
@@ -63,7 +66,7 @@ export default function MinimalNav() {
             <a
               key={label}
               href={href}
-              className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-slate-300 transition-colors hover:text-white"
+              className="whitespace-nowrap font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-slate-300 transition-colors hover:text-white"
             >
               {label}
             </a>
@@ -93,7 +96,7 @@ export default function MinimalNav() {
           {/* Mobile menu toggle */}
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white lg:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -123,7 +126,7 @@ export default function MinimalNav() {
       {/* Mobile drawer */}
       <div
         id="mobile-nav"
-        className={`md:hidden overflow-hidden border-t border-white/[0.08] bg-[#020926]/98 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out ${
+        className={`lg:hidden overflow-hidden border-t border-white/[0.08] bg-[#020926]/98 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out ${
           menuOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
         }`}
       >

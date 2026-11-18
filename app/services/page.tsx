@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ContentShell, { ContentCta } from "@/components/content/ContentShell";
+import ContentShell, { ContentCta, FeatureGrid, HeroActions, LinkCards, SectionHeading } from "@/components/content/ContentShell";
 import JsonLd from "@/components/seo/JsonLd";
 import UFFooter from "@/components/uf/UFFooter";
 import { SERVICE_PAGES } from "@/lib/services";
+import { BLOG_POSTS } from "@/lib/blog";
+import { WORK_PROOF } from "@/lib/workproof";
+import { pageCard } from "@/lib/pageCards";
 import { SEO_SERVICES, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -21,10 +24,25 @@ const PAGE_FOR: Record<string, string> = {
   "Webinar Funnels": "/services/webinar-funnels",
 };
 
+const STEPS = [
+  ["Map the offer", "Who it is for, what it promises and the one action it must cause."],
+  ["Architect the path", "The prospect journey, qualification gates and tracking plan."],
+  ["Build the pages", "Landing, VSL, application or checkout — mobile-first."],
+  ["Wire the follow-up", "A2P-compliant SMS, email, voicemail and AI + human handoff."],
+  ["Launch and compound", "Live on real traffic, measured daily and improved weekly."],
+];
+
 export default function ServicesPage() {
   const crumbs = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
+  ];
+  const toc = [
+    { id: "featured", label: "Featured services" },
+    { id: "everything", label: "Everything we build" },
+    { id: "process", label: "How an install works" },
+    { id: "proof", label: "Proof" },
+    { id: "guides", label: "Guides" },
   ];
   return (
     <>
@@ -34,50 +52,52 @@ export default function ServicesPage() {
         title="Sales Funnel Agency Services for High-Ticket Businesses"
         intro="We are a done-for-you sales funnel agency. We build the whole client acquisition system — the funnel, the follow-up and the CRM — then launch it on real traffic and keep improving it. You never touch the tech."
         crumbs={crumbs}
+        toc={toc}
+        actions={<HeroActions secondaryHref="/funnels" secondaryLabel="See funnels we built" />}
+        stats={[
+          { value: String(SEO_SERVICES.length), label: "Services in one team" },
+          { value: "3–4 wks", label: "Typical time to launch" },
+          { value: String(WORK_PROOF.length), label: "Verified receipts" },
+          { value: "$1.52M", label: "Largest case study" },
+        ]}
       >
-        <h2>Featured services</h2>
-        <div className="grid gap-4 sm:grid-cols-3">
-          {SERVICE_PAGES.map((s) => (
-            <Link
-              key={s.slug}
-              href={`/services/${s.slug}`}
-              className="rounded-2xl border border-sky/20 bg-white/[0.03] p-5 !no-underline transition hover:border-sky/50 hover:bg-[#1254EC]/10"
-            >
-              <span className="block font-sans text-[17px] font-bold text-white">{s.name}</span>
-              <span className="mt-2 block text-[14px] leading-relaxed text-slate-400">{s.intro.split(". ")[0]}.</span>
-              <span className="mt-3 block font-mono text-[11px] uppercase tracking-[0.12em] text-sky">Learn more ↗</span>
-            </Link>
-          ))}
-        </div>
+        <LinkCards id="featured" heading="Featured services" items={SERVICE_PAGES.map((s) => pageCard(`/services/${s.slug}`))} />
 
-        <h2>Everything we build</h2>
-        <p>Every install is scoped to your offer. Most combine several of these:</p>
-        <ul>
-          {SEO_SERVICES.map((s) => (
-            <li key={s.name}>
-              {PAGE_FOR[s.name] ? <Link href={PAGE_FOR[s.name]}>{s.name}</Link> : <strong className="text-white">{s.name}</strong>}
-              {": "}
-              {s.description}
-            </li>
-          ))}
-        </ul>
+        <section>
+          <SectionHeading id="everything">Everything we build</SectionHeading>
+          <p>Every install is scoped to your offer. Most combine several of these:</p>
+          <FeatureGrid
+            items={SEO_SERVICES.map((s) => (
+              <span key={s.name}>
+                {PAGE_FOR[s.name] ? (
+                  <Link href={PAGE_FOR[s.name]} className="rt-link font-semibold">
+                    {s.name}
+                  </Link>
+                ) : (
+                  <strong>{s.name}</strong>
+                )}
+                {" — "}
+                {s.description}
+              </span>
+            ))}
+          />
+        </section>
 
-        <h2>How an install works</h2>
-        <ol>
-          <li>Map the offer: who it is for, what it promises and the one action it must cause.</li>
-          <li>Architect the path: the prospect journey, qualification gates and tracking plan.</li>
-          <li>Build the pages: landing, VSL, application or checkout, mobile-first.</li>
-          <li>Wire the follow-up: A2P-compliant SMS, email, voicemail and AI + human handoff.</li>
-          <li>Launch and compound: live on real traffic, measured daily and improved weekly.</li>
-        </ol>
-        <p>Most installs are live on real traffic in three to four weeks.</p>
+        <section>
+          <SectionHeading id="process">How an install works</SectionHeading>
+          <ol>
+            {STEPS.map(([t, d]) => (
+              <li key={t}>
+                <strong>{t}:</strong> {d}
+              </li>
+            ))}
+          </ol>
+          <p>Most installs are live on real traffic in three to four weeks.</p>
+        </section>
 
-        <h2>Proof</h2>
-        <p>
-          See the <Link href="/work-proof">verified ad-account and CRM receipts</Link>, the{" "}
-          <Link href="/cases/1-52m-case-study">$1.52M in 19 months case study</Link> and{" "}
-          <Link href="/funnels">live funnels we have built</Link>.
-        </p>
+        <LinkCards id="proof" heading="Proof" items={["/work-proof", "/cases/1-52m-case-study", "/cases/coaching-lto", "/funnels"].map((h) => pageCard(h))} />
+
+        <LinkCards id="guides" heading="Guides" items={BLOG_POSTS.map((p) => pageCard(`/blog/${p.slug}`))} />
 
         <ContentCta
           heading="Not sure which funnel you need?"

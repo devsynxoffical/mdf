@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import ContentShell, { ContentCta, ContentFaq } from "@/components/content/ContentShell";
+import ContentShell, { Callout, ContentCta, ContentFaq, FeatureGrid, HeroActions, LinkCards, SectionHeading } from "@/components/content/ContentShell";
+import RichText, { slugId } from "@/components/content/RichText";
 import JsonLd from "@/components/seo/JsonLd";
 import UFFooter from "@/components/uf/UFFooter";
 import { SERVICE_PAGES, getServiceBySlug } from "@/lib/services";
+import { pageCard } from "@/lib/pageCards";
 import { SITE_URL, absoluteUrl, breadcrumbJsonLd, faqJsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: { slug: string } };
@@ -28,6 +29,14 @@ export default function ServicePage({ params }: Props) {
     { name: "Services", href: "/services" },
     { name: s.name, href: path },
   ];
+  const toc = [
+    ...s.sections.map((sec) => ({ id: slugId(sec.heading), label: sec.heading })),
+    ...(s.comparison ? [{ id: slugId(s.comparison.heading), label: s.comparison.heading }] : []),
+    { id: "faq", label: "FAQ" },
+    { id: "related", label: "Related" },
+  ];
+  const otherServices = SERVICE_PAGES.filter((o) => o.slug !== s.slug).map((o) => `/services/${o.slug}`);
+  const relatedHrefs = Array.from(new Set([...s.related.map((r) => r.href), ...otherServices])).slice(0, 6);
 
   return (
     <>
@@ -45,34 +54,56 @@ export default function ServicePage({ params }: Props) {
       />
       <JsonLd data={faqJsonLd(s.faq)} />
       <JsonLd data={breadcrumbJsonLd(crumbs.map((c) => ({ name: c.name, path: c.href })))} />
-      <ContentShell eyebrow={s.eyebrow} title={s.h1} intro={s.intro} crumbs={crumbs}>
-        {s.sections.map((sec) => (
-          <section key={sec.heading}>
-            <h2>{sec.heading}</h2>
-            {sec.body.map((p) => (
-              <p key={p.slice(0, 40)} className="mt-4">
-                {p}
-              </p>
-            ))}
-            {sec.bullets && (
-              <ul className="mt-4">
-                {sec.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-            )}
-          </section>
-        ))}
+      <ContentShell
+        eyebrow={s.eyebrow}
+        title={s.h1}
+        intro={s.intro}
+        crumbs={crumbs}
+        stats={s.stats}
+        toc={toc}
+        actions={<HeroActions secondaryHref="/work-proof" secondaryLabel="See verified results" />}
+      >
+        {s.sections.map((sec) => {
+          const id = slugId(sec.heading);
+          const body = sec.body.map((p) => (
+            <p key={p.slice(0, 40)}>
+              <RichText text={p} />
+            </p>
+          ));
+          return (
+            <section key={sec.heading}>
+              <SectionHeading id={id}>{sec.heading}</SectionHeading>
+              {sec.kind === "proof" ? (
+                <Callout label="Proof from real client accounts">
+                  {body}
+                  {sec.bullets && (
+                    <ul>
+                      {sec.bullets.map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  )}
+                </Callout>
+              ) : (
+                <>
+                  {body}
+                  {sec.bullets && <FeatureGrid items={sec.bullets} />}
+                </>
+              )}
+            </section>
+          );
+        })}
+
         {s.comparison && (
           <section>
-            <h2>{s.comparison.heading}</h2>
-            {s.comparison.intro && <p className="mt-4">{s.comparison.intro}</p>}
-            <div className="mt-5 overflow-x-auto rounded-2xl border border-white/10">
-              <table className="w-full min-w-[520px] border-collapse text-left text-[14.5px]">
-                <thead className="bg-white/[0.04] font-mono text-[11px] uppercase tracking-[0.12em] text-slate-400">
+            <SectionHeading id={slugId(s.comparison.heading)}>{s.comparison.heading}</SectionHeading>
+            {s.comparison.intro && <p>{s.comparison.intro}</p>}
+            <div className="content-table">
+              <table>
+                <thead>
                   <tr>
                     {s.comparison.columns.map((c, i) => (
-                      <th key={i} scope="col" className="px-4 py-3">
+                      <th key={i} scope="col">
                         {c}
                       </th>
                     ))}
@@ -80,12 +111,10 @@ export default function ServicePage({ params }: Props) {
                 </thead>
                 <tbody>
                   {s.comparison.rows.map((r) => (
-                    <tr key={r[0]} className="border-t border-white/5">
-                      <th scope="row" className="px-4 py-3 font-semibold text-white">
-                        {r[0]}
-                      </th>
-                      <td className="px-4 py-3">{r[1]}</td>
-                      <td className="px-4 py-3">{r[2]}</td>
+                    <tr key={r[0]}>
+                      <th scope="row">{r[0]}</th>
+                      <td>{r[1]}</td>
+                      <td>{r[2]}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -93,20 +122,13 @@ export default function ServicePage({ params }: Props) {
             </div>
           </section>
         )}
+
         <ContentFaq items={s.faq} />
-        <h2>Related</h2>
-        <ul>
-          {s.related.map((r) => (
-            <li key={r.href}>
-              <Link href={r.href}>{r.label}</Link>
-            </li>
-          ))}
-          <li>
-            <Link href="/services">All services</Link>
-          </li>
-        </ul>
+
+        <LinkCards id="related" heading="Related services, guides and proof" items={relatedHrefs.map((h) => pageCard(h))} />
+
         <ContentCta
-          heading={`Want a ${s.name.toLowerCase()} built for your offer?`}
+          heading="Ready to have this built for your offer?"
           body="Book a 15–20 minute strategy call. We review your offer, current funnel and follow-up, and tell you plainly whether we can help."
         />
       </ContentShell>
