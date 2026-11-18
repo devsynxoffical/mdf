@@ -62,7 +62,7 @@ export default function Founder() {
                   backgroundBlendMode: "screen",
                 }}
               />
-              <svg viewBox="0 0 400 500" className="relative h-full w-full" aria-label="Portrait of Gaurav Kapoor (placeholder)">
+              <svg viewBox="0 0 400 500" className="relative h-full w-full" aria-label="Portrait of Vaishali Kapoor (placeholder)">
                 <rect width="400" height="500" fill="#0B0F17" />
                 {/* abstract figure */}
                 <circle cx="200" cy="180" r="70" fill="#1A1712" />
@@ -71,7 +71,7 @@ export default function Founder() {
                 <path d="M258 130 Q276 175 262 228" stroke="#D9A441" strokeWidth="3" fill="none" opacity="0.7" />
                 <path d="M300 340 Q316 410 318 500" stroke="#D9A441" strokeWidth="3" fill="none" opacity="0.5" />
                 <text x="200" y="470" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="12" fill="#8F887C">
-                  PORTRAIT — GAURAV KAPOOR
+                  PORTRAIT — VAISHALI KAPOOR
                 </text>
               </svg>
             </div>
@@ -85,7 +85,7 @@ export default function Founder() {
           </RiseIn>
           <RiseIn delay={80}>
             <h2 className="mt-4 font-display text-[clamp(32px,3.5vw,44px)] font-light text-bone">
-              Gaurav Kapoor
+              Vaishali Kapoor
             </h2>
           </RiseIn>
           <RiseIn delay={140}>
