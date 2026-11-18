@@ -112,7 +112,7 @@ export default function Nav() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/mdf-logo-white-cropped.png"
+            src="/images/mdf-logo-white-168.webp"
             alt="Million Dollar Funnel™"
             className="h-11 sm:h-12 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           />

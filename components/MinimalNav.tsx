@@ -39,7 +39,9 @@ export default function MinimalNav() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/mdf-logo-white-cropped.png"
+            src="/images/mdf-logo-white-168.webp"
+            width={39}
+            height={56}
             alt="Million Dollar Funnel™"
             className="h-11 sm:h-13 md:h-14 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           />

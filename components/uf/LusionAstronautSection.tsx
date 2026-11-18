@@ -86,6 +86,9 @@ function HybridAstronautExperience() {
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   const [ready3D, setReady3D] = useState(false);
+  // The 3D scene pulls ~20 MB of textures, so it is only loaded once the
+  // section is within a couple of screens of the viewport.
+  const [loadScene, setLoadScene] = useState(false);
   const [atFinale, setAtFinale] = useState(false);
 
   const getWin = useCallback(
@@ -350,6 +353,22 @@ function HybridAstronautExperience() {
     };
   }, []);
 
+  useEffect(() => {
+    const root = containerRef.current?.parentElement ?? containerRef.current;
+    if (!root) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setLoadScene(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "200% 0px" }
+    );
+    io.observe(root);
+    return () => io.disconnect();
+  }, []);
+
   const continueDown = () => {
     window.scrollBy({ top: window.innerHeight * 0.9, behavior: "smooth" });
   };
@@ -371,7 +390,7 @@ function HybridAstronautExperience() {
       {/* Interactive 3D WebGL Iframe */}
       <iframe
         ref={iframeRef}
-        src="/lusion_standalone.html?v=silver5"
+        src={loadScene ? "/lusion_standalone.html?v=silver5" : undefined}
         title="3D Astronaut interactive experience"
         className={`pointer-events-none absolute inset-0 z-10 h-full w-full border-0 bg-transparent transition-opacity duration-700 ${
           ready3D ? "opacity-100" : "opacity-0"
