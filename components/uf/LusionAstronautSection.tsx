@@ -530,43 +530,57 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
     firstImg.onerror = () => onImg(START_FRAME, true);
     images[START_FRAME] = firstImg;
 
-    const milestones = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
-    setTimeout(() => {
-      if (dead) return;
-      for (const i of milestones) {
-        const img = new Image();
-        img.decoding = "async";
-        img.src = frameSrc(i);
-        img.onload = () => onImg(i, true);
-        img.onerror = () => onImg(i, true);
-        images[i] = img;
-      }
-    }, 50);
-
-    const remaining = Array.from({ length: PLAYABLE }, (_, k) => START_FRAME + k).filter(
-      (i) => i !== START_FRAME && !milestones.includes(i)
-    );
-    setTimeout(() => {
-      if (dead) return;
-      let batchIdx = 0;
-      const loadNextBatch = () => {
+    // Stream the remaining ~20 MB of frames only once the section is within
+    // a couple of screens; the first frame above is enough until then.
+    const loadAll = () => {
+      const milestones = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
+      setTimeout(() => {
         if (dead) return;
-        const chunk = remaining.slice(batchIdx, batchIdx + 8);
-        for (const i of chunk) {
+        for (const i of milestones) {
           const img = new Image();
           img.decoding = "async";
           img.src = frameSrc(i);
-          img.onload = () => onImg(i, false);
-          img.onerror = () => onImg(i, false);
+          img.onload = () => onImg(i, true);
+          img.onerror = () => onImg(i, true);
           images[i] = img;
         }
-        batchIdx += 8;
-        if (batchIdx < remaining.length) {
-          setTimeout(loadNextBatch, 60);
+      }, 50);
+
+      const remaining = Array.from({ length: PLAYABLE }, (_, k) => START_FRAME + k).filter(
+        (i) => i !== START_FRAME && !milestones.includes(i)
+      );
+      setTimeout(() => {
+        if (dead) return;
+        let batchIdx = 0;
+        const loadNextBatch = () => {
+          if (dead) return;
+          const chunk = remaining.slice(batchIdx, batchIdx + 8);
+          for (const i of chunk) {
+            const img = new Image();
+            img.decoding = "async";
+            img.src = frameSrc(i);
+            img.onload = () => onImg(i, false);
+            img.onerror = () => onImg(i, false);
+            images[i] = img;
+          }
+          batchIdx += 8;
+          if (batchIdx < remaining.length) {
+            setTimeout(loadNextBatch, 60);
+          }
+        };
+        loadNextBatch();
+      }, 300);
+    };
+    const frameIO = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          frameIO.disconnect();
+          loadAll();
         }
-      };
-      loadNextBatch();
-    }, 300);
+      },
+      { rootMargin: "200% 0px" }
+    );
+    frameIO.observe(container);
 
     const applyProgress = (p: number) => {
       const idx = Math.min(
@@ -605,6 +619,7 @@ function FrameAstronautExperience({ reducedMotion }: { reducedMotion: boolean })
 
     return () => {
       dead = true;
+      frameIO.disconnect();
       trigger?.kill();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("orientationchange", onResize);
