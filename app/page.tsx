@@ -20,9 +20,9 @@ import UFFooter from "@/components/uf/UFFooter";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
-  title: "High-Ticket Sales Funnel Agency | Million Dollar Funnel™",
+  title: "Million Dollar Funnels™ | High-Ticket Sales Funnel Agency",
   description:
-    "Done-for-you sales funnels, CRM automation, SMS and email follow-up and AI appointment setting for coaches, consultants and agencies. 200+ live client results.",
+    "Million Dollar Funnels builds done-for-you sales funnels, CRM automation, SMS/email follow-up and AI appointment setting for coaches, consultants and agencies.",
 });
 
 export default function Home() {
