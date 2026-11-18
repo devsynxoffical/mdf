@@ -164,11 +164,10 @@ export default function UFStatement() {
               <video
                 ref={videoRef}
                 src="/video/testimonials/million_dollar_funnels_brand_demo_45s.mp4"
-                autoPlay
                 loop
                 muted={isMuted}
                 playsInline
-                preload="metadata"
+                preload="none"
                 className="h-full w-full object-cover"
               />
 

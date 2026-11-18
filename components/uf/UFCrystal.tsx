@@ -48,6 +48,7 @@ export default function UFCrystal() {
     let anim: AnimationItem | null = null;
     let st: ScrollTrigger | null = null;
 
+    const start = () => {
     anim = lottie.loadAnimation({
       container: lottieContainer,
       renderer: "canvas",
@@ -78,8 +79,22 @@ export default function UFCrystal() {
         },
       });
     });
+    };
+
+    // Load the 7.5 MB animation only when the section is about to scroll into view.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          io.disconnect();
+          start();
+        }
+      },
+      { rootMargin: "800px 0px" }
+    );
+    io.observe(section);
 
     return () => {
+      io.disconnect();
       st?.kill();
       anim?.destroy();
     };

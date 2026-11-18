@@ -368,7 +368,10 @@ export default function UFFooter() {
                 <div className="relative">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/images/vaishali-kapoor.png"
+                    src="/images/vaishali-kapoor-160.webp"
+                    width={64}
+                    height={64}
+                    loading="lazy"
                     alt="Vaishali Kapoor"
                     className="h-16 w-16 rounded-2xl border border-white/20 object-cover object-top shadow-xl bg-[#171A30] transition-transform duration-500 group-hover:scale-105"
                   />
