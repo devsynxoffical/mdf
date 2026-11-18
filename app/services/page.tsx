@@ -17,6 +17,8 @@ const PAGE_FOR: Record<string, string> = {
   "VSL Funnels": "/services/vsl-funnels",
   "AI Calling Agent": "/services/ai-appointment-setter",
   "CRM Automation": "/services/gohighlevel-agency",
+  "Low-Ticket Funnels": "/services/low-ticket-funnels",
+  "Webinar Funnels": "/services/webinar-funnels",
 };
 
 export default function ServicesPage() {

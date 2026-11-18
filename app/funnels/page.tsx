@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/funnels",
   title: "Sales Funnel Examples: 8 Live Funnels We Built | MDF™",
   description:
-    "Eight live sales funnel examples we built for mortgage, insurance, security, B2B and coaching offers, plus the six-layer system behind each one.",
+    "Eight live sales funnel examples we built for mortgage, insurance, security, invention, B2B and event offers, with the strategy and stack behind each.",
 });
 
 export default function Page() {

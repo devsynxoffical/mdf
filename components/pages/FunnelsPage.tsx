@@ -101,6 +101,14 @@ export default function FunnelsPage() {
               <p className="mt-6 max-w-[56ch] font-sans text-[16.5px] leading-[1.75] text-slate-300 sm:text-[18px]">
                 Every funnel here is an end-to-end client acquisition machinery — from qualifying VSLs and high-intent landing architecture to automated CRM pipelines and booked calendar slots.
               </p>
+              <p className="mt-4 max-w-[60ch] font-sans text-[15px] leading-[1.75] text-slate-400">
+                These {FUNNEL_DESIGNS.length} sales funnel examples are live client builds across mortgage, insurance,
+                security, invention, B2B and event offers. See how we build each type:{" "}
+                <Link href="/services/vsl-funnels" className="text-sky underline underline-offset-2">VSL funnels</Link>,{" "}
+                <Link href="/services/webinar-funnels" className="text-sky underline underline-offset-2">webinar funnels</Link>,{" "}
+                <Link href="/services/low-ticket-funnels" className="text-sky underline underline-offset-2">low-ticket funnels</Link>{" "}
+                and <Link href="/services" className="text-sky underline underline-offset-2">all services</Link>.
+              </p>
             </div>
 
             {/* Quick Metrics Glass Pods */}

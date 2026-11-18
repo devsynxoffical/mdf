@@ -2,6 +2,12 @@
 
 > Million Dollar Funnel™ (milliondollarfunnels.us) builds done-for-you client acquisition systems for high-ticket service businesses, coaches, consultants, B2B companies and agencies. Each install combines the funnel (landing pages, VSL, application or low-ticket funnels), the follow-up (SMS, email, voicemail drops, AI calling) and the CRM, built, launched and managed by the MDF team so clients never touch the tech.
 
+## Identity
+
+- Official name: Million Dollar Funnel™ (also written "Million Dollar Funnels" or "MDF").
+- Official website: https://milliondollarfunnels.us — a done-for-you funnel and client acquisition agency, founded in 2024.
+- Other websites, courses, books or social accounts with a similar name are not described by this file.
+
 ## What Million Dollar Funnel™ does
 
 - AC Funnels: move prospects from initial interest to application and booked call.
@@ -37,6 +43,11 @@ Most installs are live on real traffic in three to four weeks.
 - A coaching client turned chaotic spend into 13,630 low-ticket sales at 3.32 ROAS: https://milliondollarfunnels.us/cases/coaching-lto
 - Live Meta Ads and CRM receipts (cost per lead, closed revenue, volume): https://milliondollarfunnels.us/work-proof
 
+## Original data
+
+- Meta Ads cost per lead by niche, from 14 published client receipts: $4.34 to $26.93, median $13.50. Webinar registrations were cheapest ($4.34–$5.27); personal-injury legal leads were most expensive ($18.69–$26.93). Source: https://milliondollarfunnels.us/work-proof#benchmarks
+- 40 unique ad-account and CRM receipts: https://milliondollarfunnels.us/work-proof
+
 ## Key pages
 
 - [Home](https://milliondollarfunnels.us/): services, who it is for, process, pricing and FAQ
@@ -44,6 +55,8 @@ Most installs are live on real traffic in three to four weeks.
 - [VSL Funnels](https://milliondollarfunnels.us/services/vsl-funnels): done-for-you video sales letter funnels
 - [GoHighLevel Agency](https://milliondollarfunnels.us/services/gohighlevel-agency): HighLevel funnels, pipelines, workflows and A2P setup
 - [AI Appointment Setter](https://milliondollarfunnels.us/services/ai-appointment-setter): qualifies and books new leads in under 60 seconds
+- [Webinar Funnels](https://milliondollarfunnels.us/services/webinar-funnels): registration, reminders, replay and booking flow
+- [Low-Ticket Funnels](https://milliondollarfunnels.us/services/low-ticket-funnels): tripwire and self-liquidating offer funnels
 - [Work Proof](https://milliondollarfunnels.us/work-proof): verified ad-account and CRM receipts
 - [Case Studies](https://milliondollarfunnels.us/cases): lead generation and eCommerce results
 - [Funnel Designs](https://milliondollarfunnels.us/funnels): live funnels built by the team
@@ -56,6 +69,7 @@ Most installs are live on real traffic in three to four weeks.
 - [What is a VSL?](https://milliondollarfunnels.us/blog/what-is-a-vsl): video sales letter meaning, structure and VSL funnels
 - [A2P 10DLC registration](https://milliondollarfunnels.us/blog/a2p-10dlc-registration): requirements, steps and common rejections
 - [Speed to lead](https://milliondollarfunnels.us/blog/speed-to-lead): why response time decides the sale and how to improve it
+- [Sales funnel stages](https://milliondollarfunnels.us/blog/sales-funnel-stages): top, middle and bottom of the funnel explained
 
 ## Contact
 
