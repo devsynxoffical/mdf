@@ -1,4 +1,6 @@
 /**
+ * Text in blocks may contain inline links written as [label](/path).
+ *
  * Insight articles (/blog/[slug]). Each targets an informational query with
  * measured search demand and links to the matching service page.
  */
@@ -82,7 +84,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         type: "p",
-        text: "The video only does part of the work. Viewers who watch but do not act need follow-up by email and SMS, booked calls need reminders so they show up, and every step needs tracking so you can see where people drop off.",
+        text: "The video only does part of the work. Viewers who watch but do not act need follow-up by email and SMS, booked calls need reminders so they show up, and every step needs tracking so you can see where people drop off. That is what our [done-for-you VSL funnels](/services/vsl-funnels) include — and how one offer reached [$1.52M in 19 months](/cases/1-52m-case-study).",
       },
       { type: "h2", text: "Metrics that show whether a VSL is working" },
       {
@@ -97,12 +99,12 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Improving the weakest of these numbers is usually cheaper than buying more traffic. A strong hook raises play rate and retention; a clearer offer raises clicks; reminders raise show-up rates.",
+        text: "Improving the weakest of these numbers is usually cheaper than buying more traffic. A strong hook raises play rate and retention; a clearer offer raises clicks; reminders raise show-up rates. Where each number sits in the journey is covered in our guide to [sales funnel stages](/blog/sales-funnel-stages).",
       },
       { type: "h2", text: "When a VSL is the right choice" },
       {
         type: "p",
-        text: "Use a VSL when buyers need to understand something before they will buy: a new method, a premium price or a service they have not bought before. If your sales calls all start with the same explanation, that explanation probably belongs in a VSL. If your offer is simple and price-driven, a short landing page will usually convert as well for far less effort.",
+        text: "Use a VSL when buyers need to understand something before they will buy: a new method, a premium price or a service they have not bought before. If your sales calls all start with the same explanation, that explanation probably belongs in a VSL. If your audience responds better to a scheduled event, consider a [webinar funnel](/services/webinar-funnels) instead. If your offer is simple and price-driven, a short landing page will usually convert as well for far less effort.",
       },
     ],
     faq: [
@@ -145,7 +147,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: "h2", text: "Why registration matters" },
       {
         type: "p",
-        text: "Since 2023, US carriers have blocked SMS sent through unregistered 10DLC numbers. For any business that relies on text follow-up — appointment reminders, lead nurture, no-show recovery or an AI appointment setter — an unregistered or rejected campaign means messages silently fail to arrive.",
+        text: "Since 2023, US carriers have blocked SMS sent through unregistered 10DLC numbers. For any business that relies on text follow-up — appointment reminders, lead nurture, no-show recovery or an [AI appointment setter](/services/ai-appointment-setter) — an unregistered or rejected campaign means messages silently fail to arrive, which wrecks your [speed to lead](/blog/speed-to-lead).",
       },
       { type: "h2", text: "What you need before you register" },
       { type: "h3", text: "For the brand" },
@@ -201,7 +203,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: "h2", text: "A2P registration in GoHighLevel and other CRMs" },
       {
         type: "p",
-        text: "If you text through a CRM such as GoHighLevel, registration is done inside that platform's phone settings, which pass your details to the carrier registry. The same requirements apply: matching business details, a compliant website and opt-in form, a privacy policy with SMS language, and sample messages with your name and opt-out instructions. Build the opt-in form and privacy policy before you submit, so the reviewer can see them.",
+        text: "If you text through a CRM such as GoHighLevel, registration is done inside that platform's phone settings, which pass your details to the carrier registry. The same requirements apply: matching business details, a compliant website and opt-in form, a privacy policy with SMS language, and sample messages with your name and opt-out instructions. Build the opt-in form and privacy policy before you submit, so the reviewer can see them. Our [GoHighLevel team](/services/gohighlevel-agency) handles this as part of every install that uses SMS.",
       },
     ],
     faq: [
@@ -266,19 +268,19 @@ export const BLOG_POSTS: BlogPost[] = [
           "Trigger an instant SMS that starts a real conversation, not just an acknowledgement.",
           "Use missed-call text back so a call you could not answer becomes a text conversation within seconds.",
           "Alert the right person immediately and set a target response time.",
-          "Use an AI appointment setter to qualify and book leads that arrive when nobody is available.",
+          "Use an [AI appointment setter](/services/ai-appointment-setter) to qualify and book leads that arrive when nobody is available.",
           "Follow up several times over the following days: many leads respond on the second or third attempt.",
         ],
       },
       { type: "h2", text: "Missed call text back" },
       {
         type: "p",
-        text: "Missed-call text back sends an automatic SMS to anyone whose call goes unanswered, for example: \"Sorry we missed your call — this is [business]. How can we help?\" It turns a lost call into a conversation that you or an assistant can continue by text. In the US, the number sending the text needs to be registered for A2P 10DLC so the message is delivered.",
+        text: "Missed-call text back sends an automatic SMS to anyone whose call goes unanswered, for example: \"Sorry we missed your call — this is (your business). How can we help?\" It turns a lost call into a conversation that you or an assistant can continue by text. In the US, the number sending the text needs to be [registered for A2P 10DLC](/blog/a2p-10dlc-registration) so the message is delivered.",
       },
       { type: "h2", text: "Speed alone is not enough" },
       {
         type: "p",
-        text: "A fast reply that says nothing useful still loses the lead. The first message should acknowledge what the person asked for, ask one easy question that moves toward qualification, and make the next step obvious — usually booking a time to talk.",
+        text: "A fast reply that says nothing useful still loses the lead. The first message should acknowledge what the person asked for, ask one easy question that moves toward qualification, and make the next step obvious — usually booking a time to talk. We build exactly this inside [GoHighLevel](/services/gohighlevel-agency) for our clients.",
       },
     ],
     faq: [
@@ -350,8 +352,8 @@ export const BLOG_POSTS: BlogPost[] = [
         type: "ol",
         items: [
           "Top: Meta or Google ads, or organic content, aimed at one clearly defined buyer.",
-          "Middle: a VSL or webinar that explains the method and shows proof, or a low-ticket offer that turns strangers into buyers.",
-          "Bottom: an application or booking page, followed by instant SMS and email follow-up and reminders so booked calls show up.",
+          "Middle: a [VSL](/services/vsl-funnels) or [webinar](/services/webinar-funnels) that explains the method and shows proof, or a [low-ticket offer](/services/low-ticket-funnels) that turns strangers into buyers.",
+          "Bottom: an application or booking page, followed by instant SMS and email follow-up and reminders so booked calls show up — see [speed to lead](/blog/speed-to-lead).",
           "After the sale: onboarding, results tracking and a follow-up sequence that produces reviews, referrals and repeat purchases.",
         ],
       },
@@ -360,7 +362,7 @@ export const BLOG_POSTS: BlogPost[] = [
         type: "ul",
         items: [
           "Top: cost per thousand impressions, click-through rate, cost per landing-page view.",
-          "Middle: opt-in rate, cost per lead, video watch time or webinar attendance.",
+          "Middle: opt-in rate, cost per lead (see our [cost-per-lead benchmarks](/work-proof#benchmarks)), video watch time or webinar attendance.",
           "Bottom: application or booking rate, show-up rate, close rate, cost per acquisition.",
           "Retention: refund rate, repeat purchase rate, referrals.",
         ],

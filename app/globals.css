@@ -6,6 +6,7 @@
 
 @import "./mdf-sections.css";
 @import "./ftp-sections.css";
+@import "./content.css";
 
 :root {
   --ink: #061335;

@@ -3,7 +3,8 @@
  * measured search demand and is written from what the team actually delivers.
  */
 
-export type ServiceSection = { heading: string; body: string[]; bullets?: string[] };
+/** Body strings may contain inline links written as [label](/path). */
+export type ServiceSection = { heading: string; body: string[]; bullets?: string[]; kind?: "proof" };
 
 /** Side-by-side comparison rendered as a table (answer-engine friendly). */
 export type ServiceComparison = { heading: string; intro?: string; columns: [string, string, string]; rows: [string, string, string][] };
@@ -17,6 +18,8 @@ export type ServicePage = {
   h1: string;
   intro: string;
   primaryKeyword: string;
+  /** Headline facts shown in the hero (all from published proof on this site). */
+  stats?: { value: string; label: string }[];
   sections: ServiceSection[];
   comparison?: ServiceComparison;
   faq: { q: string; a: string }[];
@@ -33,6 +36,12 @@ export const SERVICE_PAGES: ServicePage[] = [
       "We script, build and launch VSL funnels for coaches, consultants and service businesses: video page, application or checkout, CRM and follow-up wired together.",
     eyebrow: "( Service ) — VSL Funnels",
     h1: "Done-For-You VSL Funnels That Turn Watch Time Into Booked Calls",
+    stats: [
+      { value: "$1.52M", label: "VSL case study, 19 months" },
+      { value: "3–4 wks", label: "Typical time to launch" },
+      { value: "40", label: "Verified receipts" },
+      { value: "1 team", label: "Script to follow-up" },
+    ],
     intro:
       "A VSL funnel puts one video sales letter at the centre of the journey: the video educates and pre-sells, and every step after it — the application, the calendar or the checkout — is built to catch the people the video convinced. We build the whole path, not just the page.",
     sections: [
@@ -40,7 +49,7 @@ export const SERVICE_PAGES: ServicePage[] = [
         heading: "What a VSL funnel is",
         body: [
           "A VSL (video sales letter) funnel is a short sequence of pages built around a single sales video. Traffic from ads, email or content lands on the video page; the video explains the problem, the method and the offer; and a clear call to action sends interested viewers to the next step.",
-          "For a high-ticket offer that next step is usually an application or a booked call. For a lower-priced product it is a checkout with an order bump and an upsell. Either way, the funnel only works when the video, the page copy, the next step and the follow-up all say the same thing.",
+          "For a high-ticket offer that next step is usually an application or a booked call. For a lower-priced product it is a checkout with an order bump and an upsell — a [low-ticket funnel](/services/low-ticket-funnels). Either way, the funnel only works when the video, the page copy, the next step and the follow-up all say the same thing. New to the format? Start with our guide: [what is a VSL?](/blog/what-is-a-vsl)",
         ],
       },
       {
@@ -59,7 +68,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       {
         heading: "Who a VSL funnel is right for",
         body: [
-          "VSL funnels work best when the buyer needs to understand something before they will buy — a coaching programme, a consulting engagement, a done-for-you service or a product with a new mechanism. If your best sales calls all start with you explaining the same thing, a VSL can do that explaining before the call.",
+          "VSL funnels work best when the buyer needs to understand something before they will buy — a coaching programme, a consulting engagement, a done-for-you service or a product with a new mechanism. If your best sales calls all start with you explaining the same thing, a VSL can do that explaining before the call. If your audience prefers a scheduled event, a [webinar funnel](/services/webinar-funnels) does the same job live.",
           "They are a poor fit when the offer is already understood and price-driven, where a short landing page usually converts better and costs less to produce.",
         ],
       },
@@ -71,8 +80,9 @@ export const SERVICE_PAGES: ServicePage[] = [
       },
       {
         heading: "Results from our own installs",
+        kind: "proof",
         body: [
-          "One of our documented installs scaled an offer to $1,520,000 in 19 months using a VSL-led funnel and an automated backend. The full breakdown, including the funnel structure, is in the case study linked below.",
+          "One of our documented installs scaled an offer to $1,520,000 in 19 months using a VSL-led funnel and an automated backend. Read the [full $1.52M case study](/cases/1-52m-case-study) for the funnel structure, or see the [verified ad and CRM receipts](/work-proof).",
         ],
       },
     ],
@@ -109,6 +119,12 @@ export const SERVICE_PAGES: ServicePage[] = [
       "Hire a GoHighLevel agency that builds the funnels, pipelines, workflows, A2P registration and AI follow-up inside HighLevel for you, then keeps them running.",
     eyebrow: "( Service ) — GoHighLevel",
     h1: "GoHighLevel Agency: We Build and Run Your HighLevel Account",
+    stats: [
+      { value: "<60s", label: "AI first response" },
+      { value: "3–4 wks", label: "Typical time to launch" },
+      { value: "A2P", label: "Registration included" },
+      { value: "0", label: "Software to learn" },
+    ],
     intro:
       "GoHighLevel can replace half a dozen tools — funnels, CRM, calendars, SMS, email and automations — but only if it is set up properly. We build the account around how you actually sell, connect every step, and keep it running so you never have to learn the software.",
     sections: [
@@ -128,7 +144,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       {
         heading: "Why HighLevel accounts usually underperform",
         body: [
-          "Most of the HighLevel accounts we audit have the same problems: a funnel that is not connected to the pipeline, workflows that fire twice or not at all, unregistered SMS numbers whose messages are filtered by carriers, and no reliable way to see which ad produced which booked call. None of these are software problems; they are setup problems.",
+          "Most of the HighLevel accounts we audit have the same problems: a funnel that is not connected to the pipeline, workflows that fire twice or not at all, unregistered SMS numbers whose messages are filtered by carriers (see our [A2P 10DLC registration guide](/blog/a2p-10dlc-registration)), and no reliable way to see which ad produced which booked call. None of these are software problems; they are setup problems.",
           "We start every engagement by mapping the offer and the prospect journey in plain words, then build HighLevel to match it, so the software follows the sales process instead of the other way round.",
         ],
       },
@@ -141,7 +157,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       {
         heading: "Who we work with",
         body: [
-          "Coaches, consultants, agencies and high-ticket service businesses that sell through conversations. If revenue depends on booking qualified calls and following up quickly, HighLevel is usually the right home for the system, and we build it there.",
+          "Coaches, consultants, agencies and high-ticket service businesses that sell through conversations. If revenue depends on booking qualified calls and following up quickly, HighLevel is usually the right home for the system, and we build it there — often with an [AI appointment setter](/services/ai-appointment-setter) answering new leads in under a minute.",
         ],
       },
     ],
@@ -178,6 +194,12 @@ export const SERVICE_PAGES: ServicePage[] = [
       "An AI appointment setter that texts and calls new leads within a minute, asks your qualifying questions, answers common objections and books calls on your calendar.",
     eyebrow: "( Service ) — AI Appointment Setting",
     h1: "AI Appointment Setter That Books Qualified Calls While You Sleep",
+    stats: [
+      { value: "<60s", label: "First response, 24/7" },
+      { value: "~7×", label: "More leads qualified within 1 hour (HBR)" },
+      { value: "SMS + voice", label: "Channels" },
+      { value: "CRM", label: "Every conversation logged" },
+    ],
     intro:
       "Leads go cold in minutes, not days. Our AI appointment setter contacts every new lead by SMS or phone within a minute, asks your qualifying questions, handles the common questions and books the ones who fit straight onto your calendar — with a human handoff when it matters.",
     sections: [
@@ -197,13 +219,13 @@ export const SERVICE_PAGES: ServicePage[] = [
       {
         heading: "Why response time matters",
         body: [
-          "Research published in Harvard Business Review found that companies that contacted online leads within an hour were nearly seven times as likely to qualify them as companies that waited longer — and that many companies took far longer than an hour to respond. Most teams cannot answer every lead in minutes, especially at night and weekends. An AI setter can.",
+          "Research published in Harvard Business Review found that companies that contacted online leads within an hour were nearly seven times as likely to qualify them as companies that waited longer — and that many companies took far longer than an hour to respond. Most teams cannot answer every lead in minutes, especially at night and weekends. An AI setter can. More in our guide to [speed to lead](/blog/speed-to-lead).",
         ],
       },
       {
         heading: "Built on your offer, your rules and your calendar",
         body: [
-          "The setter only says what you approve. We write its qualification questions, answers and booking rules from your offer and your best sales calls, set the hours and limits it works within, and connect it to your CRM and calendar. SMS is sent from registered A2P 10DLC numbers so messages are delivered.",
+          "The setter only says what you approve. We write its qualification questions, answers and booking rules from your offer and your best sales calls, set the hours and limits it works within, and connect it to your CRM and calendar — usually a [GoHighLevel](/services/gohighlevel-agency) account. SMS is sent from [registered A2P 10DLC numbers](/blog/a2p-10dlc-registration) so messages are delivered.",
         ],
       },
       {
@@ -246,6 +268,12 @@ export const SERVICE_PAGES: ServicePage[] = [
       "Done-for-you webinar funnels: registration page, ads, reminder sequences, replay and booking flow. Our webinar receipts show $4.34–$5.27 cost per registration.",
     eyebrow: "( Service ) — Webinar Funnels",
     h1: "Webinar Funnels That Fill the Room and Book the Calls",
+    stats: [
+      { value: "$4.34", label: "Lowest cost per registration" },
+      { value: "1,515", label: "Registrations, one funnel" },
+      { value: "27%", label: "Registration-page opt-in rate" },
+      { value: "5", label: "Webinar receipts published" },
+    ],
     intro:
       "A webinar funnel turns cold traffic into registrants, registrants into live attendees, and attendees into applications or sales. We build every step — the ads, the registration page, the reminders, the replay and the booking flow — so the webinar is not just watched but acted on.",
     sections: [
@@ -258,7 +286,8 @@ export const SERVICE_PAGES: ServicePage[] = [
       },
       {
         heading: "What our webinar receipts show",
-        body: ["These figures come from client ad accounts shown on our Work Proof page:"],
+        kind: "proof",
+        body: ["These figures come from client ad accounts shown on our [Work Proof page](/work-proof), where you can open every screenshot. See how they compare with other niches in our [cost-per-lead benchmarks](/work-proof#benchmarks)."],
         bullets: [
           "800 paid registrants ($5 ticket) at $4.34 per registration",
           "835 webinar leads at $4.57 per lead",
@@ -283,7 +312,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       {
         heading: "Who a webinar funnel suits",
         body: [
-          "Coaches, consultants, course creators, agencies and B2B companies with an offer that is easier to sell after teaching something. It is especially effective when buyers need a new way of thinking before they will consider a premium offer.",
+          "Coaches, consultants, course creators, agencies and B2B companies with an offer that is easier to sell after teaching something. It is especially effective when buyers need a new way of thinking before they will consider a premium offer. Where a scheduled event is a barrier, an on-demand [VSL funnel](/services/vsl-funnels) often works better — compare the two below.",
         ],
       },
     ],
@@ -332,6 +361,12 @@ export const SERVICE_PAGES: ServicePage[] = [
       "We build low-ticket (tripwire) funnels with order bumps and upsells that pay for ad spend and feed your high-ticket offer — 13,630 sales in one coaching case study.",
     eyebrow: "( Service ) — Low-Ticket Funnels",
     h1: "Low-Ticket Funnels That Pay for Your Ads and Feed High-Ticket Sales",
+    stats: [
+      { value: "13,630", label: "Low-ticket sales, one client" },
+      { value: "$847K", label: "Revenue in that case study" },
+      { value: "3.32", label: "ROAS" },
+      { value: "1,650", label: "Buyers in 20 days, another install" },
+    ],
     intro:
       "A low-ticket funnel sells an inexpensive front-end offer to cold traffic, then raises the order value with bumps and upsells. Done well, it covers the cost of advertising and builds a list of buyers who are far more likely to take your high-ticket offer.",
     sections: [
@@ -339,13 +374,14 @@ export const SERVICE_PAGES: ServicePage[] = [
         heading: "What a low-ticket funnel is",
         body: [
           "A low-ticket funnel (also called a tripwire funnel) starts with a low-priced product — a mini-course, template, challenge or workshop — sold on a simple sales page. At checkout the buyer is offered an order bump; after purchase, one or more upsells or downsells. Then a follow-up sequence introduces the core or high-ticket offer.",
-          "The goal is not profit on the first sale. It is to turn strangers into buyers as cheaply as possible, because a buyer is much easier to sell to again than a lead.",
+          "The goal is not profit on the first sale. It is to turn strangers into buyers as cheaply as possible, because a buyer is much easier to sell to again than a lead. In [sales funnel stages](/blog/sales-funnel-stages) terms, the low-ticket offer sits between the top and the bottom of the funnel.",
         ],
       },
       {
         heading: "Results from our low-ticket installs",
+        kind: "proof",
         body: [
-          "For one coaching client stuck chasing high-ticket sales, we rebuilt the backend and tracking around a low-ticket front end: 13,630 low-ticket sales, $847,307 in revenue and 3.32 ROAS. Another install closed 1,650 low-ticket buyers in 20 days for $77,460 in revenue. Both are documented with screenshots on this site.",
+          "For one coaching client stuck chasing high-ticket sales, we rebuilt the backend and tracking around a low-ticket front end: 13,630 low-ticket sales, $847,307 in revenue and 3.32 ROAS — read the [coaching low-ticket case study](/cases/coaching-lto). Another install closed 1,650 low-ticket buyers in 20 days for $77,460 in revenue, shown on our [Work Proof page](/work-proof).",
         ],
       },
       {
@@ -363,7 +399,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       {
         heading: "When a low-ticket funnel makes sense",
         body: [
-          "When cold traffic is too expensive to send straight to a sales call, when high-ticket sales are inconsistent, or when you want ad spend to pay for itself before scaling. It is less useful for offers that can only be sold through a conversation, where an application funnel is usually the better front end.",
+          "When cold traffic is too expensive to send straight to a sales call, when high-ticket sales are inconsistent, or when you want ad spend to pay for itself before scaling. It is less useful for offers that can only be sold through a conversation, where an application or [VSL funnel](/services/vsl-funnels) is usually the better front end.",
         ],
       },
     ],
