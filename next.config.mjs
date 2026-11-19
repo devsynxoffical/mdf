@@ -17,6 +17,9 @@ const nextConfig = {
         destination: "https://milliondollarfunnels.us/:path*",
         permanent: true,
       },
+      // URLs from the domain's earlier site that Google still crawls (URL Inspection, Nov 2026)
+      { source: "/post/sales-funnels-for-coaches", destination: "/services", permanent: true },
+      { source: "/blog/category/:slug*", destination: "/blog", permanent: true },
     ];
   },
   async headers() {

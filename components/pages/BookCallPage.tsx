@@ -8,6 +8,7 @@ import Magnetic from "@/components/uf/Magnetic";
 import { playTick } from "@/components/audio/SoundToggle";
 import { SITE } from "@/lib/site";
 import { WORK_PROOF } from "@/lib/workproof";
+import { track } from "@/lib/track";
 
 const REVENUE = [
   "Under $10k / month",
@@ -74,7 +75,7 @@ const FEATURED_VIDEOS: VideoProof[] = [
 const HIGHLIGHT_RECEIPTS = WORK_PROOF.slice(0, 6);
 
 export default function BookCallPage() {
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState<false | "delivered" | "email">(false);
   const [submitting, setSubmitting] = useState(false);
   const [activeVideo, setActiveVideo] = useState<VideoProof | null>(null);
   const [activeReceipt, setActiveReceipt] = useState<typeof WORK_PROOF[0] | null>(null);
@@ -91,15 +92,32 @@ export default function BookCallPage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
-    const data = new FormData(form);
-    const payload = Object.fromEntries(data.entries());
+    const payload = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
 
     setSubmitting(true);
     playTick();
 
+    // 1) Deliver straight to the CRM webhook.
+    try {
+      const r = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ...payload, page: window.location.href, referrer: document.referrer }),
+      });
+      if (r.ok) {
+        track("generate_lead", { method: "book_form", revenue_band: payload.revenue, bottleneck: payload.bottleneck });
+        setSent("delivered");
+        setSubmitting(false);
+        return;
+      }
+    } catch {
+      /* fall through to email */
+    }
+
+    // 2) Fallback: open the visitor's email app with the request filled in.
     const body = [
       `Name: ${payload.name}`,
       `Email: ${payload.email}`,
@@ -112,15 +130,13 @@ export default function BookCallPage() {
       "",
       `Notes: ${payload.notes || "None"}`,
     ].join("\n");
-
-    const mailto = `mailto:${SITE.email}?subject=${encodeURIComponent(
+    track("lead_email_fallback", { method: "book_form" });
+    window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(
       "Million Dollar Funnel™ — Strategy Call Booking"
     )}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailto;
     window.setTimeout(() => {
       setSubmitting(false);
-      setSent(true);
+      setSent("email");
     }, 600);
   };
 
@@ -210,11 +226,18 @@ export default function BookCallPage() {
                   </svg>
                 </span>
                 <h2 className="mt-6 font-sans text-[28px] font-extrabold tracking-tight text-white">
-                  Strategy Session Requested
+                  {sent === "delivered" ? "Strategy Session Requested" : "One last step"}
                 </h2>
-                <p className="mt-3 max-w-[34ch] font-sans text-[15px] leading-[1.6] text-slate-300">
-                  Please complete sending the email that opened, or our team will reach out directly at your email address to confirm calendar availability.
-                </p>
+                {sent === "delivered" ? (
+                  <p className="mt-3 max-w-[34ch] font-sans text-[15px] leading-[1.6] text-slate-300">
+                    We have your details. Our team will email you within one business day to confirm a time.
+                  </p>
+                ) : (
+                  <p className="mt-3 max-w-[38ch] font-sans text-[15px] leading-[1.6] text-slate-300">
+                    Your email app should have opened with your request filled in. Press send to finish. If nothing opened, email us at{" "}
+                    <a href={`mailto:${SITE.email}`} className="font-semibold text-sky hover:underline">{SITE.email}</a>.
+                  </p>
+                )}
                 <Link
                   href="/cases/coaching-lto"
                   className="mt-8 inline-flex items-center gap-2 rounded-full border border-sky/30 bg-sky/10 px-5 py-2.5 font-sans text-[13px] font-bold text-sky hover:bg-sky/20 transition"
@@ -225,6 +248,7 @@ export default function BookCallPage() {
               </div>
             ) : (
               <form onSubmit={onSubmit} className="space-y-4">
+                <input type="text" name="company_site" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
                 <div className="border-b border-white/10 pb-4">
                   <h3 className="font-sans text-[20px] font-bold text-white">
                     Apply for a Strategy Session
@@ -323,7 +347,7 @@ export default function BookCallPage() {
                       disabled={submitting}
                       className="btn-gold w-full justify-center !py-3.5 !text-[15px] shadow-[0_10px_35px_rgba(234,179,8,0.35)] disabled:opacity-60 cursor-pointer"
                     >
-                      {submitting ? "Opening Booking Request..." : "Request 1-on-1 Strategy Session →"}
+                      {submitting ? "Sending your request..." : "Request 1-on-1 Strategy Session →"}
                     </button>
                   </Magnetic>
                   <p className="mt-2.5 text-center font-mono text-[10.5px] text-slate-400">
