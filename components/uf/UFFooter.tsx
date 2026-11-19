@@ -36,6 +36,20 @@ const EXPLORE_LINKS: FooterLinkItem[] = [
   { label: "Funnel & Follow-Up Guides", href: "/blog" },
 ];
 
+/** Key service and industry pages, linked from every page so crawlers find them. */
+const SOLUTION_LINKS: FooterLinkItem[] = [
+  { label: "Roofing Lead Generation", href: "/lead-generation/roofing" },
+  { label: "Mortgage Lead Generation", href: "/lead-generation/mortgage" },
+  { label: "Solar Lead Generation", href: "/lead-generation/solar" },
+  { label: "Personal Injury Leads", href: "/lead-generation/personal-injury" },
+  { label: "Chiropractic Marketing", href: "/lead-generation/chiropractic" },
+  { label: "Pressure Washing Leads", href: "/lead-generation/pressure-washing" },
+  { label: "Meta Ads Management", href: "/services/meta-ads-management" },
+  { label: "Client Acquisition System", href: "/services/client-acquisition-system" },
+  { label: "Done-For-You Funnels", href: "/services/done-for-you-sales-funnels" },
+  { label: "Missed Call Text Back", href: "/services/missed-call-text-back" },
+];
+
 const COMPANY_LINKS: FooterLinkItem[] = [
   { label: "About Mission", href: ROUTES.about },
   { label: "Frequently Asked Questions", href: ROUTES.faq },
@@ -255,7 +269,7 @@ export default function UFFooter() {
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1.1fr_390px] lg:gap-16">
           
           {/* LEFT: Navigation Links with Micro-Interactions */}
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {/* Column 1: Explore */}
             <nav aria-label="Explore">
               <h3 className="mb-5 font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-cyan-400">
@@ -281,7 +295,27 @@ export default function UFFooter() {
               </ul>
             </nav>
 
-            {/* Column 2: Company */}
+            {/* Column 2: Solutions */}
+            <nav aria-label="Solutions">
+              <h3 className="mb-5 font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-cyan-400">
+                Solutions
+              </h3>
+              <ul className="space-y-3.5">
+                {SOLUTION_LINKS.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      onClick={() => playTick()}
+                      className="group inline-flex items-center gap-2 font-sans text-[14.5px] text-slate-400 transition-all duration-200 hover:text-white hover:translate-x-1"
+                    >
+                      <span className="transition-colors group-hover:text-cyan-300">{item.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Column 3: Company */}
             <nav aria-label="Company">
               <h3 className="mb-5 font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-cyan-400">
                 Company
