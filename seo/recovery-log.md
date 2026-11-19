@@ -35,6 +35,33 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - It opened a `mailto:` link to hello@milliondollarfunnel.com and then showed "Strategy Session Requested", even when no email app opened or the visitor never pressed send.
 - No analytics was installed, so there was no way to know how many visitors tried.
 
+## Diagnosis — what went wrong with the earlier SEO work
+
+1. **The site's problem was never content volume.** The domain is about 10 weeks old in Google's eyes. It has no evidence of real backlinks, and Google isn't spending crawl budget on it. The 9 content pages added on Nov 16–18 (5 services, 4 guides) can't rank until Google crawls them, and it hasn't crawled any yet.
+2. **Wrong keywords for this stage.** The guides target informational searches dominated by large, established sites, so they bring readers, not buyers:
+   - "what is a vsl": sundaysky, indeed, d-id.
+   - "speed to lead": chilipiper, workato, leandata.
+   - "sales funnel stages", "a2p 10dlc registration": textdrip, grasshopper.
+   - Commercial terms are dominated by software tools and directories, not agencies: "vsl funnel" (ClickFunnels, Swipepages, Vidalytics), "ai appointment setter" (SaaS products), "sales funnel agency" (directory lists).
+3. **Brand collision.** "Million Dollar Funnel(s)" is shared with mymilliondollarfunnels.com (AU agency, #1–2), a Thinkific course, an Apple Book and an @milliondollarfunnels Instagram. Brand impressions are mostly someone else's customers.
+4. **Leads leaked even when visitors came.** The mailto-only form, with no tracking, meant an unknown number of real enquiries were lost.
+5. **Relevance signals are weak.**
+   - The homepage H1 is "Making Brands Unforgettable" (no service or audience).
+   - Some case-study material comes from Shopify and dropshipping posts, while the offer targets coaches, consultants and agencies.
+
+**Unnecessary pages (for now):** none should be deleted. They are not hurting anything, and deleting them would waste work. But no more pages should be created until the existing ones are crawled and indexed. `/blog/a2p-10dlc-registration` and `/blog/speed-to-lead` are the weakest fit for buyer intent.
+
+## Ranked opportunities (by business impact)
+
+| # | Opportunity | Why | Status |
+|---|---|---|---|
+| 1 | Make /book deliver leads + measure them | Every visitor who converts is currently at risk of being lost | C1, C2 done; needs webhook + GA4 ID |
+| 2 | Earn real authority: Google Business Profile, Clutch/DesignRush/GoodFirms, GoHighLevel marketplace/directory, LinkedIn company page, client-site credits, guest posts | "Discovered – not indexed" is a crawl-demand/authority problem | Owner action; needs real profiles |
+| 3 | Clean the domain's past: redirect old-site URLs, review spammy backlinks, consider a disavow | Old 404s and spam referrers | C3 done; backlink export needed |
+| 4 | Homepage relevance: H1 and intro naming the service and audience | The only page with impressions has a generic H1 | Next, with owner approval of copy |
+| 5 | Focus on 2 niches where real proof exists (mortgage/insurance funnels on GoHighLevel, coaching low-ticket funnels) | First non-brand impressions ("highlevel mortgage funnel", "funnel architecture") match existing /funnels and /work-proof proof | After pages get indexed |
+| 6 | Mobile speed of the homepage (Lighthouse 38) | Affects conversion more than ranking at this traffic level | Later |
+
 ## Changes
 
 ### C1 — 2026-11-19 · Lead capture that actually delivers (`/book`, new `/api/lead`)
