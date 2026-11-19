@@ -1,3 +1,4 @@
+import { SERVICE_CATALOG } from "@/lib/serviceCatalog";
 import type { Metadata } from "next";
 import { SITE } from "@/lib/site";
 
@@ -127,9 +128,9 @@ export function siteJsonLd() {
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Funnel, automation and client acquisition services",
-          itemListElement: SEO_SERVICES.map((s) => ({
+          itemListElement: SERVICE_CATALOG.map((s) => ({
             "@type": "Offer",
-            itemOffered: { "@type": "Service", name: s.name, description: s.description, provider: { "@id": ORG_ID } },
+            itemOffered: { "@type": "Service", name: s.name, description: s.desc, url: absoluteUrl(s.href), provider: { "@id": ORG_ID } },
           })),
         },
         contactPoint: {

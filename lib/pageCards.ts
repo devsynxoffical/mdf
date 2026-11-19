@@ -2,6 +2,7 @@ import { SERVICE_PAGES } from "@/lib/services";
 import { BLOG_POSTS } from "@/lib/blog";
 import { CASE_STUDIES } from "@/lib/cases";
 import { INDUSTRIES } from "@/lib/industries";
+import { SERVICE_LANDINGS } from "@/lib/serviceLandings";
 
 export type PageCard = { href: string; title: string; desc?: string; tag?: string };
 
@@ -15,6 +16,9 @@ const CARDS: Record<string, PageCard> = {
   ),
   ...Object.fromEntries(
     CASE_STUDIES.map((c) => [`/cases/${c.slug}`, { href: `/cases/${c.slug}`, title: c.title, desc: c.summary, tag: "Case study" }])
+  ),
+  ...Object.fromEntries(
+    SERVICE_LANDINGS.map((s) => [`/services/${s.slug}`, { href: `/services/${s.slug}`, title: s.name, desc: s.metaDescription, tag: "Service" }])
   ),
   ...Object.fromEntries(
     INDUSTRIES.map((i) => [`/lead-generation/${i.slug}`, { href: `/lead-generation/${i.slug}`, title: `${i.name} lead generation`, desc: i.metaDescription, tag: "Industry" }])

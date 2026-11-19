@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ContentShell, { ContentCta, FeatureGrid, HeroActions, LinkCards, SectionHeading } from "@/components/content/ContentShell";
+import ContentShell, { ContentCta, HeroActions, LinkCards, SectionHeading } from "@/components/content/ContentShell";
 import JsonLd from "@/components/seo/JsonLd";
 import UFFooter from "@/components/uf/UFFooter";
 import { SERVICE_PAGES } from "@/lib/services";
@@ -8,22 +8,16 @@ import { BLOG_POSTS } from "@/lib/blog";
 import { WORK_PROOF } from "@/lib/workproof";
 import { pageCard } from "@/lib/pageCards";
 import { INDUSTRIES } from "@/lib/industries";
-import { SEO_SERVICES, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
+import { SERVICE_LANDINGS } from "@/lib/serviceLandings";
+import { CATALOG_GROUPS, SERVICE_CATALOG } from "@/lib/serviceCatalog";
+import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   path: "/services",
   title: "Sales Funnel Agency Services: Funnels, CRM & AI Follow-Up",
   description:
-    "Done-for-you sales funnel services: VSL, application and low-ticket funnels, GoHighLevel CRM, SMS and email automation and AI appointment setting.",
+    "30 done-for-you services: sales funnels, Meta Ads, industry lead generation, GoHighLevel CRM, SMS and email automation and AI appointment setting.",
 });
-
-const PAGE_FOR: Record<string, string> = {
-  "VSL Funnels": "/services/vsl-funnels",
-  "AI Calling Agent": "/services/ai-appointment-setter",
-  "CRM Automation": "/services/gohighlevel-agency",
-  "Low-Ticket Funnels": "/services/low-ticket-funnels",
-  "Webinar Funnels": "/services/webinar-funnels",
-};
 
 const STEPS = [
   ["Map the offer", "Who it is for, what it promises and the one action it must cause."],
@@ -41,7 +35,7 @@ export default function ServicesPage() {
   const toc = [
     { id: "featured", label: "Featured services" },
     { id: "industries", label: "By industry" },
-    { id: "everything", label: "Everything we build" },
+    { id: "everything", label: "All 30 services" },
     { id: "process", label: "How an install works" },
     { id: "proof", label: "Proof" },
     { id: "guides", label: "Guides" },
@@ -57,34 +51,39 @@ export default function ServicesPage() {
         toc={toc}
         actions={<HeroActions secondaryHref="/funnels" secondaryLabel="See funnels we built" />}
         stats={[
-          { value: String(SEO_SERVICES.length), label: "Services in one team" },
+          { value: String(SERVICE_CATALOG.length), label: "Services in one team" },
           { value: "3–4 wks", label: "Typical time to launch" },
           { value: String(WORK_PROOF.length), label: "Verified receipts" },
           { value: "$1.52M", label: "Largest case study" },
         ]}
       >
-        <LinkCards id="featured" heading="Featured services" items={SERVICE_PAGES.map((s) => pageCard(`/services/${s.slug}`))} />
+        <LinkCards
+          id="featured"
+          heading="Featured services"
+          items={[...SERVICE_LANDINGS.map((s) => `/services/${s.slug}`), ...SERVICE_PAGES.map((s) => `/services/${s.slug}`)].map((h) => pageCard(h))}
+        />
 
         <LinkCards id="industries" heading="Lead generation by industry" items={INDUSTRIES.map((i) => pageCard(`/lead-generation/${i.slug}`))} />
 
         <section>
-          <SectionHeading id="everything">Everything we build</SectionHeading>
-          <p>Every install is scoped to your offer. Most combine several of these:</p>
-          <FeatureGrid
-            items={SEO_SERVICES.map((s) => (
-              <span key={s.name}>
-                {PAGE_FOR[s.name] ? (
-                  <Link href={PAGE_FOR[s.name]} className="rt-link font-semibold">
-                    {s.name}
+          <SectionHeading id="everything">All 30 services we deliver</SectionHeading>
+          <p>Every install is scoped to your offer, and most combine several of these. Click a service to see how we deliver it.</p>
+          {CATALOG_GROUPS.map((g) => (
+            <div key={g} className="catalog-group">
+              <h3>{g}</h3>
+              <div className="catalog-grid">
+                {SERVICE_CATALOG.filter((c) => c.group === g).map((c) => (
+                  <Link key={c.name} href={c.href} className="catalog-card">
+                    <span className="catalog-name">{c.name}</span>
+                    <span className="catalog-desc">{c.desc}</span>
+                    <span className="catalog-go" aria-hidden>
+                      Learn more ↗
+                    </span>
                   </Link>
-                ) : (
-                  <strong>{s.name}</strong>
-                )}
-                {" — "}
-                {s.description}
-              </span>
-            ))}
-          />
+                ))}
+              </div>
+            </div>
+          ))}
         </section>
 
         <section>

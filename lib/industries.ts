@@ -6,6 +6,8 @@ import type { ProcessStep } from "@/components/leads/ProcessTabs";
  * ad-account / CRM screenshot it cites (see /work-proof). Calculator defaults that are
  * not from a receipt are labelled as example inputs on the page.
  */
+/** Shared shape for rich landing pages (industries and services). */
+export type Landing = Industry;
 export type Industry = {
   slug: string;
   name: string;
@@ -16,11 +18,13 @@ export type Industry = {
   h1: string;
   intro: string;
   stats: { value: string; label: string }[];
-  receipts: Receipt[];
-  receiptsIntro: string;
+  receipts?: Receipt[];
+  receiptsIntro?: string;
   problems: { title: string; body: string }[];
+  /** Optional override for the problems heading. */
+  problemsTitle?: string;
   steps: ProcessStep[];
-  showcase: { src: string; title: string; body: string; href: string; alt: string; height: number };
+  showcase?: { src: string; title: string; body: string; href: string; alt: string; height: number };
   calculator: { defaults: { budget: number; cpl: number; book: number; close: number; value: number }; note: string; valueLabel: string };
   comparison?: { heading: string; intro: string; columns: [string, string, string]; rows: [string, string, string][] };
   faq: { q: string; a: string }[];
@@ -165,7 +169,7 @@ export const INDUSTRIES: Industry[] = [
     keyword: "mortgage lead generation",
     metaTitle: "Mortgage Lead Generation for Brokers & Loan Officers | MDF™",
     metaDescription:
-      "Mortgage lead generation with your own Meta Ads, funnel and CRM. Real receipts: 10,172 leads at $8.06 and 154 leads at $14.58. Exclusive leads, never resold.",
+      "Mortgage lead generation with your own Meta Ads, funnel and CRM. Real receipt: 10,172 mortgage leads at $8.06 each in one month. Exclusive leads, never resold.",
     eyebrow: "Mortgage lead generation",
     h1: "Mortgage Lead Generation: Exclusive Leads at Your Own Cost per Lead",
     intro:
@@ -173,7 +177,7 @@ export const INDUSTRIES: Industry[] = [
     stats: [
       { value: "10,172", label: "Mortgage leads · one month" },
       { value: "$8.06", label: "Cost per lead · Apr 2026" },
-      { value: "$14.58", label: "Cost per lead · Australia" },
+      { value: "$81,984", label: "Ad spend managed · Apr 2026" },
       { value: "100%", label: "Exclusive · your ad account" },
     ],
     receiptsIntro: "Screenshots from live ad accounts. Click any card to inspect the full receipt.",
@@ -186,14 +190,6 @@ export const INDUSTRIES: Industry[] = [
         detail: "$81,984 spend across 8 campaigns at an $8.06 average cost per lead.",
         period: "Apr 1 – Apr 30, 2026",
         tag: "Scale",
-      },
-      {
-        id: "mort-au",
-        src: "/workprof/wp-031.webp",
-        figure: "$14.58 per lead",
-        label: "Mortgage broker · Australia",
-        detail: "154 form leads on $2,245.11 spend across 2 ad sets.",
-        period: "Jun 1 – Jun 30, 2026",
       },
       {
         id: "mort-ppl",
@@ -249,8 +245,8 @@ export const INDUSTRIES: Industry[] = [
       alt: "AI Mortgage System 2.0 mortgage lead funnel built by Million Dollar Funnel",
     },
     calculator: {
-      defaults: { budget: 3000, cpl: 14.58, book: 20, close: 20, value: 3000 },
-      note: "Cost per lead defaults to the $14.58 Australian receipt above. Booking rate, close rate and average commission are example inputs, so replace them with your own numbers.",
+      defaults: { budget: 3000, cpl: 15.26, book: 20, close: 20, value: 3000 },
+      note: "Cost per lead defaults to the $15.26 receipt above (the more conservative of the two). Booking rate, close rate and average commission are example inputs, so replace them with your own numbers.",
       valueLabel: "Average commission per loan",
     },
     comparison: {
@@ -267,7 +263,7 @@ export const INDUSTRIES: Industry[] = [
     faq: [
       {
         q: "How much do mortgage leads cost on Meta Ads?",
-        a: "In the receipts above, mortgage leads cost $8.06 on average across $81,984 of spend in April 2026, and $14.58 for an Australian broker in June 2026. Your cost depends on market, loan type and offer.",
+        a: "In the receipts above, mortgage leads cost $8.06 on average across $81,984 of spend in April 2026, and $15.26 in a smaller campaign for a pay-per-lead agency client. Your cost depends on market, loan type and offer.",
       },
       {
         q: "Are these leads exclusive?",
@@ -275,7 +271,7 @@ export const INDUSTRIES: Industry[] = [
       },
       {
         q: "Do you work with brokers outside the US?",
-        a: "Yes. One of the receipts above is from an Australian mortgage broker. We run campaigns in the US, UK, Canada and Australia.",
+        a: "Yes. We run campaigns in the US, UK, Canada and Australia, with ads written for each market.",
       },
       {
         q: "Is the advertising compliant?",
@@ -508,6 +504,126 @@ export const INDUSTRIES: Industry[] = [
       },
     ],
     related: ["/lead-generation/mortgage", "/services/ai-appointment-setter", "/blog/speed-to-lead", "/work-proof"],
+  },
+  {
+    slug: "chiropractic",
+    name: "Chiropractic",
+    keyword: "chiropractic marketing",
+    metaTitle: "Chiropractic Marketing: Booked New-Patient Consults | MDF™",
+    metaDescription:
+      "Chiropractic marketing with Meta Ads, a prepaid consult offer and automated reminders. Real receipt: 44 prepaid consults and $6,153 revenue on $1,714 ad spend.",
+    eyebrow: "Chiropractic marketing",
+    h1: "Chiropractic Marketing That Fills Your Schedule With Paying New Patients",
+    intro:
+      "A new-patient offer people pay for up front, Meta Ads that reach people in your area, and reminders that get them through the door. Prepaid consults show up far more reliably than free ones.",
+    stats: [
+      { value: "44", label: "Prepaid consults · 6 days" },
+      { value: "$6,153", label: "Revenue from the ads" },
+      { value: "3.59×", label: "Return on ad spend" },
+      { value: "$1,714", label: "Total ad spend" },
+    ],
+    receiptsIntro: "Screenshot from the clinic's ad account. Click to inspect.",
+    receipts: [
+      {
+        id: "chiro",
+        src: "/workprof/wp-032.webp",
+        figure: "44 prepaid consults",
+        label: "US chiropractic clinic · Meta Ads",
+        detail: "$6,153.29 in purchases on $1,714.17 spend across 7 campaigns, 3.59 ROAS, $38.96 per purchase.",
+        period: "Jun 28 – Jul 3, 2026",
+      },
+    ],
+    problems: [
+      { title: "Free offers attract no-shows", body: "Free exams fill the calendar with people who never arrive. A small prepaid offer filters for intent." },
+      { title: "Local ads that look like everyone else's", body: "Generic \"back pain?\" ads blend in. Specific offers and real patient stories stand out." },
+      { title: "No reminders", body: "Without confirmation and reminder texts, even booked patients forget their first visit." },
+    ],
+    steps: [
+      { title: "New-patient offer", body: "A low-cost, prepaid first visit that is easy to say yes to and valuable for the patient.", points: ["Offer and price point", "Clear what is included", "Compliance-aware wording"] },
+      { title: "Local Meta Ads", body: "Ads targeted to your service radius, with creative tested by condition and audience.", points: ["Radius targeting", "Condition-specific angles", "Video and image creative"] },
+      { title: "Checkout & booking", body: "A short page where patients pay and book their first visit in one go.", points: ["Payment and booking together", "Mobile-first page", "Instant confirmation"] },
+      { title: "Reminders & reporting", body: "Text and email reminders before the visit, and revenue tracked against ad spend.", points: ["Confirmation and reminders", "No-show follow-up", "ROAS reporting"] },
+    ],
+    showcase: {
+      src: "/images/funnels/funnel-05.webp",
+      height: 13190,
+      title: "A health-program funnel we built",
+      body: "A video-led health program funnel with a low-cost offer and checkout, the same structure we use for prepaid chiropractic consults.",
+      href: "/funnels",
+      alt: "Health program funnel built by Million Dollar Funnel",
+    },
+    calculator: {
+      defaults: { budget: 1700, cpl: 38.96, book: 100, close: 40, value: 1500 },
+      note: "Cost per lead defaults to the $38.96 cost per prepaid consult in the receipt above, so the booking rate is set to 100%. Close rate into a care plan and care-plan value are example inputs, so replace them with yours.",
+      valueLabel: "Average care-plan value",
+    },
+    faq: [
+      { q: "Does Facebook advertising work for chiropractors?", a: "It can, when the offer is specific and the follow-up is tight. In the receipt above, a US clinic sold 44 prepaid consults for $6,153 on $1,714 of ad spend in six days." },
+      { q: "Should the first visit be free or paid?", a: "We usually recommend a small paid offer. People who pay up front are far more likely to attend, and the ads can pay for themselves." },
+      { q: "Can you target only my local area?", a: "Yes. Ads are limited to the radius your patients come from." },
+      { q: "Is the advertising compliant?", a: "We avoid medical claims Meta does not allow, and you approve every ad before it runs." },
+    ],
+    related: ["/lead-generation/pressure-washing", "/services/meta-ads-management", "/services/missed-call-text-back", "/work-proof"],
+  },
+  {
+    slug: "pressure-washing",
+    name: "Pressure Washing",
+    keyword: "pressure washing leads",
+    metaTitle: "Pressure Washing Leads: Exclusive Residential & Commercial | MDF™",
+    metaDescription:
+      "Exclusive pressure washing leads from your own Meta Ads, quote funnel and instant follow-up. Real receipt: 167 leads at $13.37 each in 30 days.",
+    eyebrow: "Pressure washing leads",
+    h1: "Pressure Washing Leads That Book Quotes, Not Tire-Kickers",
+    intro:
+      "Residential and commercial pressure washing leads from your own ad account, a quick quote funnel with photos and job details, and texts that get the quote booked while the customer is still interested.",
+    stats: [
+      { value: "167", label: "Leads · 30 days" },
+      { value: "$13.37", label: "Cost per lead" },
+      { value: "$2,232", label: "Total ad spend" },
+      { value: "100%", label: "Exclusive leads" },
+    ],
+    receiptsIntro: "Screenshot from the client's ad account. Click to inspect.",
+    receipts: [
+      {
+        id: "pw",
+        src: "/workprof/wp-028.webp",
+        figure: "167 leads · $13.37",
+        label: "Pressure washing company · Meta Ads",
+        detail: "$2,232.11 spend across 5 ad sets, 1,348 link clicks and 993 landing-page views.",
+        period: "Jul 1 – Jul 31, 2026",
+      },
+    ],
+    problems: [
+      { title: "Shared lead apps", body: "Home-service lead apps send the same job to several companies, so you compete on price from the start." },
+      { title: "Quotes without details", body: "Without photos and surface details up front, you drive out to quote jobs that were never a fit." },
+      { title: "Slow replies", body: "Homeowners book whoever answers first. A reply the next day is usually too late." },
+    ],
+    steps: [
+      { title: "Seasonal offers", body: "Offers for driveways, house washes, roofs and commercial work, timed to the season in your area.", points: ["Residential and commercial angles", "Before-and-after creative", "Service-area targeting"] },
+      { title: "Quote funnel", body: "A short form that collects surface type, size, photos and address before the lead reaches you.", points: ["Photo upload", "Job details up front", "Mobile-first"] },
+      { title: "Instant follow-up", body: "Instant text with a booking link, plus missed-call text back for phone leads.", points: ["Instant SMS and email", "Missed-call text back", "Quote reminders"] },
+      { title: "Pipeline", body: "Every lead tracked from quote to booked job, with cost per lead and per job.", points: ["CRM pipeline", "Won-job tracking", "Weekly numbers"] },
+    ],
+    showcase: {
+      src: "/images/funnels/funnel-07.webp",
+      height: 10352,
+      title: "A local-business lead funnel we built",
+      body: "Video, a free audit offer and a booking step for local service businesses. It uses the same offer-proof-book structure as our home-service quote funnels.",
+      href: "/funnels",
+      alt: "Local-business lead funnel built by Million Dollar Funnel",
+    },
+    calculator: {
+      defaults: { budget: 2200, cpl: 13.37, book: 35, close: 40, value: 450 },
+      note: "Cost per lead defaults to the $13.37 receipt above. Booking rate, close rate and average job value are example inputs, so replace them with yours.",
+      valueLabel: "Average job value",
+    },
+    faq: [
+      { q: "How much do pressure washing leads cost on Facebook?", a: "In the receipt above, leads cost $13.37 on average across 167 leads in July 2026. Costs vary by market and season." },
+      { q: "Are the leads exclusive?", a: "Yes. Ads run in your account and leads go to your CRM only." },
+      { q: "Do you do commercial pressure washing leads too?", a: "Yes. Commercial campaigns use different targeting and offers from residential ones." },
+      { q: "What happens in the off-season?", a: "We shift to services and areas with demand, or pause and keep nurturing past customers for repeat work." },
+    ],
+    related: ["/lead-generation/roofing", "/services/missed-call-text-back", "/services/meta-ads-management", "/work-proof"],
   },
 ];
 
