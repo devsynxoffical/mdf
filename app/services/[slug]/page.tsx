@@ -7,21 +7,31 @@ import UFFooter from "@/components/uf/UFFooter";
 import { SERVICE_PAGES, getServiceBySlug } from "@/lib/services";
 import { pageCard } from "@/lib/pageCards";
 import LeadSection from "@/components/leads/LeadSection";
+import RichLanding from "@/components/leads/RichLanding";
+import { SERVICE_LANDINGS, getServiceLanding } from "@/lib/serviceLandings";
 import { SITE_URL, absoluteUrl, breadcrumbJsonLd, faqJsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: { slug: string } };
 
 export function generateStaticParams() {
-  return SERVICE_PAGES.map((s) => ({ slug: s.slug }));
+  return [...SERVICE_PAGES.map((s) => ({ slug: s.slug })), ...SERVICE_LANDINGS.map((s) => ({ slug: s.slug }))];
 }
 
 export function generateMetadata({ params }: Props): Metadata {
+  const rich = getServiceLanding(params.slug);
+  if (rich) return pageMetadata({ path: `/services/${rich.slug}`, title: rich.metaTitle, description: rich.metaDescription });
   const s = getServiceBySlug(params.slug);
   if (!s) return {};
   return pageMetadata({ path: `/services/${s.slug}`, title: s.metaTitle, description: s.metaDescription });
 }
 
 export default function ServicePage({ params }: Props) {
+  const rich = getServiceLanding(params.slug);
+  if (rich) {
+    const others = [...SERVICE_LANDINGS.filter((o) => o.slug !== rich.slug).map((o) => `/services/${o.slug}`), ...SERVICE_PAGES.map((o) => `/services/${o.slug}`)];
+    const related = Array.from(new Set([...rich.related, ...others])).slice(0, 6);
+    return <RichLanding d={rich} path={`/services/${rich.slug}`} parent={{ name: "Services", path: "/services" }} related={related} serviceName={rich.name} formHeading="Get your free plan" />;
+  }
   const s = getServiceBySlug(params.slug);
   if (!s) notFound();
   const path = `/services/${s.slug}`;
@@ -36,7 +46,7 @@ export default function ServicePage({ params }: Props) {
     { id: "faq", label: "FAQ" },
     { id: "related", label: "Related" },
   ];
-  const otherServices = SERVICE_PAGES.filter((o) => o.slug !== s.slug).map((o) => `/services/${o.slug}`);
+  const otherServices = [...SERVICE_LANDINGS.map((o) => ({ slug: o.slug })), ...SERVICE_PAGES].filter((o) => o.slug !== s.slug).map((o) => `/services/${o.slug}`);
   const relatedHrefs = Array.from(new Set([...s.related.map((r) => r.href), ...otherServices])).slice(0, 6);
 
   return (

@@ -7,8 +7,8 @@ type Field = { key: "budget" | "cpl" | "book" | "close" | "value"; label: string
 const FIELDS: Field[] = [
   { key: "budget", label: "Monthly ad spend", min: 500, max: 50000, step: 250, prefix: "$" },
   { key: "cpl", label: "Cost per lead", min: 2, max: 150, step: 0.5, prefix: "$" },
-  { key: "book", label: "Leads that book an appointment", min: 1, max: 80, step: 1, suffix: "%" },
-  { key: "close", label: "Appointments that become customers", min: 1, max: 80, step: 1, suffix: "%" },
+  { key: "book", label: "Leads that book an appointment", min: 1, max: 100, step: 1, suffix: "%" },
+  { key: "close", label: "Appointments that become customers", min: 1, max: 100, step: 1, suffix: "%" },
   { key: "value", label: "Average customer value", min: 100, max: 50000, step: 100, prefix: "$" },
 ];
 

@@ -130,3 +130,23 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Change:** it now posts to /api/lead (niche "Newsletter signup"). It shows "Joined!" only on success, otherwise an error with the contact email, and fires the GA4 `sign_up` event.
 - **Validation:** Playwright with no webhook → 503 → error message shown (expected until LEAD_WEBHOOK_URL is set).
 - **Also:** an "Industries" link was added to the main nav and footer, and an industries section to /services, sitemap.xml and llms.txt.
+
+### C7 — 2026-11-19 · 30-service catalog + 6 new landing pages
+- **Reason:** the owner asked for the 30 top services, each mapped to a page that can rank. `lib/serviceCatalog.ts` holds the list with each service's target keyword and measured US volume (OpenSEO), or null where it was not measured.
+- **New pages** (same rich layout as C4):
+
+  | Page | Target keyword | Volume/mo |
+  |---|---|---|
+  | `/services/meta-ads-management` | facebook ads management | not measured |
+  | `/services/client-acquisition-system` | client acquisition | 2,400 (KD 13) |
+  | `/services/done-for-you-sales-funnels` | done for you sales funnel | 30 |
+  | `/services/missed-call-text-back` | missed call text back | 390 (KD 8) |
+  | `/lead-generation/chiropractic` | chiropractic marketing | 390 (KD 0) |
+  | `/lead-generation/pressure-washing` | pressure washing leads | 170 |
+
+- **Hub:** /services now lists all 30 services in six groups, each linking to the page that targets it. The Organization OfferCatalog schema lists all 30 with their URLs.
+- **Data integrity:**
+  - wp-001 ("finance") and wp-031 ("Australian mortgage") show identical ad-set rows, so wp-031 was removed from /lead-generation/mortgage until the owner confirms which is real.
+  - A financial-advisor page was not built: its only receipt (wp-025) shows a single-day view, and the 1,308-lead total exists only in the post banner.
+  - Insurance was not built: there is no receipt.
+- **Validation:** production build; Playwright desktop and mobile on 5 of the pages, with no broken images or overflow; all titles ≤ 65 characters, descriptions ≤ 160, one H1 each.

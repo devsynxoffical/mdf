@@ -1,0 +1,298 @@
+import type { Landing } from "@/lib/industries";
+
+/**
+ * Rich service landing pages served at /services/[slug] (alongside the article-style
+ * pages in lib/services.ts). Figures are read from the screenshots they cite.
+ */
+export const SERVICE_LANDINGS: Landing[] = [
+  {
+    slug: "meta-ads-management",
+    name: "Meta Ads Management",
+    keyword: "facebook ads management for lead generation",
+    metaTitle: "Facebook & Meta Ads Management for Lead Generation | MDF™",
+    metaDescription:
+      "Facebook and Instagram ads management built for leads, not likes. Real receipts: 10,172 mortgage leads at $8.06 and 1,018 webinar sign-ups at $4.50.",
+    eyebrow: "Facebook & Meta Ads management",
+    h1: "Facebook Ads Management That Is Measured in Leads, Not Likes",
+    intro:
+      "We plan, build and run your Meta Ads (Facebook and Instagram) for lead generation, connected to a funnel and follow-up, so you can see cost per lead and cost per booked call in your own ad account.",
+    stats: [
+      { value: "10,172", label: "Leads · one month · mortgage" },
+      { value: "$8.06", label: "Cost per lead · $81,984 spend" },
+      { value: "1,018", label: "Webinar sign-ups · $4.50 each" },
+      { value: "Your", label: "Ad account · full access" },
+    ],
+    receiptsIntro: "Screenshots from client ad accounts across different industries. Click any card to inspect it.",
+    receipts: [
+      {
+        id: "ma-mortgage",
+        src: "/workprof/wp-008.webp",
+        figure: "10,172 leads · $8.06",
+        label: "Mortgage · 8 campaigns",
+        detail: "$81,984 spend, 19,513 link clicks and 13,797 landing-page views.",
+        period: "Apr 1 – Apr 30, 2026",
+        tag: "Scale",
+      },
+      {
+        id: "ma-pi",
+        src: "/workprof/wp-036.webp",
+        figure: "530 leads in 7 days",
+        label: "Personal injury law firm · Texas",
+        detail: "$14,270.43 spend at a $26.93 average cost per lead.",
+        period: "Jun 1 – Jun 7, 2026",
+      },
+      {
+        id: "ma-webinar",
+        src: "/workprof/wp-004.webp",
+        figure: "1,018 sign-ups · $4.50",
+        label: "Agency webinar · 21 ad sets",
+        detail: "$4,582.17 spend, 3,251 link clicks at $1.41 each.",
+        period: "May 1 – May 31, 2026",
+      },
+      {
+        id: "ma-solar",
+        src: "/workprof/wp-039.webp",
+        figure: "300 leads · $14.71",
+        label: "Solar company · 4 ad sets",
+        detail: "$4,412.03 spend at an average CPM of $50.57.",
+        period: "Apr 10 – Apr 20, 2026",
+      },
+      {
+        id: "ma-pw",
+        src: "/workprof/wp-028.webp",
+        figure: "167 leads · $13.37",
+        label: "Pressure washing · 5 ad sets",
+        detail: "$2,232.11 spend, 1,348 link clicks.",
+        period: "Jul 1 – Jul 31, 2026",
+      },
+    ],
+    problems: [
+      { title: "Optimising for the wrong thing", body: "Clicks and cheap reach look good in reports but do not pay the bills. Campaigns should be judged on cost per qualified lead and per booked call." },
+      { title: "Ads with nowhere good to land", body: "Even great ads fail if the landing page is slow, unfocused or asks for too much. The ad and the funnel have to be built together." },
+      { title: "No follow-up after the form", body: "Most leads go cold within minutes. Without instant text, email and booking, you pay for leads and then lose them." },
+    ],
+    steps: [
+      { title: "Offer & audience", body: "We define the offer, the audience and the one action we want, then write angles that speak to a real problem your buyers have.", points: ["Offer and angle research", "Audience and placement plan", "Conversion event set up correctly"] },
+      { title: "Creative & copy", body: "Video and image ads with several hooks per angle, so the account can find what works quickly.", points: ["Multiple hooks per angle", "Video and static formats", "Compliance-aware copy for special ad categories"] },
+      { title: "Funnel & tracking", body: "A focused landing page or instant form, with the pixel and conversions API set up so Meta optimises for real leads.", points: ["Landing page or lead form", "Pixel and conversions API", "Lead source passed into your CRM"] },
+      { title: "Optimise & scale", body: "Weekly decisions based on cost per lead and per booked call. Budget moves to winners and losers are switched off.", points: ["Weekly reporting", "Creative refresh cycle", "Budget scaling rules"] },
+    ],
+    showcase: {
+      src: "/images/funnels/funnel-01.webp",
+      height: 4906,
+      title: "The funnel behind the ads",
+      body: "AI Mortgage System 2.0: ads send traffic to a VSL and application flow that books consults automatically. Ads and funnel are built as one system.",
+      href: "/funnels",
+      alt: "AI Mortgage System 2.0 funnel built by Million Dollar Funnel",
+    },
+    calculator: {
+      defaults: { budget: 3000, cpl: 13.5, book: 25, close: 15, value: 3000 },
+      note: "Cost per lead defaults to the $13.50 median of our published receipts. The other values are example inputs, so replace them with yours.",
+      valueLabel: "Average customer value",
+    },
+    comparison: {
+      heading: "Boosting posts vs managed lead-generation campaigns",
+      intro: "Boosted posts buy attention. Lead campaigns are built to buy a specific action at a known cost.",
+      columns: ["", "Boosted posts", "Managed lead campaigns"],
+      rows: [
+        ["Goal", "Reach and engagement", "Qualified leads and booked calls"],
+        ["Tracking", "Likes and comments", "Cost per lead and per booked call"],
+        ["Landing", "Your profile", "A funnel built for one action"],
+        ["Follow-up", "None", "Instant text, email and booking"],
+      ],
+    },
+    faq: [
+      { q: "How much should I spend on Facebook ads for leads?", a: "Enough to get meaningful data each week. Many of the accounts above started with a few thousand dollars a month and scaled once cost per lead was proven. We will suggest a starting budget for your market." },
+      { q: "Do I keep ownership of the ad account?", a: "Yes. We work inside your Business Manager and ad account, so the data, audiences and pixel history stay with you." },
+      { q: "What does a lead cost on Meta Ads?", a: "Across our published receipts that show it, cost per lead ranges from about $4 to $27, with a median of $13.50. It depends heavily on industry, offer and market." },
+      { q: "Do you also run Google Ads?", a: "Our core is Meta Ads plus funnels and follow-up. If Google Search makes sense for your offer, we will tell you on the strategy call." },
+    ],
+    related: ["/lead-generation", "/services/done-for-you-sales-funnels", "/services/ai-appointment-setter", "/work-proof"],
+  },
+  {
+    slug: "client-acquisition-system",
+    name: "Client Acquisition System",
+    keyword: "client acquisition system",
+    metaTitle: "Client Acquisition System: Ads, Funnel & Follow-Up Done for You",
+    metaDescription:
+      "A done-for-you client acquisition system: Meta Ads, funnel, CRM and automated follow-up as one. Real CRM receipts: $111.2K and $77.1K won in about a month.",
+    eyebrow: "Client acquisition system",
+    h1: "A Client Acquisition System That Runs Without You Chasing Leads",
+    intro:
+      "Ads bring the right people in, the funnel qualifies them, follow-up books them and the CRM shows what every dollar produced. We build the whole system and hand you the keys.",
+    stats: [
+      { value: "$111.2K", label: "Won revenue · 31 days" },
+      { value: "$77.1K", label: "Won revenue · 32 days" },
+      { value: "$847K", label: "Coaching case study revenue" },
+      { value: "4", label: "Parts, one system" },
+    ],
+    receiptsIntro: "CRM and ad-account screenshots from systems we built and run. Click to inspect.",
+    receipts: [
+      { id: "ca-fl", src: "/workprof/wp-023.webp", figure: "$111.2K won", label: "Florida roofing · CRM pipeline", detail: "26 won from 142 opportunities, $511.2K total pipeline.", period: "Jan 12 – Feb 11, 2026", tag: "CRM" },
+      { id: "ca-tx", src: "/workprof/wp-024.webp", figure: "$77.1K won", label: "Texas roofing · CRM pipeline", detail: "19 won from 164 opportunities, $582.6K total pipeline.", period: "Jan 10 – Feb 10, 2026", tag: "CRM" },
+      { id: "ca-web", src: "/workprof/wp-004.webp", figure: "1,018 sign-ups", label: "Agency webinar · Meta Ads", detail: "$4.50 per registration on $4,582.17 spend.", period: "May 1 – May 31, 2026" },
+    ],
+    problems: [
+      { title: "Referral roller-coaster", body: "Good months and empty months, because new clients depend on word of mouth instead of a system you control." },
+      { title: "Disconnected tools", body: "Ads in one place, pages in another and leads in a spreadsheet. Nothing talks to anything, so leads fall through the gaps." },
+      { title: "No idea what works", body: "Without a pipeline tied to ad spend, you cannot tell which campaign produced paying clients, so scaling is guesswork." },
+    ],
+    steps: [
+      { title: "Offer & positioning", body: "We sharpen who you serve, the result you promise and why you, because a weak offer makes every other part more expensive.", points: ["Ideal client and offer review", "Front-end offer or lead magnet", "Proof and positioning"] },
+      { title: "Traffic", body: "Meta Ads (and organic content if you have it) aimed at your ideal client, with the conversion event set to qualified leads.", points: ["Campaign structure", "Creative and copy", "Pixel and conversions API"] },
+      { title: "Funnel & booking", body: "A VSL, webinar, application or lead-form funnel, chosen for your offer, that ends in a booked call or a sale.", points: ["Funnel built for your offer", "Qualification questions", "Calendar booking"] },
+      { title: "Follow-up & CRM", body: "Instant SMS and email, reminders, no-show recovery and a pipeline that shows revenue by source.", points: ["Speed-to-lead automation", "Reminders and no-show flows", "Pipeline and reporting"] },
+    ],
+    showcase: {
+      src: "/images/funnels/funnel-08.webp",
+      height: 8916,
+      title: "The Million Dollar Funnel™ core",
+      body: "Our own high-ticket acquisition funnel: offer, proof, application and booking, wired to the CRM and follow-up.",
+      href: "/funnels",
+      alt: "Million Dollar Funnel core client acquisition funnel",
+    },
+    calculator: {
+      defaults: { budget: 3000, cpl: 13.5, book: 25, close: 20, value: 5000 },
+      note: "Cost per lead defaults to the $13.50 median of our published receipts. Booking rate, close rate and client value are example inputs, so replace them with yours.",
+      valueLabel: "Average client value",
+    },
+    comparison: {
+      heading: "Referrals and DIY tools vs a built acquisition system",
+      intro: "Referrals are great but not controllable. A system gives you a dial you can turn up.",
+      columns: ["", "Referrals / DIY", "Client acquisition system"],
+      rows: [
+        ["Predictability", "Lumpy, depends on others", "Steady, depends on ad spend"],
+        ["Speed to lead", "Whenever someone checks", "Instant text, email and booking"],
+        ["Visibility", "Guesswork", "Revenue by campaign in the CRM"],
+        ["Scaling", "Hard to increase", "Raise budget on what works"],
+      ],
+    },
+    faq: [
+      { q: "What is a client acquisition system?", a: "It is the connected set of traffic, funnel, follow-up and CRM that turns strangers into booked calls and clients predictably, instead of relying on referrals." },
+      { q: "Who is this for?", a: "Service businesses, coaches, consultants and agencies that already sell something people want and need a reliable way to get more qualified conversations." },
+      { q: "How long does it take to build?", a: "It depends on how much already exists. Offer, funnel, follow-up and tracking are built and tested before ads scale." },
+      { q: "Do I need to be technical?", a: "No. We build and connect everything, usually in GoHighLevel, and show your team how to work the pipeline." },
+    ],
+    related: ["/cases/coaching-lto", "/services/meta-ads-management", "/services/gohighlevel-agency", "/lead-generation"],
+  },
+  {
+    slug: "done-for-you-sales-funnels",
+    name: "Done-For-You Sales Funnels",
+    keyword: "done for you sales funnel",
+    metaTitle: "Done-For-You Sales Funnels: Built, Connected & Launched | MDF™",
+    metaDescription:
+      "Done-for-you sales funnels built for your offer: copy, design, checkout or booking, CRM and follow-up. Real result: 1,515 webinar opt-ins at a 27% opt-in rate.",
+    eyebrow: "Done-for-you sales funnels",
+    h1: "Done-For-You Sales Funnels, Built Around Your Offer and Launched for You",
+    intro:
+      "We write, design and build the funnel, connect checkout or booking, wire it to your CRM and follow-up, and launch it with tracking, so you are not stuck stitching tools together.",
+    stats: [
+      { value: "1,515", label: "Webinar opt-ins · 1 page" },
+      { value: "27.01%", label: "Opt-in rate · ClickFunnels" },
+      { value: "8", label: "Live funnels to explore" },
+      { value: "1", label: "System: page, CRM, follow-up" },
+    ],
+    receiptsIntro: "Funnel and ad-account screenshots. Click to inspect.",
+    receipts: [
+      { id: "fn-cf", src: "/workprof/wp-007.webp", figure: "1,515 opt-ins · 27.01%", label: "Webinar registration page · ClickFunnels", detail: "7,750 page views and 5,610 unique visitors on the registration step.", period: "Apr 1 – May 4, 2026", tag: "Scale" },
+      { id: "fn-web", src: "/workprof/wp-004.webp", figure: "1,018 sign-ups · $4.50", label: "Agency webinar funnel · Meta Ads", detail: "$4,582.17 ad spend across 21 ad sets.", period: "May 1 – May 31, 2026" },
+    ],
+    problems: [
+      { title: "Template funnels", body: "Generic templates ignore your offer, your buyer and your proof, so they look fine and convert poorly." },
+      { title: "Broken connections", body: "Checkout, calendar, CRM and email set up separately, with leads and payments lost between them." },
+      { title: "Launch and forget", body: "Without tracking each step, you never learn which page leaks, so nothing improves after launch." },
+    ],
+    steps: [
+      { title: "Strategy & funnel type", body: "We choose the funnel for your offer and price: VSL, webinar, application, low-ticket or lead magnet.", points: ["Offer and buyer review", "Funnel type and steps", "Success metric per step"] },
+      { title: "Copy & design", body: "Conversion copy and a clean, fast, mobile-first design that matches your brand.", points: ["Headlines and page copy", "Mobile-first design", "Proof placed where doubt appears"] },
+      { title: "Build & connect", body: "Built in GoHighLevel, ClickFunnels or your platform, with checkout or calendar, CRM and automations connected.", points: ["Checkout, upsells or booking", "CRM and tags", "Email and SMS follow-up"] },
+      { title: "Launch & improve", body: "Tracking on every step, then we test the biggest leaks first.", points: ["Pixel and analytics", "Step-by-step conversion report", "Test plan after launch"] },
+    ],
+    showcase: {
+      src: "/images/funnels/funnel-03.webp",
+      height: 9359,
+      title: "Love My Invention: a long-form funnel we built",
+      body: "Idea to drawings to patents to next step. A long-form funnel that pre-sells the offer and turns inventors into qualified pipeline.",
+      href: "/funnels",
+      alt: "Love My Invention funnel built by Million Dollar Funnel",
+    },
+    calculator: {
+      defaults: { budget: 3000, cpl: 13.5, book: 25, close: 15, value: 3000 },
+      note: "Cost per lead defaults to the $13.50 median of our published receipts. The other values are example inputs, so replace them with yours.",
+      valueLabel: "Average customer value",
+    },
+    comparison: {
+      heading: "DIY funnel builder vs done-for-you funnel",
+      intro: "Funnel builders give you tools. A done-for-you funnel gives you a finished, connected system.",
+      columns: ["", "DIY funnel builder", "Done-for-you funnel"],
+      rows: [
+        ["Copy", "You write it", "Written for your offer and buyer"],
+        ["Integrations", "You connect them", "Checkout, CRM and follow-up connected"],
+        ["Tracking", "Often missing", "Every step tracked from launch"],
+        ["Time to launch", "Weeks of your time", "Built by our team"],
+      ],
+    },
+    faq: [
+      { q: "Which platform do you build funnels on?", a: "Usually GoHighLevel, and also ClickFunnels or your existing platform when that makes more sense." },
+      { q: "What types of funnels do you build?", a: "VSL, webinar, application, low-ticket, lead magnet and booking funnels. See eight live examples on our funnels page." },
+      { q: "Do you write the copy?", a: "Yes. Copy, design, build, integrations and tracking are all included." },
+      { q: "How much does a sales funnel cost?", a: "It depends on the number of pages, integrations and whether ads and follow-up are included. We give a fixed scope after a short call." },
+    ],
+    related: ["/funnels", "/services/vsl-funnels", "/services/webinar-funnels", "/services/low-ticket-funnels"],
+  },
+  {
+    slug: "missed-call-text-back",
+    name: "Missed Call Text Back",
+    keyword: "missed call text back",
+    metaTitle: "Missed Call Text Back Setup for Service Businesses | MDF™",
+    metaDescription:
+      "Missed call text back that replies by SMS within seconds, books the appointment and alerts your team. Set up in GoHighLevel with your number and wording.",
+    eyebrow: "Missed call text back",
+    h1: "Missed Call Text Back: Turn Every Missed Call Into a Conversation",
+    intro:
+      "When you cannot pick up, the caller gets a text within seconds, can reply or book a time, and your team gets an alert. We set it up with your number, your wording and your calendar.",
+    stats: [
+      { value: "Seconds", label: "Until the caller gets a text" },
+      { value: "24/7", label: "Including nights and weekends" },
+      { value: "2-way", label: "SMS conversation in your CRM" },
+      { value: "A2P", label: "Registration handled" },
+    ],
+    problems: [
+      { title: "Callers do not leave voicemails", body: "Most people who reach voicemail hang up and call the next business on the list." },
+      { title: "Busy teams miss calls", body: "On a job, in a session or after hours, calls go unanswered at exactly the moment someone is ready to buy." },
+      { title: "No record of who called", body: "Missed calls sit in a phone log nobody checks, so there is no follow-up and no way to measure what was lost." },
+    ],
+    problemsTitle: "Why missed calls cost you customers",
+    steps: [
+      { title: "Number & registration", body: "We connect or port your business number and handle A2P 10DLC registration so texts are delivered.", points: ["Business number connected", "A2P 10DLC registration", "Call forwarding set up"] },
+      { title: "Text-back message", body: "A short, friendly text in your voice that goes out automatically when a call is missed.", points: ["Message written for your business", "Business-hours and after-hours versions", "Booking link included"] },
+      { title: "Conversation & booking", body: "Replies land in one inbox. An optional AI assistant can answer common questions and book appointments.", points: ["2-way SMS inbox", "Optional AI replies", "Calendar booking"] },
+      { title: "Alerts & reporting", body: "Your team is alerted to call back, and every missed call is tracked as a lead in the pipeline.", points: ["Team notifications", "Missed calls as pipeline leads", "Simple weekly report"] },
+    ],
+    calculator: {
+      defaults: { budget: 1000, cpl: 20, book: 30, close: 30, value: 1000 },
+      note: "These are example inputs. Treat 'ad spend' as what it costs you to make the phone ring, and adjust booking and close rates to what you see when calls are answered.",
+      valueLabel: "Average job or client value",
+    },
+    comparison: {
+      heading: "Voicemail vs missed call text back",
+      intro: "The difference is who has to make the next move.",
+      columns: ["", "Voicemail", "Missed call text back"],
+      rows: [
+        ["Next step", "Caller must leave a message", "Business texts the caller first"],
+        ["Speed", "Whenever someone checks", "Within seconds"],
+        ["Booking", "Phone tag", "Booking link in the text"],
+        ["Tracking", "Phone log", "Lead in your CRM pipeline"],
+      ],
+    },
+    faq: [
+      { q: "What is missed call text back?", a: "An automation that sends an SMS to anyone whose call you miss, so the conversation continues by text instead of ending at voicemail." },
+      { q: "Do I need A2P 10DLC registration?", a: "In the US, business texting from a local number needs A2P 10DLC registration. We handle it as part of the setup. See our A2P 10DLC guide for details." },
+      { q: "Can it book appointments automatically?", a: "Yes. The text can include a booking link, and an optional AI assistant can reply and book for you." },
+      { q: "Which CRM does this run on?", a: "We usually set it up in GoHighLevel, where calls, texts and the pipeline live together." },
+    ],
+    related: ["/blog/speed-to-lead", "/blog/a2p-10dlc-registration", "/services/ai-appointment-setter", "/services/gohighlevel-agency"],
+  },
+];
+
+export const getServiceLanding = (slug: string) => SERVICE_LANDINGS.find((s) => s.slug === slug);

@@ -114,13 +114,13 @@ export default function LeadGenerationHub() {
             {INDUSTRIES.map((ind) => (
               <Link key={ind.slug} href={`${PATH}/${ind.slug}`} className="icard">
                 <span className="icard-img">
-                  <Image src={ind.receipts[0].src} alt={`${ind.name} lead generation receipt: ${ind.receipts[0].figure}`} fill sizes="(max-width: 768px) 100vw, 560px" className="object-cover object-top" />
+                  <Image src={ind.receipts![0].src} alt={`${ind.name} lead generation receipt: ${ind.receipts![0].figure}`} fill sizes="(max-width: 768px) 100vw, 560px" className="object-cover object-top" />
                 </span>
                 <span className="icard-body">
                   <span className="link-card-tag">{ind.name}</span>
                   <span className="icard-title">{ind.name} lead generation</span>
-                  <span className="icard-figure">{ind.receipts[0].figure}</span>
-                  <span className="pcard-body">{ind.receipts[0].detail}</span>
+                  <span className="icard-figure">{ind.receipts![0].figure}</span>
+                  <span className="pcard-body">{ind.receipts![0].detail}</span>
                   <span className="link-card-go">See the {ind.name.toLowerCase()} system ↗</span>
                 </span>
               </Link>
