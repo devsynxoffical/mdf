@@ -158,3 +158,13 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - The local build's homepage HTML now has 15 unique /services/* and /lead-generation/* links.
   - Playwright at 1440, 1024 and 390 px: no overflow, and the column is readable.
 - **Track:** lastCrawl and coverage of those 10 URLs in the next runs.
+
+### Results — 12:40 run, 2026-11-19 (GSC data through 2026-11-17)
+- **Indexed:** 16 of 35 sitemap URLs (was 13 of 24). Newly indexed:
+  - `/services/meta-ads-management`: crawled and indexed 2026-11-19 11:17, the same day it was published (C7).
+  - `/services/low-ticket-funnels`: crawled 2026-11-19 04:26.
+  - `/blog/sales-funnel-stages`: crawled 2026-11-19 02:53.
+- **Still not crawled:** the other /lead-generation/* pages and 3 of the new services pages ("Discovered" or "unknown"). C8 footer links are live as of this run.
+- **Traffic:** 28d 8 clicks / 239 impressions; 7d 3 clicks / 62 impressions. "million dollar funnels" 18 → 19 impressions.
+- **Old-site URLs:** not recrawled since the C3 redirects (last crawl 2026-11-06).
+- **Owner settings still missing:** /api/lead returns 503 (LEAD_WEBHOOK_URL not set) and GA4 is not live (NEXT_PUBLIC_GA_ID not set).
