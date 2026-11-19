@@ -6,6 +6,7 @@ import { CASE_STUDIES } from "@/lib/cases";
 
 const LINKS = [
   ["Services", "/services"],
+  ["Industries", "/lead-generation"],
   ["Case Studies", "/cases"],
   ["Work Proof", "/work-proof"],
   ["Funnels", "/funnels"],

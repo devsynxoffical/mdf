@@ -175,12 +175,14 @@ export function Callout({ label, children }: { label: string; children: ReactNod
 }
 
 /** Related pages as cards (internal links). */
-export function LinkCards({ heading, id, items }: { heading: string; id?: string; items: { href: string; title: string; desc?: string; tag?: string }[] }) {
+export function LinkCards({ heading, id, items }: { heading?: string; id?: string; items: { href: string; title: string; desc?: string; tag?: string }[] }) {
   return (
     <section>
-      <h2 id={id} className="content-h2">
-        {heading}
-      </h2>
+      {heading && (
+        <h2 id={id} className="content-h2">
+          {heading}
+        </h2>
+      )}
       <div className="link-cards">
         {items.map((it) => (
           <Link key={it.href} href={it.href} className="link-card">
@@ -213,12 +215,14 @@ export function ContentCta({ heading, body, href = "/book", label = "Book a stra
 }
 
 /** FAQ as native disclosure widgets (crawlable, no JS), paired with FAQPage JSON-LD. */
-export function ContentFaq({ items, id = "faq" }: { items: { q: string; a: string }[]; id?: string }) {
+export function ContentFaq({ items, id = "faq", bare = false }: { items: { q: string; a: string }[]; id?: string; bare?: boolean }) {
   return (
-    <section>
-      <h2 id={id} className="content-h2">
-        Frequently asked questions
-      </h2>
+    <section id={bare ? id : undefined}>
+      {!bare && (
+        <h2 id={id} className="content-h2">
+          Frequently asked questions
+        </h2>
+      )}
       <div className="faq-list">
         {items.map((f, i) => (
           <details key={f.q} className="faq-item" open={i === 0}>

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ContentShell, { ContentCta, ContentFaq, LinkCards } from "@/components/content/ContentShell";
+import ContentShell, { ContentFaq, LinkCards } from "@/components/content/ContentShell";
+import LeadSection from "@/components/leads/LeadSection";
 import RichText, { plainText, slugId } from "@/components/content/RichText";
 import JsonLd from "@/components/seo/JsonLd";
 import UFFooter from "@/components/uf/UFFooter";
@@ -171,11 +172,10 @@ export default function BlogPostPage({ params }: Props) {
 
         <LinkCards heading="Read next" items={readNext.map((h) => pageCard(h))} />
 
-        <ContentCta
-          heading="Want this built for you?"
-          body="We build and run the funnels, follow-up and CRM described here for high-ticket service businesses."
-          href={p.cta.href}
-          label={p.cta.label}
+        <LeadSection
+          source={path}
+          heading="Want this built for your business?"
+          body="We build and run the funnels, follow-up and CRM described in this guide. Tell us about your business and we will send a plan."
         />
       </ContentShell>
       <UFFooter />

@@ -51,6 +51,7 @@ export const SEO_SERVICES = [
 export const STATIC_ROUTES: { path: string; priority: number; changeFrequency: "weekly" | "monthly" | "yearly" }[] = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
   { path: "/services", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/lead-generation", priority: 0.9, changeFrequency: "monthly" },
   { path: "/work-proof", priority: 0.9, changeFrequency: "weekly" },
   { path: "/cases", priority: 0.9, changeFrequency: "weekly" },
   { path: "/funnels", priority: 0.8, changeFrequency: "monthly" },
