@@ -150,3 +150,11 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - A financial-advisor page was not built: its only receipt (wp-025) shows a single-day view, and the 1,308-lead total exists only in the post banner.
   - Insurance was not built: there is no receipt.
 - **Validation:** production build; Playwright desktop and mobile on 5 of the pages, with no broken images or overflow; all titles ≤ 65 characters, descriptions ≤ 160, one H1 each.
+
+### C8 — 2026-11-19 (12:40 run) · Site-wide footer links to the 10 new pages
+- **Reason:** URL Inspection shows all new /lead-generation/* and new /services/* pages as "Discovered" or "unknown", never crawled. The homepage is the page Google crawls most (last crawl Nov 13). Before this change, the homepage HTML linked to none of the 6 industry pages or the 4 new service pages.
+- **Change:** a "Solutions" column in the footer on every page, linking roofing, mortgage, solar, personal injury, chiropractic, pressure washing, Meta Ads, client acquisition, done-for-you funnels and missed call text back.
+- **Validation:**
+  - The local build's homepage HTML now has 15 unique /services/* and /lead-generation/* links.
+  - Playwright at 1440, 1024 and 390 px: no overflow, and the column is readable.
+- **Track:** lastCrawl and coverage of those 10 URLs in the next runs.
