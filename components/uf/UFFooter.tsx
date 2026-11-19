@@ -1,5 +1,7 @@
 "use client";
 
+import { track } from "@/lib/track";
+
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { CASE_STUDIES } from "@/lib/cases";
@@ -30,6 +32,7 @@ const EXPLORE_LINKS: FooterLinkItem[] = [
   { label: "Verified Receipts", href: ROUTES.workProof, badge: `${WORK_PROOF.length}` },
   { label: "Funnel Architectures", href: ROUTES.funnels },
   { label: "Funnel & Automation Services", href: "/services" },
+  { label: "Lead Generation by Industry", href: "/lead-generation" },
   { label: "Funnel & Follow-Up Guides", href: "/blog" },
 ];
 
@@ -107,7 +110,7 @@ const OFFICIAL_SOCIALS = [
 
 export default function UFFooter() {
   const year = new Date().getFullYear();
-  const [subscribed, setSubscribed] = useState(false);
+  const [subscribed, setSubscribed] = useState<false | "ok" | "error" | "sending">(false);
   const [emailInput, setEmailInput] = useState("");
   const founderCardRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -122,15 +125,24 @@ export default function UFFooter() {
     });
   };
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!emailInput) return;
     playTick();
-    setSubscribed(true);
-    setTimeout(() => {
+    setSubscribed("sending");
+    try {
+      const r = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ name: "Newsletter subscriber", email: emailInput, niche: "Newsletter signup", page: window.location.href }),
+      });
+      if (!r.ok) throw new Error(String(r.status));
+      track("sign_up", { method: "footer_newsletter" });
+      setSubscribed("ok");
       setEmailInput("");
-      setSubscribed(false);
-    }, 4000);
+    } catch {
+      setSubscribed("error");
+    }
   };
 
   const scrollToTop = () => {
@@ -192,13 +204,25 @@ export default function UFFooter() {
             type="submit"
             className="group relative flex h-11 shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500 px-7 font-sans text-[13.5px] font-bold text-black shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_25px_rgba(56,189,248,0.5)] active:scale-95 cursor-pointer"
           >
-            <span>{subscribed ? "Joined!" : "Join The List"}</span>
+            <span>{subscribed === "ok" ? "Joined!" : subscribed === "sending" ? "Joining…" : "Join The List"}</span>
             <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </button>
         </form>
 
         <p className="mt-3.5 font-mono text-[11px] text-slate-400">
-          🔒 Zero spam. Instant high-ticket breakdowns. 1-click unsubscribe.
+          {subscribed === "error" ? (
+            <>
+              Could not save your email right now. Please email{" "}
+              <a href={`mailto:${SITE.email}?subject=${encodeURIComponent("Add me to the list")}`} className="text-sky underline">
+                {SITE.email}
+              </a>
+              .
+            </>
+          ) : subscribed === "ok" ? (
+            "You are on the list. Watch your inbox."
+          ) : (
+            "🔒 Zero spam. Instant high-ticket breakdowns. 1-click unsubscribe."
+          )}
         </p>
       </div>
 

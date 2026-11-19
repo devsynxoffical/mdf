@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { CASE_STUDIES } from "@/lib/cases";
 import { SERVICE_PAGES } from "@/lib/services";
 import { BLOG_POSTS } from "@/lib/blog";
+import { INDUSTRIES } from "@/lib/industries";
 import { STATIC_ROUTES, absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -15,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...SERVICE_PAGES.map((s) => ({
       url: absoluteUrl(`/services/${s.slug}`),
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    })),
+    ...INDUSTRIES.map((i) => ({
+      url: absoluteUrl(`/lead-generation/${i.slug}`),
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.9,

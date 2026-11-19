@@ -7,6 +7,7 @@ import { SERVICE_PAGES } from "@/lib/services";
 import { BLOG_POSTS } from "@/lib/blog";
 import { WORK_PROOF } from "@/lib/workproof";
 import { pageCard } from "@/lib/pageCards";
+import { INDUSTRIES } from "@/lib/industries";
 import { SEO_SERVICES, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -39,6 +40,7 @@ export default function ServicesPage() {
   ];
   const toc = [
     { id: "featured", label: "Featured services" },
+    { id: "industries", label: "By industry" },
     { id: "everything", label: "Everything we build" },
     { id: "process", label: "How an install works" },
     { id: "proof", label: "Proof" },
@@ -62,6 +64,8 @@ export default function ServicesPage() {
         ]}
       >
         <LinkCards id="featured" heading="Featured services" items={SERVICE_PAGES.map((s) => pageCard(`/services/${s.slug}`))} />
+
+        <LinkCards id="industries" heading="Lead generation by industry" items={INDUSTRIES.map((i) => pageCard(`/lead-generation/${i.slug}`))} />
 
         <section>
           <SectionHeading id="everything">Everything we build</SectionHeading>

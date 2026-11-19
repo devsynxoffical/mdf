@@ -93,3 +93,40 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - `/blog/category/*` → `/blog`.
   - The unrelated `/post/best-web-development-companies-florida` stays 404 on purpose, because redirecting unrelated content counts as a soft 404.
 - **Validation:** local `next start` returned 308 to the targets. Live curl after deploy. Re-inspect in GSC on the next runs (expect "Page with redirect").
+
+### C4 — 2026-11-19 · Industry lead-generation pages (new: `/lead-generation`, `/lead-generation/roofing`, `/mortgage`, `/solar`, `/personal-injury`)
+- **Reason:** the owner asked for new SEO pages. Measured US demand (OpenSEO, 2026-11-19) shows commercial, low-difficulty keywords where the site already has verified receipts. The keywords chosen earlier were informational or dominated by large sites.
+
+  | Keyword | Volume/mo | KD | CPC |
+  |---|---|---|---|
+  | roofing lead generation | 1,000 | 8 | $57 |
+  | roofing leads | 1,000 | 6 | $50 |
+  | mortgage lead generation | 880 | 0 | $29 |
+  | solar lead generation | 590 | 0 | $70 |
+  | insurance lead generation | 320 | 0 | $40 |
+  | financial advisor lead generation | 260 | 0 | $107 |
+  | personal injury lead generation | 110 | 3 | $119 |
+
+- **Content rules:**
+  - Every figure was read from the screenshot it cites.
+  - Wording follows what the screenshot shows, not the post caption. For example, wp-006 shows 117 leads at $15.26 in view, not the caption's 266, and wp-036 shows 530 form leads, not "signed" leads.
+  - wp-027 (solar) and wp-029 (MVA) show identical totals ($1,301.63 / 659 clicks / 76 leads / $17.13), so both were excluded until the owner confirms which is real.
+- **Layout:**
+  - Hero with the lead form above the fold, receipt cards with a lightbox, problem cards and interactive step tabs.
+  - A scroll-on-hover screenshot of a funnel we built, a pipeline calculator (inputs only, defaults labelled), a comparison table, FAQ with FAQPage schema, related links, a second lead form and a sticky mobile CTA.
+- **Validation:**
+  - Local production build, Playwright desktop and mobile: no broken images, no horizontal overflow.
+  - Form (503 → honest fallback), calculator, tabs and lightbox all tested.
+  - Titles 52–68 characters, descriptions 147–157, one H1 each, canonical set, Service/FAQPage/Breadcrumb JSON-LD present.
+- **Before:** the URLs did not exist. **Track:** indexing status, impressions for the target keywords, and leads per page (source field).
+
+### C5 — 2026-11-19 · Lead form on every service page and guide
+- **Reason:** content pages ended with a link to /book, an extra step before anyone could enquire.
+- **Change:** the end-of-page CTA was replaced with an inline lead form (LeadSection) on all 5 `/services/*` and 4 `/blog/*` pages.
+- **Validation:** visual check on /services/vsl-funnels. The form posts to /api/lead and records the page as the source.
+
+### C6 — 2026-11-19 · Footer newsletter actually saves emails (all pages)
+- **Reason:** the footer "Join The List" form showed "Joined!" but threw the email away.
+- **Change:** it now posts to /api/lead (niche "Newsletter signup"). It shows "Joined!" only on success, otherwise an error with the contact email, and fires the GA4 `sign_up` event.
+- **Validation:** Playwright with no webhook → 503 → error message shown (expected until LEAD_WEBHOOK_URL is set).
+- **Also:** an "Industries" link was added to the main nav and footer, and an industries section to /services, sitemap.xml and llms.txt.

@@ -1,6 +1,7 @@
 import { SERVICE_PAGES } from "@/lib/services";
 import { BLOG_POSTS } from "@/lib/blog";
 import { CASE_STUDIES } from "@/lib/cases";
+import { INDUSTRIES } from "@/lib/industries";
 
 export type PageCard = { href: string; title: string; desc?: string; tag?: string };
 
@@ -15,6 +16,10 @@ const CARDS: Record<string, PageCard> = {
   ...Object.fromEntries(
     CASE_STUDIES.map((c) => [`/cases/${c.slug}`, { href: `/cases/${c.slug}`, title: c.title, desc: c.summary, tag: "Case study" }])
   ),
+  ...Object.fromEntries(
+    INDUSTRIES.map((i) => [`/lead-generation/${i.slug}`, { href: `/lead-generation/${i.slug}`, title: `${i.name} lead generation`, desc: i.metaDescription, tag: "Industry" }])
+  ),
+  "/lead-generation": { href: "/lead-generation", title: "Lead generation by industry", desc: "Roofing, mortgage, solar and personal injury lead systems with real receipts.", tag: "Industries" },
   "/work-proof": { href: "/work-proof", title: "40 verified ad & CRM receipts", desc: "Live Meta Ads and CRM screenshots, plus cost-per-lead benchmarks by niche.", tag: "Proof" },
   "/work-proof#benchmarks": { href: "/work-proof#benchmarks", title: "Cost-per-lead benchmarks by niche", desc: "What leads actually cost on Meta Ads across our published receipts.", tag: "Data" },
   "/funnels": { href: "/funnels", title: "Sales funnel examples", desc: "Eight live funnels we built, with the strategy and stack behind each.", tag: "Examples" },

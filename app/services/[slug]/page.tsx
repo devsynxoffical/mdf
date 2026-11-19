@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import ContentShell, { Callout, ContentCta, ContentFaq, FeatureGrid, HeroActions, LinkCards, SectionHeading } from "@/components/content/ContentShell";
+import ContentShell, { Callout, ContentFaq, FeatureGrid, HeroActions, LinkCards, SectionHeading } from "@/components/content/ContentShell";
 import RichText, { slugId } from "@/components/content/RichText";
 import JsonLd from "@/components/seo/JsonLd";
 import UFFooter from "@/components/uf/UFFooter";
 import { SERVICE_PAGES, getServiceBySlug } from "@/lib/services";
 import { pageCard } from "@/lib/pageCards";
+import LeadSection from "@/components/leads/LeadSection";
 import { SITE_URL, absoluteUrl, breadcrumbJsonLd, faqJsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: { slug: string } };
@@ -127,9 +128,10 @@ export default function ServicePage({ params }: Props) {
 
         <LinkCards id="related" heading="Related services, guides and proof" items={relatedHrefs.map((h) => pageCard(h))} />
 
-        <ContentCta
+        <LeadSection
+          source={path}
           heading="Ready to have this built for your offer?"
-          body="Book a 15–20 minute strategy call. We review your offer, current funnel and follow-up, and tell you plainly whether we can help."
+          body="Send a few details and we will reply with what we would build, how long it takes and what it should cost."
         />
       </ContentShell>
       <UFFooter />
