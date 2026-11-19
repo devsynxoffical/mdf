@@ -5,6 +5,7 @@ import MinimalNav from "@/components/MinimalNav";
 import Grain from "@/components/uf/Grain";
 import SoundToggle from "@/components/audio/SoundToggle";
 import JsonLd from "@/components/seo/JsonLd";
+import Analytics from "@/components/seo/Analytics";
 import { SEO, SITE_URL, siteJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -151,6 +152,7 @@ export default function RootLayout({
           <main className="relative">{children}</main>
           <SoundToggle />
         </ScrollProvider>
+        <Analytics />
       </body>
     </html>
   );
