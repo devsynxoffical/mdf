@@ -220,3 +220,18 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Open, for the owner:**
   - `/services/meta-ads-management` targets "facebook ads management", and the plan assigns Meta Ads to scalewithads.us.
   - The client-acquisition page uses the roofing CRM receipts, and the plan says shared case studies should live on one site only.
+
+### Results — 12:40 run, 2026-11-20 (GSC data through 2026-11-18)
+- **Indexed:** 19 of 38. The snapshot counted 18 because of one transient inspection error on `/lead-generation/pressure-washing`; a manual recheck shows it indexed, crawled 2026-11-20 03:48.
+  - Previous run: 18 of 35. Baseline: 13 of 24. The sitemap grew to 38 with the C9 pages and lost the 2 teasers.
+- **C9 pages, about 5 hours after publishing:**
+  - `/lead-generation/hvac` and `/services/sales-funnels-for-coaches` are already "Discovered".
+  - `/services/landing-page-design`, `/services/application-funnels` and `/lead-generation/home-improvement` are still unknown to Google.
+- **Traffic:** 28 days: 7 clicks, 233 impressions; 7 days: 3 clicks, 44 impressions.
+  - Of 54 visible query impressions, 38 are brand searches.
+  - First non-brand impressions for a service page: "ai appointment" (position 60) and "ai appointment setting" (position 62), both on /services/ai-appointment-setter.
+- **Keyword plan:** none of the 22 plan keywords has impressions yet. Expected, since most target pages are not crawled and GSC data lags 2 days.
+- **Old-site URL:** `/post/sales-funnels-for-coaches` still not recrawled (last crawl 2026-11-06).
+- **Change this run:** none. The new pages are hours old and already linked from every page's footer, so there is no evidence yet for another change.
+- **Checks:** audit clean (38 pages, no duplicates); 39 internal links, none broken. /api/lead returns 422 for an invalid body and 503 for a valid one (webhook not set). GA4 not live.
+- **Google Indexing API:** 0 sent (paused until Nov 23).
