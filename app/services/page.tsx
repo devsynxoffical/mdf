@@ -7,7 +7,7 @@ import { SERVICE_PAGES } from "@/lib/services";
 import { BLOG_POSTS } from "@/lib/blog";
 import { WORK_PROOF } from "@/lib/workproof";
 import { pageCard } from "@/lib/pageCards";
-import { INDUSTRIES } from "@/lib/industries";
+import { ACTIVE_INDUSTRIES as INDUSTRIES } from "@/lib/industries";
 import { SERVICE_LANDINGS } from "@/lib/serviceLandings";
 import { CATALOG_GROUPS, SERVICE_CATALOG } from "@/lib/serviceCatalog";
 import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";

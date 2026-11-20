@@ -293,6 +293,197 @@ export const SERVICE_LANDINGS: Landing[] = [
     ],
     related: ["/blog/speed-to-lead", "/blog/a2p-10dlc-registration", "/services/ai-appointment-setter", "/services/gohighlevel-agency"],
   },
+  {
+    slug: "landing-page-design",
+    name: "Landing Page Design",
+    keyword: "landing page design agency",
+    metaTitle: "Landing Page Design Agency: Pages Built to Convert | MDF™",
+    metaDescription:
+      "Landing page design agency for paid traffic: conversion copy, fast mobile-first design and tracking. Real result: a 27.01% opt-in rate on a 5,610-visitor page.",
+    eyebrow: "Landing page design agency",
+    h1: "Landing Page Design That Turns Paid Clicks Into Leads and Sales",
+    intro:
+      "We write, design and build focused landing pages for one offer and one action, connected to your CRM and tracking, so the traffic you pay for actually converts.",
+    stats: [
+      { value: "27.01%", label: "Opt-in rate · registration page" },
+      { value: "1,515", label: "Opt-ins from 5,610 visitors" },
+      { value: "8", label: "Live funnels to explore" },
+      { value: "1", label: "Offer, one action per page" },
+    ],
+    receiptsIntro: "Screenshots of landing-page and ad results. Click to inspect.",
+    receipts: [
+      { id: "lp-cf", src: "/workprof/wp-007.webp", figure: "27.01% opt-in rate", label: "Webinar registration page · ClickFunnels", detail: "1,515 opt-ins from 5,610 unique visitors (7,750 page views).", period: "Apr 1 – May 4, 2026", tag: "Scale" },
+      { id: "lp-web", src: "/workprof/wp-004.webp", figure: "$4.50 per sign-up", label: "Agency webinar · Meta Ads to landing page", detail: "1,018 registrations on $4,582.17 spend, 3,015 landing-page views.", period: "May 1 – May 31, 2026" },
+    ],
+    problems: [
+      { title: "Homepages used as landing pages", body: "Sending ad traffic to a homepage with ten links and no single action wastes most of the clicks you pay for." },
+      { title: "Slow, heavy pages", body: "On mobile, every extra second of load time loses visitors before they see the offer." },
+      { title: "No proof where doubt appears", body: "Visitors need reasons to believe at the exact point they hesitate. Most pages put proof in the wrong place or not at all." },
+    ],
+    steps: [
+      { title: "Offer & message match", body: "The headline matches the ad that brought the visitor, and the page asks for one clear action.", points: ["Message match with ads", "One primary action", "Offer and objection review"] },
+      { title: "Copy & design", body: "Conversion copy and a clean, fast, mobile-first design in your brand.", points: ["Headline and section copy", "Mobile-first layout", "Proof and FAQ placement"] },
+      { title: "Build & connect", body: "Built in GoHighLevel, ClickFunnels or your platform, with forms, calendars and CRM connected.", points: ["Form or calendar", "CRM tags and pipeline", "Thank-you page and follow-up"] },
+      { title: "Track & test", body: "Pixel, conversions API and analytics from day one, then tests on headline, offer and form.", points: ["Conversion tracking", "Step-by-step report", "A/B test plan"] },
+    ],
+    showcase: {
+      src: "/images/funnels/funnel-02.webp",
+      height: 5172,
+      title: "ROWAN Executive Protection: a landing page we built",
+      body: "A trust-first page for high-net-worth clients: credentials, proof and a single consultation request.",
+      href: "/funnels",
+      alt: "ROWAN Executive Protection landing page built by Million Dollar Funnel",
+    },
+    calculator: {
+      defaults: { budget: 3000, cpl: 13.5, book: 25, close: 15, value: 3000 },
+      note: "Cost per lead defaults to the $13.50 median of our published receipts. The other values are example inputs. A better landing page lowers cost per lead, so try a lower value to see the effect.",
+      valueLabel: "Average customer value",
+    },
+    comparison: {
+      heading: "Template page vs a designed landing page",
+      intro: "Templates are fast to publish. Designed pages are built around your offer and your buyer.",
+      columns: ["", "Template page", "Designed landing page"],
+      rows: [
+        ["Copy", "Generic placeholders", "Written for your offer and ad"],
+        ["Speed", "Often heavy", "Built fast and mobile-first"],
+        ["Integrations", "Set up separately", "Form, calendar and CRM connected"],
+        ["Tracking", "Often missing", "Every conversion tracked"],
+      ],
+    },
+    faq: [
+      { q: "What does a landing page design agency do?", a: "It plans, writes, designs and builds pages for a single offer and action, usually for paid traffic, and connects them to forms, calendars, CRM and tracking." },
+      { q: "Which platforms do you build landing pages on?", a: "Usually GoHighLevel, and also ClickFunnels or your existing platform." },
+      { q: "Do you write the copy?", a: "Yes. Copy, design, build, integrations and tracking are all included." },
+      { q: "How is this different from a sales funnel?", a: "A landing page is one step. A funnel connects several steps, such as landing page, application, booking and follow-up. We build both." },
+    ],
+    related: ["/services/done-for-you-sales-funnels", "/services/application-funnels", "/funnels", "/services/meta-ads-management"],
+  },
+  {
+    slug: "sales-funnels-for-coaches",
+    name: "Sales Funnels for Coaches",
+    keyword: "sales funnel for coaches",
+    metaTitle: "Sales Funnels for Coaches: Webinar, VSL & Application | MDF™",
+    metaDescription:
+      "Sales funnels for coaches and consultants: webinar, VSL, low-ticket and application funnels. Case study: 13,630 low-ticket sales and $847,307 in revenue.",
+    eyebrow: "Sales funnels for coaches",
+    h1: "Sales Funnels for Coaches That Fill Your Calendar With Qualified Calls",
+    intro:
+      "Webinar, VSL, low-ticket and application funnels for coaches and consultants, with ads, follow-up and booking built in, so you spend your time coaching instead of chasing leads.",
+    stats: [
+      { value: "13,630", label: "Low-ticket sales · coaching case" },
+      { value: "$847,307", label: "Revenue · coaching case" },
+      { value: "1,515", label: "Webinar opt-ins · 27.01%" },
+      { value: "$4.50", label: "Per webinar sign-up" },
+    ],
+    receiptsIntro: "Webinar and funnel screenshots. The full coaching case study is linked below. Click any card to inspect it.",
+    receipts: [
+      { id: "co-cf", src: "/workprof/wp-007.webp", figure: "1,515 opt-ins · 27.01%", label: "Webinar registration page · ClickFunnels", detail: "5,610 unique visitors on the registration step.", period: "Apr 1 – May 4, 2026", tag: "Scale" },
+      { id: "co-web", src: "/workprof/wp-004.webp", figure: "1,018 sign-ups · $4.50", label: "Agency webinar · Meta Ads", detail: "$4,582.17 spend across 21 ad sets.", period: "May 1 – May 31, 2026" },
+    ],
+    problems: [
+      { title: "Chasing high-ticket with no front end", body: "Pitching a big program to cold audiences rarely works. A low-ticket offer or webinar builds trust and buyers first." },
+      { title: "Unqualified discovery calls", body: "Without an application step, your calendar fills with people who cannot afford or are not ready for coaching." },
+      { title: "Tech stitched together", body: "Course platform, calendar, email and payments set up separately means leads and sales fall through the gaps." },
+    ],
+    steps: [
+      { title: "Offer ladder", body: "We map your front-end offer, core program and the step between them, so every buyer has a next step.", points: ["Lead magnet or low-ticket offer", "Webinar or VSL", "Core program positioning"] },
+      { title: "Funnel build", body: "The pages, checkout, application and booking, written and designed for your audience.", points: ["Registration or sales page", "Application form", "Calendar booking"] },
+      { title: "Traffic", body: "Meta Ads and your organic content sending the right people into the funnel.", points: ["Audience and angles", "Creative and copy", "Retargeting"] },
+      { title: "Follow-up", body: "Email and SMS reminders, replay sequences and no-show recovery, all tracked in a CRM pipeline.", points: ["Webinar reminders", "Application follow-up", "Pipeline reporting"] },
+    ],
+    showcase: {
+      src: "/images/funnels/funnel-05.webp",
+      height: 13190,
+      title: "A coaching program funnel we built",
+      body: "A video-led health coaching program with a low-cost entry offer and checkout, built to turn cold traffic into buyers.",
+      href: "/funnels",
+      alt: "Coaching program funnel built by Million Dollar Funnel",
+    },
+    calculator: {
+      defaults: { budget: 3000, cpl: 4.5, book: 10, close: 20, value: 3000 },
+      note: "Cost per lead defaults to the $4.50 webinar sign-up receipt above. Booking rate, close rate and program price are example inputs, so replace them with yours.",
+      valueLabel: "Coaching program price",
+    },
+    comparison: {
+      heading: "Discovery calls from social posts vs a coaching funnel",
+      intro: "Posting and DMs work but do not scale. A funnel does the qualifying for you.",
+      columns: ["", "Posts and DMs", "Coaching funnel"],
+      rows: [
+        ["Volume", "Limited by your time", "Limited by ad budget"],
+        ["Qualification", "In the DMs", "Application before the call"],
+        ["Follow-up", "Manual", "Automated reminders and replays"],
+        ["Tracking", "Hard to measure", "Cost per call and per client"],
+      ],
+    },
+    faq: [
+      { q: "What is the best sales funnel for coaches?", a: "It depends on your price point and audience. Webinars and VSLs suit higher-ticket programs; low-ticket funnels work well for building a buyer list first. We recommend one after a short call." },
+      { q: "Do you build funnels for consultants too?", a: "Yes. The same funnels work for consultants, course creators and other expert-led businesses." },
+      { q: "Can you work with my course platform?", a: "Usually yes. We build in GoHighLevel by default and connect Kajabi, Teachable, Thinkific or Stripe where needed." },
+      { q: "Do you have coaching results?", a: "Yes. Our coaching case study shows 13,630 low-ticket sales and $847,307 in revenue at a 3.32 ROAS." },
+    ],
+    related: ["/cases/coaching-lto", "/services/webinar-funnels", "/services/low-ticket-funnels", "/services/application-funnels"],
+  },
+  {
+    slug: "application-funnels",
+    name: "Application Funnels",
+    keyword: "application funnel",
+    metaTitle: "Application Funnels for High-Ticket Offers | MDF™",
+    metaDescription:
+      "Application funnels that qualify high-ticket prospects before the sales call: VSL or sales page, application, scoring, booking and follow-up, built for you.",
+    eyebrow: "Application funnels",
+    h1: "Application Funnels That Qualify Prospects Before They Reach Your Calendar",
+    intro:
+      "A sales page or VSL, an application with the questions your closers need, automatic scoring and booking for qualified applicants. Unqualified ones get a different next step, not a call.",
+    stats: [
+      { value: "$1.52M", label: "High-ticket VSL case · 19 months" },
+      { value: "1", label: "Application before every call" },
+      { value: "Auto", label: "Scoring and routing" },
+      { value: "24/7", label: "Booking and reminders" },
+    ],
+    problems: [
+      { title: "Calendars full of bad-fit calls", body: "Open booking links let anyone grab a slot, so closers spend their day on people who were never going to buy." },
+      { title: "No context before the call", body: "Without application answers, the first ten minutes of every call are spent on basic questions." },
+      { title: "Qualified applicants go cold", body: "A strong applicant who is not booked right away often never books at all." },
+    ],
+    problemsTitle: "Why most high-ticket booking flows waste sales time",
+    steps: [
+      { title: "Qualification criteria", body: "We agree what makes a good fit: budget, timeline, situation and commitment.", points: ["Fit criteria with your closers", "Disqualifying answers", "Scoring rules"] },
+      { title: "Sales page or VSL", body: "The page that explains the offer and pre-qualifies before the application.", points: ["VSL or long-form page", "Proof and FAQ", "Clear call to apply"] },
+      { title: "Application & routing", body: "A multi-step application. Qualified applicants book straight away; others get a resource or a lower-tier offer.", points: ["Multi-step form", "Automatic scoring", "Routing by score"] },
+      { title: "Follow-up & show-up", body: "Confirmation, reminders and no-show recovery, with every application logged in the CRM.", points: ["SMS and email reminders", "No-show follow-up", "Pipeline by score"] },
+    ],
+    showcase: {
+      src: "/images/funnels/funnel-08.webp",
+      height: 8916,
+      title: "The Million Dollar Funnel™ core",
+      body: "Our own high-ticket funnel: offer, proof, application and booking, wired to the CRM and follow-up.",
+      href: "/funnels",
+      alt: "Million Dollar Funnel core application funnel",
+    },
+    calculator: {
+      defaults: { budget: 3000, cpl: 13.5, book: 20, close: 25, value: 5000 },
+      note: "Cost per lead defaults to the $13.50 median of our published receipts. Treat 'leads that book' as applicants who qualify and book. The other values are example inputs, so replace them with yours.",
+      valueLabel: "High-ticket offer price",
+    },
+    comparison: {
+      heading: "Open booking link vs application funnel",
+      intro: "An open link maximises calls. An application maximises good calls.",
+      columns: ["", "Open booking link", "Application funnel"],
+      rows: [
+        ["Who books", "Anyone", "Qualified applicants"],
+        ["Call prep", "None", "Application answers in the CRM"],
+        ["Bad fits", "Take up sales time", "Routed to another next step"],
+        ["Show-up", "Often low", "Reminders and confirmation built in"],
+      ],
+    },
+    faq: [
+      { q: "What is an application funnel?", a: "A funnel that asks prospects to apply before they can book a sales call, so your team only speaks with people who fit the offer." },
+      { q: "Does an application lower the number of calls?", a: "Usually it lowers the number of bad-fit calls. The goal is more closed deals per hour of sales time, not more calls." },
+      { q: "What questions should an application ask?", a: "Questions about the situation, goal, timeline and budget that your closers would otherwise ask on the call. We set them with your team." },
+      { q: "Can unqualified applicants still buy something?", a: "Yes. They can be routed to a lower-priced offer, a free resource or a nurture sequence." },
+    ],
+    related: ["/cases/1-52m-case-study", "/services/vsl-funnels", "/services/sales-funnels-for-coaches", "/services/client-acquisition-system"],
+  },
 ];
 
 export const getServiceLanding = (slug: string) => SERVICE_LANDINGS.find((s) => s.slug === slug);

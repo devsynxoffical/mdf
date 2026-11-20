@@ -38,16 +38,17 @@ const EXPLORE_LINKS: FooterLinkItem[] = [
 
 /** Key service and industry pages, linked from every page so crawlers find them. */
 const SOLUTION_LINKS: FooterLinkItem[] = [
-  { label: "Roofing Lead Generation", href: "/lead-generation/roofing" },
-  { label: "Mortgage Lead Generation", href: "/lead-generation/mortgage" },
-  { label: "Solar Lead Generation", href: "/lead-generation/solar" },
-  { label: "Personal Injury Leads", href: "/lead-generation/personal-injury" },
-  { label: "Chiropractic Marketing", href: "/lead-generation/chiropractic" },
-  { label: "Pressure Washing Leads", href: "/lead-generation/pressure-washing" },
-  { label: "Meta Ads Management", href: "/services/meta-ads-management" },
-  { label: "Client Acquisition System", href: "/services/client-acquisition-system" },
-  { label: "Done-For-You Funnels", href: "/services/done-for-you-sales-funnels" },
+  { label: "Done-For-You Sales Funnels", href: "/services/done-for-you-sales-funnels" },
+  { label: "Landing Page Design", href: "/services/landing-page-design" },
+  { label: "Sales Funnels for Coaches", href: "/services/sales-funnels-for-coaches" },
+  { label: "Application Funnels", href: "/services/application-funnels" },
   { label: "Missed Call Text Back", href: "/services/missed-call-text-back" },
+  { label: "HVAC Lead Generation", href: "/lead-generation/hvac" },
+  { label: "Solar Lead Generation", href: "/lead-generation/solar" },
+  { label: "Mortgage Lead Generation", href: "/lead-generation/mortgage" },
+  { label: "Chiropractic Marketing", href: "/lead-generation/chiropractic" },
+  { label: "Home Improvement Leads", href: "/lead-generation/home-improvement" },
+  { label: "Pressure Washing Leads", href: "/lead-generation/pressure-washing" },
 ];
 
 const COMPANY_LINKS: FooterLinkItem[] = [

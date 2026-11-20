@@ -1,7 +1,7 @@
 import { SERVICE_PAGES } from "@/lib/services";
 import { BLOG_POSTS } from "@/lib/blog";
 import { CASE_STUDIES } from "@/lib/cases";
-import { INDUSTRIES } from "@/lib/industries";
+import { ACTIVE_INDUSTRIES as INDUSTRIES } from "@/lib/industries";
 import { SERVICE_LANDINGS } from "@/lib/serviceLandings";
 
 export type PageCard = { href: string; title: string; desc?: string; tag?: string };
