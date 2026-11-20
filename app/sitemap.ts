@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { CASE_STUDIES } from "@/lib/cases";
 import { SERVICE_PAGES } from "@/lib/services";
 import { BLOG_POSTS } from "@/lib/blog";
-import { INDUSTRIES } from "@/lib/industries";
+import { ACTIVE_INDUSTRIES as INDUSTRIES } from "@/lib/industries";
 import { SERVICE_LANDINGS } from "@/lib/serviceLandings";
 import { STATIC_ROUTES, absoluteUrl } from "@/lib/seo";
 

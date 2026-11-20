@@ -58,10 +58,10 @@ export default function UFHero() {
       <div className="pointer-events-none relative z-20 mx-auto flex w-full max-w-[1400px] flex-col items-center justify-center px-4 pb-2 pt-4 text-center sm:px-6">
         <h1 className="pointer-events-auto mb-2 font-normal leading-normal sm:mb-3">
           <span className="font-serif mr-2 text-[clamp(26px,4.5vw,54px)] font-normal italic text-white/90 drop-shadow-lg sm:mr-3">
-            Making Brands
+            High-Ticket
           </span>
           <span className="font-sans text-[clamp(26px,4.5vw,54px)] font-extrabold tracking-tight text-white drop-shadow-lg">
-            Unforgettable
+            Sales Funnels
           </span>
         </h1>
       </div>

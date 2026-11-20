@@ -29,12 +29,21 @@ export type Industry = {
   comparison?: { heading: string; intro: string; columns: [string, string, string]; rows: [string, string, string][] };
   faq: { q: string; a: string }[];
   related: string[];
+  /** Keyword owned by a sister site: page becomes a noindexed teaser that links there (keyword plan, 20 Nov 2026). */
+  partner?: { site: string; url: string; blurb: string };
+  /** Hub-card override when the first receipt is not from this industry. */
+  hubCard?: { figure: string; detail: string };
 };
 
 export const INDUSTRIES: Industry[] = [
   {
     slug: "roofing",
     name: "Roofing",
+    partner: {
+      site: "RoofingSystems.co",
+      url: "https://roofingsystems.co/",
+      blurb: "Roofing lead generation, roofing ads and roofing CRM are handled by our sister brand RoofingSystems.co, a team that works only with roofing companies.",
+    },
     keyword: "roofing lead generation",
     metaTitle: "Roofing Lead Generation: Exclusive Leads & Booked Jobs | MDF™",
     metaDescription:
@@ -282,7 +291,7 @@ export const INDUSTRIES: Industry[] = [
         a: "Usually yes. We build in GoHighLevel by default and can forward leads to most CRMs with a webhook or integration.",
       },
     ],
-    related: ["/services/vsl-funnels", "/services/gohighlevel-agency", "/lead-generation/personal-injury", "/work-proof"],
+    related: ["/services/vsl-funnels", "/services/gohighlevel-agency", "/lead-generation/solar", "/work-proof"],
   },
   {
     slug: "solar",
@@ -387,11 +396,16 @@ export const INDUSTRIES: Industry[] = [
         a: "Yes. Follow-up and booking are automated, and we can add an AI appointment setter that replies and books by text.",
       },
     ],
-    related: ["/lead-generation/roofing", "/services/ai-appointment-setter", "/services/webinar-funnels", "/work-proof"],
+    related: ["/lead-generation/home-improvement", "/lead-generation/hvac", "/services/ai-appointment-setter", "/work-proof"],
   },
   {
     slug: "personal-injury",
     name: "Personal Injury",
+    partner: {
+      site: "ScaleWithAds.us",
+      url: "https://scalewithads.us/exclusive-mva-leads",
+      blurb: "Personal injury, MVA and other legal lead generation is handled by our sister brand Scale With Ads, which runs Meta Ads for law firms.",
+    },
     keyword: "personal injury lead generation",
     metaTitle: "Personal Injury Lead Generation for Law Firms | MDF™",
     metaDescription:
@@ -563,7 +577,7 @@ export const INDUSTRIES: Industry[] = [
       { q: "Can you target only my local area?", a: "Yes. Ads are limited to the radius your patients come from." },
       { q: "Is the advertising compliant?", a: "We avoid medical claims Meta does not allow, and you approve every ad before it runs." },
     ],
-    related: ["/lead-generation/pressure-washing", "/services/meta-ads-management", "/services/missed-call-text-back", "/work-proof"],
+    related: ["/lead-generation/pressure-washing", "/services/landing-page-design", "/services/missed-call-text-back", "/work-proof"],
   },
   {
     slug: "pressure-washing",
@@ -623,8 +637,160 @@ export const INDUSTRIES: Industry[] = [
       { q: "Do you do commercial pressure washing leads too?", a: "Yes. Commercial campaigns use different targeting and offers from residential ones." },
       { q: "What happens in the off-season?", a: "We shift to services and areas with demand, or pause and keep nurturing past customers for repeat work." },
     ],
-    related: ["/lead-generation/roofing", "/services/missed-call-text-back", "/services/meta-ads-management", "/work-proof"],
+    related: ["/lead-generation/home-improvement", "/lead-generation/hvac", "/services/missed-call-text-back", "/work-proof"],
+  },
+  {
+    slug: "hvac",
+    name: "HVAC",
+    keyword: "hvac lead generation",
+    metaTitle: "HVAC Lead Generation: Exclusive Install & Repair Leads | MDF™",
+    metaDescription:
+      "HVAC lead generation with your own Meta Ads, a qualifying funnel and instant follow-up. Exclusive replacement, install and repair leads for HVAC companies.",
+    eyebrow: "HVAC lead generation",
+    hubCard: { figure: "New", detail: "The same lead system we run for other home-service companies, built for HVAC replacement and install jobs." },
+    h1: "HVAC Lead Generation for Replacement and Install Jobs, Not Just Tune-Ups",
+    intro:
+      "Exclusive heating and cooling leads from your own ad account, a funnel that separates high-value replacements from small repairs, and follow-up that books the estimate before a competitor calls back.",
+    stats: [
+      { value: "100%", label: "Exclusive · your ad account" },
+      { value: "Seconds", label: "Until a new lead gets a text" },
+      { value: "$11.27", label: "CPL · home-services receipt" },
+      { value: "4", label: "Parts, one system" },
+    ],
+    receiptsIntro:
+      "We do not have a published HVAC receipt yet. These are receipts from other home-service businesses we run the same system for. Click to inspect.",
+    receipts: [
+      {
+        id: "hvac-home",
+        src: "/workprof/wp-005.webp",
+        figure: "$11.27 per lead",
+        label: "Florida home services · Meta Ads",
+        detail: "211 website leads on $2,377.62 spend across roofing, gutters and solar ads.",
+        period: "May 9 – May 15, 2026",
+      },
+      {
+        id: "hvac-pw",
+        src: "/workprof/wp-028.webp",
+        figure: "167 leads · $13.37",
+        label: "Pressure washing company · Meta Ads",
+        detail: "$2,232.11 spend across 5 ad sets in one month.",
+        period: "Jul 1 – Jul 31, 2026",
+      },
+    ],
+    problems: [
+      { title: "Shared lead services", body: "Lead marketplaces sell the same homeowner to several HVAC companies, so you start every job in a price war." },
+      { title: "Small jobs crowd out big ones", body: "Without qualification, the calendar fills with $89 tune-ups while replacement and install jobs go to whoever answers first." },
+      { title: "Seasonal swings", body: "Demand spikes in the first heat wave and cold snap. If campaigns and follow-up are not ready before then, you pay peak prices for slow replies." },
+    ],
+    steps: [
+      { title: "Seasonal offers", body: "Separate campaigns for replacements, new installs, repairs and maintenance plans, timed to the season in your area.", points: ["Replacement and install offers", "Financing angles", "Service-area targeting"] },
+      { title: "Qualifying funnel", body: "A short form that asks system age, problem, home size and timeline, so high-value jobs are flagged before you call.", points: ["System age and issue", "Homeowner check", "Mobile-first form"] },
+      { title: "Instant follow-up", body: "An instant text and email, missed-call text back and a booking link for in-home estimates.", points: ["Instant SMS and email", "Missed-call text back", "Estimate booking link"] },
+      { title: "Pipeline & reporting", body: "Every lead tracked from inquiry to estimate to sold job, with cost per lead and per sold job.", points: ["CRM pipeline", "Sold-job tracking", "Weekly numbers"] },
+    ],
+    showcase: {
+      src: "/images/funnels/funnel-07.webp",
+      height: 10352,
+      title: "A local-business lead funnel we built",
+      body: "Video, a free audit offer and a booking step for local service businesses. HVAC funnels use the same offer, proof and book structure.",
+      href: "/funnels",
+      alt: "Local-business lead funnel built by Million Dollar Funnel",
+    },
+    calculator: {
+      defaults: { budget: 3000, cpl: 25, book: 30, close: 30, value: 6000 },
+      note: "All values are example inputs, because we have no published HVAC receipt yet. Replace cost per lead, booking rate, close rate and average job value with your own numbers.",
+      valueLabel: "Average replacement or install value",
+    },
+    comparison: {
+      heading: "Shared HVAC leads vs your own lead system",
+      intro: "The difference is exclusivity, speed and who owns the data.",
+      columns: ["", "Shared lead services", "Your own system (what we build)"],
+      rows: [
+        ["Exclusivity", "Often sent to several companies", "Every lead is yours alone"],
+        ["Job mix", "Whatever comes in", "Qualified for replacements and installs"],
+        ["Speed", "Up to you", "Instant text, email and booking"],
+        ["Data", "Kept by the vendor", "Ad account and CRM data are yours"],
+      ],
+    },
+    faq: [
+      { q: "How do you generate HVAC leads?", a: "With Meta Ads in your own ad account, a short qualifying funnel and instant follow-up, so homeowners who need a replacement or install book an estimate with you." },
+      { q: "Are the HVAC leads exclusive?", a: "Yes. Campaigns run in your account and leads go to your CRM only. Nothing is shared or resold." },
+      { q: "Do you have HVAC case studies?", a: "Not published yet. The receipts on this page are from other home-service companies running the same system. We will share real numbers from your own account every week." },
+      { q: "Can you focus on replacements instead of tune-ups?", a: "Yes. Offers and qualifying questions are built around system age and the type of job you want most." },
+    ],
+    related: ["/lead-generation/home-improvement", "/services/missed-call-text-back", "/services/landing-page-design", "/work-proof"],
+  },
+  {
+    slug: "home-improvement",
+    name: "Home Improvement",
+    keyword: "home improvement lead generation",
+    metaTitle: "Home Improvement Lead Generation for Contractors | MDF™",
+    metaDescription:
+      "Home improvement lead generation with Meta Ads, quote funnels and instant follow-up. Real home-service receipts: 211 leads at $11.27 and 167 leads at $13.37.",
+    eyebrow: "Home improvement lead generation",
+    h1: "Home Improvement Lead Generation That Books Estimates, Not Tire-Kickers",
+    intro:
+      "Exclusive homeowner leads for remodeling, exterior and home-service companies: ads in your own account, a quote funnel that collects the job details, and follow-up that books the estimate fast.",
+    stats: [
+      { value: "211", label: "Leads · 7 days · home services" },
+      { value: "$11.27", label: "Cost per lead" },
+      { value: "167", label: "Leads · 30 days · pressure washing" },
+      { value: "100%", label: "Exclusive leads" },
+    ],
+    receiptsIntro: "Screenshots from home-service client ad accounts. Click to inspect.",
+    receipts: [
+      {
+        id: "hi-home",
+        src: "/workprof/wp-005.webp",
+        figure: "211 leads · $11.27",
+        label: "Florida home services · Meta Ads",
+        detail: "$2,377.62 spend across roofing, gutters and solar ads.",
+        period: "May 9 – May 15, 2026",
+      },
+      {
+        id: "hi-pw",
+        src: "/workprof/wp-028.webp",
+        figure: "167 leads · $13.37",
+        label: "Pressure washing company · Meta Ads",
+        detail: "$2,232.11 spend, 1,348 link clicks and 993 landing-page views.",
+        period: "Jul 1 – Jul 31, 2026",
+      },
+    ],
+    problems: [
+      { title: "Lead apps that sell to everyone", body: "Home-service marketplaces pass the same homeowner to several contractors, so you compete on price from the first call." },
+      { title: "Estimates without details", body: "Driving out to quote jobs that were never a fit wastes the time you should spend selling real projects." },
+      { title: "Slow callbacks", body: "Homeowners book whoever replies first. A next-day callback usually means the job is gone." },
+    ],
+    steps: [
+      { title: "Project-specific offers", body: "Campaigns for the projects you want most, such as exteriors, remodels or outdoor work, with before-and-after creative.", points: ["Offers per project type", "Before-and-after creative", "Service-area targeting"] },
+      { title: "Quote funnel", body: "A short funnel that collects project type, size, photos, budget and timeline before the lead reaches you.", points: ["Photo upload", "Budget and timeline questions", "Mobile-first"] },
+      { title: "Instant follow-up", body: "An instant text and email with a booking link, plus missed-call text back.", points: ["Instant SMS and email", "Missed-call text back", "Estimate reminders"] },
+      { title: "Pipeline", body: "Track every lead from quote request to estimate to signed job, with cost per signed job.", points: ["CRM pipeline", "Won-job value", "Weekly numbers"] },
+    ],
+    showcase: {
+      src: "/images/funnels/funnel-07.webp",
+      height: 10352,
+      title: "A local-business lead funnel we built",
+      body: "Video, a free audit offer and a booking step for local service businesses, the same structure we use for home improvement quote funnels.",
+      href: "/funnels",
+      alt: "Local-business lead funnel built by Million Dollar Funnel",
+    },
+    calculator: {
+      defaults: { budget: 3000, cpl: 11.27, book: 30, close: 25, value: 5000 },
+      note: "Cost per lead defaults to the $11.27 home-services receipt above. Booking rate, close rate and average project value are example inputs, so replace them with yours.",
+      valueLabel: "Average project value",
+    },
+    faq: [
+      { q: "How much do home improvement leads cost on Facebook?", a: "In the receipts above, home-service leads cost $11.27 and $13.37 on average. Your cost depends on the project type, market and offer." },
+      { q: "Are the leads exclusive?", a: "Yes. Ads run in your account and leads go only to your CRM." },
+      { q: "Which home improvement businesses do you work with?", a: "Remodeling, exterior, outdoor and home-service companies. Roofing is handled by our sister brand RoofingSystems.co." },
+      { q: "Can the funnel collect photos?", a: "Yes. Homeowners can upload photos and job details so you can qualify or price the job before visiting." },
+    ],
+    related: ["/lead-generation/pressure-washing", "/lead-generation/hvac", "/services/missed-call-text-back", "/work-proof"],
   },
 ];
+
+/** Industries this site owns (excludes keywords handed to sister sites). */
+export const ACTIVE_INDUSTRIES = INDUSTRIES.filter((i) => !i.partner);
 
 export const getIndustry = (slug: string) => INDUSTRIES.find((i) => i.slug === slug);

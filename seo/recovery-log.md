@@ -187,3 +187,36 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Change this run:** none. C8 is working, so the next step is waiting for Google to crawl the remaining footer-linked pages rather than making more changes.
 - **Checks:** audit clean (35 pages, no duplicate titles or descriptions); 36 internal links, none broken. /api/lead: 422 for an invalid body, 503 for a valid one (webhook not set). GA4 not live.
 - **Google Indexing API:** 0 sent (paused until Nov 23).
+
+### C9 — 2026-11-20 · Implement the 20 Nov keyword plan (Semrush) for milliondollarfunnels.us
+- **Source:** "Keyword Research Report, 20 Nov 2026" (Semrush US). The rows for this site are saved in `seo/keyword-plan-2026-11-20.csv`, with an "Implemented" column.
+- **Ownership / cannibalization:**
+  - `/lead-generation/roofing` is now a short teaser linking to roofingsystems.co.
+  - `/lead-generation/personal-injury` is now a short teaser linking to scalewithads.us/exclusive-mva-leads.
+  - Both are `noindex, follow` and removed from the sitemap, hub, footer, related links, catalog and llms.txt. The URLs still work for anyone who has them.
+- **Retitles** (H1, title and first paragraph use the mapped keyword):
+  - Homepage H1: "Making Brands Unforgettable" → "High-Ticket Sales Funnels" (same styling).
+  - `/lead-generation`: title "Lead Generation Funnels by Industry: Solar, Mortgage, HVAC", H1 "Lead Generation Funnels Built for Your Industry", and an intro that defines a lead generation funnel.
+  - `/services` and `/services/vsl-funnels` already matched their keyword; checked, no change.
+- **New P1 pages:**
+
+  | Page | Keyword | Volume | KD |
+  |---|---|---|---|
+  | `/lead-generation/hvac` | hvac lead generation | 1,300 | 15 |
+  | `/services/landing-page-design` | landing page design agency | 390 | 10 |
+  | `/services/sales-funnels-for-coaches` | sales funnel for coaches | 140 | 14 |
+  | `/services/application-funnels` | application funnel | 40 | 6 |
+
+  The HVAC page states openly that there is no HVAC receipt yet. It shows home-service receipts, labelled as such, and its calculator uses example inputs.
+- **New P2 page:** `/lead-generation/home-improvement` (home improvement lead generation, 1,000, KD 17).
+- **Deferred:** the "sales funnel examples" guide (P2). /funnels already targets that term, and a second page would compete with it.
+- **Footer "Solutions"** now lists the funnel services and the industries this site owns. The service catalog is updated with Semrush volumes.
+- **Validation:**
+  - Production build passes.
+  - Titles ≤ 65 characters and descriptions ≤ 160 on all new and retitled pages.
+  - The teasers return `noindex, follow`.
+  - The sitemap has 19 service and industry URLs, without roofing or personal injury.
+  - Playwright desktop and mobile: no broken images, no overflow.
+- **Open, for the owner:**
+  - `/services/meta-ads-management` targets "facebook ads management", and the plan assigns Meta Ads to scalewithads.us.
+  - The client-acquisition page uses the roofing CRM receipts, and the plan says shared case studies should live on one site only.
