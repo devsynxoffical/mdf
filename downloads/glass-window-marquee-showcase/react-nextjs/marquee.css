@@ -1,0 +1,27 @@
+/* ==========================================================================
+   GLASS WINDOW MARQUEE - CSS KEYFRAMES & UTILITIES
+   ========================================================================== */
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track-left {
+  animation: marquee-left var(--marquee-duration, 48s) linear infinite;
+  will-change: transform;
+}
+
+.marquee-row:hover .marquee-track-left {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track-left {
+    animation: none !important;
+  }
+}

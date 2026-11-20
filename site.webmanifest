@@ -1,0 +1,9 @@
+{
+  "name": "Million Dollar Funnel",
+  "short_name": "MDF",
+  "icons": [],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#010206",
+  "theme_color": "#010206"
+}

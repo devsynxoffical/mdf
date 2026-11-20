@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3D Glass Window Marquee Showcase | Standalone Component</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Demo Header -->
+  <header style="text-align: center; padding: 60px 20px 40px;">
+    <p style="font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--cyan-accent); margin-bottom: 8px;">
+      Live Client Recordings &bull; Continuous Proof Loop
+    </p>
+    <h1 style="font-size: clamp(26px, 4vw, 44px); font-weight: 800; letter-spacing: -0.02em; color: #ffffff;">
+      3D Glass Window Marquee Showcase
+    </h1>
+    <p style="font-size: 14px; color: #94a3b8; max-width: 580px; margin: 12px auto 0;">
+      Hover over any card to pause the animation, straighten the 3D tilt, and inspect the proof session.
+    </p>
+  </header>
+
+  <!-- ======================================================================
+       GLASS WINDOW MARQUEE SECTION (COPY THIS INTO YOUR WEBSITE)
+       ====================================================================== -->
+  <section class="marquee-section">
+    <!-- Ambient Radial Glow -->
+    <div class="marquee-ambient-glow"></div>
+
+    <!-- Edge Vignette Fades -->
+    <div class="marquee-vignette-left"></div>
+    <div class="marquee-vignette-right"></div>
+
+    <!-- Scrolling Track -->
+    <div class="marquee-track" style="--marquee-speed: 48s;">
+      
+      <!-- Group 1 -->
+      <div class="marquee-group">
+        <!-- Card 1 -->
+        <div class="window-card-wrapper tilt-neg-2">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Funnel Build</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/anastasia.webp" alt="Client Offer Architecture" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Client Offer Architecture</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="window-card-wrapper tilt-pos-2">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Strategy Session</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/ann.webp" alt="Live Growth Breakdown" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Live Growth Breakdown</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="window-card-wrapper tilt-neg-1">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>ROAS Verified</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/analytics.webp" alt="Real-Time Tracking Core" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Real-Time Tracking Core</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="window-card-wrapper tilt-pos-1">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Scaling Audit</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/george.webp" alt="Backend Conversion Review" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Backend Conversion Review</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="window-card-wrapper tilt-neg-2">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Deep-Dive</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/edgar_jeermei.webp" alt="Offer & Angle Mapping" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Offer & Angle Mapping</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="window-card-wrapper tilt-pos-2">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Client Onboarding</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/guilia.webp" alt="High-Ticket Pipeline Setup" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">High-Ticket Pipeline Setup</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="window-card-wrapper tilt-neg-1">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Traffic Scale</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/ig_shot.webp" alt="Paid Acquisition Proof" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Paid Acquisition Proof</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="window-card-wrapper tilt-pos-1">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Growth Workshop</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/owne.webp" alt="Unit Economics Audit" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Unit Economics Audit</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 9 -->
+        <div class="window-card-wrapper tilt-neg-2">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Pipeline Review</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/sina.webp" alt="Closing Optimization" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Closing Optimization</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 2 (Duplicate for Seamless Infinite Marquee Loop) -->
+      <div class="marquee-group" aria-hidden="true">
+        <!-- Duplicate Card 1 -->
+        <div class="window-card-wrapper tilt-neg-2">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Funnel Build</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/anastasia.webp" alt="" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Client Offer Architecture</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate Card 2 -->
+        <div class="window-card-wrapper tilt-pos-2">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Strategy Session</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/ann.webp" alt="" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Live Growth Breakdown</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate Card 3 -->
+        <div class="window-card-wrapper tilt-neg-1">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>ROAS Verified</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/analytics.webp" alt="" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Real-Time Tracking Core</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate Card 4 -->
+        <div class="window-card-wrapper tilt-pos-1">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Scaling Audit</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/george.webp" alt="" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Backend Conversion Review</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate Card 5 -->
+        <div class="window-card-wrapper tilt-neg-2">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Deep-Dive</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/edgar_jeermei.webp" alt="" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Offer & Angle Mapping</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate Card 6 -->
+        <div class="window-card-wrapper tilt-pos-2">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Client Onboarding</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/guilia.webp" alt="" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">High-Ticket Pipeline Setup</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate Card 7 -->
+        <div class="window-card-wrapper tilt-neg-1">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Traffic Scale</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/ig_shot.webp" alt="" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Paid Acquisition Proof</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate Card 8 -->
+        <div class="window-card-wrapper tilt-pos-1">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Growth Workshop</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/owne.webp" alt="" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Unit Economics Audit</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate Card 9 -->
+        <div class="window-card-wrapper tilt-neg-2">
+          <div class="window-card">
+            <div class="window-header">
+              <div class="window-controls"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+              <div class="status-badge"><span class="pulse-circle"></span>Pipeline Review</div>
+            </div>
+            <div class="window-screen">
+              <img src="../images/sina.webp" alt="" loading="lazy">
+              <div class="window-glare"></div>
+            </div>
+            <div class="window-footer">
+              <span class="window-title">Closing Optimization</span>
+              <span class="window-meta">LIVE RECORDING</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
