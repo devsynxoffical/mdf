@@ -102,7 +102,7 @@ export default function BookCallPage() {
 
     // 1) Deliver straight to the CRM webhook.
     try {
-      const r = await fetch("/api/lead", {
+      const r = await fetch("/api/lead.php", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ ...payload, page: window.location.href, referrer: document.referrer }),

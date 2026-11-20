@@ -44,7 +44,7 @@ export default function LeadForm({
       referrer: document.referrer,
     };
     try {
-      const r = await fetch("/api/lead", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(lead) });
+      const r = await fetch("/api/lead.php", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(lead) });
       if (r.ok) {
         track("generate_lead", { method: "page_form", source, industry: industry ?? "", budget: p.budget });
         setState("delivered");

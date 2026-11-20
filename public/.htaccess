@@ -1,11 +1,10 @@
-# ==============================================================================
-# Million Dollar Funnels — Production cPanel / Apache / LiteSpeed Configuration
-# ==============================================================================
+# milliondollarfunnels.us — static Next.js export on Hostinger (Apache / LiteSpeed)
+Options -Indexes
+DirectorySlash Off
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
 
-# ------------------------------------------------------------------------------
-# 1. MIME Types: 3D WebGL Models, Buffers, Shaders, Media & Fonts
-#    (Fixes 404/403 errors on .buf, .glb, .webp, .mjs on live servers)
-# ------------------------------------------------------------------------------
+# File types for 3D models, buffers, media and fonts (needed by the 3D sections on Apache/LiteSpeed)
 <IfModule mod_mime.c>
   AddType application/octet-stream .buf .bin .dat
   AddType model/gltf-binary .glb
@@ -16,75 +15,79 @@
   AddType image/webp .webp
   AddType image/avif .avif
   AddType image/svg+xml .svg .svgz
-  AddType image/png .png
-  AddType image/jpeg .jpg .jpeg
   AddType video/mp4 .mp4
   AddType video/webm .webm
   AddType font/woff2 .woff2
   AddType font/woff .woff
-  AddType font/ttf .ttf
-  AddType font/otf .otf
 </IfModule>
 
-# ------------------------------------------------------------------------------
-# 2. CORS & Security Headers (Allow Iframe 3D Engine & Asset Streaming)
-# ------------------------------------------------------------------------------
-<IfModule mod_headers.c>
-  Header set Access-Control-Allow-Origin "*"
-  Header set Access-Control-Allow-Methods "GET, POST, OPTIONS, HEAD"
-  Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Range"
-  Header set Access-Control-Expose-Headers "Content-Length, Content-Range"
-  Header always unset X-Frame-Options
-  Header set X-Frame-Options "SAMEORIGIN"
-</IfModule>
-
-# ------------------------------------------------------------------------------
-# 3. Gzip Compression for Fast Loading
-# ------------------------------------------------------------------------------
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json font/woff font/woff2
-</IfModule>
-
-# ------------------------------------------------------------------------------
-# 4. Cache-Control for High Performance
-# ------------------------------------------------------------------------------
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType video/mp4 "access plus 1 year"
-  ExpiresByType font/woff2 "access plus 1 year"
-  ExpiresByType application/octet-stream "access plus 1 month"
-  ExpiresByType text/javascript "access plus 1 month"
-  ExpiresByType text/css "access plus 1 month"
-</IfModule>
-
-# ------------------------------------------------------------------------------
-# 5. Clean URLs & SPA Rewrites (e.g. /work-proof, /cases/1-52m-case-study)
-# ------------------------------------------------------------------------------
 <IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
+RewriteEngine On
 
-  # Serve existing file or directory directly
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteRule ^ - [L]
+# One canonical host: https://milliondollarfunnels.us (no www, always HTTPS)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^(.*)$ https://milliondollarfunnels.us/$1 [L,R=301]
 
-  # Check if route.html exists (e.g. /work-proof -> /work-proof.html)
-  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
-  RewriteRule ^([^/]+)/?$ $1.html [L]
+# URLs from the domain's earlier site that Google still crawls
+RewriteRule ^post/sales-funnels-for-coaches/?$ /services [L,R=301]
+RewriteRule ^blog/category(/.*)?$ /blog [L,R=301]
 
-  # Check nested route (e.g. /cases/1-52m-case-study -> /cases/1-52m-case-study.html)
-  RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
-  RewriteRule ^([^/]+)/([^/]+)/?$ $1/$2.html [L]
+# /index.html and /page.html -> clean URLs
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+RewriteRule ^ / [L,R=301]
+RewriteCond %{THE_REQUEST} \s/([^?\s]+?)\.html[\s?] [NC]
+RewriteCond %1 !^(404|lusion_standalone|downloads/.*)$
+RewriteRule ^ /%1 [L,R=301]
 
-  # Check cases slug fallback
-  RewriteCond %{DOCUMENT_ROOT}/cases/$1.html -f
-  RewriteRule ^cases/([^/]+)/?$ cases/$1.html [L]
+# Trailing slash -> none (canonical URLs have no trailing slash)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)/$ /$1 [L,R=301]
 
-  # Fallback to index.html for client-side routing
-  RewriteCond %{DOCUMENT_ROOT}/index.html -f
-  RewriteRule ^ index.html [L]
+# Clean URL -> exported .html file (e.g. /services -> services.html)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+)$ /$1.html [L]
+
+# Directory without its own page (e.g. /_next) -> 404 instead of a listing
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_FILENAME}/index.html !-f
+RewriteRule ^ - [R=404,L]
 </IfModule>
+
+# Caching: hashed build files forever, media for 30 days, HTML always fresh
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresDefault "access plus 0 seconds"
+ExpiresByType text/html "access plus 0 seconds"
+ExpiresByType application/javascript "access plus 1 year"
+ExpiresByType text/javascript "access plus 1 year"
+ExpiresByType application/octet-stream "access plus 30 days"
+ExpiresByType model/gltf-binary "access plus 30 days"
+ExpiresByType text/css "access plus 1 year"
+ExpiresByType image/webp "access plus 30 days"
+ExpiresByType image/avif "access plus 30 days"
+ExpiresByType image/png "access plus 30 days"
+ExpiresByType image/jpeg "access plus 30 days"
+ExpiresByType image/svg+xml "access plus 30 days"
+ExpiresByType video/mp4 "access plus 30 days"
+ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml text/plain application/xml
+</IfModule>
+
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set X-Frame-Options "SAMEORIGIN"
+# Asset streaming for the embedded 3D scene (same as the previous cPanel config)
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Expose-Headers "Content-Length, Content-Range"
+</IfModule>
+
+# Never serve private files if they are ever uploaded by mistake
+<FilesMatch "^(lead-config\.php|leads\.csv|\.env.*)$">
+  Require all denied
+</FilesMatch>

@@ -146,7 +146,7 @@ export default function UFFooter() {
     playTick();
     setSubscribed("sending");
     try {
-      const r = await fetch("/api/lead", {
+      const r = await fetch("/api/lead.php", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ name: "Newsletter subscriber", email: emailInput, niche: "Newsletter signup", page: window.location.href }),
