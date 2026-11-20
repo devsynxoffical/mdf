@@ -235,3 +235,20 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Change this run:** none. The new pages are hours old and already linked from every page's footer, so there is no evidence yet for another change.
 - **Checks:** audit clean (38 pages, no duplicates); 39 internal links, none broken. /api/lead returns 422 for an invalid body and 503 for a valid one (webhook not set). GA4 not live.
 - **Google Indexing API:** 0 sent (paused until Nov 23).
+
+### C10 — 2026-11-20 · Hosting moved from Vercel to Hostinger
+- **Reason:** Vercel paused the whole DEVSYNX Hobby team (Fast Data Transfer 136/100 GB, Deployment Storage 30.56/10 GB). Every URL returned 402 DEPLOYMENT_DISABLED.
+- **Change:**
+  - Next.js static export served by Hostinger LiteSpeed.
+  - `public/.htaccess` handles https and the apex host, clean URLs, old-site 301s, the 404 page, caching and 3D MIME types.
+  - Leads go through `/api/lead.php`, which saves to CSV outside public_html, emails and optionally forwards to a webhook.
+  - Built files are on the `hostinger` branch; Vercel builds are disabled.
+- **Validation (live, after the owner removed the Vercel DNS records):**
+  - 60 of 60 requests were served by Hostinger.
+  - All 38 sitemap pages return 200, with one H1, a correct canonical and no duplicate titles or descriptions; all 38 internal links work.
+  - http, www, `/x.html` and `/x/` all 301 to the clean https URL; unknown URLs return 404; the roofing teaser is still noindex.
+  - Private files are blocked.
+  - Lead endpoint: 422 for invalid input, 200 for the honeypot, 200 for a valid test lead ("TEST - ignore (site check)").
+  - Playwright desktop and mobile on /, a landing page, /work-proof and /book: styled, no broken images, no overflow, calculator works.
+  - Sitemap resubmitted to Google and IndexNow notified for all URLs.
+- **Outage:** about 2026-11-20 (Vercel pause) until DNS moved the same day. Watch the next snapshots for pages dropping out of the index.
