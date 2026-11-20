@@ -168,3 +168,22 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Traffic:** 28d 8 clicks / 239 impressions; 7d 3 clicks / 62 impressions. "million dollar funnels" 18 → 19 impressions.
 - **Old-site URLs:** not recrawled since the C3 redirects (last crawl 2026-11-06).
 - **Owner settings still missing:** /api/lead returns 503 (LEAD_WEBHOOK_URL not set) and GA4 is not live (NEXT_PUBLIC_GA_ID not set).
+
+### Results — 00:40 run, 2026-11-20 (GSC data through 2026-11-18)
+- **Indexed:** 18 of 35 (12:40 run: 16; baseline: 13 of 24). Newly indexed:
+  - `/services/missed-call-text-back`: crawled 2026-11-19 13:17.
+  - `/lead-generation/chiropractic`: crawled 2026-11-19 14:04.
+  - Both were first crawled within about 1.5 hours of the C8 footer links going live (published around 12:55). Neither was sent through the Indexing API (both were rejected with a 429 on Nov 19). This is the first after-value for C8.
+- **Traffic:**
+  - 28 days: 7 clicks, 230 impressions (was 8 / 239).
+  - 7 days: 3 clicks, 41 impressions (was 3 / 62).
+  - The 7-day drop comes from the window moving forward and from brand-search impressions; no page lost position (homepage average 6.2).
+- **Still not indexed:** 17 URLs.
+  - Discovered: `/services`, `/lead-generation`, vsl-funnels, mortgage, personal-injury, pressure-washing and 3 guides.
+  - Unknown to Google: gohighlevel-agency, webinar-funnels, client-acquisition-system, done-for-you-sales-funnels, roofing, solar.
+  - `/blog`: crawled, not indexed.
+  - `/faq`: still a duplicate of marcustheatres.com from the 2026-09-13 crawl. It was missing from the snapshot because of a transient inspection error; a manual recheck confirmed the status.
+- **Old-site URL** `/post/sales-funnels-for-coaches`: not recrawled since 2026-11-06.
+- **Change this run:** none. C8 is working, so the next step is waiting for Google to crawl the remaining footer-linked pages rather than making more changes.
+- **Checks:** audit clean (35 pages, no duplicate titles or descriptions); 36 internal links, none broken. /api/lead: 422 for an invalid body, 503 for a valid one (webhook not set). GA4 not live.
+- **Google Indexing API:** 0 sent (paused until Nov 23).
