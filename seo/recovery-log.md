@@ -252,3 +252,15 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - Playwright desktop and mobile on /, a landing page, /work-proof and /book: styled, no broken images, no overflow, calculator works.
   - Sitemap resubmitted to Google and IndexNow notified for all URLs.
 - **Outage:** about 2026-11-20 (Vercel pause) until DNS moved the same day. Watch the next snapshots for pages dropping out of the index.
+
+### Results — 00:40 run, 2026-11-21 (GSC data through 2026-11-19)
+- **Hosting:** all checks served by Hostinger; /api/lead.php returns 422 for invalid input; all 38 pages and 38 internal links pass the live audit.
+- **Indexed:** 19 of 38, unchanged. No page dropped out of the index after the 20 Nov Vercel outage.
+- **Now "Discovered" (Google knows them; previously unknown):** /lead-generation, /services/vsl-funnels, /services/done-for-you-sales-funnels, /services/landing-page-design, /services/application-funnels and /lead-generation/home-improvement.
+  - /lead-generation/solar went back to "unknown", which is normal inspection noise.
+- **Traffic:** 28 days: 7 clicks, 223 impressions; 7 days: 2 clicks, 29 impressions.
+  - The 7-day figure includes the outage day (Nov 20 is not in the data yet).
+  - Non-brand queries are unchanged: "funnel architecture" (position 49), "ai appointment setting" (position 62).
+- **Keyword plan:** still no impressions for any plan keyword.
+- **Change this run:** none. Every P1 page is linked from the footer on every page and Google has now discovered them, so the next step is waiting for crawls.
+- **Google Indexing API:** paused until Nov 23 (0 sent).
