@@ -264,3 +264,11 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Keyword plan:** still no impressions for any plan keyword.
 - **Change this run:** none. Every P1 page is linked from the footer on every page and Google has now discovered them, so the next step is waiting for crawls.
 - **Google Indexing API:** paused until Nov 23 (0 sent).
+
+### Results — 12:40 run, 2026-11-21 (GSC data through 2026-11-19)
+- **Hosting:** healthy on Hostinger (38/38 pages, 38/38 links, lead endpoint 422).
+- **Indexed:** 20 of 38 (was 19). New: `/blog/a2p-10dlc-registration`, crawled 2026-11-21 06:19. This is the first page newly indexed after the move to Hostinger.
+- **Inspection noise:** gohighlevel-agency and hvac flipped from Discovered back to unknown, and solar went the other way. These flips are normal.
+- **Traffic:** 28 days: 7 clicks, 226 impressions; 7 days: 2 clicks, 32 impressions. Non-brand queries unchanged; no impressions yet for any plan keyword.
+- **Change this run:** none (no new evidence).
+- **Google Indexing API:** paused until Nov 23.
