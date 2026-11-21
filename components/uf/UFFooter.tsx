@@ -9,6 +9,7 @@ import { SITE } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 import { WORK_PROOF } from "@/lib/workproof";
 import Magnetic from "@/components/uf/Magnetic";
+import PreferredSourceButton from "@/components/seo/PreferredSource";
 import { playTick } from "@/components/audio/SoundToggle";
 
 const casesHref =
@@ -513,8 +514,16 @@ export default function UFFooter() {
           </div>
         </div>
 
+        {/* Follow on Google: link to Google's Preferred sources page for this domain */}
+        <div className="mt-14 flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
+          <p className="max-w-[46ch] text-center font-sans text-[13.5px] leading-relaxed text-slate-400 sm:text-left">
+            Read our guides first: add us as a preferred source and Google shows you more of our articles in Top Stories.
+          </p>
+          <PreferredSourceButton />
+        </div>
+
         {/* ─── 4. BOTTOM BAR: STATUS, COPYRIGHT & BACK TO TOP ─── */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row sm:gap-4">
+        <div className="mt-8 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row sm:gap-4">
           
           {/* Live Operational Status */}
           <div className="flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 backdrop-blur-md">
@@ -529,7 +538,7 @@ export default function UFFooter() {
 
           {/* Copyright & Info */}
           <p className="font-sans text-[13px] text-slate-400 text-center sm:text-left">
-            © {year} {SITE.brand}™. All rights reserved.
+            © {year} {SITE.brand}. All rights reserved.
           </p>
 
           {/* Back to Top Magnetic Button */}

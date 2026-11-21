@@ -272,3 +272,13 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Traffic:** 28 days: 7 clicks, 226 impressions; 7 days: 2 clicks, 32 impressions. Non-brand queries unchanged; no impressions yet for any plan keyword.
 - **Change this run:** none (no new evidence).
 - **Google Indexing API:** paused until Nov 23.
+
+### C11 — 2026-11-21 · "Preferred source on Google" button
+- **Reason:** owner request. Visitors who add the site as a preferred source see more of its articles in Google Top Stories. It's only a link to `https://www.google.com/preferences/source?q=milliondollarfunnels.us`, so nothing is installed and nothing is tracked.
+- **Change:**
+  - Google-blue button (#1a73e8) with the "G" logo and short copy, in the footer of every page.
+  - A second button at the end of every guide (`/blog/*`), before the FAQ.
+  - Opens in a new tab.
+- **Also fixed:** the copyright line showed "Funnel™™"; it now shows "Funnel™".
+- **Validation:** export build; Apache test at desktop and mobile shows the button, `target=_blank` and no overflow.
+- **Expected effect:** small for a service site. It only changes what people who opt in see, and works best for article and news content.

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ContentShell, { ContentFaq, LinkCards } from "@/components/content/ContentShell";
 import LeadSection from "@/components/leads/LeadSection";
+import PreferredSourceButton from "@/components/seo/PreferredSource";
 import RichText, { plainText, slugId } from "@/components/content/RichText";
 import JsonLd from "@/components/seo/JsonLd";
 import UFFooter from "@/components/uf/UFFooter";
@@ -166,6 +167,11 @@ export default function BlogPostPage({ params }: Props) {
               .
             </p>
           </div>
+        </div>
+
+        <div className="not-prose rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:flex sm:items-center sm:justify-between sm:gap-6">
+          <p className="!m-0 text-[15px] leading-relaxed text-slate-300">If this guide was useful, add us as a preferred source on Google to see more of our guides in Top Stories.</p>
+          <PreferredSourceButton label="Add us as a preferred source on Google" className="mt-4 shrink-0 sm:mt-0" />
         </div>
 
         <ContentFaq items={p.faq} />
