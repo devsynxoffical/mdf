@@ -295,3 +295,10 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Keyword plan:** still no impressions for any plan keyword.
 - **Change this run:** none (no new evidence).
 - **Google Indexing API:** paused until Nov 23.
+
+### Results — 12:40 run, 2026-11-22 (GSC data still through 2026-11-20)
+- **Hosting:** healthy on Hostinger (38/38 pages, 38/38 links, lead endpoint 422).
+- **Indexed:** 22 of 38, unchanged. Search Analytics was not updated since the last run, so traffic is identical (28 days: 7 / 218; 7 days: 2 / 28).
+- **Inspection noise only:** several un-crawled pages flipped between "Discovered" and "unknown".
+- **Change this run:** none.
+- **Google Indexing API:** pause ends 2026-11-23 00:00 UTC. The 00:40 run will send the first batch (max 20), starting with the un-crawled P1 pages.
