@@ -282,3 +282,16 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Also fixed:** the copyright line showed "Funnel™™"; it now shows "Funnel™".
 - **Validation:** export build; Apache test at desktop and mobile shows the button, `target=_blank` and no overflow.
 - **Expected effect:** small for a service site. It only changes what people who opt in see, and works best for article and news content.
+
+### Results — 00:40 run, 2026-11-22 (GSC data through 2026-11-20)
+- **Hosting:** healthy on Hostinger (38/38 pages, 38/38 links, lead endpoint 422).
+- **Indexed:** 22 of 38 (was 20). New:
+  - `/lead-generation/solar`: crawled 2026-11-22 00:13; plan keywords "solar leads" (1,600/mo) and "solar lead generation".
+  - `/blog/what-is-a-vsl`: crawled 2026-11-21 16:02.
+- **Inspection noise:** gohighlevel-agency and hvac moved to "Discovered"; done-for-you-sales-funnels moved back to "unknown".
+- **Traffic:** 28 days: 7 clicks, 218 impressions; 7 days: 2 clicks, 28 impressions. The data now includes the 20 Nov outage day.
+  - Homepage 7-day average position improved to 4.9 (28-day: 6.1).
+  - Non-brand queries: "funnel architecture" at position 50; "ai appointment setting" at 62 on /services/ai-appointment-setter.
+- **Keyword plan:** still no impressions for any plan keyword.
+- **Change this run:** none (no new evidence).
+- **Google Indexing API:** paused until Nov 23.
