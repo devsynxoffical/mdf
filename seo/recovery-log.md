@@ -395,3 +395,19 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   | /services/missed-call-text-back | "Missed Call Text Back Setup for Service Businesses \| MDF™" → "Missed Call Text Back That Saves Every Lost Lead" | unchanged (already matched) | 3 problem cards, 4 step texts, comparison intro, new "How does missed call text back work?" paragraph | 5 → 6 | DFY, /lead-generation/hvac, /lead-generation |
 
 - **Validation (local export):** each page has one H1, a unique title under 60 characters and a description under 155, a self canonical, and FAQPage JSON-LD that matches the visible FAQs word for word. No em dashes and no mobile overflow at 375 px.
+
+### Results — 12:40 run, 2026-11-23 (GSC data still through 2026-11-21)
+- **Site:**
+  - Hostinger (LiteSpeed, no x-vercel headers).
+  - `/api/lead.php` returns 422 on an invalid lead.
+  - `audit2.py`: 40 pages, one H1 each, no duplicate titles or descriptions.
+  - `links.py`: 0 bad links.
+- **Indexed:** 29 / 40, up from 24 / 38 this morning and 13 / 24 on the 19 Nov baseline.
+  - Newly indexed: /lead-generation, /lead-generation/mortgage, /lead-generation/home-improvement, /blog/funnel-builder-vs-agency, /blog/what-is-a-lead-generation-funnel.
+- **Impressions:** 221 / 28d (baseline 160), 7 clicks; 26 / 7d. Plan target is 500 at 30 days.
+- **Top 10 keywords:** none of the 10 shows impressions yet (data ends 21 Nov, before today's changes).
+  - Index status of target pages:
+    - indexed: DFY, chiropractic, hvac, lead-generation, missed-call, pressure-washing;
+    - Discovered, not indexed: landing-page-design, vsl-funnels, /services.
+- **Changes:** none. Every target page was changed today (C13, C14), Search Console has no data after those changes, and the weekly guide was already covered today by the 2 new articles.
+- **Note:** the description on /blog/what-is-a-lead-generation-funnel is 173 characters, so Google will shorten it. Left as is under the 7-day rule.
