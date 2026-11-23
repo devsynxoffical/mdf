@@ -28,7 +28,7 @@ export default function ReceiptGallery({ receipts }: { receipts: Receipt[] }) {
     <>
       <div className="rgal">
         {receipts.map((r, i) => (
-          <button key={r.id} type="button" className="rgal-card" onClick={() => setIdx(i)} aria-label={`Open receipt: ${r.figure} ${r.label}`}>
+          <button key={r.id} type="button" className="rgal-card" onClick={() => setIdx(i)} aria-haspopup="dialog">
             <span className="rgal-img">
               <Image src={r.src} alt={`${r.label}: ${r.figure}. ${r.detail}`} fill sizes="(max-width: 768px) 100vw, 380px" className="object-cover object-top" />
               <span className="rgal-zoom" aria-hidden>

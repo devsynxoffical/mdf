@@ -239,7 +239,7 @@ export default function MDFFaqSection() {
           <div className="fx-top">
             <span className="fx-av">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/MDF_Logo_White_transparent.png" alt="" />
+              <img src="/images/mdf-logo-white-168.webp" alt="" loading="lazy" />
             </span>
             <div>
               <b>MDF Strategy Desk</b>

@@ -7,6 +7,24 @@ import ResultsLogos from "@/components/uf/ResultsLogos";
 import PagePhotos from "@/components/pages/PagePhotos";
 import { ABOUT_PRINCIPLES, ABOUT_TIMELINE } from "@/lib/site";
 import { ABOUT_GALLERY, ABOUT_PEOPLE } from "@/lib/media";
+import Link from "next/link";
+import { WORK_PROOF } from "@/lib/workproof";
+import { CPL_SUMMARY, usd } from "@/lib/benchmarks";
+
+const BUILD = [
+  { title: "Funnels & landing pages", body: "VSL, webinar, application, low-ticket and lead-generation funnels, written, designed and built for one offer and one action.", href: "/services/done-for-you-sales-funnels" },
+  { title: "Paid traffic", body: "Meta Ads campaigns judged on cost per lead and per booked call, run inside the client's own ad account.", href: "/services/client-acquisition-system" },
+  { title: "Follow-up & CRM", body: "Speed-to-lead texts and email, missed-call text back, reminders and a pipeline in GoHighLevel that ties revenue to ad spend.", href: "/services/gohighlevel-agency" },
+  { title: "AI appointment setting", body: "An AI assistant that replies to new leads in seconds, asks qualifying questions and books calls on the calendar.", href: "/services/ai-appointment-setter" },
+];
+
+const ENGAGEMENT = [
+  ["Strategy call", "15–20 minutes on your offer, current funnel and follow-up. We say plainly if we are not the right fit."],
+  ["Map the system", "Offer, funnel steps, qualification questions, follow-up and tracking, agreed before anything is built."],
+  ["Build", "Pages, automations, CRM pipeline and ads, built in your accounts so you own every asset."],
+  ["Launch", "Live on real traffic with tracking on every step."],
+  ["Improve weekly", "Numbers you can check yourself, and the biggest leak fixed first."],
+];
 
 const STATS = [
   { value: "500+", label: "Businesses scaled" },
@@ -89,6 +107,68 @@ export default function AboutPage() {
                     </p>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What we build + how we work + how results are verified */}
+      <section className="relative overflow-hidden border-t border-white/10 bg-[#030b2c] py-20 md:py-24">
+        <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
+          <p className="uf-eyebrow text-sky">( What we build )</p>
+          <h2 className="mt-4 max-w-[22ch] font-sans text-[clamp(28px,3.6vw,44px)] font-extrabold tracking-tight">
+            One team for the funnel, the traffic and the follow-up
+          </h2>
+          <p className="mt-5 max-w-[70ch] font-sans text-[16.5px] leading-[1.75] text-slate-300">
+            Million Dollar Funnel™ is a done-for-you client acquisition team led by founder Vaishali Kapoor. We build the whole
+            path a new customer takes, from the first ad to the booked call, and connect every step so nothing leaks between tools.
+          </p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {BUILD.map((b) => (
+              <Link key={b.title} href={b.href} className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-sky/40 hover:bg-white/[0.05]">
+                <h3 className="font-sans text-[19px] font-bold text-white">{b.title}</h3>
+                <p className="mt-2 font-sans text-[15px] leading-[1.65] text-slate-400">{b.body}</p>
+                <span className="mt-4 inline-block font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-sky group-hover:text-white">Learn more ↗</span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-20 grid gap-12 lg:grid-cols-2">
+            <div>
+              <p className="uf-eyebrow text-sky">( How an engagement works )</p>
+              <h2 className="mt-4 font-sans text-[clamp(24px,3vw,36px)] font-extrabold tracking-tight">From first call to a running system</h2>
+              <ol className="mt-8 space-y-5">
+                {ENGAGEMENT.map(([t, d], i) => (
+                  <li key={t} className="flex gap-4">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-sky/40 bg-[#1254EC]/25 font-mono text-[12px] font-bold text-sky">{i + 1}</span>
+                    <div>
+                      <p className="font-sans text-[16px] font-bold text-white">{t}</p>
+                      <p className="mt-1 font-sans text-[15px] leading-[1.6] text-slate-400">{d}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div>
+              <p className="uf-eyebrow text-sky">( How we verify results )</p>
+              <h2 className="mt-4 font-sans text-[clamp(24px,3vw,36px)] font-extrabold tracking-tight">Receipts, not claims</h2>
+              <div className="mt-8 space-y-4 font-sans text-[15.5px] leading-[1.7] text-slate-300">
+                <p>
+                  Every result we publish is a dated screenshot from a client&apos;s own ad account or CRM. Our{" "}
+                  <Link href="/work-proof" className="rt-link">work proof page</Link> holds {WORK_PROOF.length} of them. When we found
+                  screenshots that repeated the same campaign, we removed them rather than count them twice.
+                </p>
+                <p>
+                  Across the receipts that show a cost per lead, the range is {usd(CPL_SUMMARY.min)} to {usd(CPL_SUMMARY.max)}, with a
+                  median of {usd(CPL_SUMMARY.median)}. You can see{" "}
+                  <Link href="/work-proof#benchmarks" className="rt-link">the cost-per-lead benchmarks by niche</Link>.
+                </p>
+                <p>
+                  We focus on industries where we have that proof: see our{" "}
+                  <Link href="/lead-generation" className="rt-link">lead generation funnels by industry</Link>. Roofing is handled by our
+                  sister brand RoofingSystems.co and legal lead generation by Scale With Ads, so each team works only on what it knows best.
+                </p>
               </div>
             </div>
           </div>

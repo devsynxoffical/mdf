@@ -6,7 +6,8 @@ import UFFooter from "@/components/uf/UFFooter";
 import ContourBG from "@/components/uf/ContourBG";
 import LeadForm from "@/components/leads/LeadForm";
 import LeadCalculator from "@/components/leads/LeadCalculator";
-import { Band, StickyLeadBar } from "@/components/leads/IndustryBlocks";
+import { Band, ProblemCards, StickyLeadBar } from "@/components/leads/IndustryBlocks";
+import ProcessTabs from "@/components/leads/ProcessTabs";
 import { ContentFaq } from "@/components/content/ContentShell";
 import { ACTIVE_INDUSTRIES as INDUSTRIES } from "@/lib/industries";
 import { CPL_SUMMARY, usd } from "@/lib/benchmarks";
@@ -24,6 +25,35 @@ export const metadata: Metadata = pageMetadata({
 const MORE = [
   { niche: "Wealth management", figure: "1,308 leads", detail: "28-day total stated on the post, $14.67 per phone-verified lead", src: "/workprof/wp-025.webp" },
   { niche: "Agency webinar", figure: "1,018 sign-ups", detail: "$4.50 per webinar registration on $4,582 ad spend", src: "/workprof/wp-004.webp" },
+];
+
+const STEPS = [
+  {
+    title: "Offer & targeting",
+    body: "Every lead generation funnel starts with an offer people in your market actually want, such as a free inspection, a quote, a consultation or a prepaid first visit, shown to the right audience in your service area.",
+    points: ["Offer built for your market", "Audience and service-area targeting", "Ad creative and copy tested per angle"],
+  },
+  {
+    title: "Qualifying funnel",
+    body: "A short, mobile-first funnel collects the details your team needs, such as job type, budget, timeline and photos, so unqualified enquiries are filtered before they reach you.",
+    points: ["Questions you choose", "Disqualification paths", "Instant confirmation page"],
+  },
+  {
+    title: "Instant follow-up",
+    body: "New leads get a text and email within seconds, with a booking link. Missed calls get a text back. Reminders reduce no-shows.",
+    points: ["Speed-to-lead SMS and email", "Calendar booking", "Reminders and no-show recovery"],
+  },
+  {
+    title: "Pipeline & reporting",
+    body: "Every lead lands in a CRM pipeline tied to the ad that produced it, so you can see cost per lead, cost per appointment and revenue per campaign.",
+    points: ["CRM pipeline", "Source tracking per campaign", "Weekly numbers you can check yourself"],
+  },
+];
+
+const OWN = [
+  { title: "Your ad account", body: "Campaigns run in your own Meta Business Manager. Spend, audiences and pixel history stay with you if we ever part ways." },
+  { title: "Your leads, exclusively", body: "Leads go straight into your CRM. They are never shared with competitors or resold, unlike most pay-per-lead marketplaces." },
+  { title: "Your data and funnel", body: "The funnel, automations and reporting are built in your accounts, so the system keeps working as an asset, not a rental." },
 ];
 
 const FAQ = [
@@ -127,7 +157,46 @@ export default function LeadGenerationHub() {
           </div>
         </Band>
 
-        <Band id="more" tone="b" eyebrow="Other industries" title="Also running in these niches" intro="Smaller sets of receipts. Full screenshots are on the work proof page.">
+        <Band id="how" tone="b" eyebrow="How it works" title="What a lead generation funnel is" intro="A lead generation funnel is four parts working as one system. Click through each step.">
+          <ProcessTabs steps={STEPS} />
+        </Band>
+
+        <Band id="own" eyebrow="Ownership" title="What you own when we build it">
+          <ProblemCards items={OWN} />
+        </Band>
+
+        <Band id="results" tone="b" eyebrow="Receipts" title="Results by industry, from client accounts" intro="Each row comes from a dated ad-account or CRM screenshot. Open the industry page to inspect the full receipt.">
+          <div className="content-table">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Industry</th>
+                  <th scope="col">Result</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">Period</th>
+                </tr>
+              </thead>
+              <tbody>
+                {INDUSTRIES.flatMap((ind) =>
+                  (ind.hubCard ? [] : ind.receipts ?? []).map((r) => (
+                    <tr key={r.id}>
+                      <th scope="row">
+                        <Link href={`${PATH}/${ind.slug}`} className="rt-link">
+                          {ind.name}
+                        </Link>
+                      </th>
+                      <td className="text-white">{r.figure}</td>
+                      <td>{r.detail}</td>
+                      <td className="whitespace-nowrap">{r.period}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </Band>
+
+        <Band id="more" eyebrow="Other industries" title="Also running in these niches" intro="Smaller sets of receipts. Full screenshots are on the work proof page.">
           <div className="pcards">
             {MORE.map((m) => (
               <Link key={m.niche} href="/work-proof" className="pcard group">
@@ -142,14 +211,14 @@ export default function LeadGenerationHub() {
           </div>
         </Band>
 
-        <Band id="calculator" eyebrow="Interactive" title="Estimate your monthly pipeline" intro="Move the sliders to match your business. Results are calculated only from your inputs.">
+        <Band id="calculator" tone="b" eyebrow="Interactive" title="Estimate your monthly pipeline" intro="Move the sliders to match your business. Results are calculated only from your inputs.">
           <LeadCalculator
             defaults={{ budget: 3000, cpl: 13.5, book: 25, close: 15, value: 3000 }}
             note="Cost per lead defaults to the $13.50 median of our published receipts. The other values are example inputs, so replace them with yours."
           />
         </Band>
 
-        <Band id="faq-band" tone="b" eyebrow="FAQ" title="Lead generation questions">
+        <Band id="faq-band" eyebrow="FAQ" title="Lead generation questions">
           <div className="content-prose max-w-[880px]">
             <ContentFaq items={FAQ} bare />
           </div>

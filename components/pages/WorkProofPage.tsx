@@ -187,9 +187,9 @@ function BentoVideoCard({
         <div className="absolute inset-x-0 bottom-0 z-20 flex flex-col justify-end p-4 sm:p-5 bg-gradient-to-t from-black/95 via-black/70 to-transparent">
           <div className="mb-3">
             <div className="flex items-baseline gap-2">
-              <h4 className="font-sans text-[15px] sm:text-[16px] font-bold text-white tracking-tight">
+              <p className="font-sans text-[15px] sm:text-[16px] font-bold text-white tracking-tight">
                 {item.name}
-              </h4>
+              </p>
               <span className="font-mono text-[11px] font-medium text-cyan-300">
                 · {item.role}
               </span>

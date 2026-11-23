@@ -35,6 +35,7 @@ const EXPLORE_LINKS: FooterLinkItem[] = [
   { label: "Funnel & Automation Services", href: "/services" },
   { label: "Lead Generation by Industry", href: "/lead-generation" },
   { label: "Funnel & Follow-Up Guides", href: "/blog" },
+  { label: "Speed-to-Lead Guide", href: "/blog/speed-to-lead" },
 ];
 
 /** Key service and industry pages, linked from every page so crawlers find them. */
@@ -43,6 +44,9 @@ const SOLUTION_LINKS: FooterLinkItem[] = [
   { label: "Landing Page Design", href: "/services/landing-page-design" },
   { label: "Sales Funnels for Coaches", href: "/services/sales-funnels-for-coaches" },
   { label: "Application Funnels", href: "/services/application-funnels" },
+  { label: "VSL Funnels", href: "/services/vsl-funnels" },
+  { label: "Webinar Funnels", href: "/services/webinar-funnels" },
+  { label: "GoHighLevel Agency", href: "/services/gohighlevel-agency" },
   { label: "Missed Call Text Back", href: "/services/missed-call-text-back" },
   { label: "HVAC Lead Generation", href: "/lead-generation/hvac" },
   { label: "Solar Lead Generation", href: "/lead-generation/solar" },

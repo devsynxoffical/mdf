@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ReactDOM from "react-dom";
 import JsonLd from "@/components/seo/JsonLd";
 import { faqJsonLd, pageMetadata } from "@/lib/seo";
 import { FAQS_DATA } from "@/lib/homeFaq";
@@ -26,6 +27,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function Home() {
+  // Hero still (LCP element) is fetched first; the 3D scene loads on interaction.
+  ReactDOM.preload("/models/resn/diamond-poster.webp", { as: "image", fetchPriority: "high" });
   return (
     <div id="top">
       <JsonLd data={faqJsonLd(FAQS_DATA)} />
