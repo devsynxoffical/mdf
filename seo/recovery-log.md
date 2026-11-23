@@ -302,3 +302,15 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Inspection noise only:** several un-crawled pages flipped between "Discovered" and "unknown".
 - **Change this run:** none.
 - **Google Indexing API:** pause ends 2026-11-23 00:00 UTC. The 00:40 run will send the first batch (max 20), starting with the un-crawled P1 pages.
+
+### Results — 00:40 run, 2026-11-23 (GSC data through 2026-11-21)
+- **Hosting:** healthy on Hostinger (38/38 pages, 38/38 links, lead endpoint 422).
+- **Indexed:** 24 of 38 (was 22). New:
+  - `/lead-generation/hvac` (P1 "hvac lead generation", 1,300/mo; C9), crawled 2026-11-22 14:47.
+  - `/services/done-for-you-sales-funnels` (P1 "done for you sales funnel" and "funnel builder"), crawled 2026-11-22 20:26.
+  - Neither was sent through the Indexing API, so the footer and sitemap discovery is working.
+- **Traffic:** 28 days: 7 clicks, 215 impressions; 7 days: 2 clicks, 20 impressions. Still brand-dominated; no plan keyword has impressions yet.
+- **Google Indexing API:** the pause ended 2026-11-23 00:00 UTC. First batch, 11 of 20 used:
+  - Accepted: home-improvement, landing-page-design, sales-funnels-for-coaches, application-funnels, vsl-funnels, gohighlevel-agency, webinar-funnels, client-acquisition-system, /blog/speed-to-lead, /blog, /faq.
+  - Skipped (accepted on Nov 19, less than 7 days ago): /lead-generation, /services, /lead-generation/mortgage.
+- **Change this run:** none to the site.
