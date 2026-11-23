@@ -332,6 +332,7 @@ export default function MDFIphoneDuoPortfolio() {
                     id="fimg2"
                     src={`/img/funnels/f${currentFunnel.id}.webp`}
                     alt=""
+                    loading="lazy"
                     decoding="async"
                   />
                 </div>
@@ -351,6 +352,7 @@ export default function MDFIphoneDuoPortfolio() {
                     id="fimg"
                     src={`/img/funnels/f${currentFunnel.id}.webp`}
                     alt={`${currentFunnel.name} funnel`}
+                    loading="lazy"
                     decoding="async"
                   />
                 </div>
@@ -364,7 +366,7 @@ export default function MDFIphoneDuoPortfolio() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   className="cph"
-                  src="/images/mdf-wallpaper.jpg"
+                  src="/images/mdf-wallpaper.webp"
                   alt="Million Dollar Funnel™ 3D Crystal"
                   loading="lazy"
                 />
@@ -378,7 +380,7 @@ export default function MDFIphoneDuoPortfolio() {
                 <div className="notifs">
                   <div className="notif">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/img/funnels/f8-t.webp" alt="Mortgage AI System webinar funnel" />
+                    <img src="/img/funnels/f8-t.webp" alt="Mortgage AI System webinar funnel" loading="lazy" />
                     <div>
                       <b>Mortgage AI System is live</b>
                       <span className="mono">WEBINAR FUNNEL &middot; NOW</span>
@@ -386,7 +388,7 @@ export default function MDFIphoneDuoPortfolio() {
                   </div>
                   <div className="notif">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/img/funnels/f7-t.webp" alt="Rowan Security high-ticket funnel" />
+                    <img src="/img/funnels/f7-t.webp" alt="Rowan Security high-ticket funnel" loading="lazy" />
                     <div>
                       <b>Rowan Security, 41 calls booked</b>
                       <span className="mono">HIGH-TICKET FUNNEL &middot; 2H AGO</span>

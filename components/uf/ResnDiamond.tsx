@@ -235,8 +235,23 @@ export default function ResnDiamond({
   const [isHolding, setIsHolding] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasWebGL, setHasWebGL] = useState(true);
+  // Performance: the WebGL scene starts on the visitor's first interaction.
+  // Until then a still of the same diamond is shown, so first load stays light.
+  const [active, setActive] = useState(false);
+  const [rendered, setRendered] = useState(false);
 
   useEffect(() => {
+    const events = ["pointermove", "pointerdown", "touchstart", "wheel", "scroll", "keydown"] as const;
+    const start = () => {
+      setActive(true);
+      events.forEach((e) => window.removeEventListener(e, start));
+    };
+    events.forEach((e) => window.addEventListener(e, start, { passive: true, once: true }));
+    return () => events.forEach((e) => window.removeEventListener(e, start));
+  }, []);
+
+  useEffect(() => {
+    if (!active) return;
     const container = mountRef.current;
     if (!container) return;
 
@@ -440,8 +455,13 @@ export default function ResnDiamond({
         gemGroup.rotation.z = Math.sin(elapsedTime * 0.5) * 0.05;
 
         renderer.render(scene, camera);
+        if (!firstFrameDone && gemGroup.children.length > 0) {
+          firstFrameDone = true;
+          setRendered(true);
+        }
       };
 
+      let firstFrameDone = false;
       animate();
 
       return () => {
@@ -468,10 +488,23 @@ export default function ResnDiamond({
       setHasWebGL(false);
       setIsLoaded(true);
     }
-  }, []);
+  }, [active]);
 
   return (
     <div className={`relative w-full select-none ${height} ${className}`}>
+      {/* Still of the diamond, shown until the 3D scene has drawn its first frame */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/models/resn/diamond-poster.webp"
+        alt=""
+        aria-hidden="true"
+        draggable={false}
+        fetchPriority="high"
+        className={`pointer-events-none absolute z-[1] select-none transition-opacity duration-500 ${
+          hasWebGL && rendered ? "opacity-0" : "opacity-100"
+        }`}
+        style={{ left: "50%", top: "47.4%", height: "61.8%", width: "auto", transform: "translate(-50%, -50%)" }}
+      />
       {/* 3D Canvas Mount (Active when WebGL is available) */}
       {hasWebGL ? (
         <div
@@ -488,12 +521,7 @@ export default function ResnDiamond({
           onMouseLeave={() => setIsHolding(false)}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/models/resn/diamond_transparent.png"
-            alt="Resn 3D Diamond Gem"
-            className="max-h-[85%] max-w-[85%] object-contain select-none pointer-events-none drop-shadow-[0_20px_60px_rgba(18,84,236,0.3)] filter"
-            draggable={false}
-          />
+          <span className="sr-only">Diamond</span>
         </div>
       )}
 

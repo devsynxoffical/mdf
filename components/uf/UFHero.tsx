@@ -206,9 +206,9 @@ function HeroCapabilityCard({
           <p className="font-mono text-[9px] font-medium uppercase tracking-[0.22em] text-sky/70 transition-colors group-hover:text-sky">
             {num}
           </p>
-          <h3 className="mt-0.5 truncate font-sans text-[15px] font-semibold text-white transition-colors group-hover:text-sky-100 sm:text-[16px]">
+          <p className="mt-0.5 truncate font-sans text-[15px] font-semibold text-white transition-colors group-hover:text-sky-100 sm:text-[16px]">
             {title}
-          </h3>
+          </p>
           <p className="mt-0.5 line-clamp-2 font-sans text-[11.5px] font-normal leading-snug text-slate-400 transition-colors group-hover:text-slate-300 sm:text-[12.5px]">
             {subtitle}
           </p>

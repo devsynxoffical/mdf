@@ -314,3 +314,25 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - Accepted: home-improvement, landing-page-design, sales-funnels-for-coaches, application-funnels, vsl-funnels, gohighlevel-agency, webinar-funnels, client-acquisition-system, /blog/speed-to-lead, /blog, /faq.
   - Skipped (accepted on Nov 19, less than 7 days ago): /lead-generation, /services, /lead-generation/mortgage.
 - **Change this run:** none to the site.
+
+### C12 — 2026-11-23 · Fixes 1–6 from the technical audit (seo/technical-audit-2026-11-23.md)
+1. **Internal links.** Footer "Solutions" now also links /services/vsl-funnels, /services/webinar-funnels and /services/gohighlevel-agency; "Ecosystem" links /blog/speed-to-lead. These 4 pages had only 6–11 inbound links and were not crawled.
+2. **/faq.** Recrawl requested through the Indexing API on 23 Nov (after the audit). No code change is possible for Google's stored canonical (marcustheatres.com, 13 Sep crawl). Next step if it persists after 1–2 weeks: manual "Request indexing" in Search Console, then a new URL with a 301.
+3. **Homepage speed.**
+   - The three.js diamond now starts on the first interaction (pointer, touch, scroll, wheel or key). Before that, a 12 KB still of the same diamond (`/models/resn/diamond-poster.webp`, preloaded) is shown, aligned to the 3D render on desktop and mobile.
+   - The diamond's no-WebGL fallback now uses that still instead of an unrelated image.
+   - Below-the-fold images are lazy-loaded (portfolio phone screens and notification thumbnails); the wallpaper went from 711 KB JPG to 88 KB WebP; the FAQ avatar from a 341 KB PNG to a 168 px WebP.
+   - Local measurement (Lighthouse mobile): total blocking time 17,910 ms → 160–260 ms; with devtools throttling, LCP 2.6 s.
+4. **Thin pages expanded with factual content.**
+   - /about: what we build (4 linked services), how an engagement works (5 steps), and how results are verified (receipt count, CPL range and median from the receipts, links to the benchmarks, and the sister-brand split). Main text ≈360 → ≈930 words.
+   - /lead-generation: what a lead generation funnel is (4-step interactive), what you own, and a results-by-industry table built from the dated receipts. Main text ≈500 → ≈1,230 words.
+5. **Home improvement differentiated.**
+   - Dropped the shared pressure-washing receipt (wp-028); the page now says openly that no remodeling-only receipt is published yet.
+   - New problems, steps and FAQ for remodeling, kitchen, bath and exterior contractors (long decisions, budget filters, financing, photo quote funnel).
+   - New meta description.
+6. **Accessibility.**
+   - Text contrast raised on receipt dates, calculator notes, form notes and FAQ counters.
+   - Heading order fixed: hero capability titles h3 → p; testimonial names h4 → p on the homepage and /work-proof.
+   - Receipt buttons' accessible names now match their visible text.
+   - `.htaccess` compression now also covers text/javascript (Hostinger already serves Brotli).
+- **Validation:** export build; Apache test (all pages 200, no overflow on desktop or mobile); the poster shows before interaction and the 3D replaces it after; Lighthouse before and after as above.
