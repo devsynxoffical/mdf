@@ -388,6 +388,216 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     cta: { label: "Get a funnel built for every stage", href: "/services" },
   },
+  {
+    slug: "funnel-builder-vs-agency",
+    title: "Funnel Builder vs. Funnel Agency: Which Do You Need?",
+    metaTitle: "Funnel Builder vs. Funnel Agency: Software or Done-for-You?",
+    metaDescription:
+      "A funnel builder is software for making sales funnels yourself; a funnel agency builds them for you. Compare cost, time, skills and results to choose the right one.",
+    primaryKeyword: "funnel builder",
+    published: "2026-11-23",
+    readMinutes: 7,
+    summary:
+      "A funnel builder is software, such as GoHighLevel, ClickFunnels or Systeme.io, that lets you create landing pages, checkouts and follow-up yourself. A funnel agency (or freelance funnel builder) uses that software to plan, write, build and launch the funnel for you. Choose software if you have the time and skills to write, design and connect everything; choose an agency if your time is better spent selling and you need it working fast.",
+    blocks: [
+      { type: "h2", text: "What a funnel builder is" },
+      {
+        type: "p",
+        text: "A funnel builder is a platform for building the pages and steps of a sales funnel without coding: landing pages, opt-in forms, order forms and checkouts, upsells, thank-you pages and, in most platforms, the email and SMS follow-up that runs after someone signs up. Popular options include GoHighLevel, ClickFunnels and Systeme.io; website builders such as Kajabi or Leadpages cover parts of the same job.",
+      },
+      {
+        type: "p",
+        text: "The software gives you the tools. It does not give you the offer, the copy, the design decisions, the tracking setup or the follow-up strategy. Those still have to come from someone.",
+      },
+      { type: "h2", text: "What a funnel agency does" },
+      {
+        type: "p",
+        text: "The phrase \"funnel builder\" is also used for people: freelancers and agencies who build funnels for clients inside that software. A done-for-you funnel agency usually covers the full job:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Strategy: choosing the funnel type for the offer and price, such as a VSL, webinar, application or low-ticket funnel.",
+          "Copy and design: headlines, page copy, proof and a fast, mobile-first layout.",
+          "Build and integrations: checkout or calendar, CRM pipeline, tags, and email and SMS follow-up.",
+          "Tracking and launch: pixel and analytics on every step, then improving the weakest step after launch.",
+        ],
+      },
+      {
+        type: "p",
+        text: "That is what our [done-for-you sales funnels](/services/done-for-you-sales-funnels) include, usually built in GoHighLevel or ClickFunnels.",
+      },
+      { type: "h2", text: "Funnel builder software vs. a funnel agency" },
+      {
+        type: "table",
+        columns: ["", "Funnel builder software (DIY)", "Funnel agency (done for you)"],
+        rows: [
+          ["Who does the work", "You or your team", "The agency"],
+          ["Main cost", "Monthly software subscription plus your time", "A project fee or retainer, plus the software"],
+          ["Skills needed", "Copywriting, design, automation, tracking and ads", "Knowing your offer and your customer"],
+          ["Time to launch", "Depends on your experience and available hours", "Set by the agency's scope and timeline"],
+          ["Integrations", "You connect checkout, calendar, CRM and messaging", "Connected and tested for you"],
+          ["Best for", "Simple offers, tight budgets, people who enjoy building", "Busy owners, high-ticket offers, paid traffic at scale"],
+        ],
+      },
+      { type: "h2", text: "When DIY funnel builder software is the right choice" },
+      {
+        type: "ul",
+        items: [
+          "Your offer is simple, such as one lead magnet or one low-priced product.",
+          "You are comfortable writing copy and setting up automations and tracking.",
+          "You are still testing whether anyone wants the offer and need to spend as little as possible.",
+          "You have more time than budget.",
+        ],
+      },
+      { type: "h2", text: "When hiring a funnel agency makes more sense" },
+      {
+        type: "ul",
+        items: [
+          "You are spending, or about to spend, real money on ads, so every step that leaks costs you directly.",
+          "Your offer is high-ticket and needs a VSL, webinar or application step to qualify buyers before a call.",
+          "Leads need fast follow-up by text and email, reminders and a CRM pipeline, not just a page.",
+          "Your time is worth more selling and delivering than learning software.",
+        ],
+      },
+      {
+        type: "p",
+        text: "For example, in one of our client receipts a ClickFunnels webinar registration page reached a 27.01% opt-in rate: 1,515 registrations from 5,610 unique visitors (the screenshot is on our [work proof page](/work-proof)). The software was the same one anyone can buy; the difference was the offer, the copy and the testing.",
+      },
+      { type: "h2", text: "Questions to ask before hiring a funnel builder" },
+      {
+        type: "ol",
+        items: [
+          "Will the funnel, ad account and CRM be in my accounts, so I own them?",
+          "Who writes the copy, and is it written for my offer rather than a template?",
+          "What is connected at launch: checkout or calendar, CRM, email and SMS, tracking?",
+          "Can I see real results from client accounts, with dates?",
+          "What happens after launch: who looks at the numbers and fixes the weakest step?",
+        ],
+      },
+      {
+        type: "p",
+        text: "If you want the whole path built, including ads and follow-up, see our [lead generation funnels by industry](/lead-generation) or our [landing page design](/services/landing-page-design) service for single pages.",
+      },
+    ],
+    faq: [
+      {
+        q: "What is the best funnel builder?",
+        a: "There is no single best one. GoHighLevel suits businesses that want funnels, CRM and SMS in one place; ClickFunnels is built around sales funnels and checkouts; Systeme.io is a lower-cost all-in-one. Choose based on what you need to connect, not on page templates.",
+      },
+      {
+        q: "Is a funnel builder the same as a website builder?",
+        a: "Not quite. Website builders are made for multi-page sites. Funnel builders are made for step-by-step paths to one action, with checkouts, upsells and follow-up built in.",
+      },
+      {
+        q: "Can I hire someone to build my funnel?",
+        a: "Yes. Freelancers and agencies build funnels inside the software you choose. Check that the work is done in your own accounts and that copy, integrations and tracking are included.",
+      },
+      {
+        q: "How long does it take to build a sales funnel?",
+        a: "A single landing page can be quick; a full funnel with copy, checkout or booking, CRM, follow-up and tracking takes longer. The bigger factor is usually how clear the offer is before the build starts.",
+      },
+    ],
+    cta: { label: "Have your funnel built for you", href: "/services/done-for-you-sales-funnels" },
+  },
+  {
+    slug: "what-is-a-lead-generation-funnel",
+    title: "What Is a Lead Generation Funnel? Stages, Examples and Costs",
+    metaTitle: "What Is a Lead Generation Funnel? Stages, Examples & Costs",
+    metaDescription:
+      "A lead generation funnel turns ad clicks into booked appointments: offer, ads, a qualifying page, instant follow-up and a CRM. See the stages and real cost-per-lead figures.",
+    primaryKeyword: "what is a lead generation funnel",
+    published: "2026-11-23",
+    readMinutes: 7,
+    summary:
+      "A lead generation funnel is the connected path that turns strangers into booked appointments: an offer promoted with ads, a short page or form that captures and qualifies the lead, instant follow-up by text and email, and a CRM that tracks each lead back to the ad that produced it. It is built to produce enquiries for a service, not to sell a product online.",
+    blocks: [
+      { type: "h2", text: "Lead generation funnel meaning" },
+      {
+        type: "p",
+        text: "A lead is someone who has shown interest and shared contact details. A lead generation funnel is the system that produces those leads in a predictable way and moves them to a conversation with your team. Service businesses use it when the sale happens on a call, at an estimate or in a consultation rather than at an online checkout.",
+      },
+      { type: "h2", text: "The five stages of a lead generation funnel" },
+      {
+        type: "ol",
+        items: [
+          "Offer: a reason to raise a hand now, such as a free inspection, a quote, a consultation or a low-cost first visit.",
+          "Traffic: ads on Meta, Google or other channels, aimed at the people who can buy, in the area you serve.",
+          "Capture and qualify: a landing page, quiz or form that collects contact details and the answers your team needs, such as job type, budget and timeline.",
+          "Follow-up: an instant text and email, a booking link, [missed call text back](/services/missed-call-text-back) for phone enquiries, and reminders before the appointment.",
+          "Tracking: a CRM pipeline that shows each lead's source, status and value, so you can see cost per lead, cost per appointment and revenue per campaign.",
+        ],
+      },
+      { type: "h2", text: "Lead generation funnel vs. sales funnel" },
+      {
+        type: "table",
+        columns: ["", "Lead generation funnel", "Sales funnel"],
+        rows: [
+          ["Goal", "An enquiry or booked appointment", "A purchase"],
+          ["Ends with", "A call, estimate or consultation", "A checkout"],
+          ["Typical businesses", "Home services, clinics, mortgage, local services", "Courses, products, low-ticket offers"],
+          ["Key metric", "Cost per lead and per appointment", "Cost per sale and return on ad spend"],
+        ],
+      },
+      {
+        type: "p",
+        text: "Many businesses need both: a lead generation funnel for the first conversation and [sales funnel stages](/blog/sales-funnel-stages) behind it to turn the conversation into revenue.",
+      },
+      { type: "h2", text: "Examples from real client accounts" },
+      {
+        type: "p",
+        text: "These figures come from dated ad-account screenshots on our [work proof page](/work-proof). They show what a working lead generation funnel produced, not what yours will cost; cost per lead depends on industry, market and offer.",
+      },
+      {
+        type: "table",
+        columns: ["Industry", "Result", "Cost per lead", "Period"],
+        rows: [
+          ["Mortgage", "10,172 leads from 8 campaigns", "$8.06", "Apr 2026"],
+          ["Solar", "300 homeowner leads", "$14.71", "Apr 10 to 20, 2026"],
+          ["Pressure washing", "167 leads", "$13.37", "Jul 2026"],
+          ["Home services (Florida)", "211 website leads in 7 days", "$11.27", "May 9 to 15, 2026"],
+        ],
+      },
+      {
+        type: "p",
+        text: "See how the funnel is built for each industry on our [lead generation funnels](/lead-generation) page, including [HVAC](/lead-generation/hvac), [chiropractic](/lead-generation/chiropractic) and [pressure washing](/lead-generation/pressure-washing).",
+      },
+      { type: "h2", text: "Why most lead generation funnels underperform" },
+      {
+        type: "ul",
+        items: [
+          "Slow follow-up: leads that wait hours often book with someone else. See [speed to lead](/blog/speed-to-lead).",
+          "No qualification: the calendar fills with people who were never a fit.",
+          "Shared leads: buying leads that are also sold to competitors turns every call into a price war.",
+          "No tracking: without a pipeline tied to each campaign, you cannot tell which spend to raise and which to cut.",
+        ],
+      },
+      { type: "h2", text: "How to build one" },
+      {
+        type: "p",
+        text: "Start with the offer and the qualification questions, then build the page, then the follow-up, then the tracking, and only then turn on ads. You can build it yourself in a funnel builder, or have it built for you: our [done-for-you sales funnels](/services/done-for-you-sales-funnels) and [landing page design](/services/landing-page-design) services cover each part.",
+      },
+    ],
+    faq: [
+      {
+        q: "What is the difference between a lead generation funnel and a landing page?",
+        a: "A landing page is one step. A lead generation funnel is the whole path: the offer and ads before the page, and the follow-up, booking and tracking after it.",
+      },
+      {
+        q: "How much does a lead from a lead generation funnel cost?",
+        a: "In the client receipts above it ranged from $8.06 to $14.71 per lead, depending on industry and market. Your cost depends on your offer, area and competition.",
+      },
+      {
+        q: "Do I need a CRM for a lead generation funnel?",
+        a: "Yes. Without a CRM you cannot follow up automatically or see which campaign produced which appointment and sale.",
+      },
+      {
+        q: "Which businesses benefit most from a lead generation funnel?",
+        a: "Businesses that sell through a call, estimate or appointment: home services, clinics, mortgage brokers, solar installers, coaches and consultants.",
+      },
+    ],
+    cta: { label: "See lead generation funnels by industry", href: "/lead-generation" },
+  },
 ];
 
 export const getPostBySlug = (slug: string) => BLOG_POSTS.find((p) => p.slug === slug);

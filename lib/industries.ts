@@ -31,6 +31,8 @@ export type Industry = {
   related: string[];
   /** Keyword owned by a sister site: page becomes a noindexed teaser that links there (keyword plan, 20 Nov 2026). */
   partner?: { site: string; url: string; blurb: string };
+  /** One real case result with a clear call to action (Top 10 plan, 23 Nov 2026). */
+  caseResult?: { eyebrow: string; title: string; body: string; metrics: { value: string; label: string }[]; href: string; linkLabel: string };
   /** Hub-card override when the first receipt is not from this industry. */
   hubCard?: { figure: string; detail: string };
 };
@@ -529,7 +531,7 @@ export const INDUSTRIES: Industry[] = [
     eyebrow: "Chiropractic marketing",
     h1: "Chiropractic Marketing That Fills Your Schedule With Paying New Patients",
     intro:
-      "A new-patient offer people pay for up front, Meta Ads that reach people in your area, and reminders that get them through the door. Prepaid consults show up far more reliably than free ones.",
+      "Chiropractic marketing built around a new-patient offer people pay for up front, Meta Ads that reach people in your area, and reminders that get them through the door. Prepaid consults show up far more reliably than free ones.",
     stats: [
       { value: "44", label: "Prepaid consults · 6 days" },
       { value: "$6,153", label: "Revenue from the ads" },
@@ -547,6 +549,19 @@ export const INDUSTRIES: Industry[] = [
         period: "Jun 28 – Jul 3, 2026",
       },
     ],
+    caseResult: {
+      eyebrow: "Case result",
+      title: "44 prepaid consults in six days for a US chiropractic clinic",
+      body: "Instead of a free exam, the clinic offered a low-cost prepaid first visit, promoted with local Meta Ads and booked through a pay-and-book page with reminders. In six days it sold 44 prepaid consults worth $6,153 on $1,714 of ad spend.",
+      metrics: [
+        { value: "44", label: "Prepaid consults" },
+        { value: "$6,153", label: "Revenue" },
+        { value: "3.59×", label: "Return on ad spend" },
+        { value: "6", label: "Days" },
+      ],
+      href: "/work-proof",
+      linkLabel: "See the receipt",
+    },
     problems: [
       { title: "Free offers attract no-shows", body: "Free exams fill the calendar with people who never arrive. A small prepaid offer filters for intent." },
       { title: "Local ads that look like everyone else's", body: "Generic \"back pain?\" ads blend in. Specific offers and real patient stories stand out." },
@@ -572,6 +587,7 @@ export const INDUSTRIES: Industry[] = [
       valueLabel: "Average care-plan value",
     },
     faq: [
+      { q: "How much should a chiropractor spend on marketing?", a: "Start with a budget you can sustain for a few weeks so the ads have enough data, then scale what produces paying new patients. In the receipt above the clinic spent $1,714 in six days and took $6,153 in prepaid consults." },
       { q: "Does Facebook advertising work for chiropractors?", a: "It can, when the offer is specific and the follow-up is tight. In the receipt above, a US clinic sold 44 prepaid consults for $6,153 on $1,714 of ad spend in six days." },
       { q: "Should the first visit be free or paid?", a: "We usually recommend a small paid offer. People who pay up front are far more likely to attend, and the ads can pay for themselves." },
       { q: "Can you target only my local area?", a: "Yes. Ads are limited to the radius your patients come from." },
@@ -607,6 +623,19 @@ export const INDUSTRIES: Industry[] = [
         period: "Jul 1 – Jul 31, 2026",
       },
     ],
+    caseResult: {
+      eyebrow: "Case result",
+      title: "167 pressure washing leads in 30 days at $13.37 each",
+      body: "Five Meta Ads ad sets sent homeowners and businesses to a quote funnel with job details up front. In July 2026 that produced 167 leads on $2,232.11 of ad spend, in the client's own ad account.",
+      metrics: [
+        { value: "167", label: "Leads" },
+        { value: "$13.37", label: "Cost per lead" },
+        { value: "$2,232", label: "Ad spend" },
+        { value: "30", label: "Days" },
+      ],
+      href: "/work-proof",
+      linkLabel: "See the receipt",
+    },
     problems: [
       { title: "Shared lead apps", body: "Home-service lead apps send the same job to several companies, so you compete on price from the start." },
       { title: "Quotes without details", body: "Without photos and surface details up front, you drive out to quote jobs that were never a fit." },
@@ -632,12 +661,13 @@ export const INDUSTRIES: Industry[] = [
       valueLabel: "Average job value",
     },
     faq: [
+      { q: "What makes a good pressure washing ad offer?", a: "A specific, seasonal service with a clear price anchor or bundle, such as a driveway and house wash, shown with your own before-and-after photos. Vague offers attract price shoppers." },
       { q: "How much do pressure washing leads cost on Facebook?", a: "In the receipt above, leads cost $13.37 on average across 167 leads in July 2026. Costs vary by market and season." },
       { q: "Are the leads exclusive?", a: "Yes. Ads run in your account and leads go to your CRM only." },
       { q: "Do you do commercial pressure washing leads too?", a: "Yes. Commercial campaigns use different targeting and offers from residential ones." },
       { q: "What happens in the off-season?", a: "We shift to services and areas with demand, or pause and keep nurturing past customers for repeat work." },
     ],
-    related: ["/lead-generation/home-improvement", "/lead-generation/hvac", "/services/missed-call-text-back", "/work-proof"],
+    related: ["/lead-generation/hvac", "/lead-generation/chiropractic", "/services/missed-call-text-back", "/lead-generation/home-improvement", "/work-proof"],
   },
   {
     slug: "hvac",
@@ -650,7 +680,7 @@ export const INDUSTRIES: Industry[] = [
     hubCard: { figure: "New", detail: "The same lead system we run for other home-service companies, built for HVAC replacement and install jobs." },
     h1: "HVAC Lead Generation for Replacement and Install Jobs, Not Just Tune-Ups",
     intro:
-      "Exclusive heating and cooling leads from your own ad account, a funnel that separates high-value replacements from small repairs, and follow-up that books the estimate before a competitor calls back.",
+      "HVAC lead generation with exclusive heating and cooling leads from your own ad account, a funnel that separates high-value replacements from small repairs, and follow-up that books the estimate before a competitor calls back.",
     stats: [
       { value: "100%", label: "Exclusive · your ad account" },
       { value: "Seconds", label: "Until a new lead gets a text" },
@@ -677,6 +707,19 @@ export const INDUSTRIES: Industry[] = [
         period: "Jul 1 – Jul 31, 2026",
       },
     ],
+    caseResult: {
+      eyebrow: "Closest case result",
+      title: "211 home-service leads in 7 days at $11.27 each",
+      body: "We have not published an HVAC case yet, so here is the closest one: a Florida home-services company running the same system of exterior-project Meta Ads, a short qualifying funnel and instant follow-up got 211 website leads in one week on $2,377.62 of ad spend.",
+      metrics: [
+        { value: "211", label: "Website leads" },
+        { value: "$11.27", label: "Cost per lead" },
+        { value: "$2,377", label: "Ad spend" },
+        { value: "7", label: "Days" },
+      ],
+      href: "/work-proof",
+      linkLabel: "See the receipt",
+    },
     problems: [
       { title: "Shared lead services", body: "Lead marketplaces sell the same homeowner to several HVAC companies, so you start every job in a price war." },
       { title: "Small jobs crowd out big ones", body: "Without qualification, the calendar fills with $89 tune-ups while replacement and install jobs go to whoever answers first." },
@@ -713,12 +756,13 @@ export const INDUSTRIES: Industry[] = [
       ],
     },
     faq: [
+      { q: "When is the best time to run HVAC ads?", a: "Before demand peaks. Campaigns, funnel and follow-up should be live before the first heat wave or cold snap, so you are not paying peak prices while still setting up." },
       { q: "How do you generate HVAC leads?", a: "With Meta Ads in your own ad account, a short qualifying funnel and instant follow-up, so homeowners who need a replacement or install book an estimate with you." },
       { q: "Are the HVAC leads exclusive?", a: "Yes. Campaigns run in your account and leads go to your CRM only. Nothing is shared or resold." },
       { q: "Do you have HVAC case studies?", a: "Not published yet. The receipts on this page are from other home-service companies running the same system. We will share real numbers from your own account every week." },
       { q: "Can you focus on replacements instead of tune-ups?", a: "Yes. Offers and qualifying questions are built around system age and the type of job you want most." },
     ],
-    related: ["/lead-generation/home-improvement", "/services/missed-call-text-back", "/services/landing-page-design", "/work-proof"],
+    related: ["/lead-generation/chiropractic", "/lead-generation/pressure-washing", "/services/missed-call-text-back", "/services/landing-page-design", "/lead-generation/home-improvement", "/work-proof"],
   },
   {
     slug: "home-improvement",

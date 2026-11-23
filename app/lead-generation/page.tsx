@@ -58,6 +58,10 @@ const OWN = [
 
 const FAQ = [
   {
+    q: "What is a lead generation funnel?",
+    a: "A lead generation funnel is the connected path from an ad to a booked appointment: an offer and targeted ads, a short qualifying page or form, instant follow-up by text and email, and a CRM pipeline that tracks every lead back to the ad that produced it.",
+  },
+  {
     q: "What does a lead generation agency do?",
     a: "We run the ads, build the funnel that turns clicks into qualified leads, and set up the follow-up and CRM pipeline that turns those leads into booked appointments. You get exclusive leads in your own accounts.",
   },
@@ -137,6 +141,33 @@ export default function LeadGenerationHub() {
             <LeadForm source={PATH} heading="Get your free lead plan" />
           </div>
         </header>
+
+        <section className="ind-band ind-band-b" aria-labelledby="case-h">
+          <div className="ind-wrap">
+            <div className="case-result">
+              <div>
+                <p className="uf-eyebrow text-sky">Case result</p>
+                <h2 id="case-h" className="ind-h2 !mt-3">10,172 mortgage leads in one month from one lead generation funnel</h2>
+                <p className="ind-intro">
+                  Eight Meta Ads campaigns sent loan shoppers to a qualifying funnel with instant follow-up. In April 2026 that produced 10,172 leads on $81,984 of ad spend: $8.06 per lead, in the client&apos;s own ad account.
+                </p>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <a href="#lead" className="mdf-cta-btn">Get results like this <span aria-hidden>→</span></a>
+                  <Link href="/lead-generation/mortgage" className="mdf-ghost-btn">See the mortgage system ↗</Link>
+                </div>
+              </div>
+              <dl className="case-metrics">
+                {[["10,172", "Leads"], ["$8.06", "Cost per lead"], ["$81,984", "Ad spend"], ["30", "Days"]].map(([v, l]) => (
+                  <div key={l}>
+                    <dt className="sr-only">{l}</dt>
+                    <dd className="case-metric-value">{v}</dd>
+                    <dd className="case-metric-label">{l}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </section>
 
         <Band id="industries" eyebrow="Choose your industry" title="Lead generation by industry">
           <div className="icards">

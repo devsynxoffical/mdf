@@ -31,4 +31,10 @@ const CARDS: Record<string, PageCard> = {
   "/book": { href: "/book", title: "Book a strategy call", desc: "15–20 minutes to review your offer, funnel and follow-up.", tag: "Next step" },
 };
 
-export const pageCard = (href: string, fallbackTitle?: string): PageCard => CARDS[href] ?? { href, title: fallbackTitle ?? href };
+/** Card text without em dashes (house style), whatever the source page uses. */
+const plain = (s?: string) => (s ? s.replace(/\s*—\s*/g, ", ") : s);
+
+export const pageCard = (href: string, fallbackTitle?: string): PageCard => {
+  const c = CARDS[href] ?? { href, title: fallbackTitle ?? href };
+  return { ...c, title: plain(c.title) as string, desc: plain(c.desc) };
+};
