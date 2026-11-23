@@ -17,9 +17,9 @@ const PATH = "/lead-generation";
 
 export const metadata: Metadata = pageMetadata({
   path: PATH,
-  title: "Lead Generation Funnels by Industry: Solar, Mortgage, HVAC | MDF™",
+  title: "Lead Generation Funnels Built for Your Industry",
   description:
-    "Done-for-you lead generation funnels with Meta Ads and CRM follow-up for solar, mortgage, HVAC, chiropractic, home improvement and pressure washing businesses.",
+    "Lead generation funnels built for your industry, from ad to booked call. One funnel brought 10,172 mortgage leads in one month. See how they work.",
 });
 
 const MORE = [
@@ -51,32 +51,17 @@ const STEPS = [
 ];
 
 const OWN = [
-  { title: "Your ad account", body: "Campaigns run in your own Meta Business Manager. Spend, audiences and pixel history stay with you if we ever part ways." },
-  { title: "Your leads, exclusively", body: "Leads go straight into your CRM. They are never shared with competitors or resold, unlike most pay-per-lead marketplaces." },
-  { title: "Your data and funnel", body: "The funnel, automations and reporting are built in your accounts, so the system keeps working as an asset, not a rental." },
+  { title: "Your pages and forms", body: "The pages and forms are yours." },
+  { title: "Your automations and data", body: "The automations and data are yours." },
+  { title: "It keeps running", body: "If you stop working with us, the funnel keeps running in your own accounts." },
 ];
 
 const FAQ = [
-  {
-    q: "What is a lead generation funnel?",
-    a: "A lead generation funnel is the connected path from an ad to a booked appointment: an offer and targeted ads, a short qualifying page or form, instant follow-up by text and email, and a CRM pipeline that tracks every lead back to the ad that produced it.",
-  },
-  {
-    q: "What does a lead generation agency do?",
-    a: "We run the ads, build the funnel that turns clicks into qualified leads, and set up the follow-up and CRM pipeline that turns those leads into booked appointments. You get exclusive leads in your own accounts.",
-  },
-  {
-    q: "Which industries do you generate leads for?",
-    a: "We have dedicated lead generation funnels for solar, mortgage, HVAC, chiropractic, home improvement and pressure washing, and have also run campaigns for wealth management, coaching and B2B offers. Roofing is handled by our sister brand RoofingSystems.co and legal leads by Scale With Ads.",
-  },
-  {
-    q: "Are the leads exclusive?",
-    a: "Yes. Campaigns run in your ad account and leads are delivered to your CRM. We never resell or share leads.",
-  },
-  {
-    q: "How much does a lead cost?",
-    a: `Across the published receipts that show cost per lead, the range is ${usd(CPL_SUMMARY.min)} to ${usd(CPL_SUMMARY.max)} with a median of ${usd(CPL_SUMMARY.median)}. Your cost depends on industry, market and offer.`,
-  },
+  { q: "What is a lead generation funnel?", a: "It is a series of steps that turns visitors into leads: an ad, a landing page with one offer, a short form and automated follow-up." },
+  { q: "How do I create a lead generation funnel?", a: "Choose one offer, build a focused landing page, add a short form, set up instant follow-up and booking, then drive traffic and test." },
+  { q: "Is lead generation top of the funnel?", a: "Lead generation spans the top and middle of the funnel. It starts with attracting attention and ends when a visitor becomes a contact you can follow up with." },
+  { q: "What makes a good lead funnel?", a: "A clear offer, a fast mobile page, a short form, proof, a strong call to action and follow-up within minutes." },
+  { q: "Which industries do lead generation funnels work for?", a: "Mortgage, home services, healthcare, coaching, legal and B2B services all use them, with offers and questions adapted to each industry." },
 ];
 
 export default function LeadGenerationHub() {
@@ -149,7 +134,8 @@ export default function LeadGenerationHub() {
                 <p className="uf-eyebrow text-sky">Case result</p>
                 <h2 id="case-h" className="ind-h2 !mt-3">10,172 mortgage leads in one month from one lead generation funnel</h2>
                 <p className="ind-intro">
-                  Eight Meta Ads campaigns sent loan shoppers to a qualifying funnel with instant follow-up. In April 2026 that produced 10,172 leads on $81,984 of ad spend: $8.06 per lead, in the client&apos;s own ad account.
+                  One offer, one landing page, a short form and instant follow-up brought 10,172 mortgage leads in a single month. The lesson:{" "}
+                  <Link href="/services/done-for-you-sales-funnels" className="rt-link">a focused funnel</Link> beats a busy website.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <a href="#lead" className="mdf-cta-btn">Get results like this <span aria-hidden>→</span></a>
@@ -170,6 +156,12 @@ export default function LeadGenerationHub() {
         </section>
 
         <Band id="industries" eyebrow="Choose your industry" title="Lead generation by industry">
+          <p className="ind-intro !mt-0 mb-10">
+            <strong className="text-white">How to create a lead generation funnel:</strong> Pick one audience and one offer. Build a{" "}
+            <Link href="/services/landing-page-design" className="rt-link">page that explains the offer</Link> in one screen. Ask only the questions you need. Send an instant text and email. Book calls automatically. Then send traffic and improve the step where most people drop off. See how it works for{" "}
+            <Link href="/lead-generation/hvac" className="rt-link">HVAC lead generation</Link> and{" "}
+            <Link href="/lead-generation/chiropractic" className="rt-link">chiropractic marketing</Link>.
+          </p>
           <div className="icards">
             {INDUSTRIES.map((ind) => (
               <Link key={ind.slug} href={`${PATH}/${ind.slug}`} className="icard">
@@ -188,7 +180,7 @@ export default function LeadGenerationHub() {
           </div>
         </Band>
 
-        <Band id="how" tone="b" eyebrow="How it works" title="What a lead generation funnel is" intro="A lead generation funnel is four parts working as one system. Click through each step.">
+        <Band id="how" tone="b" eyebrow="How it works" title="What a lead generation funnel is" intro="A lead generation funnel is the path that turns a stranger into a lead: an ad or search result, a [landing page](/services/landing-page-design) with one offer, a short form, a thank-you step and automated follow-up. Each step is measured and improved.">
           <ProcessTabs steps={STEPS} />
         </Band>
 

@@ -8,6 +8,7 @@ import ProcessTabs from "@/components/leads/ProcessTabs";
 import ReceiptGallery from "@/components/leads/ReceiptGallery";
 import { Band, CompareTable, ProblemCards, Showcase, StickyLeadBar } from "@/components/leads/IndustryBlocks";
 import { ContentFaq, LinkCards } from "@/components/content/ContentShell";
+import RichText from "@/components/content/RichText";
 import type { Landing } from "@/lib/industries";
 import { pageCard } from "@/lib/pageCards";
 import { SITE_URL, absoluteUrl, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
@@ -72,6 +73,11 @@ export default function RichLanding({
               <p className="uf-eyebrow text-sky">{d.eyebrow}</p>
               <h1 className="mt-5 font-sans text-[clamp(34px,4.6vw,60px)] font-extrabold leading-[1.05] tracking-[-0.035em]">{d.h1}</h1>
               <p className="mt-6 max-w-[620px] font-sans text-[17px] leading-[1.7] text-slate-300 md:text-[18.5px]">{d.intro}</p>
+              {d.introMore && (
+                <p className="mt-4 max-w-[620px] font-sans text-[17px] leading-[1.7] text-slate-300 md:text-[18.5px]">
+                  <strong className="text-white">{d.introMore.q}</strong> <RichText text={d.introMore.a} />
+                </p>
+              )}
               <div className="mt-8 flex flex-wrap gap-3">
                 {d.receipts && d.receipts.length > 0 && <a href="#proof" className="mdf-ghost-btn">See the receipts ↓</a>}
                 <a href="#system" className="mdf-ghost-btn">How it works ↓</a>
@@ -103,7 +109,7 @@ export default function RichLanding({
                 <div>
                   <p className="uf-eyebrow text-sky">{d.caseResult.eyebrow}</p>
                   <h2 id="case-h" className="ind-h2 !mt-3">{d.caseResult.title}</h2>
-                  <p className="ind-intro">{d.caseResult.body}</p>
+                  <p className="ind-intro"><RichText text={d.caseResult.body} /></p>
                   <div className="mt-7 flex flex-wrap gap-3">
                     <a href="#lead" className="mdf-cta-btn">Get results like this <span aria-hidden>→</span></a>
                     <Link href={d.caseResult.href} className="mdf-ghost-btn">{d.caseResult.linkLabel} ↗</Link>
@@ -129,6 +135,18 @@ export default function RichLanding({
 
         <Band id="system" eyebrow="The system" title={`How we deliver ${label}`} intro="Built and run as one system. Click through each step.">
           <ProcessTabs steps={d.steps} />
+          {d.extra && (
+            <div className="content-prose mt-12 max-w-[880px]">
+              <h3>{d.extra.title}</h3>
+              <ul>
+                {d.extra.items.map((it) => (
+                  <li key={it}>
+                    <RichText text={it} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </Band>
 
         {d.showcase && (

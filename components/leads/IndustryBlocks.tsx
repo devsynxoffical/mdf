@@ -1,3 +1,4 @@
+import RichText from "@/components/content/RichText";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -11,7 +12,7 @@ export function Band({ id, eyebrow, title, intro, children, tone = "a" }: { id: 
         <h2 id={`${id}-h`} className="ind-h2">
           {title}
         </h2>
-        {intro && <p className="ind-intro">{intro}</p>}
+        {intro && <p className="ind-intro"><RichText text={intro} /></p>}
         <div className="mt-10">{children}</div>
       </div>
     </section>
@@ -29,7 +30,7 @@ export function ProblemCards({ items }: { items: { title: string; body: string }
             {ICONS[i % ICONS.length]}
           </span>
           <h3 className="pcard-title">{p.title}</h3>
-          <p className="pcard-body">{p.body}</p>
+          <p className="pcard-body"><RichText text={p.body} /></p>
         </div>
       ))}
     </div>

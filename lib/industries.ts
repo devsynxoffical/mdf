@@ -33,6 +33,10 @@ export type Industry = {
   partner?: { site: string; url: string; blurb: string };
   /** One real case result with a clear call to action (Top 10 plan, 23 Nov 2026). */
   caseResult?: { eyebrow: string; title: string; body: string; metrics: { value: string; label: string }[]; href: string; linkLabel: string };
+  /** Second hero paragraph, a short question and answer under the H1 intro (content file, 23 Nov 2026). */
+  introMore?: { q: string; a: string };
+  /** Extra list shown under the process steps (content file, 23 Nov 2026). */
+  extra?: { title: string; items: string[] };
   /** Hub-card override when the first receipt is not from this industry. */
   hubCard?: { figure: string; detail: string };
 };
@@ -525,11 +529,11 @@ export const INDUSTRIES: Industry[] = [
     slug: "chiropractic",
     name: "Chiropractic",
     keyword: "chiropractic marketing",
-    metaTitle: "Chiropractic Marketing: Booked New-Patient Consults | MDF™",
+    metaTitle: "Chiropractic Marketing That Fills Your Schedule",
     metaDescription:
-      "Chiropractic marketing with Meta Ads, a prepaid consult offer and automated reminders. Real receipt: 44 prepaid consults and $6,153 revenue on $1,714 ad spend.",
+      "Chiropractic marketing funnels that bring new patients and prepaid consults. One practice booked 44 prepaid consults in six days. See how it works.",
     eyebrow: "Chiropractic marketing",
-    h1: "Chiropractic Marketing That Fills Your Schedule With Paying New Patients",
+    h1: "Chiropractic Marketing That Fills Your Schedule With New Patients",
     intro:
       "Chiropractic marketing built around a new-patient offer people pay for up front, Meta Ads that reach people in your area, and reminders that get them through the door. Prepaid consults show up far more reliably than free ones.",
     stats: [
@@ -538,7 +542,7 @@ export const INDUSTRIES: Industry[] = [
       { value: "3.59×", label: "Return on ad spend" },
       { value: "$1,714", label: "Total ad spend" },
     ],
-    receiptsIntro: "Screenshot from the clinic's ad account. Click to inspect.",
+    receiptsIntro: "A US chiropractor booked 44 prepaid consults in six days from [one funnel](/lead-generation).",
     receipts: [
       {
         id: "chiro",
@@ -551,8 +555,8 @@ export const INDUSTRIES: Industry[] = [
     ],
     caseResult: {
       eyebrow: "Case result",
-      title: "44 prepaid consults in six days for a US chiropractic clinic",
-      body: "Instead of a free exam, the clinic offered a low-cost prepaid first visit, promoted with local Meta Ads and booked through a pay-and-book page with reminders. In six days it sold 44 prepaid consults worth $6,153 on $1,714 of ad spend.",
+      title: "44 prepaid consults in six days for a US chiropractor",
+      body: "The funnel used a clear new-patient offer, a short video from the doctor, a prepaid booking step and reminders before each visit. Prepaying filtered out no-shows and brought in patients who were ready to start care.",
       metrics: [
         { value: "44", label: "Prepaid consults" },
         { value: "$6,153", label: "Revenue" },
@@ -563,15 +567,15 @@ export const INDUSTRIES: Industry[] = [
       linkLabel: "See the receipt",
     },
     problems: [
-      { title: "Free offers attract no-shows", body: "Free exams fill the calendar with people who never arrive. A small prepaid offer filters for intent." },
-      { title: "Local ads that look like everyone else's", body: "Generic \"back pain?\" ads blend in. Specific offers and real patient stories stand out." },
-      { title: "No reminders", body: "Without confirmation and reminder texts, even booked patients forget their first visit." },
+      { title: "Generic posts and discounts", body: "Generic social posts and cheap discount offers bring in people who never return." },
+      { title: "Target real pain points", body: "Good chiropractic marketing targets real pain points such as back pain, neck pain and sciatica." },
+      { title: "Filter and follow up", body: "It filters for commitment and [follows up](/services/missed-call-text-back) until the first visit happens." },
     ],
     steps: [
-      { title: "New-patient offer", body: "A low-cost, prepaid first visit that is easy to say yes to and valuable for the patient.", points: ["Offer and price point", "Clear what is included", "Compliance-aware wording"] },
-      { title: "Local Meta Ads", body: "Ads targeted to your service radius, with creative tested by condition and audience.", points: ["Radius targeting", "Condition-specific angles", "Video and image creative"] },
-      { title: "Checkout & booking", body: "A short page where patients pay and book their first visit in one go.", points: ["Payment and booking together", "Mobile-first page", "Instant confirmation"] },
-      { title: "Reminders & reporting", body: "Text and email reminders before the visit, and revenue tracked against ad spend.", points: ["Confirmation and reminders", "No-show follow-up", "ROAS reporting"] },
+      { title: "Offer", body: "New-patient exam or consult offer that fits your practice.", points: ["Offer and price point", "Clear what is included", "Compliance-aware wording"] },
+      { title: "Ads", body: "Local Facebook and Instagram ads to people with relevant pain points.", points: ["Radius targeting", "Condition-specific angles", "Video and image creative"] },
+      { title: "Funnel", body: "[Landing page](/services/done-for-you-sales-funnels), prepaid booking and automated reminders.", points: ["Payment and booking together", "Mobile-first page", "Instant confirmation"] },
+      { title: "Reporting", body: "Cost per booked and attended consult.", points: ["Confirmation and reminders", "No-show follow-up", "ROAS reporting"] },
     ],
     showcase: {
       src: "/images/funnels/funnel-05.webp",
@@ -587,11 +591,11 @@ export const INDUSTRIES: Industry[] = [
       valueLabel: "Average care-plan value",
     },
     faq: [
-      { q: "How much should a chiropractor spend on marketing?", a: "Start with a budget you can sustain for a few weeks so the ads have enough data, then scale what produces paying new patients. In the receipt above the clinic spent $1,714 in six days and took $6,153 in prepaid consults." },
-      { q: "Does Facebook advertising work for chiropractors?", a: "It can, when the offer is specific and the follow-up is tight. In the receipt above, a US clinic sold 44 prepaid consults for $6,153 on $1,714 of ad spend in six days." },
-      { q: "Should the first visit be free or paid?", a: "We usually recommend a small paid offer. People who pay up front are far more likely to attend, and the ads can pay for themselves." },
-      { q: "Can you target only my local area?", a: "Yes. Ads are limited to the radius your patients come from." },
-      { q: "Is the advertising compliant?", a: "We avoid medical claims Meta does not allow, and you approve every ad before it runs." },
+      { q: "How do I get more chiropractic patients?", a: "Use a clear new-patient offer, run local ads to people with back or neck pain, keep your Google Business Profile and reviews strong, and follow up with every inquiry quickly." },
+      { q: "What is the best marketing for chiropractors?", a: "A combination of a strong Google Business Profile, reviews, local SEO and paid social ads with a prepaid or low-cost first-visit offer usually brings the steadiest new-patient flow." },
+      { q: "Do Facebook ads work for chiropractors?", a: "Yes. Local Facebook and Instagram ads can reach people with back or neck pain in your area, especially with a simple offer and fast booking." },
+      { q: "How do chiropractors reduce no-shows?", a: "Prepaid bookings, reminder texts and emails and a short personal message from the office all reduce no-shows." },
+      { q: "What should I look for in a chiropractic marketing company?", a: "Real results from practices, reporting on attended consults rather than leads, follow-up support and clear pricing." },
     ],
     related: ["/lead-generation/pressure-washing", "/services/landing-page-design", "/services/missed-call-text-back", "/work-proof"],
   },
@@ -673,12 +677,12 @@ export const INDUSTRIES: Industry[] = [
     slug: "hvac",
     name: "HVAC",
     keyword: "hvac lead generation",
-    metaTitle: "HVAC Lead Generation: Exclusive Install & Repair Leads | MDF™",
+    metaTitle: "HVAC Lead Generation for Replacement and Install Jobs",
     metaDescription:
-      "HVAC lead generation with your own Meta Ads, a qualifying funnel and instant follow-up. Exclusive replacement, install and repair leads for HVAC companies.",
+      "HVAC lead generation funnels for replacement and install jobs. Exclusive leads, fast follow-up and booked appointments. See how HVAC companies get leads.",
     eyebrow: "HVAC lead generation",
     hubCard: { figure: "New", detail: "The same lead system we run for other home-service companies, built for HVAC replacement and install jobs." },
-    h1: "HVAC Lead Generation for Replacement and Install Jobs, Not Just Tune-Ups",
+    h1: "HVAC Lead Generation for Replacement and Install Jobs",
     intro:
       "HVAC lead generation with exclusive heating and cooling leads from your own ad account, a funnel that separates high-value replacements from small repairs, and follow-up that books the estimate before a competitor calls back.",
     stats: [
@@ -688,7 +692,7 @@ export const INDUSTRIES: Industry[] = [
       { value: "4", label: "Parts, one system" },
     ],
     receiptsIntro:
-      "We do not have a published HVAC receipt yet. These are receipts from other home-service businesses we run the same system for. Click to inspect.",
+      "Our [home service funnels](/lead-generation/home-improvement) brought 211 home-service leads in 7 days at $11.27 each. We do not have an HVAC-only receipt published yet, and we will add one when an HVAC campaign completes reporting.",
     receipts: [
       {
         id: "hvac-home",
@@ -721,15 +725,15 @@ export const INDUSTRIES: Industry[] = [
       linkLabel: "See the receipt",
     },
     problems: [
-      { title: "Shared lead services", body: "Lead marketplaces sell the same homeowner to several HVAC companies, so you start every job in a price war." },
-      { title: "Small jobs crowd out big ones", body: "Without qualification, the calendar fills with $89 tune-ups while replacement and install jobs go to whoever answers first." },
-      { title: "Seasonal swings", body: "Demand spikes in the first heat wave and cold snap. If campaigns and follow-up are not ready before then, you pay peak prices for slow replies." },
+      { title: "Shared lead services", body: "Most HVAC lead services sell the same homeowner to several contractors." },
+      { title: "A race to the lowest price", body: "The fastest caller with the lowest price wins, and the rest pay for nothing." },
+      { title: "What changes the math", body: "Exclusive leads, a strong offer and follow-up within minutes change the math." },
     ],
     steps: [
-      { title: "Seasonal offers", body: "Separate campaigns for replacements, new installs, repairs and maintenance plans, timed to the season in your area.", points: ["Replacement and install offers", "Financing angles", "Service-area targeting"] },
-      { title: "Qualifying funnel", body: "A short form that asks system age, problem, home size and timeline, so high-value jobs are flagged before you call.", points: ["System age and issue", "Homeowner check", "Mobile-first form"] },
-      { title: "Instant follow-up", body: "An instant text and email, missed-call text back and a booking link for in-home estimates.", points: ["Instant SMS and email", "Missed-call text back", "Estimate booking link"] },
-      { title: "Pipeline & reporting", body: "Every lead tracked from inquiry to estimate to sold job, with cost per lead and per sold job.", points: ["CRM pipeline", "Sold-job tracking", "Weekly numbers"] },
+      { title: "Offer", body: "System replacement, tune-up or financing offers for your area.", points: ["Replacement and install offers", "Financing angles", "Service-area targeting"] },
+      { title: "Funnel", body: "[Landing page](/services/done-for-you-sales-funnels) with a short qualifying form and booking calendar.", points: ["System age and issue", "Homeowner check", "Mobile-first form"] },
+      { title: "Follow-up", body: "Instant text, call reminders and [missed call text back](/services/missed-call-text-back).", points: ["Instant SMS and email", "Missed-call text back", "Estimate booking link"] },
+      { title: "Reporting", body: "Cost per lead, booked appointment and installed system.", points: ["CRM pipeline", "Sold-job tracking", "Weekly numbers"] },
     ],
     showcase: {
       src: "/images/funnels/funnel-07.webp",
@@ -739,6 +743,16 @@ export const INDUSTRIES: Industry[] = [
       href: "/funnels",
       alt: "Local-business lead funnel built by Million Dollar Funnel",
     },
+    extra: {
+      title: "HVAC marketing ideas that bring calls",
+      items: [
+        "Seasonal tune-up offers before summer and winter.",
+        "Replacement offers for systems older than 12 years.",
+        "Financing messages for high-ticket installs.",
+        "Before and after videos from real installs.",
+        "[Missed call text back](/services/missed-call-text-back) so no emergency call is lost.",
+      ],
+    },
     calculator: {
       defaults: { budget: 3000, cpl: 25, book: 30, close: 30, value: 6000 },
       note: "All values are example inputs, because we have no published HVAC receipt yet. Replace cost per lead, booking rate, close rate and average job value with your own numbers.",
@@ -746,7 +760,7 @@ export const INDUSTRIES: Industry[] = [
     },
     comparison: {
       heading: "Shared HVAC leads vs your own lead system",
-      intro: "The difference is exclusivity, speed and who owns the data.",
+      intro: "Shared leads are quick to start but hard to scale profitably. Your [own lead system](/lead-generation) costs more to set up, but every lead is exclusive and the data, pages and ad history stay with your business.",
       columns: ["", "Shared lead services", "Your own system (what we build)"],
       rows: [
         ["Exclusivity", "Often sent to several companies", "Every lead is yours alone"],
@@ -756,11 +770,12 @@ export const INDUSTRIES: Industry[] = [
       ],
     },
     faq: [
-      { q: "When is the best time to run HVAC ads?", a: "Before demand peaks. Campaigns, funnel and follow-up should be live before the first heat wave or cold snap, so you are not paying peak prices while still setting up." },
-      { q: "How do you generate HVAC leads?", a: "With Meta Ads in your own ad account, a short qualifying funnel and instant follow-up, so homeowners who need a replacement or install book an estimate with you." },
-      { q: "Are the HVAC leads exclusive?", a: "Yes. Campaigns run in your account and leads go to your CRM only. Nothing is shared or resold." },
-      { q: "Do you have HVAC case studies?", a: "Not published yet. The receipts on this page are from other home-service companies running the same system. We will share real numbers from your own account every week." },
-      { q: "Can you focus on replacements instead of tune-ups?", a: "Yes. Offers and qualifying questions are built around system age and the type of job you want most." },
+      { q: "How do HVAC companies get leads?", a: "Through Google Business Profile, SEO, Google Ads, Facebook ads, referrals, home service marketplaces and their own lead generation funnels. The most profitable companies combine paid ads with fast follow-up." },
+      { q: "How do I get more HVAC leads?", a: "Run a clear seasonal or replacement offer, send traffic to a landing page with a short form, answer every lead within minutes and ask every happy customer for a review." },
+      { q: "What are the best HVAC lead generation companies?", a: "Look for exclusive leads, campaigns you own, real reporting on booked jobs and follow-up support. Avoid services that resell the same lead to many contractors." },
+      { q: "Are HVAC leads from Facebook any good?", a: "Yes, when the funnel qualifies them on system age, homeownership and timeline. Facebook works especially well for replacement and tune-up offers." },
+      { q: "How much do HVAC leads cost?", a: "Costs depend on the market, season and offer. Shared leads are cheaper per lead but close less often. Track cost per installed system to compare sources." },
+      { q: "What is HVAC lead generation?", a: "It is the process of attracting homeowners who need heating or cooling work and turning them into booked appointments, using ads, landing pages and follow-up." },
     ],
     related: ["/lead-generation/chiropractic", "/lead-generation/pressure-washing", "/services/missed-call-text-back", "/services/landing-page-design", "/lead-generation/home-improvement", "/work-proof"],
   },

@@ -375,3 +375,23 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Validation (local export on Apache):**
   - 40 sitemap URLs, no duplicate titles or descriptions.
   - Each target: one H1 containing its keyword, keyword in the title, self canonical, all JSON-LD blocks parse, FAQPage with 5 questions, case block present, 0 em dashes in text; no mobile overflow.
+
+### C14 — 2026-11-23 · Content for 5 pages (owner file CLAUDE_CODE_CONTENT_milliondollarfunnels.md)
+- **7-day note:** all 5 pages were changed earlier today in C13. The owner file names them explicitly, so the full content was applied (not just FAQs and meta). Every number used already appears in a published case on the site.
+- **Content only:**
+  - No layout, class, animation, image, form or section order changed.
+  - Two optional data fields render inside existing sections with existing styles:
+    - a second hero paragraph ("What is a funnel builder?" and "How does missed call text back work?");
+    - the HVAC marketing ideas list, shown under the process steps.
+  - The existing `RichText` link syntax is now also used in band intros, problem cards, step bodies and case copy, so the in-text links render.
+- **Changes per page (before → after):**
+
+  | Page | Title | H1 | Sections replaced | FAQs | In-text links |
+  |---|---|---|---|---|---|
+  | /services/done-for-you-sales-funnels | "Done-For-You Sales Funnels by a Funnel Builder Team \| MDF™" → "Done-For-You Sales Funnels From a Funnel Builder Team" | "...That Launches Them for You" → "...That Sells" | receipts intro, case copy, 3 problem cards, 4 steps, comparison intro, new "What is a funnel builder?" paragraph | 5 → 6 | vsl-funnels, application-funnels, /lead-generation, missed-call-text-back |
+  | /lead-generation/hvac | "HVAC Lead Generation: Exclusive Install & Repair Leads \| MDF™" → "HVAC Lead Generation for Replacement and Install Jobs" | dropped ", Not Just Tune-Ups" | receipts intro (keeps the "no HVAC-only receipt yet" note), 3 problem cards, 4 steps, comparison intro, marketing ideas list | 5 → 6 | missed-call-text-back, /lead-generation, home-improvement, DFY |
+  | /lead-generation/chiropractic | "Chiropractic Marketing: Booked New-Patient Consults \| MDF™" → "Chiropractic Marketing That Fills Your Schedule" | "...With Paying New Patients" → "...With New Patients" | receipts intro, case title and copy, 3 problem cards, 4 steps | 5 → 5 (new set) | /lead-generation, DFY, missed-call-text-back |
+  | /lead-generation | "Lead Generation Funnels by Industry: Solar, Mortgage, HVAC \| MDF™" → "Lead Generation Funnels Built for Your Industry" | unchanged (already matched) | case copy, "How to create a lead generation funnel" paragraph, "What a lead generation funnel is" intro, 3 ownership cards | 5 → 5 (new set) | hvac, chiropractic, DFY, landing-page-design |
+  | /services/missed-call-text-back | "Missed Call Text Back Setup for Service Businesses \| MDF™" → "Missed Call Text Back That Saves Every Lost Lead" | unchanged (already matched) | 3 problem cards, 4 step texts, comparison intro, new "How does missed call text back work?" paragraph | 5 → 6 | DFY, /lead-generation/hvac, /lead-generation |
+
+- **Validation (local export):** each page has one H1, a unique title under 60 characters and a description under 155, a self canonical, and FAQPage JSON-LD that matches the visible FAQs word for word. No em dashes and no mobile overflow at 375 px.
