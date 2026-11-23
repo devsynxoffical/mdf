@@ -336,3 +336,7 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
    - Receipt buttons' accessible names now match their visible text.
    - `.htaccess` compression now also covers text/javascript (Hostinger already serves Brotli).
 - **Validation:** export build; Apache test (all pages 200, no overflow on desktop or mobile); the poster shows before interaction and the 3D replaces it after; Lighthouse before and after as above.
+- **Live validation of C12 (23 Nov, after the Hostinger deploy):**
+  - 38/38 pages and 38/38 internal links pass; the new footer links are present.
+  - Lighthouse mobile, live: homepage performance 56 → **90** (TBT 17,910 → 140 ms, LCP 2.4 s, weight 3.4 → 2.2 MB); /lead-generation, /about and /lead-generation/home-improvement 95, accessibility 100.
+  - IndexNow notified for the changed URLs.
