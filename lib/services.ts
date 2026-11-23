@@ -34,7 +34,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     metaTitle: "VSL Funnel Agency: Done-For-You Video Sales Letter Funnels",
     metaDescription:
       "We script, build and launch VSL funnels for coaches, consultants and service businesses: video page, application or checkout, CRM and follow-up wired together.",
-    eyebrow: "( Service ) — VSL Funnels",
+    eyebrow: "( Service ) · VSL Funnels",
     h1: "Done-For-You VSL Funnels That Turn Watch Time Into Booked Calls",
     stats: [
       { value: "$1.52M", label: "VSL case study, 19 months" },
@@ -43,13 +43,13 @@ export const SERVICE_PAGES: ServicePage[] = [
       { value: "1 team", label: "Script to follow-up" },
     ],
     intro:
-      "A VSL funnel puts one video sales letter at the centre of the journey: the video educates and pre-sells, and every step after it — the application, the calendar or the checkout — is built to catch the people the video convinced. We build the whole path, not just the page.",
+      "A VSL funnel puts one video sales letter at the centre of the journey: the video educates and pre-sells, and every step after it (the application, the calendar or the checkout) is built to catch the people the video convinced. We build the whole path, not just the page.",
     sections: [
       {
         heading: "What a VSL funnel is",
         body: [
           "A VSL (video sales letter) funnel is a short sequence of pages built around a single sales video. Traffic from ads, email or content lands on the video page; the video explains the problem, the method and the offer; and a clear call to action sends interested viewers to the next step.",
-          "For a high-ticket offer that next step is usually an application or a booked call. For a lower-priced product it is a checkout with an order bump and an upsell — a [low-ticket funnel](/services/low-ticket-funnels). Either way, the funnel only works when the video, the page copy, the next step and the follow-up all say the same thing. New to the format? Start with our guide: [what is a VSL?](/blog/what-is-a-vsl)",
+          "For a high-ticket offer that next step is usually an application or a booked call. For a lower-priced product it is a checkout with an order bump and an upsell: a [low-ticket funnel](/services/low-ticket-funnels). Either way, the funnel only works when the video, the page copy, the next step and the follow-up all say the same thing. New to the format? Start with our guide: [what is a VSL?](/blog/what-is-a-vsl)",
         ],
       },
       {
@@ -68,7 +68,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       {
         heading: "Who a VSL funnel is right for",
         body: [
-          "VSL funnels work best when the buyer needs to understand something before they will buy — a coaching programme, a consulting engagement, a done-for-you service or a product with a new mechanism. If your best sales calls all start with you explaining the same thing, a VSL can do that explaining before the call. If your audience prefers a scheduled event, a [webinar funnel](/services/webinar-funnels) does the same job live.",
+          "VSL funnels work best when the buyer needs to understand something before they will buy: a coaching programme, a consulting engagement, a done-for-you service or a product with a new mechanism. If your best sales calls all start with you explaining the same thing, a VSL can do that explaining before the call. If your audience prefers a scheduled event, a [webinar funnel](/services/webinar-funnels) does the same job live.",
           "They are a poor fit when the offer is already understood and price-driven, where a short landing page usually converts better and costs less to produce.",
         ],
       },
@@ -87,6 +87,10 @@ export const SERVICE_PAGES: ServicePage[] = [
       },
     ],
     faq: [
+      {
+        q: "What is a VSL funnel?",
+        a: "A VSL funnel is a short sequence of pages built around one video sales letter: the video page, then an application, a booking calendar or a checkout, with email and SMS follow-up for people who watch but do not act yet.",
+      },
       {
         q: "How long should a VSL be?",
         a: "As long as it takes to make the case for the offer and no longer. Short videos of a few minutes suit simple or low-priced offers; high-ticket offers often need longer videos because the viewer has more questions to answer before applying. We decide length from the offer, then use drop-off data to tighten it.",
@@ -108,6 +112,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       { label: "What is a VSL? Our complete guide", href: "/blog/what-is-a-vsl" },
       { label: "$1.52M in 19 months case study", href: "/cases/1-52m-case-study" },
       { label: "See live funnels we built", href: "/funnels" },
+      { label: "Done-for-you sales funnels", href: "/services/done-for-you-sales-funnels" },
     ],
   },
   {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ContentShell, { ContentCta, HeroActions, LinkCards, SectionHeading } from "@/components/content/ContentShell";
+import ContentShell, { Callout, ContentCta, ContentFaq, HeroActions, LinkCards, SectionHeading } from "@/components/content/ContentShell";
 import JsonLd from "@/components/seo/JsonLd";
 import UFFooter from "@/components/uf/UFFooter";
 import { SERVICE_PAGES } from "@/lib/services";
@@ -10,7 +10,7 @@ import { pageCard } from "@/lib/pageCards";
 import { ACTIVE_INDUSTRIES as INDUSTRIES } from "@/lib/industries";
 import { SERVICE_LANDINGS } from "@/lib/serviceLandings";
 import { CATALOG_GROUPS, SERVICE_CATALOG } from "@/lib/serviceCatalog";
-import { breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd, faqJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   path: "/services",
@@ -19,10 +19,33 @@ export const metadata: Metadata = pageMetadata({
     "30 done-for-you services: sales funnels, Meta Ads, industry lead generation, GoHighLevel CRM, SMS and email automation and AI appointment setting.",
 });
 
+const FAQ = [
+  {
+    q: "What does a sales funnel agency do?",
+    a: "A sales funnel agency plans, writes, designs and builds the path a prospect takes from an ad or post to a sale or booked call, and connects it to checkout, calendar, CRM and email and SMS follow-up, with tracking on every step.",
+  },
+  {
+    q: "Which types of sales funnels do you build?",
+    a: "VSL, webinar, application, low-ticket, landing page and lead generation funnels, plus the follow-up and CRM behind them. The right type depends on your offer, price and buyer.",
+  },
+  {
+    q: "How long does it take to launch a funnel?",
+    a: "Most installs are live on real traffic in three to four weeks. The biggest factor is how clear the offer is before the build starts.",
+  },
+  {
+    q: "Do I own the funnel and the data?",
+    a: "Yes. We build in your own accounts, usually GoHighLevel or ClickFunnels, so the pages, automations, ad account and CRM data stay with you.",
+  },
+  {
+    q: "Do you also run the ads?",
+    a: "We can run Meta Ads that send traffic into the funnel, judged on cost per lead and per booked call. Many clients start with the funnel and follow-up, then add traffic.",
+  },
+];
+
 const STEPS = [
   ["Map the offer", "Who it is for, what it promises and the one action it must cause."],
   ["Architect the path", "The prospect journey, qualification gates and tracking plan."],
-  ["Build the pages", "Landing, VSL, application or checkout — mobile-first."],
+  ["Build the pages", "Landing, VSL, application or checkout, mobile-first."],
   ["Wire the follow-up", "A2P-compliant SMS, email, voicemail and AI + human handoff."],
   ["Launch and compound", "Live on real traffic, measured daily and improved weekly."],
 ];
@@ -37,16 +60,19 @@ export default function ServicesPage() {
     { id: "industries", label: "By industry" },
     { id: "everything", label: "All 30 services" },
     { id: "process", label: "How an install works" },
+    { id: "case-result", label: "Case result" },
+    { id: "faq", label: "FAQ" },
     { id: "proof", label: "Proof" },
     { id: "guides", label: "Guides" },
   ];
   return (
     <>
       <JsonLd data={breadcrumbJsonLd(crumbs.map((c) => ({ name: c.name, path: c.href })))} />
+      <JsonLd data={faqJsonLd(FAQ)} />
       <ContentShell
-        eyebrow="( Services ) — What we build"
+        eyebrow="( Services ) · What we build"
         title="Sales Funnel Agency Services for High-Ticket Businesses"
-        intro="We are a done-for-you sales funnel agency. We build the whole client acquisition system — the funnel, the follow-up and the CRM — then launch it on real traffic and keep improving it. You never touch the tech."
+        intro="We are a done-for-you sales funnel agency. We build the whole client acquisition system (the funnel, the follow-up and the CRM), then launch it on real traffic and keep improving it. You never touch the tech."
         crumbs={crumbs}
         toc={toc}
         actions={<HeroActions secondaryHref="/funnels" secondaryLabel="See funnels we built" />}
@@ -97,6 +123,23 @@ export default function ServicesPage() {
           </ol>
           <p>Most installs are live on real traffic in three to four weeks.</p>
         </section>
+
+        <section>
+          <SectionHeading id="case-result">A real result from a sales funnel we built</SectionHeading>
+          <Callout label="Case result">
+            <p>
+              A coaching client was chasing high-ticket sales with no front end that worked. We rebuilt the backend and tracking around a
+              low-ticket funnel with automated follow-up: <strong>13,630 low-ticket sales and $847,307 in revenue at a 3.32 return on ad spend</strong>.
+              Read the <Link href="/cases/coaching-lto" className="rt-link">coaching case study</Link>, or see the{" "}
+              <Link href="/cases/1-52m-case-study" className="rt-link">$1.52M VSL case study</Link>.
+            </p>
+          </Callout>
+          <p className="mt-6">
+            <Link href="/book" className="mdf-cta-btn">Book a strategy call <span aria-hidden>↗</span></Link>
+          </p>
+        </section>
+
+        <ContentFaq items={FAQ} />
 
         <LinkCards id="proof" heading="Proof" items={["/work-proof", "/cases/1-52m-case-study", "/cases/coaching-lto", "/funnels"].map((h) => pageCard(h))} />
 

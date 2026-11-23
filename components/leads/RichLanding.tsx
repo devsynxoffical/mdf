@@ -96,6 +96,33 @@ export default function RichLanding({
           </Band>
         )}
 
+        {d.caseResult && (
+          <section className="ind-band ind-band-a" aria-labelledby="case-h">
+            <div className="ind-wrap">
+              <div className="case-result">
+                <div>
+                  <p className="uf-eyebrow text-sky">{d.caseResult.eyebrow}</p>
+                  <h2 id="case-h" className="ind-h2 !mt-3">{d.caseResult.title}</h2>
+                  <p className="ind-intro">{d.caseResult.body}</p>
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    <a href="#lead" className="mdf-cta-btn">Get results like this <span aria-hidden>→</span></a>
+                    <Link href={d.caseResult.href} className="mdf-ghost-btn">{d.caseResult.linkLabel} ↗</Link>
+                  </div>
+                </div>
+                <dl className="case-metrics">
+                  {d.caseResult.metrics.map((m) => (
+                    <div key={m.label}>
+                      <dt className="sr-only">{m.label}</dt>
+                      <dd className="case-metric-value">{m.value}</dd>
+                      <dd className="case-metric-label">{m.label}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+          </section>
+        )}
+
         <Band id="problems" tone="b" eyebrow="Why it usually fails" title={d.problemsTitle ?? `Why most ${d.keyword} disappoints`}>
           <ProblemCards items={d.problems} />
         </Band>

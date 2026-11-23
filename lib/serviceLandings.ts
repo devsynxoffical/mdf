@@ -179,13 +179,13 @@ export const SERVICE_LANDINGS: Landing[] = [
     slug: "done-for-you-sales-funnels",
     name: "Done-For-You Sales Funnels",
     keyword: "done for you sales funnel",
-    metaTitle: "Done-For-You Sales Funnels: Built, Connected & Launched | MDF™",
+    metaTitle: "Done-For-You Sales Funnels by a Funnel Builder Team | MDF™",
     metaDescription:
       "Done-for-you sales funnels built for your offer: copy, design, checkout or booking, CRM and follow-up. Real result: 1,515 webinar opt-ins at a 27% opt-in rate.",
     eyebrow: "Done-for-you sales funnels",
-    h1: "Done-For-You Sales Funnels, Built Around Your Offer and Launched for You",
+    h1: "Done-For-You Sales Funnels From a Funnel Builder Team That Launches Them for You",
     intro:
-      "We write, design and build the funnel, connect checkout or booking, wire it to your CRM and follow-up, and launch it with tracking, so you are not stuck stitching tools together.",
+      "Done-for-you sales funnels, built by a funnel builder team: we write, design and build the funnel, connect checkout or booking, wire it to your CRM and follow-up, and launch it with tracking, so you are not stuck stitching tools together.",
     stats: [
       { value: "1,515", label: "Webinar opt-ins · 1 page" },
       { value: "27.01%", label: "Opt-in rate · ClickFunnels" },
@@ -197,6 +197,19 @@ export const SERVICE_LANDINGS: Landing[] = [
       { id: "fn-cf", src: "/workprof/wp-007.webp", figure: "1,515 opt-ins · 27.01%", label: "Webinar registration page · ClickFunnels", detail: "7,750 page views and 5,610 unique visitors on the registration step.", period: "Apr 1 – May 4, 2026", tag: "Scale" },
       { id: "fn-web", src: "/workprof/wp-004.webp", figure: "1,018 sign-ups · $4.50", label: "Agency webinar funnel · Meta Ads", detail: "$4,582.17 ad spend across 21 ad sets.", period: "May 1 – May 31, 2026" },
     ],
+    caseResult: {
+      eyebrow: "Case result",
+      title: "A done-for-you funnel that sold 13,630 times",
+      body: "A coaching client was chasing high-ticket sales with no front end that worked. We rebuilt the backend and tracking around a low-ticket funnel and connected the follow-up. Result: 13,630 low-ticket sales and $847,307 in revenue at a 3.32 return on ad spend.",
+      metrics: [
+        { value: "13,630", label: "Low-ticket sales" },
+        { value: "$847,307", label: "Revenue" },
+        { value: "3.32", label: "Return on ad spend" },
+        { value: "1", label: "Funnel, built for them" },
+      ],
+      href: "/cases/coaching-lto",
+      linkLabel: "Read the case study",
+    },
     problems: [
       { title: "Template funnels", body: "Generic templates ignore your offer, your buyer and your proof, so they look fine and convert poorly." },
       { title: "Broken connections", body: "Checkout, calendar, CRM and email set up separately, with leads and payments lost between them." },
@@ -233,12 +246,13 @@ export const SERVICE_LANDINGS: Landing[] = [
       ],
     },
     faq: [
+      { q: "Should I use funnel builder software or hire a funnel builder?", a: "If you have the time and skills to write copy, design pages and connect automations, funnel builder software can be enough. If your time is better spent selling, or you are spending on ads, a done-for-you funnel builder team usually gets it working faster. See our guide on funnel builder vs. a funnel agency." },
       { q: "Which platform do you build funnels on?", a: "Usually GoHighLevel, and also ClickFunnels or your existing platform when that makes more sense." },
       { q: "What types of funnels do you build?", a: "VSL, webinar, application, low-ticket, lead magnet and booking funnels. See eight live examples on our funnels page." },
       { q: "Do you write the copy?", a: "Yes. Copy, design, build, integrations and tracking are all included." },
       { q: "How much does a sales funnel cost?", a: "It depends on the number of pages, integrations and whether ads and follow-up are included. We give a fixed scope after a short call." },
     ],
-    related: ["/funnels", "/services/vsl-funnels", "/services/webinar-funnels", "/services/low-ticket-funnels"],
+    related: ["/services/landing-page-design", "/services/vsl-funnels", "/blog/funnel-builder-vs-agency", "/funnels", "/services/webinar-funnels", "/services/application-funnels"],
   },
   {
     slug: "missed-call-text-back",
@@ -250,13 +264,26 @@ export const SERVICE_LANDINGS: Landing[] = [
     eyebrow: "Missed call text back",
     h1: "Missed Call Text Back: Turn Every Missed Call Into a Conversation",
     intro:
-      "When you cannot pick up, the caller gets a text within seconds, can reply or book a time, and your team gets an alert. We set it up with your number, your wording and your calendar.",
+      "With missed call text back, a caller you cannot answer gets a text within seconds, can reply or book a time, and your team gets an alert. We set it up with your number, your wording and your calendar.",
     stats: [
       { value: "Seconds", label: "Until the caller gets a text" },
       { value: "24/7", label: "Including nights and weekends" },
       { value: "2-way", label: "SMS conversation in your CRM" },
       { value: "A2P", label: "Registration handled" },
     ],
+    caseResult: {
+      eyebrow: "Case result",
+      title: "Follow-up is where funnels win or leak",
+      body: "Missed call text back is one part of the automated follow-up we build into every system. In our documented $1.52M case, leads were leaking because follow-up was manual; we replaced it with automated email and SMS follow-up and lead qualification behind a VSL funnel, and the offer reached $1,520,000 in 19 months.",
+      metrics: [
+        { value: "$1.52M", label: "Revenue · one offer" },
+        { value: "19", label: "Months" },
+        { value: "Auto", label: "Email & SMS follow-up" },
+        { value: "Seconds", label: "Until a missed caller gets a text" },
+      ],
+      href: "/cases/1-52m-case-study",
+      linkLabel: "Read the $1.52M case study",
+    },
     problems: [
       { title: "Callers do not leave voicemails", body: "Most people who reach voicemail hang up and call the next business on the list." },
       { title: "Busy teams miss calls", body: "On a job, in a session or after hours, calls go unanswered at exactly the moment someone is ready to buy." },
@@ -286,6 +313,7 @@ export const SERVICE_LANDINGS: Landing[] = [
       ],
     },
     faq: [
+      { q: "What should a missed call text back message say?", a: "Keep it short and personal: say who you are, apologise for missing the call, ask how you can help and include a booking link. We write it in your voice and use a different version outside business hours." },
       { q: "What is missed call text back?", a: "An automation that sends an SMS to anyone whose call you miss, so the conversation continues by text instead of ending at voicemail." },
       { q: "Do I need A2P 10DLC registration?", a: "In the US, business texting from a local number needs A2P 10DLC registration. We handle it as part of the setup. See our A2P 10DLC guide for details." },
       { q: "Can it book appointments automatically?", a: "Yes. The text can include a booking link, and an optional AI assistant can reply and book for you." },
@@ -301,9 +329,9 @@ export const SERVICE_LANDINGS: Landing[] = [
     metaDescription:
       "Landing page design agency for paid traffic: conversion copy, fast mobile-first design and tracking. Real result: a 27.01% opt-in rate on a 5,610-visitor page.",
     eyebrow: "Landing page design agency",
-    h1: "Landing Page Design That Turns Paid Clicks Into Leads and Sales",
+    h1: "Landing Page Design Agency: Pages That Turn Paid Clicks Into Leads",
     intro:
-      "We write, design and build focused landing pages for one offer and one action, connected to your CRM and tracking, so the traffic you pay for actually converts.",
+      "As a landing page design agency, we write, design and build focused landing pages for one offer and one action, connected to your CRM and tracking, so the traffic you pay for actually converts.",
     stats: [
       { value: "27.01%", label: "Opt-in rate · registration page" },
       { value: "1,515", label: "Opt-ins from 5,610 visitors" },
@@ -315,6 +343,19 @@ export const SERVICE_LANDINGS: Landing[] = [
       { id: "lp-cf", src: "/workprof/wp-007.webp", figure: "27.01% opt-in rate", label: "Webinar registration page · ClickFunnels", detail: "1,515 opt-ins from 5,610 unique visitors (7,750 page views).", period: "Apr 1 – May 4, 2026", tag: "Scale" },
       { id: "lp-web", src: "/workprof/wp-004.webp", figure: "$4.50 per sign-up", label: "Agency webinar · Meta Ads to landing page", detail: "1,018 registrations on $4,582.17 spend, 3,015 landing-page views.", period: "May 1 – May 31, 2026" },
     ],
+    caseResult: {
+      eyebrow: "Case result",
+      title: "A registration page that converted 27.01% of visitors",
+      body: "One webinar registration page in our client receipts turned 5,610 unique visitors into 1,515 registrations, a 27.01% opt-in rate, over about five weeks. Same software anyone can buy; the difference was the offer, the copy and the testing.",
+      metrics: [
+        { value: "27.01%", label: "Opt-in rate" },
+        { value: "1,515", label: "Registrations" },
+        { value: "5,610", label: "Unique visitors" },
+        { value: "1", label: "Page, built for one action" },
+      ],
+      href: "/work-proof",
+      linkLabel: "See the receipt",
+    },
     problems: [
       { title: "Homepages used as landing pages", body: "Sending ad traffic to a homepage with ten links and no single action wastes most of the clicks you pay for." },
       { title: "Slow, heavy pages", body: "On mobile, every extra second of load time loses visitors before they see the offer." },
@@ -351,6 +392,7 @@ export const SERVICE_LANDINGS: Landing[] = [
       ],
     },
     faq: [
+      { q: "How many landing pages do I need?", a: "Usually one per offer and traffic source, so the page matches the ad that brought the visitor. A single business often starts with one main page and adds variations once the first one converts." },
       { q: "What does a landing page design agency do?", a: "It plans, writes, designs and builds pages for a single offer and action, usually for paid traffic, and connects them to forms, calendars, CRM and tracking." },
       { q: "Which platforms do you build landing pages on?", a: "Usually GoHighLevel, and also ClickFunnels or your existing platform." },
       { q: "Do you write the copy?", a: "Yes. Copy, design, build, integrations and tracking are all included." },

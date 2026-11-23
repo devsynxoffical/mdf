@@ -340,3 +340,38 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - 38/38 pages and 38/38 internal links pass; the new footer links are present.
   - Lighthouse mobile, live: homepage performance 56 → **90** (TBT 17,910 → 140 ms, LCP 2.4 s, weight 3.4 → 2.2 MB); /lead-generation, /about and /lead-generation/home-improvement 95, accessibility 100.
   - IndexNow notified for the changed URLs.
+
+### C13 — 2026-11-23 · Top 10 plan for milliondollarfunnels.us (owner task file CLAUDE_CODE_TOP10_milliondollarfunnels_us.md)
+- **Rules followed:**
+  - No em dashes in text on the target pages and the new articles.
+  - No invented numbers; only proof already published on the site.
+  - Guides changed in the last 7 days and not named by the file were left as they were. In-text links I first added to 4 existing guides were reverted.
+  - **Google Indexing API not used.** `gidx/submit.js` is now hard-disabled; only sitemap resubmits and IndexNow remain.
+- **Target pages and keywords** (before → after):
+
+  | Page | Keyword(s) | Title / H1 / intro | Case result + CTA | FAQs (FAQPage) |
+  |---|---|---|---|---|
+  | /services/done-for-you-sales-funnels | funnel builder, done for you sales funnel | Title "Done-For-You Sales Funnels: Built, Connected & Launched" → "Done-For-You Sales Funnels by a Funnel Builder Team"; H1 and intro now include "funnel builder" | Added: coaching LTO case (13,630 sales, $847,307, 3.32 ROAS) | 4 → 5 |
+  | /lead-generation/chiropractic | chiropractic marketing | Intro now starts with the keyword | Added: 44 prepaid consults, $6,153, 3.59× (wp-032) | 4 → 5 |
+  | /lead-generation/hvac | hvac lead generation | Intro now starts with the keyword | Added: closest result, labelled as such (211 home-service leads at $11.27, wp-005) | 4 → 5 |
+  | /lead-generation | lead generation funnel | Already aligned (C9/C12) | Added: 10,172 mortgage leads at $8.06 (wp-008) | 4 → 5 |
+  | /services/missed-call-text-back | missed call text back | Intro now starts with the keyword | Added: $1.52M case, follow-up automation framing taken from the case page | 4 → 5 |
+  | /services/landing-page-design | landing page design agency | H1 "Landing Page Design That Turns Paid Clicks Into Leads and Sales" → "Landing Page Design Agency: Pages That Turn Paid Clicks Into Leads"; intro includes the keyword | Added: 27.01% opt-in, 1,515 from 5,610 (wp-007) | 4 → 5 |
+  | /lead-generation/pressure-washing | pressure washing leads | Already aligned | Added: 167 leads at $13.37 (wp-028) | 4 → 5 |
+  | /services | sales funnel agency | Already aligned; em dashes removed | Added case result callout (coaching LTO, link to $1.52M) and a Book-a-call CTA | 0 → 5 (new FAQ section + FAQPage) |
+  | /services/vsl-funnels | vsl funnel | Already aligned; em dashes removed | Existing $1.52M proof section | 4 → 5 |
+
+- **Internal links:**
+  - Every target is linked sitewide (footer "Solutions" and /services).
+  - Related links were added between named targets: hvac → chiropractic, pressure-washing; pressure-washing → chiropractic; DFY → landing-page-design, funnel-builder article; vsl-funnels → DFY.
+  - The 2 new articles link to /lead-generation, /lead-generation/hvac, /chiropractic, /pressure-washing, /services/missed-call-text-back, /done-for-you-sales-funnels and /landing-page-design.
+- **New articles:**
+  - `/blog/funnel-builder-vs-agency` ("funnel builder" question intent).
+  - `/blog/what-is-a-lead-generation-funnel` ("what is a lead generation funnel").
+  - Both have BlogPosting, FAQPage and Breadcrumb schema and use only published receipts.
+- **Sister-site footer links:** none exist on this site (checked with a code search). The only cross-site links are the 2 noindexed teasers and one sentence on /about.
+- **Disavow:** `docs/disavow.txt` was created in Google's format with the 2 spam referrers Google URL Inspection shows (topranknow.it.com, currentchron.com). No backlink export exists in the repo, so the Semrush list still needs adding. Nothing was uploaded.
+- **Card descriptions:** em dashes are now replaced at display time (house style). Source pages are unchanged.
+- **Validation (local export on Apache):**
+  - 40 sitemap URLs, no duplicate titles or descriptions.
+  - Each target: one H1 containing its keyword, keyword in the title, self canonical, all JSON-LD blocks parse, FAQPage with 5 questions, case block present, 0 em dashes in text; no mobile overflow.

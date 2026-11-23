@@ -1,0 +1,9 @@
+# Disavow file for milliondollarfunnels.us (Search Console > Disavow links tool, URL-prefix or Domain property)
+# Prepared 2026-11-23. Only domains confirmed as spam/link-package sources are listed.
+# Evidence: Google URL Inspection lists these as referring pages for https://milliondollarfunnels.us/
+#   https://topranknow.it.com/eame-boost-google-rankings-with-premium-contextual-seo-backlinks/  (paid "SEO backlinks" page)
+#   https://www.currentchron.com/all/1921/12.html  (unrelated auto-generated archive page)
+# TO COMPLETE: add the spam domains from a Semrush "Backlinks > Referring domains" export
+# (anchors like "high quality dofollow backlinks online cheap", "proven dofollow link velocity").
+domain:topranknow.it.com
+domain:currentchron.com

@@ -126,7 +126,7 @@ export default function BlogPostPage({ params }: Props) {
       <JsonLd data={faqJsonLd(p.faq)} />
       <JsonLd data={breadcrumbJsonLd(crumbs.map((c) => ({ name: c.name, path: c.href })))} />
       <ContentShell
-        eyebrow="( Guide ) — Funnels & follow-up"
+        eyebrow={p.published >= "2026-11-23" ? "( Guide ) · Funnels & follow-up" : "( Guide ) — Funnels & follow-up"}
         title={p.title}
         crumbs={crumbs}
         toc={toc}
