@@ -179,20 +179,24 @@ export const SERVICE_LANDINGS: Landing[] = [
     slug: "done-for-you-sales-funnels",
     name: "Done-For-You Sales Funnels",
     keyword: "done for you sales funnel",
-    metaTitle: "Done-For-You Sales Funnels by a Funnel Builder Team | MDF™",
+    metaTitle: "Done-For-You Sales Funnels From a Funnel Builder Team",
     metaDescription:
-      "Done-for-you sales funnels built for your offer: copy, design, checkout or booking, CRM and follow-up. Real result: 1,515 webinar opt-ins at a 27% opt-in rate.",
+      "Done-for-you sales funnels built, launched and optimized by a funnel builder team. One funnel sold 13,630 times. Estimate your pipeline and book a call.",
     eyebrow: "Done-for-you sales funnels",
-    h1: "Done-For-You Sales Funnels From a Funnel Builder Team That Launches Them for You",
+    h1: "Done-For-You Sales Funnels From a Funnel Builder Team That Sells",
     intro:
       "Done-for-you sales funnels, built by a funnel builder team: we write, design and build the funnel, connect checkout or booking, wire it to your CRM and follow-up, and launch it with tracking, so you are not stuck stitching tools together.",
+    introMore: {
+      q: "What is a funnel builder?",
+      a: "A funnel builder is either software for building sales funnels, or a person or team that designs and builds them for you. We are the second kind: we plan, write, build and optimize your funnel from first click to sale.",
+    },
     stats: [
       { value: "1,515", label: "Webinar opt-ins · 1 page" },
       { value: "27.01%", label: "Opt-in rate · ClickFunnels" },
       { value: "8", label: "Live funnels to explore" },
       { value: "1", label: "System: page, CRM, follow-up" },
     ],
-    receiptsIntro: "Funnel and ad-account screenshots. Click to inspect.",
+    receiptsIntro: "Real funnels, real numbers: one done-for-you funnel sold 13,630 times, a [lead generation funnel](/lead-generation) brought 10,172 mortgage leads in one month and a chiropractor booked 44 prepaid consults in six days.",
     receipts: [
       { id: "fn-cf", src: "/workprof/wp-007.webp", figure: "1,515 opt-ins · 27.01%", label: "Webinar registration page · ClickFunnels", detail: "7,750 page views and 5,610 unique visitors on the registration step.", period: "Apr 1 – May 4, 2026", tag: "Scale" },
       { id: "fn-web", src: "/workprof/wp-004.webp", figure: "1,018 sign-ups · $4.50", label: "Agency webinar funnel · Meta Ads", detail: "$4,582.17 ad spend across 21 ad sets.", period: "May 1 – May 31, 2026" },
@@ -200,7 +204,7 @@ export const SERVICE_LANDINGS: Landing[] = [
     caseResult: {
       eyebrow: "Case result",
       title: "A done-for-you funnel that sold 13,630 times",
-      body: "A coaching client was chasing high-ticket sales with no front end that worked. We rebuilt the backend and tracking around a low-ticket funnel and connected the follow-up. Result: 13,630 low-ticket sales and $847,307 in revenue at a 3.32 return on ad spend.",
+      body: "This funnel combined a clear offer, a short video, a simple order page and automated follow-up. It shows what happens when every step is built to move the buyer forward, not just to look good.",
       metrics: [
         { value: "13,630", label: "Low-ticket sales" },
         { value: "$847,307", label: "Revenue" },
@@ -211,15 +215,15 @@ export const SERVICE_LANDINGS: Landing[] = [
       linkLabel: "Read the case study",
     },
     problems: [
-      { title: "Template funnels", body: "Generic templates ignore your offer, your buyer and your proof, so they look fine and convert poorly." },
-      { title: "Broken connections", body: "Checkout, calendar, CRM and email set up separately, with leads and payments lost between them." },
-      { title: "Launch and forget", body: "Without tracking each step, you never learn which page leaks, so nothing improves after launch." },
+      { title: "Pretty pages, no plan", body: "Many funnels fail because they are built as pretty pages without a clear offer, without follow-up and without testing." },
+      { title: "A funnel is a system", body: "A funnel is a system: traffic, offer, page, follow-up and sales process." },
+      { title: "One broken step leaks", body: "If one step breaks, the whole funnel leaks." },
     ],
     steps: [
-      { title: "Strategy & funnel type", body: "We choose the funnel for your offer and price: VSL, webinar, application, low-ticket or lead magnet.", points: ["Offer and buyer review", "Funnel type and steps", "Success metric per step"] },
-      { title: "Copy & design", body: "Conversion copy and a clean, fast, mobile-first design that matches your brand.", points: ["Headlines and page copy", "Mobile-first design", "Proof placed where doubt appears"] },
-      { title: "Build & connect", body: "Built in GoHighLevel, ClickFunnels or your platform, with checkout or calendar, CRM and automations connected.", points: ["Checkout, upsells or booking", "CRM and tags", "Email and SMS follow-up"] },
-      { title: "Launch & improve", body: "Tracking on every step, then we test the biggest leaks first.", points: ["Pixel and analytics", "Step-by-step conversion report", "Test plan after launch"] },
+      { title: "Offer and audience", body: "We clarify who the funnel is for and why they should act now.", points: ["Offer and buyer review", "Funnel type and steps", "Success metric per step"] },
+      { title: "Copy and pages", body: "Landing page, [VSL funnel](/services/vsl-funnels) or [application funnel](/services/application-funnels), order or booking page.", points: ["Headlines and page copy", "Mobile-first design", "Proof placed where doubt appears"] },
+      { title: "Automation", body: "Email, SMS and [missed call text back](/services/missed-call-text-back) so no lead goes cold.", points: ["Checkout, upsells or booking", "CRM and tags", "Email and SMS follow-up"] },
+      { title: "Launch and test", body: "We run traffic, track every step and improve the weakest step first.", points: ["Pixel and analytics", "Step-by-step conversion report", "Test plan after launch"] },
     ],
     showcase: {
       src: "/images/funnels/funnel-03.webp",
@@ -236,7 +240,7 @@ export const SERVICE_LANDINGS: Landing[] = [
     },
     comparison: {
       heading: "DIY funnel builder vs done-for-you funnel",
-      intro: "Funnel builders give you tools. A done-for-you funnel gives you a finished, connected system.",
+      intro: "A funnel builder tool such as ClickFunnels or GoHighLevel gives you the software. A done-for-you funnel gives you the strategy, copy, design, automation and testing as well. If your time is better spent selling than building pages, done for you is usually cheaper in the end.",
       columns: ["", "DIY funnel builder", "Done-for-you funnel"],
       rows: [
         ["Copy", "You write it", "Written for your offer and buyer"],
@@ -246,11 +250,12 @@ export const SERVICE_LANDINGS: Landing[] = [
       ],
     },
     faq: [
-      { q: "Should I use funnel builder software or hire a funnel builder?", a: "If you have the time and skills to write copy, design pages and connect automations, funnel builder software can be enough. If your time is better spent selling, or you are spending on ads, a done-for-you funnel builder team usually gets it working faster. See our guide on funnel builder vs. a funnel agency." },
-      { q: "Which platform do you build funnels on?", a: "Usually GoHighLevel, and also ClickFunnels or your existing platform when that makes more sense." },
-      { q: "What types of funnels do you build?", a: "VSL, webinar, application, low-ticket, lead magnet and booking funnels. See eight live examples on our funnels page." },
-      { q: "Do you write the copy?", a: "Yes. Copy, design, build, integrations and tracking are all included." },
-      { q: "How much does a sales funnel cost?", a: "It depends on the number of pages, integrations and whether ads and follow-up are included. We give a fixed scope after a short call." },
+      { q: "What is a funnel builder?", a: "A funnel builder is software, or a specialist, that creates the steps a visitor takes from first click to purchase or booked call: landing page, offer, follow-up and checkout or calendar." },
+      { q: "What does a done-for-you sales funnel include?", a: "Strategy, copy, page design, VSL or application pages, booking or checkout, email and SMS follow-up, tracking and ongoing testing." },
+      { q: "How long does it take to build a sales funnel?", a: "A focused funnel can launch in about two to four weeks, depending on the offer, the number of pages and the automation needed." },
+      { q: "What is the best funnel builder software?", a: "GoHighLevel, ClickFunnels and similar tools are popular. The best one is the one your team can maintain, with good forms, automation and tracking." },
+      { q: "How do I build a sales funnel for my business?", a: "Define one offer for one audience, create a page that sells it, add a simple next step, follow up automatically and send traffic. Then improve the step where most people drop off." },
+      { q: "Is a done-for-you funnel worth it?", a: "It is worth it if your offer is proven and you want faster results than building it yourself. The return comes from more leads and sales, not from the pages alone." },
     ],
     related: ["/services/landing-page-design", "/services/vsl-funnels", "/blog/funnel-builder-vs-agency", "/funnels", "/services/webinar-funnels", "/services/application-funnels"],
   },
@@ -258,13 +263,17 @@ export const SERVICE_LANDINGS: Landing[] = [
     slug: "missed-call-text-back",
     name: "Missed Call Text Back",
     keyword: "missed call text back",
-    metaTitle: "Missed Call Text Back Setup for Service Businesses | MDF™",
+    metaTitle: "Missed Call Text Back That Saves Every Lost Lead",
     metaDescription:
-      "Missed call text back that replies by SMS within seconds, books the appointment and alerts your team. Set up in GoHighLevel with your number and wording.",
+      "Missed call text back sends an instant text when you miss a call, so leads do not call your competitor. See how it works and how we set it up.",
     eyebrow: "Missed call text back",
     h1: "Missed Call Text Back: Turn Every Missed Call Into a Conversation",
     intro:
       "With missed call text back, a caller you cannot answer gets a text within seconds, can reply or book a time, and your team gets an alert. We set it up with your number, your wording and your calendar.",
+    introMore: {
+      q: "How does missed call text back work?",
+      a: "When a call goes unanswered, the system detects it and sends an automatic text such as \"Sorry we missed you, how can we help?\" The customer replies by text, and your team or an AI assistant continues the conversation and books the job.",
+    },
     stats: [
       { value: "Seconds", label: "Until the caller gets a text" },
       { value: "24/7", label: "Including nights and weekends" },
@@ -285,16 +294,16 @@ export const SERVICE_LANDINGS: Landing[] = [
       linkLabel: "Read the $1.52M case study",
     },
     problems: [
-      { title: "Callers do not leave voicemails", body: "Most people who reach voicemail hang up and call the next business on the list." },
-      { title: "Busy teams miss calls", body: "On a job, in a session or after hours, calls go unanswered at exactly the moment someone is ready to buy." },
-      { title: "No record of who called", body: "Missed calls sit in a phone log nobody checks, so there is no follow-up and no way to measure what was lost." },
+      { title: "Callers do not leave voicemails", body: "When a customer calls and nobody answers, most will not leave a voicemail." },
+      { title: "They call your competitor", body: "They call the next business on the list." },
+      { title: "A text back gets there first", body: "Missed call text back replies within seconds, so the conversation starts before they move on. It works best inside a [done-for-you sales funnel](/services/done-for-you-sales-funnels) or [lead generation funnel](/lead-generation) with follow-up." },
     ],
     problemsTitle: "Why missed calls cost you customers",
     steps: [
-      { title: "Number & registration", body: "We connect or port your business number and handle A2P 10DLC registration so texts are delivered.", points: ["Business number connected", "A2P 10DLC registration", "Call forwarding set up"] },
-      { title: "Text-back message", body: "A short, friendly text in your voice that goes out automatically when a call is missed.", points: ["Message written for your business", "Business-hours and after-hours versions", "Booking link included"] },
-      { title: "Conversation & booking", body: "Replies land in one inbox. An optional AI assistant can answer common questions and book appointments.", points: ["2-way SMS inbox", "Optional AI replies", "Calendar booking"] },
-      { title: "Alerts & reporting", body: "Your team is alerted to call back, and every missed call is tracked as a lead in the pipeline.", points: ["Team notifications", "Missed calls as pipeline leads", "Simple weekly report"] },
+      { title: "Number & registration", body: "Connect your business number to the system.", points: ["Business number connected", "A2P 10DLC registration", "Call forwarding set up"] },
+      { title: "Text-back message", body: "Write a friendly text that answers right away.", points: ["Message written for your business", "Business-hours and after-hours versions", "Booking link included"] },
+      { title: "Conversation & booking", body: "Route replies to your team or an AI assistant.", points: ["2-way SMS inbox", "Optional AI replies", "Calendar booking"] },
+      { title: "Alerts & reporting", body: "Track every recovered lead, for example the emergency calls behind [HVAC lead generation](/lead-generation/hvac).", points: ["Team notifications", "Missed calls as pipeline leads", "Simple weekly report"] },
     ],
     calculator: {
       defaults: { budget: 1000, cpl: 20, book: 30, close: 30, value: 1000 },
@@ -303,7 +312,7 @@ export const SERVICE_LANDINGS: Landing[] = [
     },
     comparison: {
       heading: "Voicemail vs missed call text back",
-      intro: "The difference is who has to make the next move.",
+      intro: "Voicemail asks the customer to do the work. A text back does the work for them. Most people prefer replying to a text over leaving a message, so more missed calls turn into booked jobs.",
       columns: ["", "Voicemail", "Missed call text back"],
       rows: [
         ["Next step", "Caller must leave a message", "Business texts the caller first"],
@@ -313,11 +322,12 @@ export const SERVICE_LANDINGS: Landing[] = [
       ],
     },
     faq: [
-      { q: "What should a missed call text back message say?", a: "Keep it short and personal: say who you are, apologise for missing the call, ask how you can help and include a booking link. We write it in your voice and use a different version outside business hours." },
-      { q: "What is missed call text back?", a: "An automation that sends an SMS to anyone whose call you miss, so the conversation continues by text instead of ending at voicemail." },
-      { q: "Do I need A2P 10DLC registration?", a: "In the US, business texting from a local number needs A2P 10DLC registration. We handle it as part of the setup. See our A2P 10DLC guide for details." },
-      { q: "Can it book appointments automatically?", a: "Yes. The text can include a booking link, and an optional AI assistant can reply and book for you." },
-      { q: "Which CRM does this run on?", a: "We usually set it up in GoHighLevel, where calls, texts and the pipeline live together." },
+      { q: "What is missed call text back?", a: "It is an automation that sends a text message to anyone whose call you miss, so you can continue the conversation by text instead of losing the lead." },
+      { q: "How does missed call text back work?", a: "Your phone system detects an unanswered call and sends a preset text within seconds. Replies go to your team inbox or an AI assistant." },
+      { q: "Is missed call text back legal?", a: "Replying to someone who just called you is generally treated as a response to their inquiry. Keep messages relevant, identify your business and offer a way to opt out." },
+      { q: "Can I set up missed call text back in GoHighLevel?", a: "Yes. GoHighLevel has a built-in missed call text back workflow, and we can set it up and connect it to your follow-up and booking." },
+      { q: "What is the best missed call text back software?", a: "GoHighLevel, CRM phone systems and many VoIP tools offer it. The best option is the one that connects to your CRM and booking calendar." },
+      { q: "How much does missed call text back cost?", a: "It is often included in CRM or phone system plans, with small per-message fees. Setup and automation are the main investment." },
     ],
     related: ["/blog/speed-to-lead", "/blog/a2p-10dlc-registration", "/services/ai-appointment-setter", "/services/gohighlevel-agency"],
   },

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import RichText from "@/components/content/RichText";
 
 export type ProcessStep = { title: string; body: string; points: string[] };
 
@@ -29,7 +30,7 @@ export default function ProcessTabs({ steps }: { steps: ProcessStep[] }) {
         <div key={s.title} role="tabpanel" id={`ppanel-${i}`} aria-labelledby={`ptab-${i}`} hidden={active !== i} className="ppanel">
           <p className="ppanel-step">Step {i + 1} of {steps.length}</p>
           <h3 className="ppanel-title">{s.title}</h3>
-          <p className="ppanel-body">{s.body}</p>
+          <p className="ppanel-body"><RichText text={s.body} /></p>
           <ul className="ppanel-points">
             {s.points.map((p) => (
               <li key={p}>{p}</li>
