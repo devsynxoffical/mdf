@@ -426,3 +426,19 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Changes:** no page edits. Every target page changed in the last 7 days, and there is no query evidence yet.
   - Sitemap resubmitted (204).
   - IndexNow (200) sent for /services, /services/vsl-funnels, /services/sales-funnels-for-coaches, /services/webinar-funnels and /services/landing-page-design.
+
+### C15: 2026-11-24 · AEO and GEO plan, week 1 and the allowed parts (owner file CLAUDE_CODE_AEO_GEO_vaishali.md)
+- Details and the schedule are in `seo/aeo-geo-plan-mdf.md`.
+- **Before → after:**
+  - **SEO.description** (Organization and WebSite schema, default og): old sentence with an em dash → one brand sentence. `priceRange` added.
+  - **llms.txt:** added the brand sentence and a Key facts block; 3 new guides listed; em dashes removed.
+  - **/services FAQ:** 5 → 7 (cost question and "Do sales funnels work?").
+  - **/services/done-for-you-sales-funnels FAQ:** 6 → 7 (cost question).
+  - **/lead-generation/chiropractic FAQ:** 5 → 6 (marketing ideas).
+  - **Homepage meta description:** 159 characters → 151 characters.
+  - **New** /blog/sales-funnel-vs-marketing-funnel.
+- **Not changed:** robots.txt (already allows the AI crawlers). Body changes on pages edited on 23 Nov are scheduled from 30 Nov (7-day rule).
+- **Validation (local export):**
+  - Every changed page has one H1, a unique title under 60 characters and a description under 155.
+  - FAQPage answers match the visible text. No em dashes on the changed pages.
+  - The homepage still has em dashes in body copy; that fix is scheduled.

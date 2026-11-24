@@ -255,6 +255,7 @@ export const SERVICE_LANDINGS: Landing[] = [
       { q: "How long does it take to build a sales funnel?", a: "A focused funnel can launch in about two to four weeks, depending on the offer, the number of pages and the automation needed." },
       { q: "What is the best funnel builder software?", a: "GoHighLevel, ClickFunnels and similar tools are popular. The best one is the one your team can maintain, with good forms, automation and tracking." },
       { q: "How do I build a sales funnel for my business?", a: "Define one offer for one audience, create a page that sells it, add a simple next step, follow up automatically and send traffic. Then improve the step where most people drop off." },
+      { q: "How much does a done-for-you sales funnel cost?", a: "Our published funnel packages are $1,497 for Design Only (strategy and design), $2,497 for Design + Copy Build (launch-ready pages and copy) and $4,997 for the Full AC Funnel Suite (full build, integrations, follow-up emails and 30 days of post-launch support). Ad spend and software are paid separately. A focused funnel usually launches in about two to four weeks." },
       { q: "Is a done-for-you funnel worth it?", a: "It is worth it if your offer is proven and you want faster results than building it yourself. The return comes from more leads and sales, not from the pages alone." },
     ],
     related: ["/services/landing-page-design", "/services/vsl-funnels", "/blog/funnel-builder-vs-agency", "/funnels", "/services/webinar-funnels", "/services/application-funnels"],

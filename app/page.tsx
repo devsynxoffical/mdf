@@ -23,7 +23,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/",
   title: "Million Dollar Funnels™ | High-Ticket Sales Funnel Agency",
   description:
-    "Million Dollar Funnels builds done-for-you sales funnels, CRM automation, SMS/email follow-up and AI appointment setting for coaches, consultants and agencies.",
+    "Done-for-you sales funnels, lead generation funnels, CRM automation and SMS and email follow-up for US service businesses. Funnel packages from $1,497.",
 });
 
 export default function Home() {
