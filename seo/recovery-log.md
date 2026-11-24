@@ -411,3 +411,18 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
     - Discovered, not indexed: landing-page-design, vsl-funnels, /services.
 - **Changes:** none. Every target page was changed today (C13, C14), Search Console has no data after those changes, and the weekly guide was already covered today by the 2 new articles.
 - **Note:** the description on /blog/what-is-a-lead-generation-funnel is 173 characters, so Google will shorten it. Left as is under the 7-day rule.
+
+### Results — 00:40 run, 2026-11-24 (GSC data through 2026-11-22)
+- **Site:**
+  - Hostinger (LiteSpeed), lead.php returns 422 on an invalid lead.
+  - Audit: 40 pages, no duplicate titles or descriptions, 0 bad links.
+- **Indexed:** 29 / 40 (same as the last run; baseline 13 / 24).
+  - URL Inspection now reports /services/vsl-funnels and /services/sales-funnels-for-coaches as "URL is unknown to Google" (both were "Discovered" last run).
+  - /services/webinar-funnels moved from unknown to Discovered.
+  - Both pages are in the live sitemap.
+- **Impressions:** 215 / 28d, 7 clicks; 24 / 7d. Down from 221 because the 28-day window rolled forward.
+  - Brand 35 of the 48 query impressions; plan target 500 at 30 days.
+- **Top 10 keywords:** still 0 impressions for all 10. The data ends 22 Nov, before most of the 23 Nov changes take effect.
+- **Changes:** no page edits. Every target page changed in the last 7 days, and there is no query evidence yet.
+  - Sitemap resubmitted (204).
+  - IndexNow (200) sent for /services, /services/vsl-funnels, /services/sales-funnels-for-coaches, /services/webinar-funnels and /services/landing-page-design.
