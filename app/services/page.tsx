@@ -21,6 +21,10 @@ export const metadata: Metadata = pageMetadata({
 
 const FAQ = [
   {
+    q: "How much does a sales funnel cost?",
+    a: "Our published funnel packages are $1,497 for Design Only (strategy and design), $2,497 for Design + Copy Build (launch-ready pages and copy) and $4,997 for the Full AC Funnel Suite (full build, integrations, follow-up emails and 30 days of post-launch support). Ad spend and software are paid separately."
+  },
+  {
     q: "What does a sales funnel agency do?",
     a: "A sales funnel agency plans, writes, designs and builds the path a prospect takes from an ad or post to a sale or booked call, and connects it to checkout, calendar, CRM and email and SMS follow-up, with tracking on every step.",
   },
@@ -39,6 +43,10 @@ const FAQ = [
   {
     q: "Do you also run the ads?",
     a: "We can run Meta Ads that send traffic into the funnel, judged on cost per lead and per booked call. Many clients start with the funnel and follow-up, then add traffic.",
+  },
+  {
+    q: "Do sales funnels work?",
+    a: "Yes, when the offer is clear and every step is followed up and measured. One done-for-you funnel we built sold 13,630 times, with $847,307 in revenue at a 3.32 return on ad spend.",
   },
 ];
 

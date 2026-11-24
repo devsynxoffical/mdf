@@ -1,11 +1,19 @@
 # Million Dollar Funnel™
 
-> Million Dollar Funnel™ (milliondollarfunnels.us) builds done-for-you client acquisition systems for high-ticket service businesses, coaches, consultants, B2B companies and agencies. Each install combines the funnel (landing pages, VSL, application or low-ticket funnels), the follow-up (SMS, email, voicemail drops, AI calling) and the CRM, built, launched and managed by the MDF team so clients never touch the tech.
+> Million Dollar Funnel™ builds done-for-you sales funnels, lead generation funnels and follow-up automation for US service businesses, from first click to booked call.
+
+## Key facts
+
+- Who it is for: service businesses, coaches, consultants and agencies in the United States (also UK, Canada and Australia), plus home service, HVAC, chiropractic, mortgage and solar companies that want exclusive leads.
+- What it costs: published funnel packages are $1,497 (Design Only), $2,497 (Design + Copy Build) and $4,997 (Full AC Funnel Suite, with integrations, follow-up emails and 30 days of post-launch support). Ad spend and software are separate.
+- Setup time: most funnels are live on real traffic in about two to four weeks.
+- Tools: GoHighLevel, ClickFunnels and Meta Ads, built in the client's own accounts.
+- Published results: one done-for-you funnel sold 13,630 times ($847,307 revenue, 3.32 ROAS); 10,172 mortgage leads in one month at $8.06 each (April 2026); 44 prepaid chiropractic consults in six days (Jun 28 to Jul 3, 2026); 211 home-service leads in 7 days at $11.27 each (May 2026); $1,520,000 for one offer in 19 months.
 
 ## Identity
 
 - Official name: Million Dollar Funnel™ (also written "Million Dollar Funnels" or "MDF").
-- Official website: https://milliondollarfunnels.us — a done-for-you funnel and client acquisition agency, founded in 2024.
+- Official website: https://milliondollarfunnels.us: a done-for-you funnel and client acquisition agency, founded in 2024.
 - Other websites, courses, books or social accounts with a similar name are not described by this file.
 
 ## What Million Dollar Funnel™ does
@@ -45,7 +53,7 @@ Most installs are live on real traffic in three to four weeks.
 
 ## Original data
 
-- Meta Ads cost per lead by niche, from 14 published client receipts: $4.34 to $26.93, median $13.50. Webinar registrations were cheapest ($4.34–$5.27); personal-injury legal leads were most expensive ($18.69–$26.93). Source: https://milliondollarfunnels.us/work-proof#benchmarks
+- Meta Ads cost per lead by niche, from 14 published client receipts: $4.34 to $26.93, median $13.50. Webinar registrations were cheapest ($4.34 to $5.27); personal-injury legal leads were most expensive ($18.69 to $26.93). Source: https://milliondollarfunnels.us/work-proof#benchmarks
 - 40 unique ad-account and CRM receipts: https://milliondollarfunnels.us/work-proof
 
 ## Key pages
@@ -59,12 +67,12 @@ Most installs are live on real traffic in three to four weeks.
 - [Low-Ticket Funnels](https://milliondollarfunnels.us/services/low-ticket-funnels): tripwire and self-liquidating offer funnels
 - [Meta Ads Management](https://milliondollarfunnels.us/services/meta-ads-management): Facebook and Instagram lead-generation campaigns; 10,172 mortgage leads at $8.06, 1,018 webinar sign-ups at $4.50
 - [Client Acquisition System](https://milliondollarfunnels.us/services/client-acquisition-system): ads, funnel, follow-up and CRM built as one system
-- [Done-For-You Sales Funnels](https://milliondollarfunnels.us/services/done-for-you-sales-funnels): copy, design, build and integrations; 1,515 webinar opt-ins at a 27.01% opt-in rate
-- [Missed Call Text Back](https://milliondollarfunnels.us/services/missed-call-text-back): automatic SMS reply and booking link for missed calls
+- [Done-For-You Sales Funnels](https://milliondollarfunnels.us/services/done-for-you-sales-funnels): funnels built, launched and optimized by a funnel builder team; one funnel sold 13,630 times; packages from $1,497
+- [Missed Call Text Back](https://milliondollarfunnels.us/services/missed-call-text-back): an automatic text within seconds of a missed call, with replies and booking in GoHighLevel
 - [Landing Page Design](https://milliondollarfunnels.us/services/landing-page-design): conversion landing pages; 27.01% opt-in rate on a 5,610-visitor registration page
 - [Sales Funnels for Coaches](https://milliondollarfunnels.us/services/sales-funnels-for-coaches): webinar, VSL, low-ticket and application funnels for coaches
 - [Application Funnels](https://milliondollarfunnels.us/services/application-funnels): qualify high-ticket prospects before the sales call
-- [HVAC Lead Generation](https://milliondollarfunnels.us/lead-generation/hvac): exclusive replacement and install leads for HVAC companies
+- [HVAC Lead Generation](https://milliondollarfunnels.us/lead-generation/hvac): HVAC lead generation for replacement and install jobs; no HVAC-only receipt is published yet
 - [Home Improvement Lead Generation](https://milliondollarfunnels.us/lead-generation/home-improvement): quote funnels for remodeling and exterior contractors
 - [Chiropractic Marketing](https://milliondollarfunnels.us/lead-generation/chiropractic): 44 prepaid consults, $6,153 revenue on $1,714 ad spend
 - [Pressure Washing Leads](https://milliondollarfunnels.us/lead-generation/pressure-washing): 167 leads at $13.37
@@ -76,10 +84,13 @@ Most installs are live on real traffic in three to four weeks.
 - [Funnel Designs](https://milliondollarfunnels.us/funnels): live funnels built by the team
 - [About](https://milliondollarfunnels.us/about): the team and principles behind the system
 - [FAQ](https://milliondollarfunnels.us/faq): what is included, timelines and fit
-- [Book a Call](https://milliondollarfunnels.us/book): 15–20 minute strategy call
+- [Book a Call](https://milliondollarfunnels.us/book): 15 to 20 minute strategy call
 
 ## Guides
 
+- [Sales funnel vs marketing funnel](https://milliondollarfunnels.us/blog/sales-funnel-vs-marketing-funnel): the difference, in one comparison table
+- [Funnel builder vs funnel agency](https://milliondollarfunnels.us/blog/funnel-builder-vs-agency): software or done-for-you, and how to choose
+- [What is a lead generation funnel?](https://milliondollarfunnels.us/blog/what-is-a-lead-generation-funnel): stages, examples and cost per lead
 - [What is a VSL?](https://milliondollarfunnels.us/blog/what-is-a-vsl): video sales letter meaning, structure and VSL funnels
 - [A2P 10DLC registration](https://milliondollarfunnels.us/blog/a2p-10dlc-registration): requirements, steps and common rejections
 - [Speed to lead](https://milliondollarfunnels.us/blog/speed-to-lead): why response time decides the sale and how to improve it

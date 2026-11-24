@@ -9,8 +9,11 @@ export const SEO = {
   name: "Million Dollar Funnel™",
   shortName: "Million Dollar Funnel",
   tagline: "Predictable High-Ticket Client Acquisition",
+  /** One brand description sentence, reused in schema, llms.txt and directory profiles (AEO/GEO plan, 24 Nov 2026). */
   description:
-    "Million Dollar Funnel™ builds done-for-you client acquisition systems for high-ticket service businesses: sales funnels, landing pages, VSL funnels, CRM automation, SMS and email follow-up, AI calling agents and paid ads — built, launched and managed for you.",
+    "Million Dollar Funnel™ builds done-for-you sales funnels, lead generation funnels and follow-up automation for US service businesses, from first click to booked call.",
+  /** Published funnel package prices (homepage pricing section). */
+  priceRange: "$1,497 to $4,997 per funnel build",
   ogImage: "/og-image.jpg",
   logo: "/images/mdf-logo-white-cropped.png",
   email: SITE.email,
@@ -121,6 +124,7 @@ export function siteJsonLd() {
         logo: absoluteUrl(SEO.logo),
         image: absoluteUrl(SEO.ogImage),
         description: SEO.description,
+        priceRange: SEO.priceRange,
         email: SEO.email,
         slogan: SEO.tagline,
         areaServed: SEO.areaServed.map((name) => ({ "@type": "Country", name })),

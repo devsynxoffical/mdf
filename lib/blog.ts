@@ -598,6 +598,97 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     cta: { label: "See lead generation funnels by industry", href: "/lead-generation" },
   },
+  {
+    slug: "sales-funnel-vs-marketing-funnel",
+    title: "Sales Funnel vs. Marketing Funnel: What Is the Difference?",
+    metaTitle: "Sales Funnel vs. Marketing Funnel: The Difference",
+    metaDescription:
+      "A marketing funnel turns strangers into leads; a sales funnel turns leads into buyers. Compare goals, owners, steps and metrics in one table.",
+    primaryKeyword: "sales funnel vs marketing funnel",
+    published: "2026-11-24",
+    readMinutes: 6,
+    summary:
+      "A marketing funnel attracts strangers and turns them into leads, using ads, content and a lead magnet or offer. A sales funnel takes those leads and turns them into paying customers, using a sales page, a call or a checkout, and follow-up. The marketing funnel ends where the sales funnel starts: when someone becomes a lead.",
+    blocks: [
+      { type: "h2", text: "What is the difference between a sales funnel and a marketing funnel?" },
+      {
+        type: "p",
+        text: "The difference is the job each one does. A marketing funnel creates demand and captures contact details. A sales funnel converts that demand into revenue. Most small businesses need both, connected, so no lead is lost in the hand-off between them.",
+      },
+      {
+        type: "table",
+        columns: ["", "Marketing funnel", "Sales funnel"],
+        rows: [
+          ["Goal", "Turn strangers into leads", "Turn leads into customers"],
+          ["Starts with", "An ad, post, video or search result", "A new lead or a booked call"],
+          ["Main steps", "Attention, interest, opt-in", "Offer, objection handling, purchase or booking"],
+          ["Typical pages", "Landing page, lead magnet, quiz", "Sales page, VSL, application, checkout, calendar"],
+          ["Owned by", "Marketing", "Sales, or the funnel itself when it sells online"],
+          ["Key metrics", "Cost per lead, opt-in rate", "Booked call rate, close rate, revenue per lead"],
+        ],
+      },
+      { type: "h2", text: "How the two funnels connect" },
+      {
+        type: "ol",
+        items: [
+          "Marketing gets attention with ads, content or search.",
+          "A landing page with one offer turns visitors into leads.",
+          "Instant follow-up by text and email starts the sales funnel.",
+          "The sales funnel presents the offer, answers objections and asks for the purchase or call.",
+          "Reminders and follow-up bring back people who did not decide yet.",
+        ],
+      },
+      {
+        type: "p",
+        text: "The most common leak is between steps 2 and 3. A lead that waits hours for a reply often buys elsewhere, which is why we connect both funnels with [speed to lead](/blog/speed-to-lead) automation and [missed call text back](/services/missed-call-text-back).",
+      },
+      { type: "h2", text: "Which one do you need first?" },
+      {
+        type: "ul",
+        items: [
+          "If you get leads but few of them buy, fix the sales funnel first: the offer, the sales page or call, and follow-up.",
+          "If your sales process converts well but you do not get enough leads, build the marketing funnel first: the ads, the offer and the landing page.",
+          "If you have neither, start with one focused funnel that does both for one offer, then expand.",
+        ],
+      },
+      { type: "h2", text: "A real example of both working together" },
+      {
+        type: "p",
+        text: "For a mortgage client, eight Meta Ads campaigns sent loan shoppers to a short qualifying funnel with instant follow-up. That marketing funnel brought 10,172 leads in one month at $8.06 each, and the follow-up started the sales process within seconds. See the [mortgage lead generation](/lead-generation/mortgage) page for the receipt.",
+      },
+      {
+        type: "p",
+        text: "On the sales side, a coaching client's [done-for-you sales funnel](/services/done-for-you-sales-funnels) sold 13,630 times, with $847,307 in revenue at a 3.32 return on ad spend ([case study](/cases/coaching-lto)).",
+      },
+      {
+        type: "p",
+        text: "To go deeper, read [sales funnel stages](/blog/sales-funnel-stages) and [what a lead generation funnel is](/blog/what-is-a-lead-generation-funnel).",
+      },
+    ],
+    faq: [
+      {
+        q: "What is the difference between a sales funnel and a marketing funnel?",
+        a: "A marketing funnel turns strangers into leads with ads, content and an offer. A sales funnel turns those leads into customers with a sales page, call or checkout and follow-up.",
+      },
+      {
+        q: "Is a lead generation funnel a marketing funnel?",
+        a: "Yes. A lead generation funnel is a marketing funnel built to capture leads, usually an ad, a landing page with one offer, a short form and instant follow-up.",
+      },
+      {
+        q: "Which comes first, the marketing funnel or the sales funnel?",
+        a: "The marketing funnel comes first in the buyer's journey, because it creates the lead. Fix first whichever one leaks most: few leads means marketing, few buyers means sales.",
+      },
+      {
+        q: "Can one funnel do both?",
+        a: "Yes. Many online funnels capture the lead and sell in one path, for example an ad, an opt-in page, a VSL and a checkout or booking page.",
+      },
+      {
+        q: "How much does a sales funnel cost?",
+        a: "Our published funnel packages are $1,497 for Design Only, $2,497 for Design + Copy Build and $4,997 for the Full AC Funnel Suite. Ad spend and software are paid separately.",
+      },
+    ],
+    cta: { label: "Have your sales funnel built for you", href: "/services/done-for-you-sales-funnels" },
+  },
 ];
 
 export const getPostBySlug = (slug: string) => BLOG_POSTS.find((p) => p.slug === slug);

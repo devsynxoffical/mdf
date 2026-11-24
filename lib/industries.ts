@@ -595,6 +595,7 @@ export const INDUSTRIES: Industry[] = [
       { q: "What is the best marketing for chiropractors?", a: "A combination of a strong Google Business Profile, reviews, local SEO and paid social ads with a prepaid or low-cost first-visit offer usually brings the steadiest new-patient flow." },
       { q: "Do Facebook ads work for chiropractors?", a: "Yes. Local Facebook and Instagram ads can reach people with back or neck pain in your area, especially with a simple offer and fast booking." },
       { q: "How do chiropractors reduce no-shows?", a: "Prepaid bookings, reminder texts and emails and a short personal message from the office all reduce no-shows." },
+      { q: "What are good chiropractic marketing ideas?", a: "A prepaid or low-cost new-patient offer, local Facebook and Instagram ads about back pain, neck pain and sciatica, a short video from the doctor, a strong Google Business Profile with fresh reviews, reminder texts before every first visit, and fast replies to every inquiry. The prepaid offer is what brought one US practice 44 prepaid consults in six days." },
       { q: "What should I look for in a chiropractic marketing company?", a: "Real results from practices, reporting on attended consults rather than leads, follow-up support and clear pricing." },
     ],
     related: ["/lead-generation/pressure-washing", "/services/landing-page-design", "/services/missed-call-text-back", "/work-proof"],
