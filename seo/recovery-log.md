@@ -442,3 +442,23 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - Every changed page has one H1, a unique title under 60 characters and a description under 155.
   - FAQPage answers match the visible text. No em dashes on the changed pages.
   - The homepage still has em dashes in body copy; that fix is scheduled.
+
+### Results — 12:40 run, 2026-11-24 (GSC data through 2026-11-22, refreshed)
+- **Site:**
+  - Hostinger (LiteSpeed, no x-vercel), lead.php returns 422 on an invalid lead.
+  - Audit: 41 pages, no duplicate titles or descriptions, 0 bad links.
+- **Indexed:** 29 / 41 (new guide added; baseline 13 / 24).
+  - /services/vsl-funnels and /services/sales-funnels-for-coaches are back to Discovered.
+  - /services/application-funnels and /blog/speed-to-lead now report "unknown".
+  - /blog/sales-funnel-vs-marketing-funnel is unknown (published today).
+- **Impressions:** 254 / 28d (from 215), 8 clicks; 63 / 7d (from 24). Brand 35 / 28d.
+  - First non-brand impressions near the targets:
+    - "chiropractic funnel" (pos 63) and "chiropractor funnel" (55);
+    - "missed call text back service for small business" (72);
+    - "vsl marketing" (57) and "video sales letter funnel" (41).
+  - A2P 10DLC questions (pos 18 to 78) land on /blog/a2p-10dlc-registration.
+- **Top 10 keywords:** none of the 10 exact targets has impressions yet.
+- **Changes:** none.
+  - The new queries have 1 to 4 impressions at positions 41 to 78, which is too thin for a title or content change.
+  - The matching pages were changed within the last 7 days.
+  - The AEO/GEO schedule starts on 30 Nov.
