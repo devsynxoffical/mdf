@@ -35,6 +35,15 @@ This repository only holds milliondollarfunnels.us. Sections 5 to 8 of the plan 
 | Target pages and guides | "Updated: [month year]" under the H1 |
 | Homepage | Replace the em dashes in the section labels and process copy |
 | Week 4 | Guide "Do sales funnels work?" with one published case result |
+| Homepage (from 1 Dec) | Title "Sales Funnel Agency: Done-For-You Funnels That Convert", answer block, results strip ($1.52M and coaching LTO), FAQ (SEO plan 25 Nov) |
+| /lead-generation/hvac (from 1 Dec) | Title "HVAC Marketing Agency and Lead Generation"; target hvac marketing agency, hvac marketing, hvac facebook ads; seasonality; "Markets we serve" once the owner names real client states |
+| /lead-generation/chiropractic (from 1 Dec) | Title "Chiropractic Marketing and Lead Generation"; target marketing for chiropractors, chiropractor marketing, chiropractic facebook ads; link to /blog/chiropractic-marketing-ideas |
+| /services/landing-page-design, /services/missed-call-text-back (from 1 Dec) | Titles "Landing Page Design Services and Agency" and "Missed Call Text Back Service and Software"; A2P 10DLC note and ROI example |
+| /lead-generation/home-improvement, /lead-generation/pressure-washing (from 1 Dec) | Titles "Home Improvement Marketing and Lead Generation" and "Pressure Washing Leads and Marketing"; seasonal offers |
+| /blog/what-is-a-lead-generation-funnel (from 1 Dec) | Retarget to "lead generation funnel" |
+| Approved lane fixes, body and H1 (from 30 Nov for lib/services.ts, 1 Dec for the others) | AI appointment setter H1 and copy reframed as "AI follow-up inside your funnel"; GoHighLevel page H1 "GoHighLevel Funnel Setup"; Meta ads page H1 "Meta Ads for Funnels"; mortgage and solar H1 and intro as "Funnels for mortgage brokers" and "Funnels for solar companies"; /blog/what-is-a-vsl H1 and intro to the VSL funnel angle, with a link to milliondollarmedia.us/what-is-a-vsl/ |
+| Funnel type pages (week 9) | VSL, webinar, low ticket, application, coaches and DFY upgrades per the 25 Nov plan |
+| Week 10 and 11 | New niche case studies only if real results exist; refresh a2p-10dlc, speed-to-lead and sales-funnel-stages |
 
 ## Needs the owner
 

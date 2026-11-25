@@ -9,9 +9,9 @@ export const SERVICE_LANDINGS: Landing[] = [
     slug: "meta-ads-management",
     name: "Meta Ads Management",
     keyword: "facebook ads management for lead generation",
-    metaTitle: "Facebook & Meta Ads Management for Lead Generation | MDF™",
+    metaTitle: "Meta Ads for Funnels: Traffic Built for Your Funnel",
     metaDescription:
-      "Facebook and Instagram ads management built for leads, not likes. Real receipts: 10,172 mortgage leads at $8.06 and 1,018 webinar sign-ups at $4.50.",
+      "Meta ads that send traffic into your funnel, judged on cost per lead and booked call. Receipts: 10,172 mortgage leads at $8.06, 1,018 sign-ups at $4.50.",
     eyebrow: "Facebook & Meta Ads management",
     h1: "Facebook Ads Management That Is Measured in Leads, Not Likes",
     intro:

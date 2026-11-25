@@ -119,9 +119,9 @@ export const SERVICE_PAGES: ServicePage[] = [
     slug: "gohighlevel-agency",
     name: "GoHighLevel Agency",
     primaryKeyword: "gohighlevel agency",
-    metaTitle: "GoHighLevel Agency & Experts: Funnels, CRM and Automations",
+    metaTitle: "GoHighLevel Funnel Setup: Funnels, Pipelines and Workflows",
     metaDescription:
-      "Hire a GoHighLevel agency that builds the funnels, pipelines, workflows, A2P registration and AI follow-up inside HighLevel for you, then keeps them running.",
+      "GoHighLevel funnel setup done for you: pages, forms, pipelines, workflows, A2P registration and follow-up built inside your HighLevel account.",
     eyebrow: "( Service ) — GoHighLevel",
     h1: "GoHighLevel Agency: We Build and Run Your HighLevel Account",
     stats: [
@@ -194,9 +194,9 @@ export const SERVICE_PAGES: ServicePage[] = [
     slug: "ai-appointment-setter",
     name: "AI Appointment Setter",
     primaryKeyword: "ai appointment setter",
-    metaTitle: "AI Appointment Setter: Qualify and Book Leads in Under 60 Seconds",
+    metaTitle: "AI Follow-Up Inside Your Funnel: Qualify and Book Leads",
     metaDescription:
-      "An AI appointment setter that texts and calls new leads within a minute, asks your qualifying questions, answers common objections and books calls on your calendar.",
+      "AI follow-up built into your funnel: new leads get a text or call within a minute, answer your qualifying questions and book a call on your calendar.",
     eyebrow: "( Service ) — AI Appointment Setting",
     h1: "AI Appointment Setter That Books Qualified Calls While You Sleep",
     stats: [
