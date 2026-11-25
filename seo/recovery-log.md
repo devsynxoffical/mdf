@@ -462,3 +462,19 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - The new queries have 1 to 4 impressions at positions 41 to 78, which is too thin for a title or content change.
   - The matching pages were changed within the last 7 days.
   - The AEO/GEO schedule starts on 30 Nov.
+
+### Results — 00:40 run, 2026-11-25 (GSC data through 2026-11-23)
+- **Site:**
+  - Hostinger (LiteSpeed, no x-vercel), lead.php returns 422 on an invalid lead.
+  - Audit: 41 pages, no duplicate titles or descriptions, 0 bad links.
+- **Indexed:** 29 / 41, unchanged. URL Inspection status keeps moving between "unknown" and "Discovered" for uncrawled pages:
+  - /services: now unknown.
+  - /services/application-funnels and /blog/speed-to-lead: now Discovered.
+- **Impressions:** 251 / 28d (254 last run), 8 clicks; 60 / 7d.
+  - 28d query rows: brand 33, non-brand 30.
+- **Target topics:**
+  - "chiropractic funnel" (63) and "chiropractor funnel" (55) land on /lead-generation/chiropractic.
+  - "missed call text back service for small business" (72) lands on /services/missed-call-text-back.
+  - "video sales letter funnel" (41) and "vsl marketing" (57) land on /blog/what-is-a-vsl.
+  - The 10 exact target keywords still have 0 impressions.
+- **Changes:** none. Each query has 1 impression at position 41 or lower, and the target pages are inside the 7-day window. The AEO/GEO schedule starts on 30 Nov.
