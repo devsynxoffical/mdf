@@ -689,6 +689,214 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     cta: { label: "Have your sales funnel built for you", href: "/services/done-for-you-sales-funnels" },
   },
+  {
+    slug: "sales-funnel-examples",
+    title: "Sales Funnel Examples: 8 Funnels and What They Achieved",
+    metaTitle: "Sales Funnel Examples: 8 Real Funnels and Results",
+    metaDescription:
+      "Eight sales funnel examples from real client accounts: low ticket, VSL, lead generation, webinar, prepaid consult and quote funnels, with results.",
+    primaryKeyword: "sales funnel examples",
+    published: "2026-11-25",
+    readMinutes: 8,
+    summary:
+      "A sales funnel is the set of steps that moves a buyer from first click to purchase or booked call. The best examples are simple: one offer, one page with one action, and fast follow-up. Below are eight funnel types we have built for clients, how each one works and the results published on this site.",
+    blocks: [
+      { type: "h2", text: "Sales funnel examples at a glance" },
+      {
+        type: "table",
+        columns: ["Funnel type", "Steps", "Published result"],
+        rows: [
+          ["Low ticket funnel", "Ad, sales page, checkout, upsell, follow-up", "13,630 sales, $847,307 revenue, 3.32 ROAS"],
+          ["VSL funnel", "Ad, video sales letter, qualification, booked call", "$1,520,000 for one offer in 19 months"],
+          ["Lead generation funnel", "Ad, short qualifying form, instant follow-up", "10,172 mortgage leads in one month at $8.06"],
+          ["Webinar funnel", "Registration page, reminders, live or replay, offer", "1,515 registrations at a 27.01% opt-in rate"],
+          ["Prepaid consult funnel", "Local ad, pay-and-book page, reminders", "44 prepaid chiropractic consults in six days"],
+          ["Quote funnel", "Ad, job details and photos, booking text", "211 home-service leads in 7 days at $11.27"],
+          ["Long-form education funnel", "Long sales page, quiz, checkout, upsell", "Live example on our funnels page"],
+          ["Consult-first funnel", "Proof page, application, private consult booking", "Live example on our funnels page"],
+        ],
+      },
+      { type: "h2", text: "1. Low ticket funnel: 13,630 sales" },
+      {
+        type: "p",
+        text: "A coaching client was pitching a high-ticket program to cold audiences and it was not working. We built a low ticket front end: an ad, a short sales page, a checkout with an order bump, an upsell and automated follow-up. The funnel sold 13,630 times, with $847,307 in revenue at a 3.32 return on ad spend. Read the [coaching case study](/cases/coaching-lto) or see our [low ticket funnels](/services/low-ticket-funnels).",
+      },
+      { type: "h2", text: "2. VSL funnel: $1.52M for one offer" },
+      {
+        type: "p",
+        text: "A video sales letter explains the problem, the solution and the offer, then sends qualified viewers to book a call. For one high-ticket offer, a VSL funnel with qualification and automated email and SMS follow-up reached $1,520,000 in 19 months. See the [$1.52M case study](/cases/1-52m-case-study) and our [VSL funnels](/services/vsl-funnels).",
+      },
+      { type: "h2", text: "3. Lead generation funnel: 10,172 leads in a month" },
+      {
+        type: "p",
+        text: "Eight Meta Ads campaigns sent loan shoppers to a short qualifying funnel, and every lead got a text and email within seconds. In one month that produced 10,172 mortgage leads at $8.06 each. The full breakdown is on the [mortgage lead generation](/lead-generation/mortgage) page, and the general model is explained in [what is a lead generation funnel](/blog/what-is-a-lead-generation-funnel).",
+      },
+      { type: "h2", text: "4. Webinar funnel: 27.01% opt-in rate" },
+      {
+        type: "p",
+        text: "A webinar registration page in ClickFunnels had 5,610 unique visitors and 1,515 registrations, a 27.01% opt-in rate. A separate agency webinar funnel brought 1,018 sign-ups at $4.50 each on Meta Ads. Both receipts are on the [work proof page](/work-proof). See our [webinar funnels](/services/webinar-funnels).",
+      },
+      { type: "h2", text: "5. Prepaid consult funnel: 44 consults in six days" },
+      {
+        type: "p",
+        text: "Instead of a free exam, a US chiropractic clinic offered a low-cost prepaid first visit, promoted with local Meta Ads and booked through a pay-and-book page with reminders. In six days it sold 44 prepaid consults worth $6,153 on $1,714 of ad spend. See [chiropractic marketing](/lead-generation/chiropractic).",
+      },
+      { type: "h2", text: "6. Quote funnel: 211 leads in 7 days" },
+      {
+        type: "p",
+        text: "Home-service buyers want a price, so the funnel asks for the job details and photos, then texts back to book the estimate. A Florida home-services company got 211 website leads in one week at $11.27 each, and a pressure washing company got 167 leads in a month at $13.37. See [home improvement lead generation](/lead-generation/home-improvement) and [pressure washing leads](/lead-generation/pressure-washing).",
+      },
+      { type: "h2", text: "7. Long-form education funnel" },
+      {
+        type: "p",
+        text: "For Love My Invention, a long-form page explains the path from idea to drawings to patents, then a quiz qualifies inventors before checkout and an upsell. Long-form works when buyers need education before they trust the offer. You can scroll through it on our [funnels page](/funnels).",
+      },
+      { type: "h2", text: "8. Consult-first funnel" },
+      {
+        type: "p",
+        text: "For ROWAN Executive Protection, the funnel leads with credibility and proof, then a short application and a private consult booking. Pricing is discussed in the consult, after the proof, because high-value buyers want a conversation first. It is also on our [funnels page](/funnels).",
+      },
+      { type: "h2", text: "What the best sales funnel examples have in common" },
+      {
+        type: "ol",
+        items: [
+          "One offer for one audience, explained on the first screen.",
+          "One action per page: buy, book or apply.",
+          "Proof placed where the buyer hesitates.",
+          "Follow-up within seconds by text and email.",
+          "Tracking on every step, so the weakest step gets fixed first.",
+        ],
+      },
+      {
+        type: "p",
+        text: "If you want one of these built for your offer, see our [sales funnel agency](/sales-funnel-agency) page for prices and process.",
+      },
+    ],
+    faq: [
+      {
+        q: "What is an example of a sales funnel?",
+        a: "A low ticket funnel is a common example: an ad leads to a short sales page, then a checkout with an order bump, an upsell and automated email follow-up. One we built sold 13,630 times.",
+      },
+      {
+        q: "What are the main types of sales funnels?",
+        a: "Low ticket, VSL, webinar, application, lead generation, quote and consult funnels. The right type depends on your price point and how much trust the buyer needs before acting.",
+      },
+      {
+        q: "Which sales funnel is best for service businesses?",
+        a: "Local service businesses usually do best with a lead generation or quote funnel and instant follow-up. High-ticket services usually need a VSL or application funnel that ends in a booked call.",
+      },
+      {
+        q: "How many steps should a sales funnel have?",
+        a: "As few as the buyer needs. Most working funnels have three to five steps: the ad, the page, the action, the confirmation and the follow-up.",
+      },
+      {
+        q: "How much does it cost to build a sales funnel?",
+        a: "Our published funnel packages are $1,497 for Design Only, $2,497 for Design + Copy Build and $4,997 for the Full AC Funnel Suite. Ad spend and software are paid separately.",
+      },
+    ],
+    cta: { label: "See our sales funnel agency", href: "/sales-funnel-agency" },
+  },
+  {
+    slug: "chiropractic-marketing-ideas",
+    title: "Chiropractic Marketing Ideas: 10 Ways to Get New Patients",
+    metaTitle: "Chiropractic Marketing Ideas: 10 Ways to Get New Patients",
+    metaDescription:
+      "Ten chiropractic marketing ideas that bring new patients: prepaid first visits, local Facebook ads, reviews, reminders and more, with one real result.",
+    primaryKeyword: "chiropractic marketing ideas",
+    published: "2026-11-25",
+    readMinutes: 7,
+    summary:
+      "The chiropractic marketing ideas that work best combine a clear new-patient offer, local ads aimed at real pain points, a strong Google Business Profile and fast follow-up. A prepaid first visit is the strongest single idea we have tested: one US clinic sold 44 prepaid consults in six days with it.",
+    blocks: [
+      { type: "h2", text: "10 chiropractic marketing ideas" },
+      {
+        type: "ol",
+        items: [
+          "Offer a prepaid or low-cost first visit instead of a free exam.",
+          "Run local Facebook and Instagram ads about back pain, neck pain and sciatica.",
+          "Keep your Google Business Profile complete, with photos and fresh reviews.",
+          "Ask every happy patient for a review at the right moment.",
+          "Use a short video from the doctor in your ads and on the booking page.",
+          "Send reminder texts and emails before every first visit.",
+          "Reply to every new inquiry within minutes, and text back missed calls.",
+          "Build a simple booking page with one offer and one action.",
+          "Track cost per booked and attended consult, not just cost per lead.",
+          "Follow up with people who booked but did not attend.",
+        ],
+      },
+      { type: "h2", text: "1. A prepaid first visit instead of a free exam" },
+      {
+        type: "p",
+        text: "Free exams fill the calendar with people who never arrive. A small prepaid offer filters for intent and pays for the ads. One US clinic used a low-cost prepaid first visit, local Meta Ads and a pay-and-book page with reminders, and sold 44 prepaid consults worth $6,153 on $1,714 of ad spend in six days. The receipt is on our [chiropractic marketing](/lead-generation/chiropractic) page.",
+      },
+      { type: "h2", text: "2. Local Facebook and Instagram ads" },
+      {
+        type: "p",
+        text: "Facebook and Instagram let you reach adults in your service radius and speak to specific problems. Ads about one condition, such as sciatica or neck pain from desk work, usually outperform general wellness messages. Keep the claims modest: Meta does not allow ads that imply a person has a medical condition.",
+      },
+      { type: "h2", text: "3 and 4. Google Business Profile and reviews" },
+      {
+        type: "p",
+        text: "Many new patients search on Google Maps first. A complete profile with your hours, services, photos and recent reviews helps you show up and helps people choose you. Ask for a review after a visit where the patient tells you they feel better, and make it easy with a direct link.",
+      },
+      { type: "h2", text: "5. A short video from the doctor" },
+      {
+        type: "p",
+        text: "People choose a chiropractor they trust. A one-minute video where the doctor explains who they help and what the first visit includes can be used in ads and on the booking page.",
+      },
+      { type: "h2", text: "6 and 7. Reminders and fast replies" },
+      {
+        type: "p",
+        text: "Booked patients forget. Confirmation and reminder texts reduce no-shows. Speed matters before the booking too: an inquiry that waits hours often books somewhere else. [Missed call text back](/services/missed-call-text-back) sends a text within seconds when the front desk cannot answer, and our [speed to lead](/blog/speed-to-lead) guide explains why response time matters.",
+      },
+      { type: "h2", text: "8. A simple booking page" },
+      {
+        type: "p",
+        text: "Send ad traffic to a page with one offer and one action, not to your homepage. Show what the first visit includes, the price, where you are and a calendar. Our [landing page design](/services/landing-page-design) service builds these pages for paid traffic.",
+      },
+      { type: "h2", text: "9 and 10. Measure attended consults and follow up" },
+      {
+        type: "p",
+        text: "Cost per lead can look good while the schedule stays empty. Track cost per booked consult and per attended consult, then follow up with every no-show by text the same day. These two habits usually decide whether marketing pays for itself.",
+      },
+      {
+        type: "table",
+        columns: ["Idea", "Main benefit", "Effort"],
+        rows: [
+          ["Prepaid first visit", "Fewer no-shows, ads pay for themselves", "Low"],
+          ["Local Facebook ads", "New patients in your radius", "Medium"],
+          ["Google Business Profile and reviews", "More calls from Maps searches", "Low"],
+          ["Doctor video", "Trust before the first visit", "Low"],
+          ["Reminders and fast replies", "More booked patients show up", "Low once automated"],
+          ["Simple booking page", "Higher conversion from ads", "Medium"],
+          ["Tracking attended consults", "Know which ads bring patients", "Low"],
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "What is the best marketing for chiropractors?",
+        a: "A strong Google Business Profile with reviews, plus local Facebook and Instagram ads with a prepaid or low-cost first-visit offer and fast follow-up, usually brings the steadiest flow of new patients.",
+      },
+      {
+        q: "How can a chiropractor get more patients fast?",
+        a: "Run a local ad with a clear prepaid first-visit offer, send it to a simple booking page and answer every inquiry within minutes. One clinic sold 44 prepaid consults in six days this way.",
+      },
+      {
+        q: "Do Facebook ads work for chiropractors?",
+        a: "Yes, when the offer is specific and the follow-up is fast. Keep ad claims modest, because Meta does not allow ads that imply a person has a medical condition.",
+      },
+      {
+        q: "Should a chiropractor offer a free first visit?",
+        a: "We usually recommend a small paid offer instead. People who pay up front are more likely to attend, and the revenue helps cover the ad spend.",
+      },
+      {
+        q: "How do chiropractors reduce no-shows?",
+        a: "Prepaid bookings, confirmation and reminder texts, and a same-day follow-up for anyone who misses the appointment.",
+      },
+    ],
+    cta: { label: "See chiropractic marketing", href: "/lead-generation/chiropractic" },
+  },
 ];
 
 export const getPostBySlug = (slug: string) => BLOG_POSTS.find((p) => p.slug === slug);

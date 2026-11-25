@@ -1,0 +1,24 @@
+Type,URL,Target keywords,US volume/mo (Semrush 25 Nov),KD,Action,Week
+Fix,/post/* (7 URLs),old blog 404s,,,301 to closest new page (list in plan),1
+Fix,"/projects/*, /blog/tag/*, /blog/category/*, /blog/author/*, /_preview/",old site 404s,,,Return 410,1
+Fix,"/thank-you-page-page, /thank-you",n/a,,,301 and noindex,1
+Fix,41 sitemap URLs,n/a,,,Request indexing 10 per day,1-4
+Fix,/services/ai-appointment-setter,FTP lane,,,Retitle or merge (after approval),2
+Fix,/services/gohighlevel-agency,FTP lane,70,21,Retitle GoHighLevel funnel setup,2
+Fix,/services/meta-ads-management,SWA lane,,,Retitle or merge,2
+Fix,"/lead-generation/mortgage, /solar",QLX lane,1600,23-28,Reposition as funnels for mortgage/solar or hand off,2
+Fix,/blog/what-is-a-vsl,duplicate of MDM page,,,Retitle to VSL funnel angle or merge,2
+Upgrade,/,sales funnel agency (brand + core),,,"Retitle, answer block, proof",3
+New,/sales-funnel-agency,sales funnel builder; sales funnel agency; sales funnel design; sales funnel services; funnel agency,2210,10-31,Build,3
+Upgrade,/lead-generation/hvac,hvac marketing agency; hvac marketing; hvac lead generation; hvac facebook ads,7420,7-38,Upgrade,4
+Upgrade,/lead-generation/chiropractic,chiropractic marketing; chiropractor marketing; marketing for chiropractors; chiropractic facebook ads; chiropractic lead generation,3290,1-17,Upgrade,4
+Upgrade,/services/landing-page-design,landing page design services; landing page design agency; landing page agency,1590,10-20,Upgrade,5
+Upgrade,/services/missed-call-text-back,missed call text back; missed call text back software; service,780,15-25,Upgrade,5
+Upgrade,/lead-generation/home-improvement,home improvement lead generation; home improvement marketing,1880,3-17,Upgrade,6
+Upgrade,/lead-generation/pressure-washing,pressure washing marketing; pressure washing leads; pressure washing facebook ads,780,1-41,Upgrade,6
+Upgrade,/blog/what-is-a-lead-generation-funnel,lead generation funnel,1000,17,Retarget,6
+New blog,/blog/sales-funnel-examples,sales funnel examples,880,27,Write,7
+New blog,/blog/chiropractic-marketing-ideas,chiropractic marketing ideas,320,17,Write,8
+Upgrade,"/services/vsl-funnels, /webinar-funnels, /low-ticket-funnels, /application-funnels, /sales-funnels-for-coaches, /done-for-you-sales-funnels",vsl funnel 260; webinar funnel 390; application funnel 40; sales funnel for coaches 140; done for you sales funnel 140,970,6-22,Upgrade,9
+Upgrade,"/blog/a2p-10dlc-registration, /blog/speed-to-lead, /blog/sales-funnel-stages",a2p 10dlc registration 390; speed to lead 2400; sales funnel stages 4400,7190,31-56,Refresh,11
+City,none,sales funnel / niche + city = 0 or no data,0,,Do not build; monthly GSC check (see city plan),

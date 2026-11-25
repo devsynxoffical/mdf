@@ -23,7 +23,9 @@ const CARDS: Record<string, PageCard> = {
   ...Object.fromEntries(
     INDUSTRIES.map((i) => [`/lead-generation/${i.slug}`, { href: `/lead-generation/${i.slug}`, title: `${i.name} lead generation`, desc: i.metaDescription, tag: "Industry" }])
   ),
-  "/lead-generation": { href: "/lead-generation", title: "Lead generation by industry", desc: "Roofing, mortgage, solar and personal injury lead systems with real receipts.", tag: "Industries" },
+  "/lead-generation": { href: "/lead-generation", title: "Lead generation by industry", desc: "HVAC, chiropractic, home improvement, pressure washing, mortgage and solar funnels with real receipts.", tag: "Industries" },
+  "/sales-funnel-agency": { href: "/sales-funnel-agency", title: "Sales funnel agency", desc: "Funnels built, launched and improved for you, with published prices and case studies.", tag: "Service" },
+  "/cases": { href: "/cases", title: "Case studies", desc: "Published client results, including 13,630 sales from one funnel and $1.52M in 19 months.", tag: "Proof" },
   "/work-proof": { href: "/work-proof", title: "40 verified ad & CRM receipts", desc: "Live Meta Ads and CRM screenshots, plus cost-per-lead benchmarks by niche.", tag: "Proof" },
   "/work-proof#benchmarks": { href: "/work-proof#benchmarks", title: "Cost-per-lead benchmarks by niche", desc: "What leads actually cost on Meta Ads across our published receipts.", tag: "Data" },
   "/funnels": { href: "/funnels", title: "Sales funnel examples", desc: "Eight live funnels we built, with the strategy and stack behind each.", tag: "Examples" },

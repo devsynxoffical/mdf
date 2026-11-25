@@ -40,6 +40,7 @@ const EXPLORE_LINKS: FooterLinkItem[] = [
 
 /** Key service and industry pages, linked from every page so crawlers find them. */
 const SOLUTION_LINKS: FooterLinkItem[] = [
+  { label: "Sales Funnel Agency", href: "/sales-funnel-agency" },
   { label: "Done-For-You Sales Funnels", href: "/services/done-for-you-sales-funnels" },
   { label: "Landing Page Design", href: "/services/landing-page-design" },
   { label: "Sales Funnels for Coaches", href: "/services/sales-funnels-for-coaches" },

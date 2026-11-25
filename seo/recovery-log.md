@@ -478,3 +478,25 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - "video sales letter funnel" (41) and "vsl marketing" (57) land on /blog/what-is-a-vsl.
   - The 10 exact target keywords still have 0 impressions.
 - **Changes:** none. Each query has 1 impression at position 41 or lower, and the target pages are inside the 7-day window. The AEO/GEO schedule starts on 30 Nov.
+
+### C16: 2026-11-25 · SEO plan 25 Nov, week 1 and new pages (CLAUDE_CODE_milliondollarfunnels.md)
+- Full table and the blocked list are in `seo/plan-2026-11-25-status.md`.
+- **.htaccess:**
+  - /post/sales-funnels-for-coaches: was a 301 to /services → now a 301 to /services/sales-funnels-for-coaches.
+  - 6 more /post/ 301s, and /thank-you-page-page 301 → /thank-you.
+  - /blog/category/*: was a 301 to /blog → now 410.
+  - New 410s: /projects, /blog/tag, /blog/author and /_preview.
+  - Tested on local Apache: every redirect returns 301 to the right target and every 410 path returns 410.
+- **New pages:**
+  - /thank-you (noindex);
+  - /sales-funnel-agency;
+  - /blog/sales-funnel-examples;
+  - /blog/chiropractic-marketing-ideas.
+- **Validation:**
+  - Each new page has one H1, a self canonical, a title of 60 characters or fewer and a description of 155 or fewer.
+  - JSON-LD parses, no em dashes, no mobile overflow.
+  - No duplicate titles across 45 pages.
+- **Not changed:**
+  - Existing pages: all source files changed within 7 days.
+  - City pages: the plan says do not build.
+  - Lane fixes: they need the owner's yes.
