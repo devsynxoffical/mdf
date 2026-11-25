@@ -59,6 +59,7 @@ Most installs are live on real traffic in three to four weeks.
 ## Key pages
 
 - [Home](https://milliondollarfunnels.us/): services, who it is for, process, pricing and FAQ
+- [Sales Funnel Agency](https://milliondollarfunnels.us/sales-funnel-agency): what we build, published prices, builder vs agency vs DIY, case studies
 - [Services](https://milliondollarfunnels.us/services): every funnel, automation and AI follow-up service
 - [VSL Funnels](https://milliondollarfunnels.us/services/vsl-funnels): done-for-you video sales letter funnels
 - [GoHighLevel Agency](https://milliondollarfunnels.us/services/gohighlevel-agency): HighLevel funnels, pipelines, workflows and A2P setup
@@ -88,6 +89,8 @@ Most installs are live on real traffic in three to four weeks.
 
 ## Guides
 
+- [Sales funnel examples](https://milliondollarfunnels.us/blog/sales-funnel-examples): 8 funnel types with published results
+- [Chiropractic marketing ideas](https://milliondollarfunnels.us/blog/chiropractic-marketing-ideas): 10 ideas, including the prepaid first visit
 - [Sales funnel vs marketing funnel](https://milliondollarfunnels.us/blog/sales-funnel-vs-marketing-funnel): the difference, in one comparison table
 - [Funnel builder vs funnel agency](https://milliondollarfunnels.us/blog/funnel-builder-vs-agency): software or done-for-you, and how to choose
 - [What is a lead generation funnel?](https://milliondollarfunnels.us/blog/what-is-a-lead-generation-funnel): stages, examples and cost per lead
