@@ -31,9 +31,9 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "what-is-a-vsl",
     title: "What Is a VSL? The Video Sales Letter, Explained",
-    metaTitle: "What Is a VSL? Video Sales Letter Meaning, Structure & Examples",
+    metaTitle: "VSL Funnel: How a Video Sales Letter Funnel Works",
     metaDescription:
-      "A VSL (video sales letter) is a sales video that replaces a written sales page. Learn how a VSL is structured, how long it should be and how a VSL funnel works.",
+      "A VSL funnel puts a video sales letter at the center of the path from ad to booked call or sale. See the steps, page structure and metrics that matter.",
     primaryKeyword: "what is a vsl",
     published: "2026-11-16",
     readMinutes: 8,

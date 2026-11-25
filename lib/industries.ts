@@ -182,9 +182,9 @@ export const INDUSTRIES: Industry[] = [
     slug: "mortgage",
     name: "Mortgage",
     keyword: "mortgage lead generation",
-    metaTitle: "Mortgage Lead Generation for Brokers & Loan Officers | MDF™",
+    metaTitle: "Funnels for Mortgage Brokers and Loan Officers",
     metaDescription:
-      "Mortgage lead generation with your own Meta Ads, funnel and CRM. Real receipt: 10,172 mortgage leads at $8.06 each in one month. Exclusive leads, never resold.",
+      "Mortgage funnels for brokers and loan officers: Meta Ads, a qualifying funnel and instant follow-up. One funnel: 10,172 leads in a month at $8.06 each.",
     eyebrow: "Mortgage lead generation",
     h1: "Mortgage Lead Generation: Exclusive Leads at Your Own Cost per Lead",
     intro:
@@ -303,9 +303,9 @@ export const INDUSTRIES: Industry[] = [
     slug: "solar",
     name: "Solar",
     keyword: "solar lead generation",
-    metaTitle: "Solar Lead Generation: Exclusive Homeowner Leads | MDF™",
+    metaTitle: "Funnels for Solar Companies: Homeowner Lead Funnels",
     metaDescription:
-      "Solar lead generation with Meta Ads, a qualifying funnel and fast follow-up. Real receipt: 300 homeowner leads at $14.71 each. Exclusive leads, never resold.",
+      "Solar funnels for installers: Meta Ads, a homeowner qualifying funnel and fast follow-up in your own accounts. Real receipt: 300 leads at $14.71 each.",
     eyebrow: "Solar lead generation",
     h1: "Solar Lead Generation That Keeps Your Cost per Lead Under Control",
     intro:

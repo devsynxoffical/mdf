@@ -500,3 +500,15 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - Existing pages: all source files changed within 7 days.
   - City pages: the plan says do not build.
   - Lane fixes: they need the owner's yes.
+- **Lane fixes approved by the owner (25 Nov):** retitle all four. Titles and meta changed now, which the 7-day rule allows; H1 and body follow from 30 Nov or 1 Dec.
+
+  | Page | Before | After |
+  |---|---|---|
+  | /services/ai-appointment-setter | "AI Appointment Setter: Qualify and Book Leads in Under 60 Seconds" | "AI Follow-Up Inside Your Funnel: Qualify and Book Leads" |
+  | /services/gohighlevel-agency | "GoHighLevel Agency & Experts: Funnels, CRM and Automations" | "GoHighLevel Funnel Setup: Funnels, Pipelines and Workflows" |
+  | /services/meta-ads-management | "Facebook & Meta Ads Management for Lead Generation \| MDF™" | "Meta Ads for Funnels: Traffic Built for Your Funnel" |
+  | /lead-generation/mortgage | "Mortgage Lead Generation for Brokers & Loan Officers \| MDF™" | "Funnels for Mortgage Brokers and Loan Officers" |
+  | /lead-generation/solar | "Solar Lead Generation: Exclusive Homeowner Leads \| MDF™" | "Funnels for Solar Companies: Homeowner Lead Funnels" |
+  | /blog/what-is-a-vsl | "What Is a VSL? Video Sales Letter Meaning, Structure & Examples" | "VSL Funnel: How a Video Sales Letter Funnel Works" |
+
+  All new titles are 60 characters or fewer and all descriptions are under 155. No duplicate titles.
