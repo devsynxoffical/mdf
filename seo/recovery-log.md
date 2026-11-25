@@ -512,3 +512,25 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   | /blog/what-is-a-vsl | "What Is a VSL? Video Sales Letter Meaning, Structure & Examples" | "VSL Funnel: How a Video Sales Letter Funnel Works" |
 
   All new titles are 60 characters or fewer and all descriptions are under 155. No duplicate titles.
+
+### Results — 12:40 run, 2026-11-25 (GSC data through 2026-11-23, refreshed)
+- **Site:**
+  - Hostinger (LiteSpeed, no x-vercel), lead.php returns 422 on an invalid lead.
+  - 25 Nov redirects confirmed live: /post/n8n-automation-guide 301, /projects/x 410, /thank-you 200 noindex.
+  - Audit: 44 pages, no duplicate titles or descriptions, 0 bad links.
+- **Indexed:** 32 / 44 (from 29 / 41; baseline 13 / 24).
+  - Newly indexed: /services/gohighlevel-agency, /blog/sales-funnel-vs-marketing-funnel, /blog/chiropractic-marketing-ideas.
+  - /sales-funnel-agency and /services: Discovered.
+  - /blog/sales-funnel-examples, /services/landing-page-design, /services/webinar-funnels and /services/sales-funnels-for-coaches: unknown.
+- **Impressions:** 347 / 28d (from 251), 8 clicks; 156 / 7d (from 60).
+  - 7d: non-brand 96, brand 5 (query rows).
+- **First target keyword with impressions:** "lead generation funnel", 8 impressions, average position 40.5, landing on /blog/what-is-a-lead-generation-funnel. "done for you sales funnel": 1 impression at 50 on the target page.
+- **Other clusters:**
+  - Home improvement lead generation and leads: 13 queries, positions 55 to 77, all on /lead-generation/home-improvement.
+  - VSL: "vsl funnel" (49.7), "what is a vsl" (47), "vsl meaning" (14), "vsl examples" (20) on /blog/what-is-a-vsl.
+  - Low ticket funnel queries on /services/low-ticket-funnels.
+  - "10dlc funnel" at position 2.
+- **City or state queries:** "home improvement lead generation southern california" (2 impressions, position 64). One query, no client result there, so the City Page Plan rule says no page.
+- **Changes:** none.
+  - The pages getting these queries changed within the last 7 days.
+  - The lead generation funnel retarget is already scheduled for 1 Dec.
