@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Inline illustrations for the six pillars — brass-lo wireframe with signal
+ * Inline illustrations for the six pillars, brass-lo wireframe with signal
  * accents, drawn as animated SVG line work in the same visual language as the
  * 3D lattice. (These are the documented lightweight fallback style, used on
  * all viewports to keep the shared canvas budget for the funnel itself.)
@@ -25,7 +25,7 @@ function Frame({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* 01 — a flat plane folding into an intake shape */
+/* 01, a flat plane folding into an intake shape */
 export function MiniIntake() {
   return (
     <Frame>
@@ -43,7 +43,7 @@ export function MiniIntake() {
   );
 }
 
-/* 02 — a shield lattice assembling from fragments */
+/* 02, a shield lattice assembling from fragments */
 export function MiniShield() {
   return (
     <Frame>
@@ -65,7 +65,7 @@ export function MiniShield() {
   );
 }
 
-/* 03 — three nodes firing pulses between each other */
+/* 03, three nodes firing pulses between each other */
 export function MiniNodes() {
   return (
     <Frame>
@@ -103,7 +103,7 @@ export function MiniNodes() {
   );
 }
 
-/* 04 — two offset waveforms interleaving */
+/* 04, two offset waveforms interleaving */
 export function MiniWaves() {
   const wave = (offset: number) => {
     let d = `M10 ${110 + offset}`;
@@ -126,7 +126,7 @@ export function MiniWaves() {
   );
 }
 
-/* 05 — a sound wave collapsing into a dot then expanding */
+/* 05, a sound wave collapsing into a dot then expanding */
 export function MiniVoicemail() {
   return (
     <Frame>
@@ -147,7 +147,7 @@ export function MiniVoicemail() {
   );
 }
 
-/* 06 — a grid of cells filling row by row with signal */
+/* 06, a grid of cells filling row by row with signal */
 export function MiniCRM() {
   const cells: { x: number; y: number; i: number }[] = [];
   let i = 0;

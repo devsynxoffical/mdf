@@ -47,7 +47,7 @@ export default function LeadReceiptsStrip() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.src}
-                  alt={loop === 0 ? `${item.niche} — ${item.metric} ${item.metricLabel}` : ""}
+                  alt={loop === 0 ? `${item.niche}, ${item.metric} ${item.metricLabel}` : ""}
                   loading="lazy"
                   decoding="async"
                 />

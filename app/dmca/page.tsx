@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   path: "/dmca",
-  title: "DMCA Policy — Million Dollar Funnel™",
+  title: "DMCA Policy | Million Dollar Funnel™",
   description:
     "How to report a copyright concern about content on Million Dollar Funnel™ websites, what to include in a DMCA notice and how we respond to it.",
 });
@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata({
 export default function Page() {
   return (
     <>
-      <LegalPage title="DMCA Policy" eyebrow="( Legal ) — DMCA">
+      <LegalPage title="DMCA Policy" eyebrow="( Legal ) · DMCA">
         <p>
           Million Dollar Funnel™ respects intellectual property rights. If you believe content on
           this site infringes your copyright, send a notice that includes:

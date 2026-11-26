@@ -29,7 +29,7 @@ const FEATURED = [
   "1203812276",
 ];
 
-/** (06) The work — creative cards that play on hover. */
+/** (06) The work, creative cards that play on hover. */
 export default function UFBuilt() {
   const [tab, setTab] = useState("all");
   const [openVideo, setOpenVideo] = useState<PortfolioVideo | null>(null);
@@ -44,7 +44,7 @@ export default function UFBuilt() {
     <section id="work" className="uf-light relative overflow-hidden py-[15vh]">
       <ContourBG tone="light" />
       <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 md:px-14">
-        <p className="uf-eyebrow text-mint-deep">( 06 ) — The Work</p>
+        <p className="uf-eyebrow text-mint-deep">( 06 ) · The Work</p>
 
         <div className="mt-6 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <h2 className="type-xl text-inkdeep">
@@ -96,7 +96,7 @@ export default function UFBuilt() {
         {/* closer */}
         <div className="mt-16 flex flex-col items-center gap-6 border-t rule-light pt-12 text-center">
           <p className="font-editorial normal-case text-[clamp(20px,2.4vw,32px)] text-inkdeep/80">
-            Yours is next —
+            Yours is next.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Magnetic>

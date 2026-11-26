@@ -11,7 +11,7 @@ export default function CasesIndex() {
       <ContourBG tone="dark" />
 
       <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
-        <p className="uf-eyebrow text-sky">( Cases ) — Real funnels. Real numbers.</p>
+        <p className="uf-eyebrow text-sky">( Cases ) · Real funnels. Real numbers.</p>
         <h1 className="mt-6 max-w-[14ch] font-sans text-[clamp(40px,6vw,84px)] font-extrabold leading-[1.02] tracking-tight text-white">
           <Reveal as="span">
             <span className="block">Proof You</span>
@@ -21,7 +21,7 @@ export default function CasesIndex() {
           </Reveal>
         </h1>
         <p className="mt-6 max-w-[42ch] font-sans text-[16px] leading-[1.65] text-slate-400">
-          Deep dives into Million Dollar Funnel™ builds — the problems, the rebuild, and the
+          Deep dives into Million Dollar Funnel™ builds, the problems, the rebuild, and the
           revenue that followed.
         </p>
 

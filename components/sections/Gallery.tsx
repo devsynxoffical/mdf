@@ -120,7 +120,7 @@ export default function Gallery() {
         href="/funnels"
         className="group relative inline-block font-body text-s16 font-medium text-brass"
       >
-        View the full portfolio — {VIDEOS.length} creatives →
+        View the full portfolio, {VIDEOS.length} creatives →
         <span
           aria-hidden
           className="absolute -bottom-0.5 left-0 h-px w-0 bg-brass transition-[width] duration-[250ms] group-hover:w-full"

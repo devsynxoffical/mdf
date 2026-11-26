@@ -80,7 +80,7 @@ const WHO = [
 ];
 
 /**
- * ( 04 ) Who we work with — ported from Funnels That Print and re-themed for MDF.
+ * ( 04 ) Who we work with, ported from Funnels That Print and re-themed for MDF.
  * Styles live in app/ftp-sections.css, scoped under `.mdf-ftp`.
  */
 export default function MDFWhoSection() {
@@ -146,7 +146,7 @@ export default function MDFWhoSection() {
     >
       <div className="mhead">
         <div className="rv">
-          <div className="eyebrow mono">( 04 ) — Who we work with</div>
+          <div className="eyebrow mono">( 04 ) · Who we work with</div>
           <h2 className="mh2">
             <span>Built For</span>
             <span className="sky">Conversations.</span>

@@ -350,7 +350,7 @@ export default function WorkProofPage() {
                 </Reveal>
               </h1>
               <p className="mt-6 max-w-[56ch] font-sans text-[16.5px] leading-[1.75] text-slate-300 sm:text-[18px]">
-                Every single metric below is pulled directly from active Meta Ads Manager accounts, HighLevel pipelines, and real client Stripe dashboards — zero vanity claims.
+                Every single metric below is pulled directly from active Meta Ads Manager accounts, HighLevel pipelines, and real client Stripe dashboards, zero vanity claims.
               </p>
             </div>
 
@@ -515,7 +515,7 @@ export default function WorkProofPage() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={item.src}
-                      alt={`${item.niche} — ${item.metric} ${item.metricLabel}`}
+                      alt={`${item.niche}, ${item.metric} ${item.metricLabel}`}
                       loading="lazy"
                       className="block h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.025]"
                     />

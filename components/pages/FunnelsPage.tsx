@@ -99,7 +99,7 @@ export default function FunnelsPage() {
                 </Reveal>
               </h1>
               <p className="mt-6 max-w-[56ch] font-sans text-[16.5px] leading-[1.75] text-slate-300 sm:text-[18px]">
-                Every funnel here is an end-to-end client acquisition machinery — from qualifying VSLs and high-intent landing architecture to automated CRM pipelines and booked calendar slots.
+                Every funnel here is an end-to-end client acquisition machinery, from qualifying VSLs and high-intent landing architecture to automated CRM pipelines and booked calendar slots.
               </p>
               <p className="mt-4 max-w-[60ch] font-sans text-[15px] leading-[1.75] text-slate-400">
                 These {FUNNEL_DESIGNS.length} sales funnel examples are live client builds across mortgage, insurance,

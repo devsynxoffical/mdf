@@ -11,7 +11,7 @@ export const ROUTES = {
   privacy: "/privacy",
 } as const;
 
-/** Homepage section anchors — keep in sync with component `id`s. */
+/** Homepage section anchors, keep in sync with component `id`s. */
 export const SECTIONS = {
   top: "top",
   hero: "hero",

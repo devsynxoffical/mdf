@@ -44,7 +44,7 @@ const COLORS = [
   "#3730A3",
 ] as const;
 
-/** Curated copy for the receipts — verified directly from screenshot dashboards. */
+/** Curated copy for the receipts, verified directly from screenshot dashboards. */
 const WORK_PROOF_CURATED: Record<
   string,
   Omit<WorkProofItem, "id" | "src">
@@ -566,7 +566,7 @@ type DetailMeta = {
   market: string;
 };
 
-/** Presentation layer — unique niches, stacks, and dashboard copy per receipt. */
+/** Presentation layer, unique niches, stacks, and dashboard copy per receipt. */
 const DETAIL_META: Record<string, DetailMeta> = {
   "wp-001": {
     displayName: "Finance Lead Gen",
@@ -1054,7 +1054,7 @@ export const WORK_PROOF_DETAILED: WorkProofDetail[] = WORK_PROOF.map(
     const meta = DETAIL_META[item.id] ?? {
       displayName: item.niche,
       category: `${item.tag} · Proof`,
-      headline: `${item.metric} — ${item.metricLabel}.`,
+      headline: `${item.metric}, ${item.metricLabel}.`,
       body: item.note,
       services: [item.tag.toUpperCase(), "FUNNEL", "TRACKING"],
       market: "UNITED STATES",

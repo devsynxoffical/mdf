@@ -23,7 +23,7 @@ export default function FinalCTA() {
           <p className="mx-auto mt-8 max-w-[50ch] font-body text-s20 leading-[1.6] text-mute">
             Book a call and we&apos;ll map your acquisition system on the spot.
             If we build it and it doesn&apos;t perform, we keep working until it
-            does — at no management fee.
+            does, at no management fee.
           </p>
         </RiseIn>
         <RiseIn delay={300}>

@@ -54,7 +54,7 @@ const STEPS = [
 ] as const;
 
 /**
- * (06) The process — five funnel-build steps in a pinned horizontal scroll.
+ * (06) The process, five funnel-build steps in a pinned horizontal scroll.
  */
 export default function UFProcess() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -120,7 +120,7 @@ export default function UFProcess() {
     >
       <div className="flex h-auto flex-col py-[12vh] md:h-screen md:py-0">
         <div className="px-4 pt-0 sm:px-6 md:px-14 md:pt-16">
-          <p className="uf-eyebrow tracking-[0.16em] text-sky">( 06 ) — The Process</p>
+          <p className="uf-eyebrow tracking-[0.16em] text-sky">( 06 ) · The Process</p>
           <h2 className="mt-5 leading-[0.96]">
             <span className="block font-sans text-[clamp(40px,5.4vw,72px)] font-extrabold tracking-tight text-white">
               Start To
@@ -130,7 +130,7 @@ export default function UFProcess() {
             </span>
           </h2>
           <p className="mt-5 max-w-[52ch] font-sans text-[15px] leading-[1.65] text-slate-400 sm:text-[16px]">
-            How we install a Million Dollar Funnel™ — from offer clarity to live traffic —
+            How we install a Million Dollar Funnel™, from offer clarity to live traffic,
             so the pages, follow-up, and CRM run as one acquisition machine.
           </p>
 
@@ -207,7 +207,7 @@ export default function UFProcess() {
                   </span>
                 </h3>
                 <p className="mt-5 max-w-[40ch] font-sans text-[15px] leading-[1.65] text-slate-400">
-                  We map your offer, path, and follow-up — then install the Million Dollar
+                  We map your offer, path, and follow-up, then install the Million Dollar
                   Funnel™ stack so traffic turns into booked calls, not leaked leads.
                 </p>
                 <a href="/book" className="btn-gold mt-8">

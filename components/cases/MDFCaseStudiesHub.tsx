@@ -26,7 +26,7 @@ export default function MDFCaseStudiesHub({ standalone = false }: { standalone?:
 
       {/* Top Split Hero Cards (Lead Gen & eCommerce) */}
       <div className="mdf-hub-cards">
-        {/* Card 1: Lead Gen — real receipts from the Work Proof page */}
+        {/* Card 1: Lead Gen, real receipts from the Work Proof page */}
         <div className="mdf-hc active">
           <LeadReceiptsStrip />
           <div className="mdf-hb">

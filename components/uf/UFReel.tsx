@@ -21,7 +21,7 @@ const REEL_IDS = [
   "1203105582",
 ];
 
-/** Live reel — a full-bleed strip of creatives playing as you scroll past. */
+/** Live reel, a full-bleed strip of creatives playing as you scroll past. */
 export default function UFReel() {
   const [openVideo, setOpenVideo] = useState<PortfolioVideo | null>(null);
   const reel = REEL_IDS.map((id) => VIDEOS.find((v) => v.id === id)!);
@@ -35,7 +35,7 @@ export default function UFReel() {
             className="live-dot inline-block h-1.5 w-1.5 rounded-full bg-brass"
             aria-hidden
           />
-          Live reel — {VIDEOS.length} creatives
+          Live reel, {VIDEOS.length} creatives
         </p>
       </div>
 

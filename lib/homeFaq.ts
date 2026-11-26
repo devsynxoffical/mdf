@@ -22,7 +22,7 @@ export const FAQS_DATA: FAQItem[] = [
   },
   {
     q: "What's included in the build?",
-    a: "Landing architecture, A2P, AI automations, SMS and email, voicemail drops, and CRM — built and managed by us.",
+    a: "Landing architecture, A2P, AI automations, SMS and email, voicemail drops, and CRM, built and managed by us.",
     cat: "build",
     tags: ["Landing pages", "A2P", "CRM"],
   },
@@ -64,7 +64,7 @@ export const FAQS_DATA: FAQItem[] = [
   },
   {
     q: "Can you run the ads as well as the funnel?",
-    a: "Yes, and we prefer it — both sides get built for each other.",
+    a: "Yes, and we prefer it, both sides get built for each other.",
     cat: "work",
     tags: ["Meta Ads", "Google Ads"],
   },

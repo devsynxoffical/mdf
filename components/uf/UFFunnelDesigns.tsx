@@ -88,7 +88,7 @@ export default function UFFunnelDesigns() {
         {/* Eyebrow & Master Heading */}
         <div className="mx-auto max-w-[1100px] text-center mb-16 sm:mb-20">
           <p className="uf-eyebrow mb-6 text-red-500 tracking-[0.2em] font-sans font-semibold text-[13px] uppercase">
-            ( 06 ) — PROVEN FUNNEL DESIGNS
+            ( 06 ) · PROVEN FUNNEL DESIGNS
           </p>
 
           <h2 className="font-sans text-[clamp(28px,4.2vw,56px)] font-black uppercase tracking-tight leading-[1.1] text-white">

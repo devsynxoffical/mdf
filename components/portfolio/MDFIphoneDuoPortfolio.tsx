@@ -154,7 +154,7 @@ export default function MDFIphoneDuoPortfolio() {
     ].join("\n");
 
     window.location.href = `mailto:info@milliondollarfunnel.com?subject=${encodeURIComponent(
-      "Million Dollar Funnel™ — Strategy Call Booking from " + name
+      "Million Dollar Funnel™, Strategy Call Booking from " + name
     )}&body=${encodeURIComponent(body)}`;
 
     setFormDone(true);

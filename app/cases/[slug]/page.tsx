@@ -16,7 +16,7 @@ const CASE_SEO: Record<string, { title: string; description: string }> = {
       "How a VSL-led funnel and automated backend scaled one offer to $1,520,000 in 19 months: the funnel architecture, follow-up and tracking behind it.",
   },
   "coaching-lto": {
-    title: "Coaching Low-Ticket Funnel Case Study: 13,630 Sales, 3.32 ROAS",
+    title: "Coaching Low Ticket Funnel Case Study: 13,630 Sales",
     description:
       "How we rebuilt a coaching client's backend and tracking and turned chaotic ad spend into 13,630 low-ticket sales, $847,307 in revenue and 3.32 ROAS.",
   },
@@ -28,11 +28,11 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: Props): Metadata {
   const study = getCaseBySlug(params.slug);
-  if (!study) return { title: "Case Study — Million Dollar Funnel™" };
+  if (!study) return { title: "Case Study, Million Dollar Funnel™" };
   const seo = CASE_SEO[study.slug];
   return pageMetadata({
     path: `/cases/${study.slug}`,
-    title: seo?.title ?? `${study.title} — Million Dollar Funnel™`,
+    title: seo?.title ?? `${study.title}, Million Dollar Funnel™`,
     description: seo?.description ?? study.summary,
   });
 }

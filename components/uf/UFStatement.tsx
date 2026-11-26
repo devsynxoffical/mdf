@@ -221,7 +221,7 @@ export default function UFStatement() {
         </div>
       </div>
 
-      {/* 2. TRUSTED LOGOS — edge-to-edge marquee (outside padded container) */}
+      {/* 2. TRUSTED LOGOS, edge-to-edge marquee (outside padded container) */}
       <ResultsLogos tone="cobalt" className="mt-20" logosOnly fullWidthMarquee />
 
       <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 md:px-12">

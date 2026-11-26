@@ -17,7 +17,7 @@ export default function Founder() {
         {/* Portrait */}
         <RiseIn>
           <div className="relative">
-            {/* brass wireframe torus behind the portrait — the subject stands inside the system */}
+            {/* brass wireframe torus behind the portrait, the subject stands inside the system */}
             <svg
               viewBox="0 0 400 400"
               className="absolute -left-10 -top-10 h-[120%] w-[120%] opacity-60"
@@ -53,7 +53,7 @@ export default function Founder() {
               className="relative overflow-hidden rounded-[24px]"
               style={{ aspectRatio: "4/5" }}
             >
-              {/* duotone placeholder portrait — swap for the real photo */}
+              {/* duotone placeholder portrait, swap for the real photo */}
               <div
                 className="absolute inset-0"
                 style={{
@@ -71,7 +71,7 @@ export default function Founder() {
                 <path d="M258 130 Q276 175 262 228" stroke="#D9A441" strokeWidth="3" fill="none" opacity="0.7" />
                 <path d="M300 340 Q316 410 318 500" stroke="#D9A441" strokeWidth="3" fill="none" opacity="0.5" />
                 <text x="200" y="470" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="12" fill="#8F887C">
-                  PORTRAIT — VAISHALI KAPOOR
+                  PORTRAIT, VAISHALI KAPOOR
                 </text>
               </svg>
             </div>
@@ -99,7 +99,7 @@ export default function Founder() {
           <RiseIn delay={200}>
             <p className="mt-6 max-w-[46ch] font-body text-[17px] leading-[1.6] text-mute">
               Eleven years and $50M+ in Facebook ad spend across the US, UK,
-              Canada, and Australia — in tight, competitive niches. 500+ service
+              Canada, and Australia, in tight, competitive niches. 500+ service
               businesses scaled. 100+ founders mentored.
             </p>
           </RiseIn>

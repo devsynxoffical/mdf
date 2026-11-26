@@ -51,7 +51,7 @@ export const INDUSTRIES: Industry[] = [
       blurb: "Roofing lead generation, roofing ads and roofing CRM are handled by our sister brand RoofingSystems.co, a team that works only with roofing companies.",
     },
     keyword: "roofing lead generation",
-    metaTitle: "Roofing Lead Generation: Exclusive Leads & Booked Jobs | MDF™",
+    metaTitle: "Roofing Lead Generation: RoofingSystems.co | MDF™",
     metaDescription:
       "Roofing lead generation with Meta Ads, a roofing funnel and CRM follow-up. Real client dashboards: $111.2K and $77.1K in won jobs in about a month.",
     eyebrow: "Roofing lead generation",
@@ -529,7 +529,7 @@ export const INDUSTRIES: Industry[] = [
     slug: "chiropractic",
     name: "Chiropractic",
     keyword: "chiropractic marketing",
-    metaTitle: "Chiropractic Marketing That Fills Your Schedule",
+    metaTitle: "Chiropractic Marketing and Lead Generation | MDF™",
     metaDescription:
       "Chiropractic marketing funnels that bring new patients and prepaid consults. One practice booked 44 prepaid consults in six days. See how it works.",
     eyebrow: "Chiropractic marketing",
@@ -604,7 +604,7 @@ export const INDUSTRIES: Industry[] = [
     slug: "pressure-washing",
     name: "Pressure Washing",
     keyword: "pressure washing leads",
-    metaTitle: "Pressure Washing Leads: Exclusive Residential & Commercial | MDF™",
+    metaTitle: "Pressure Washing Leads and Marketing | MDF™",
     metaDescription:
       "Exclusive pressure washing leads from your own Meta Ads, quote funnel and instant follow-up. Real receipt: 167 leads at $13.37 each in 30 days.",
     eyebrow: "Pressure washing leads",
@@ -678,9 +678,9 @@ export const INDUSTRIES: Industry[] = [
     slug: "hvac",
     name: "HVAC",
     keyword: "hvac lead generation",
-    metaTitle: "HVAC Lead Generation for Replacement and Install Jobs",
+    metaTitle: "HVAC Marketing Agency and Lead Generation | MDF™",
     metaDescription:
-      "HVAC lead generation funnels for replacement and install jobs. Exclusive leads, fast follow-up and booked appointments. See how HVAC companies get leads.",
+      "HVAC marketing and lead generation for replacement and install jobs: Facebook ads, a qualifying funnel and fast follow-up. Exclusive leads, booked jobs.",
     eyebrow: "HVAC lead generation",
     hubCard: { figure: "New", detail: "The same lead system we run for other home-service companies, built for HVAC replacement and install jobs." },
     h1: "HVAC Lead Generation for Replacement and Install Jobs",
@@ -784,9 +784,9 @@ export const INDUSTRIES: Industry[] = [
     slug: "home-improvement",
     name: "Home Improvement",
     keyword: "home improvement lead generation",
-    metaTitle: "Home Improvement Lead Generation for Contractors | MDF™",
+    metaTitle: "Home Improvement Marketing and Lead Generation",
     metaDescription:
-      "Home improvement lead generation for remodeling, kitchen, bath and exterior contractors: project-specific Meta Ads, photo quote funnels and fast follow-up.",
+      "Home improvement marketing and lead generation for remodelers and contractors: Meta Ads, photo quote funnels and fast follow-up. 211 leads in 7 days.",
     eyebrow: "Home improvement lead generation",
     h1: "Home Improvement Lead Generation That Books Estimates, Not Tire-Kickers",
     intro:

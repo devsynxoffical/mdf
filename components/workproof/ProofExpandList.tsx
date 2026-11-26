@@ -21,7 +21,7 @@ type Props = {
 };
 
 /**
- * Meridian-style expandable proof rows — colored expand blocks,
+ * Meridian-style expandable proof rows, colored expand blocks,
  * 3-col meta, detailed copy, and receipt gallery.
  */
 export default function ProofExpandList({

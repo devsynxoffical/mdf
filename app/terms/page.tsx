@@ -6,15 +6,15 @@ import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   path: "/terms",
-  title: "Terms of Service — Million Dollar Funnel™",
+  title: "Terms of Service | Million Dollar Funnel™",
   description:
-    "The terms that govern your use of Million Dollar Funnel™ websites, content and services, covering our services, results disclaimer and intellectual property.",
+    "The terms for using Million Dollar Funnel™ websites, content and services, including our services, the results disclaimer and intellectual property.",
 });
 
 export default function Page() {
   return (
     <>
-      <LegalPage title="Terms of Service" eyebrow="( Legal ) — Terms">
+      <LegalPage title="Terms of Service" eyebrow="( Legal ) · Terms">
         <p>
           By accessing Million Dollar Funnel™ websites and services, you agree to these Terms.
           If you do not agree, do not use our site or book services with us.

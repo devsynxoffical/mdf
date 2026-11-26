@@ -163,7 +163,7 @@ function Particles({ count }: { count: number }) {
   const { progressRef } = useScrollState();
   const seeds = useMemo(() => makeSeeds(count), [count]);
 
-  // Pointer in NDC — the orb and galaxy answer the cursor.
+  // Pointer in NDC, the orb and galaxy answer the cursor.
   const pointer = useRef({ x: 0, y: 0 });
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
@@ -174,7 +174,7 @@ function Particles({ count }: { count: number }) {
     return () => window.removeEventListener("pointermove", onMove);
   }, []);
 
-  // Preallocated scratch — nothing allocated inside the frame loop.
+  // Preallocated scratch, nothing allocated inside the frame loop.
   const dummy = useMemo(() => new THREE.Object3D(), []);
   const color = useMemo(() => new THREE.Color(), []);
   const flowColor = useMemo(() => new THREE.Color(), []);

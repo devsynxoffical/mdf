@@ -1,31 +1,44 @@
 import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
 import Link from "next/link";
-import { pageMetadata } from "@/lib/seo";
+import { SITE_URL, absoluteUrl, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import { CASE_STUDIES } from "@/lib/cases";
 import MDFCaseStudiesHub from "@/components/cases/MDFCaseStudiesHub";
 import UFFooter from "@/components/uf/UFFooter";
 
 export const metadata: Metadata = pageMetadata({
   path: "/cases",
-  title: "Funnel Case Studies: Lead Gen & eCommerce Results | MDF™",
+  title: "Sales Funnel Case Studies: Real Client Results | MDF™",
   description:
-    "Case studies from Million Dollar Funnel™ client installs, including $1.52M generated in 19 months and 13,630 low-ticket sales at 3.32 ROAS for a coaching offer.",
+    "Sales funnel case studies from client accounts: $1.52M for one offer in 19 months and 13,630 low ticket sales at 3.32 ROAS for a coaching offer.",
 });
 
 export default function CasesPage() {
   return (
     <main className="min-h-screen bg-[#050508] text-white pt-16">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Case Studies",
+          url: absoluteUrl("/cases"),
+          isPartOf: { "@id": `${SITE_URL}/#website` },
+          about: { "@id": `${SITE_URL}/#organization` },
+          hasPart: CASE_STUDIES.map((c) => ({ "@type": "Article", headline: c.title, url: absoluteUrl(`/cases/${c.slug}`) })),
+        }}
+      />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Case Studies", path: "/cases" }])} />
       <MDFCaseStudiesHub standalone />
 
       {/* Full case-study breakdowns */}
       <section className="mx-auto max-w-[1100px] px-4 pb-24 sm:px-6 md:px-14">
-        <p className="uf-eyebrow text-sky">( Breakdowns ) — Full case studies</p>
+        <p className="uf-eyebrow text-sky">( Breakdowns ) · Full case studies</p>
         <h2 className="mt-4 font-sans text-[clamp(26px,3.4vw,40px)] font-extrabold tracking-tight">
           How the results were built
         </h2>
         <p className="mt-4 max-w-[62ch] font-sans text-[15.5px] leading-[1.75] text-slate-400">
           Each breakdown walks through the starting point, the funnel and follow-up we installed, and the numbers that
-          followed — so you can see exactly what changed, not just the headline figure.
+          followed, so you can see exactly what changed, not just the headline figure.
         </p>
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {CASE_STUDIES.map((c) => (

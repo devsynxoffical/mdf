@@ -21,7 +21,7 @@ import UFFooter from "@/components/uf/UFFooter";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
-  title: "Million Dollar Funnels™ | High-Ticket Sales Funnel Agency",
+  title: "Million Dollar Funnel™: Done-For-You Sales Funnel Agency",
   description:
     "Done-for-you sales funnels, lead generation funnels, CRM automation and SMS and email follow-up for US service businesses. Funnel packages from $1,497.",
 });

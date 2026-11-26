@@ -10,7 +10,7 @@ import {
 } from "@/lib/videos";
 
 /**
- * Vertical creative card. Plays automatically — muted and looping — while it
+ * Vertical creative card. Plays automatically, muted and looping, while it
  * is on screen, subject to the shared player budget so only the cards nearest
  * the viewport centre actually run. The "Click for sound" pill opens the full
  * player with audio.

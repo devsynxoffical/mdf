@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 
 /**
- * Composed static frame of the funnel — the fallback for mobile,
+ * Composed static frame of the funnel, the fallback for mobile,
  * low-memory devices and prefers-reduced-motion. Pure SVG, no WebGL,
  * particles frozen mid-flow.
  */

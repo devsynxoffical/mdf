@@ -90,7 +90,7 @@ export default function Testimonials() {
       </RiseIn>
 
       <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-12">
-        {/* Large video — columns 1–7 */}
+        {/* Large video, columns 1–7 */}
         <VideoCard
           className="md:col-span-7"
           name="Marcus T."
@@ -99,7 +99,7 @@ export default function Testimonials() {
           seed={0}
           delay={0}
         />
-        {/* Two stacked quotes — columns 8–12 */}
+        {/* Two stacked quotes, columns 8–12 */}
         <div className="flex flex-col gap-6 md:col-span-5">
           <Quote
             delay={70}
@@ -112,7 +112,7 @@ export default function Testimonials() {
             attribution="DANIEL R. · ROOFING"
           />
         </div>
-        {/* Offset second row — deliberately starts lower so the grid never resolves neat */}
+        {/* Offset second row, deliberately starts lower so the grid never resolves neat */}
         <div className="hidden md:col-span-2 md:block" aria-hidden />
         <VideoCard
           className="md:col-span-5 md:mt-10"

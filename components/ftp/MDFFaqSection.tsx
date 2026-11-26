@@ -7,7 +7,7 @@ import { FAQS_DATA, type FAQItem } from "@/lib/homeFaq";
 const countCat = (cat: FAQItem["cat"]) => FAQS_DATA.filter((f) => f.cat === cat).length;
 
 /**
- * ( 07 ) FAQ — chat-style layout ported from Funnels That Print, re-themed for MDF.
+ * ( 07 ) FAQ, chat-style layout ported from Funnels That Print, re-themed for MDF.
  * Styles live in app/ftp-sections.css, scoped under `.mdf-ftp`.
  */
 export default function MDFFaqSection() {
@@ -128,7 +128,7 @@ export default function MDFFaqSection() {
     <section className="sec box" id="faq">
       <div className="fx-head">
         <div>
-          <div className="eyebrow mono">( 07 ) — The Questions</div>
+          <div className="eyebrow mono">( 07 ) · The Questions</div>
           <h2 className="mh2">
             <span>Before You</span>
             <span className="sky">Book.</span>

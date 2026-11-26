@@ -41,7 +41,7 @@ export default function AboutPage() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(18,84,236,0.3),transparent_50%)]" />
         <ContourBG tone="dark" />
         <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-14">
-          <p className="uf-eyebrow text-sky">( About ) — The operator</p>
+          <p className="uf-eyebrow text-sky">( About ) · The operator</p>
           <h1 className="mt-5 max-w-[16ch] font-sans text-[clamp(40px,5.5vw,72px)] font-extrabold leading-[1.05] tracking-tight">
             <Reveal as="span">
               <span className="block">This Is How We</span>
@@ -61,7 +61,7 @@ export default function AboutPage() {
               </p>
               <div className="mt-8 space-y-5 font-sans text-[16px] leading-[1.75] text-slate-300 md:text-[17px]">
                 <p>
-                  Big 4 Market Scaling Expert across the US, UK, Canada, and Australia — focused
+                  Big 4 Market Scaling Expert across the US, UK, Canada, and Australia, focused
                   on tight niches where offer clarity and backend systems decide who scales.
                 </p>
                 <p>
@@ -71,7 +71,7 @@ export default function AboutPage() {
                   campaign.
                 </p>
                 <p>
-                  Million Dollar Funnel™ is the answer — a high-converting backend built for
+                  Million Dollar Funnel™ is the answer, a high-converting backend built for
                   scale: architecture, automation, CRM, and ads working as one predictable
                   machine. No guesswork. No tech on your plate.
                 </p>
@@ -228,7 +228,7 @@ export default function AboutPage() {
 
           <p className="uf-eyebrow mt-20 text-cobalt">( Track record )</p>
           <h2 className="mt-4 font-sans text-[clamp(28px,3.6vw,48px)] font-extrabold tracking-tight">
-            Built in the trenches — not in theory
+            Built in the trenches, not in theory
           </h2>
           <div className="mt-14 space-y-0">
             {ABOUT_TIMELINE.map((t) => (

@@ -11,7 +11,7 @@ const QA = [
   },
   {
     q: "What's included in the build?",
-    a: "Landing architecture, A2P, AI automations, SMS and email, voicemail drops, and CRM — built and managed by us.",
+    a: "Landing architecture, A2P, AI automations, SMS and email, voicemail drops, and CRM, built and managed by us.",
   },
   {
     q: "Do you handle the technical side?",
@@ -19,7 +19,7 @@ const QA = [
   },
   {
     q: "Can you run the ads as well as the funnel?",
-    a: "Yes, and we prefer it — both sides get built for each other.",
+    a: "Yes, and we prefer it, both sides get built for each other.",
   },
   {
     q: "Will you work on my existing platform?",
@@ -31,7 +31,7 @@ const QA = [
   },
 ];
 
-/** (08) The questions — editorial accordion, one open at a time. */
+/** (08) The questions, editorial accordion, one open at a time. */
 export default function UFQuestions() {
   const [open, setOpen] = useState<number | null>(0);
 
@@ -41,7 +41,7 @@ export default function UFQuestions() {
       <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 md:px-14">
         <div className="grid gap-12 md:grid-cols-[0.8fr_1.2fr] md:gap-16">
           <div className="md:sticky md:top-28 md:self-start">
-            <p className="uf-eyebrow text-cobalt font-bold tracking-[0.16em] font-sans">( 07 ) — The Questions</p>
+            <p className="uf-eyebrow text-cobalt font-bold tracking-[0.16em] font-sans">( 07 ) · The Questions</p>
             <h2 className="type-lg mt-6 text-[#070B1E]">
               <Reveal as="span">
                 <span className="font-sans block text-[clamp(36px,4.6vw,68px)] font-extrabold text-[#070B1E] tracking-tight leading-[1.05]">
