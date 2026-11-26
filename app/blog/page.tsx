@@ -22,6 +22,7 @@ const TOPICS: { label: string; links: [string, string][] }[] = [
       ["/blog/sales-funnel-examples", "sales funnel examples"],
       ["/blog/sales-funnel-vs-marketing-funnel", "sales funnel vs marketing funnel"],
       ["/blog/funnel-builder-vs-agency", "funnel builder vs agency"],
+      ["/blog/how-much-does-a-sales-funnel-cost", "how much a sales funnel costs"],
       ["/blog/what-is-a-vsl", "VSL funnels"],
     ],
   },
@@ -30,6 +31,7 @@ const TOPICS: { label: string; links: [string, string][] }[] = [
     links: [
       ["/blog/what-is-a-lead-generation-funnel", "lead generation funnel"],
       ["/blog/chiropractic-marketing-ideas", "chiropractic marketing ideas"],
+      ["/blog/hvac-marketing-ideas", "HVAC marketing ideas"],
     ],
   },
   {

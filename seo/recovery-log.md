@@ -599,3 +599,7 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Validation:**
   - 47 pages: one H1 each, self canonicals, FAQPage answers match the visible text, JSON-LD parses, no em dashes.
   - 67 internal links return 200. No mobile overflow on the 10 changed templates.
+- **Day 2 (same session):**
+  - New guide /blog/how-much-does-a-sales-funnel-cost: AEO price table with the published packages, what is included, cost factors, other costs and 5 FAQs (about 1,000 words). Links to /sales-funnel-agency, DFY, A2P, missed call and the coaching case.
+  - New guide /blog/hvac-marketing-ideas: 10 ideas, a table and 5 FAQs (about 1,080 words). It states that no HVAC-only result is published; the closest home-service receipt is used. Links to /lead-generation/hvac, missed call and speed to lead.
+  - Both are added to the blog topic list and llms.txt.

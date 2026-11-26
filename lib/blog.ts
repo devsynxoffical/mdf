@@ -972,6 +972,196 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     cta: { label: "See chiropractic marketing", href: "/lead-generation/chiropractic" },
   },
+  {
+    slug: "how-much-does-a-sales-funnel-cost",
+    title: "How Much Does a Sales Funnel Cost? Prices and What You Get",
+    metaTitle: "How Much Does a Sales Funnel Cost? Real Price Ranges",
+    metaDescription:
+      "What a sales funnel costs to build: published package prices from $1,497 to $4,997, what each includes, what changes the price and the costs to plan.",
+    primaryKeyword: "how much does a sales funnel cost",
+    published: "2026-11-26",
+    readMinutes: 6,
+    summary:
+      "A done-for-you sales funnel from our team costs $1,497 for design only, $2,497 for design plus copy and $4,997 for the full build with integrations, follow-up emails and 30 days of support. Ad spend and software are paid separately. The price depends mostly on the number of pages, who writes the copy and how much automation is connected.",
+    blocks: [
+      { type: "h2", text: "Sales funnel prices at a glance" },
+      {
+        type: "table",
+        columns: ["Package", "Price", "Best for"],
+        rows: [
+          ["Design Only", "$1,497", "You have copy and a builder, you need strategy and design"],
+          ["Design + Copy Build", "$2,497", "You need launch-ready pages and copy written for your offer"],
+          ["Full AC Funnel Suite", "$4,997", "You want the whole funnel built, connected and supported after launch"],
+        ],
+      },
+      {
+        type: "p",
+        text: "These are the published prices on our [sales funnel agency](/sales-funnel-agency) page. Ad spend and software subscriptions are paid directly to the platforms, so you keep ownership of the accounts.",
+      },
+      { type: "h2", text: "What is included at each price" },
+      {
+        type: "ul",
+        items: [
+          "Design Only: market research and offer positioning, funnel strategy and structure, conversion design, custom graphics and mobile layouts.",
+          "Design + Copy Build: everything above, plus the sales page and long-form copy, checkout and order bump copy, upsell and VSL copy, booking page and a thank-you page with a show-up script.",
+          "Full AC Funnel Suite: everything above, plus full tech setup and integrations, membership area setup, follow-up email sequences and 30 days of post-launch support.",
+        ],
+      },
+      { type: "h2", text: "What changes the cost of a sales funnel" },
+      {
+        type: "ol",
+        items: [
+          "Number of pages: a single landing page costs less than a funnel with checkout, upsells and booking.",
+          "Copy: writing a sales page and VSL script for your offer is a large part of the work.",
+          "Integrations: checkout, calendar, CRM, email and SMS all need connecting and testing.",
+          "Follow-up: email and text sequences, reminders and [missed call text back](/services/missed-call-text-back) add setup time.",
+          "Traffic: running the ads that feed the funnel is usually priced separately, because it depends on your market and budget.",
+        ],
+      },
+      { type: "h2", text: "Costs to plan besides the build" },
+      {
+        type: "ul",
+        items: [
+          "Funnel builder or CRM software, such as GoHighLevel or ClickFunnels, paid monthly to the provider.",
+          "Ad spend, paid to Meta or Google.",
+          "Text messaging fees and [A2P 10DLC registration](/blog/a2p-10dlc-registration) if you text leads in the US.",
+          "Your team's time to answer leads and run sales calls.",
+        ],
+      },
+      { type: "h2", text: "Is a sales funnel worth the cost?" },
+      {
+        type: "p",
+        text: "It is worth it when the offer is proven and the funnel is measured. One [done-for-you sales funnel](/services/done-for-you-sales-funnels) we built sold 13,630 times, with $847,307 in revenue at a 3.32 return on ad spend ([case study](/cases/coaching-lto)). Results depend on the offer, the market and the traffic, so judge any funnel on cost per lead, per booked call and per sale.",
+      },
+      {
+        type: "p",
+        text: "Not sure whether to build it yourself? Compare the options in [funnel builder vs funnel agency](/blog/funnel-builder-vs-agency), or see [sales funnel examples](/blog/sales-funnel-examples).",
+      },
+    ],
+    faq: [
+      {
+        q: "How much does a sales funnel cost?",
+        a: "Our published packages are $1,497 for Design Only, $2,497 for Design + Copy Build and $4,997 for the Full AC Funnel Suite. Ad spend and software are paid separately.",
+      },
+      {
+        q: "How much does it cost to build a sales funnel yourself?",
+        a: "Building it yourself costs the software subscription plus your time to plan, write, design, connect and test every step. The time is usually the larger cost.",
+      },
+      {
+        q: "Why do sales funnel prices vary so much?",
+        a: "Prices depend on the number of pages, whether copy is included, how many tools are connected, how much follow-up is built and whether ads are managed.",
+      },
+      {
+        q: "How long does it take to build a sales funnel?",
+        a: "A focused funnel usually launches in about two to four weeks, depending on the offer, the number of pages and the automation needed.",
+      },
+      {
+        q: "Are ad spend and software included in the price?",
+        a: "No. Ad spend and software subscriptions are paid directly to the platforms, so the accounts and data stay in your name.",
+      },
+    ],
+    cta: { label: "See the sales funnel agency page", href: "/sales-funnel-agency" },
+  },
+  {
+    slug: "hvac-marketing-ideas",
+    title: "HVAC Marketing Ideas: 10 Ways to Get More Calls and Installs",
+    metaTitle: "HVAC Marketing Ideas: 10 Ways to Get More Calls",
+    metaDescription:
+      "Ten HVAC marketing ideas that bring calls and install jobs: seasonal offers, Facebook ads, financing, reviews, missed call text back and more.",
+    primaryKeyword: "hvac marketing ideas",
+    published: "2026-11-26",
+    readMinutes: 7,
+    summary:
+      "The HVAC marketing ideas that work best combine a clear seasonal or replacement offer, local Facebook and Google visibility, financing for big installs, strong reviews and instant follow-up so no call is lost. Plan campaigns before the first heat wave or cold snap, not during it.",
+    blocks: [
+      { type: "h2", text: "10 HVAC marketing ideas" },
+      {
+        type: "ol",
+        items: [
+          "Run seasonal tune-up offers before summer and winter.",
+          "Promote replacement offers for systems older than 12 years.",
+          "Lead with financing for high-ticket installs.",
+          "Run local Facebook ads with a short qualifying form.",
+          "Keep your Google Business Profile complete, with photos and fresh reviews.",
+          "Ask every happy customer for a review on the day of the job.",
+          "Share before and after videos from real installs.",
+          "Turn on missed call text back so no emergency call is lost.",
+          "Answer every web lead within minutes with an automatic text.",
+          "Track cost per booked estimate and per installed system, not just cost per lead.",
+        ],
+      },
+      { type: "h2", text: "1 and 2. Seasonal and replacement offers" },
+      {
+        type: "p",
+        text: "Demand jumps in the first heat wave and the first cold snap. Campaigns, landing pages and follow-up should be live before then, so you are not paying peak prices while still setting up. Replacement offers aimed at older systems bring higher-value jobs than small repairs.",
+      },
+      { type: "h2", text: "3. Financing for big installs" },
+      {
+        type: "p",
+        text: "A new system is a large purchase. Showing a monthly payment option in the ad and on the page removes the first objection and brings in homeowners who would otherwise wait.",
+      },
+      { type: "h2", text: "4. Local Facebook ads with a qualifying form" },
+      {
+        type: "p",
+        text: "Facebook ads reach homeowners in your service area before they search. A short form that asks system age, the problem and the timeline separates replacements from small repairs. Our home-service funnels built this way brought 211 leads in 7 days at $11.27 each for a Florida home-services company. We have not published an HVAC-only result yet. See [HVAC lead generation](/lead-generation/hvac).",
+      },
+      { type: "h2", text: "5 and 6. Google Business Profile and reviews" },
+      {
+        type: "p",
+        text: "Many homeowners call the first well-reviewed company on Google Maps. Keep your hours, service area, photos and services complete, and ask for a review right after a job goes well, with a direct link.",
+      },
+      { type: "h2", text: "7. Before and after videos" },
+      {
+        type: "p",
+        text: "Short videos of real installs show the quality of your work better than stock photos. Use them in ads, on your landing page and on your Google profile.",
+      },
+      { type: "h2", text: "8 and 9. Missed call text back and instant replies" },
+      {
+        type: "p",
+        text: "Emergency callers rarely leave a voicemail; they call the next company. [Missed call text back](/services/missed-call-text-back) sends a text within seconds, and an automatic reply to every web form keeps the lead warm until your team calls. Our [speed to lead](/blog/speed-to-lead) guide explains why the first minutes matter.",
+      },
+      { type: "h2", text: "10. Measure booked estimates and installs" },
+      {
+        type: "p",
+        text: "Cheap leads that never book cost more than expensive leads that do. Track cost per booked estimate and per installed system for each campaign, and move budget to what produces installs.",
+      },
+      {
+        type: "table",
+        columns: ["Idea", "Main benefit", "When to start"],
+        rows: [
+          ["Seasonal tune-up offers", "Fills the schedule before peak", "Four to six weeks before the season"],
+          ["Replacement offers", "Higher-value jobs", "Year round"],
+          ["Financing message", "More homeowners say yes to big installs", "Year round"],
+          ["Facebook ads with a form", "Reaches homeowners before they search", "Before the season"],
+          ["Google profile and reviews", "More calls from Maps", "Now, ongoing"],
+          ["Missed call text back", "No lost emergency calls", "Now"],
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "What is the best marketing for HVAC companies?",
+        a: "A strong Google Business Profile with reviews, local Facebook or Google ads with a seasonal or replacement offer, and instant follow-up on every call and form usually bring the most booked jobs.",
+      },
+      {
+        q: "How do HVAC companies get more leads in the off season?",
+        a: "Promote maintenance plans, replacement offers for older systems and financing for installs, and follow up with past customers before the next season starts.",
+      },
+      {
+        q: "Do Facebook ads work for HVAC companies?",
+        a: "Yes, when the ad has a clear offer and the form qualifies system age, homeownership and timeline. Facebook works well for replacement and tune-up offers.",
+      },
+      {
+        q: "How can HVAC companies stop losing calls?",
+        a: "Use missed call text back so every unanswered call gets a text within seconds, and answer web leads automatically with a text and booking link.",
+      },
+      {
+        q: "When should HVAC companies start seasonal marketing?",
+        a: "Before demand peaks. Campaigns, pages and follow-up should be live before the first heat wave or cold snap in your area.",
+      },
+    ],
+    cta: { label: "See HVAC lead generation", href: "/lead-generation/hvac" },
+  },
 ];
 
 export const getPostBySlug = (slug: string) => BLOG_POSTS.find((p) => p.slug === slug);
