@@ -534,3 +534,27 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Changes:** none.
   - The pages getting these queries changed within the last 7 days.
   - The lead generation funnel retarget is already scheduled for 1 Dec.
+
+### Results — 00:40 run, 2026-11-26 (GSC data through 2026-11-24)
+- **Site:**
+  - Hostinger (LiteSpeed, no x-vercel), lead.php returns 422 on an invalid lead.
+  - 25 Nov redirects still live (301, 410, /thank-you 200).
+  - Audit: 44 pages, no duplicate titles or descriptions, 0 bad links.
+- **Indexed:** 39 / 44 (from 32 / 44; baseline 13 / 24).
+  - Newly indexed: /sales-funnel-agency, /services/webinar-funnels, /services/client-acquisition-system, /services/landing-page-design, /services/sales-funnels-for-coaches, /blog/speed-to-lead, /blog/sales-funnel-examples.
+  - Not indexed:
+    - /services, /services/vsl-funnels and /services/application-funnels: Discovered.
+    - /blog: Crawled, not indexed.
+    - /faq: old-site duplicate, last crawl 13 Sep.
+- **Impressions:** 342 / 28d (347 last run, as the window rolled forward), 8 clicks; 155 / 7d.
+  - 7d: non-brand 96, brand 5.
+- **Target keywords:**
+  - "lead generation funnel" 8 impressions at 40.5 (/blog/what-is-a-lead-generation-funnel);
+  - "vsl funnel" 3 at 49.7 (/blog/what-is-a-vsl);
+  - "done for you sales funnel" 1 at 50 (target page).
+  - Other targets 0.
+- **Top non-brand queries:** a2p 10dlc registration and 10dlc registration (12 impressions, 47 to 53), low ticket funnel (5, 45.8), done for you vsl (5, 68).
+- **City or state queries:** only "home improvement lead generation southern california" (2 impressions). No action under the City Page Plan.
+- **Changes:** none.
+  - Every page receiving queries changed in the last 7 days.
+  - The scheduled rows start on 30 Nov and 1 Dec.
