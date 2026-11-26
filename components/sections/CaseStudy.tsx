@@ -64,7 +64,7 @@ export default function CaseStudy() {
 
       {/* The split */}
       <div className="mt-16 grid gap-6 md:grid-cols-2">
-        {/* BEFORE — enters flat, no movement: stagnant */}
+        {/* BEFORE, enters flat, no movement: stagnant */}
         <RiseIn className="!transform-none">
           <div className="h-full rounded-[20px] border border-bone/[0.06] bg-slate2 p-10">
             <p className="font-mono text-s12 uppercase tracking-eyebrow text-mute">
@@ -86,7 +86,7 @@ export default function CaseStudy() {
           </div>
         </RiseIn>
 
-        {/* AFTER — rises 32px with its glow ramping in: lift */}
+        {/* AFTER, rises 32px with its glow ramping in: lift */}
         <div
           ref={afterRef}
           className="h-full rounded-[20px] p-10 transition-all"

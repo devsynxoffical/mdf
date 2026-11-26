@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
+import { SITE_URL, absoluteUrl, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import AboutPage from "@/components/pages/AboutPage";
 import UFFooter from "@/components/uf/UFFooter";
 
@@ -13,6 +14,18 @@ export const metadata: Metadata = pageMetadata({
 export default function Page() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          name: "About Million Dollar Funnel™",
+          url: absoluteUrl("/about"),
+          isPartOf: { "@id": `${SITE_URL}/#website` },
+          about: { "@id": `${SITE_URL}/#organization` },
+          mainEntity: { "@id": `${SITE_URL}/#organization` },
+        }}
+      />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "About Million Dollar Funnel™", path: "/about" }])} />
       <AboutPage />
       <UFFooter />
     </>

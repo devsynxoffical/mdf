@@ -132,7 +132,7 @@ export default function BookCallPage() {
     ].join("\n");
     track("lead_email_fallback", { method: "book_form" });
     window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(
-      "Million Dollar Funnel™ — Strategy Call Booking"
+      "Million Dollar Funnel™, Strategy Call Booking"
     )}&body=${encodeURIComponent(body)}`;
     window.setTimeout(() => {
       setSubmitting(false);

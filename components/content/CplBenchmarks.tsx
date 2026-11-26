@@ -17,7 +17,7 @@ export default function CplBenchmarks() {
         data={{
           "@context": "https://schema.org",
           "@type": "Dataset",
-          name: "Meta Ads cost per lead by niche — Million Dollar Funnel™ client receipts",
+          name: "Meta Ads cost per lead by niche, Million Dollar Funnel™ client receipts",
           description: `Cost per lead from ${CPL_SUMMARY.count} Meta Ads receipts across ${new Set(CPL_ROWS.map((r) => r.niche)).size} niches, published from live client ad accounts.`,
           url: absoluteUrl("/work-proof#benchmarks"),
           creator: { "@id": `${SITE_URL}/#organization` },
@@ -27,7 +27,7 @@ export default function CplBenchmarks() {
         }}
       />
       <div className="mx-auto max-w-[1100px] px-4 sm:px-6 md:px-14">
-        <p className="uf-eyebrow text-sky">( Benchmarks ) — From our receipts</p>
+        <p className="uf-eyebrow text-sky">( Benchmarks ) · From our receipts</p>
         <h2 className="mt-4 font-sans text-[clamp(28px,4vw,44px)] font-extrabold tracking-tight">
           What does a lead cost on Meta Ads?
         </h2>

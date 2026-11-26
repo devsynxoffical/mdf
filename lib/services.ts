@@ -31,9 +31,9 @@ export const SERVICE_PAGES: ServicePage[] = [
     slug: "vsl-funnels",
     name: "VSL Funnels",
     primaryKeyword: "vsl funnel",
-    metaTitle: "VSL Funnel Agency: Done-For-You Video Sales Letter Funnels",
+    metaTitle: "VSL Funnels: Done-For-You Video Sales Letter Funnels",
     metaDescription:
-      "We script, build and launch VSL funnels for coaches, consultants and service businesses: video page, application or checkout, CRM and follow-up wired together.",
+      "VSL funnels scripted, built and launched for you: video page, application or checkout, CRM and follow-up. One VSL funnel offer hit $1.52M in 19 months.",
     eyebrow: "( Service ) · VSL Funnels",
     h1: "Done-For-You VSL Funnels That Turn Watch Time Into Booked Calls",
     stats: [
@@ -122,7 +122,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     metaTitle: "GoHighLevel Funnel Setup: Funnels, Pipelines and Workflows",
     metaDescription:
       "GoHighLevel funnel setup done for you: pages, forms, pipelines, workflows, A2P registration and follow-up built inside your HighLevel account.",
-    eyebrow: "( Service ) — GoHighLevel",
+    eyebrow: "( Service ) · GoHighLevel",
     h1: "GoHighLevel Agency: We Build and Run Your HighLevel Account",
     stats: [
       { value: "<60s", label: "AI first response" },
@@ -131,7 +131,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       { value: "0", label: "Software to learn" },
     ],
     intro:
-      "GoHighLevel can replace half a dozen tools — funnels, CRM, calendars, SMS, email and automations — but only if it is set up properly. We build the account around how you actually sell, connect every step, and keep it running so you never have to learn the software.",
+      "GoHighLevel can replace half a dozen tools, funnels, CRM, calendars, SMS, email and automations, but only if it is set up properly. We build the account around how you actually sell, connect every step, and keep it running so you never have to learn the software.",
     sections: [
       {
         heading: "What our GoHighLevel experts set up",
@@ -162,7 +162,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       {
         heading: "Who we work with",
         body: [
-          "Coaches, consultants, agencies and high-ticket service businesses that sell through conversations. If revenue depends on booking qualified calls and following up quickly, HighLevel is usually the right home for the system, and we build it there — often with an [AI appointment setter](/services/ai-appointment-setter) answering new leads in under a minute.",
+          "Coaches, consultants, agencies and high-ticket service businesses that sell through conversations. If revenue depends on booking qualified calls and following up quickly, HighLevel is usually the right home for the system, and we build it there, often with an [AI appointment setter](/services/ai-appointment-setter) answering new leads in under a minute.",
         ],
       },
     ],
@@ -197,7 +197,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     metaTitle: "AI Follow-Up Inside Your Funnel: Qualify and Book Leads",
     metaDescription:
       "AI follow-up built into your funnel: new leads get a text or call within a minute, answer your qualifying questions and book a call on your calendar.",
-    eyebrow: "( Service ) — AI Appointment Setting",
+    eyebrow: "( Service ) · AI Appointment Setting",
     h1: "AI Appointment Setter That Books Qualified Calls While You Sleep",
     stats: [
       { value: "<60s", label: "First response, 24/7" },
@@ -206,7 +206,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       { value: "CRM", label: "Every conversation logged" },
     ],
     intro:
-      "Leads go cold in minutes, not days. Our AI appointment setter contacts every new lead by SMS or phone within a minute, asks your qualifying questions, handles the common questions and books the ones who fit straight onto your calendar — with a human handoff when it matters.",
+      "Leads go cold in minutes, not days. Our AI appointment setter contacts every new lead by SMS or phone within a minute, asks your qualifying questions, handles the common questions and books the ones who fit straight onto your calendar, with a human handoff when it matters.",
     sections: [
       {
         heading: "What the AI appointment setter does",
@@ -224,13 +224,13 @@ export const SERVICE_PAGES: ServicePage[] = [
       {
         heading: "Why response time matters",
         body: [
-          "Research published in Harvard Business Review found that companies that contacted online leads within an hour were nearly seven times as likely to qualify them as companies that waited longer — and that many companies took far longer than an hour to respond. Most teams cannot answer every lead in minutes, especially at night and weekends. An AI setter can. More in our guide to [speed to lead](/blog/speed-to-lead).",
+          "Research published in Harvard Business Review found that companies that contacted online leads within an hour were nearly seven times as likely to qualify them as companies that waited longer, and that many companies took far longer than an hour to respond. Most teams cannot answer every lead in minutes, especially at night and weekends. An AI setter can. More in our guide to [speed to lead](/blog/speed-to-lead).",
         ],
       },
       {
         heading: "Built on your offer, your rules and your calendar",
         body: [
-          "The setter only says what you approve. We write its qualification questions, answers and booking rules from your offer and your best sales calls, set the hours and limits it works within, and connect it to your CRM and calendar — usually a [GoHighLevel](/services/gohighlevel-agency) account. SMS is sent from [registered A2P 10DLC numbers](/blog/a2p-10dlc-registration) so messages are delivered.",
+          "The setter only says what you approve. We write its qualification questions, answers and booking rules from your offer and your best sales calls, set the hours and limits it works within, and connect it to your CRM and calendar, usually a [GoHighLevel](/services/gohighlevel-agency) account. SMS is sent from [registered A2P 10DLC numbers](/blog/a2p-10dlc-registration) so messages are delivered.",
         ],
       },
       {
@@ -255,7 +255,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       },
       {
         q: "What does it connect to?",
-        a: "Your CRM, calendar and lead sources — most often GoHighLevel — so every conversation and booking is recorded against the lead.",
+        a: "Your CRM, calendar and lead sources, most often GoHighLevel, so every conversation and booking is recorded against the lead.",
       },
     ],
     related: [
@@ -268,10 +268,10 @@ export const SERVICE_PAGES: ServicePage[] = [
     slug: "webinar-funnels",
     name: "Webinar Funnels",
     primaryKeyword: "webinar funnel",
-    metaTitle: "Webinar Funnel Agency: Registrations, Show-Ups & Sales Calls",
+    metaTitle: "Webinar Funnels That Fill Seats and Sell | MDF™",
     metaDescription:
-      "Done-for-you webinar funnels: registration page, ads, reminder sequences, replay and booking flow. Our webinar receipts show $4.34–$5.27 cost per registration.",
-    eyebrow: "( Service ) — Webinar Funnels",
+      "Done-for-you webinar funnels: registration page, ads, reminders, replay and booking. Receipts: 1,515 registrations at a 27.01% opt-in rate, $4.50 each.",
+    eyebrow: "( Service ) · Webinar Funnels",
     h1: "Webinar Funnels That Fill the Room and Book the Calls",
     stats: [
       { value: "$4.34", label: "Lowest cost per registration" },
@@ -280,13 +280,13 @@ export const SERVICE_PAGES: ServicePage[] = [
       { value: "5", label: "Webinar receipts published" },
     ],
     intro:
-      "A webinar funnel turns cold traffic into registrants, registrants into live attendees, and attendees into applications or sales. We build every step — the ads, the registration page, the reminders, the replay and the booking flow — so the webinar is not just watched but acted on.",
+      "A webinar funnel turns cold traffic into registrants, registrants into live attendees, and attendees into applications or sales. We build every step, the ads, the registration page, the reminders, the replay and the booking flow, so the webinar is not just watched but acted on.",
     sections: [
       {
         heading: "What a webinar funnel is",
         body: [
           "A webinar funnel is a sequence built around a live, scheduled or on-demand presentation. Ads or emails send people to a registration page; a confirmation and reminder sequence gets them to show up; the webinar teaches and makes an offer; and a follow-up sequence with the replay converts the people who did not act live.",
-          "Because the registration is a small ask, webinar funnels usually generate leads more cheaply than a direct call booking — but the real result depends on show-up rate and on what happens after the webinar.",
+          "Because the registration is a small ask, webinar funnels usually generate leads more cheaply than a direct call booking, but the real result depends on show-up rate and on what happens after the webinar.",
         ],
       },
       {
@@ -317,7 +317,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       {
         heading: "Who a webinar funnel suits",
         body: [
-          "Coaches, consultants, course creators, agencies and B2B companies with an offer that is easier to sell after teaching something. It is especially effective when buyers need a new way of thinking before they will consider a premium offer. Where a scheduled event is a barrier, an on-demand [VSL funnel](/services/vsl-funnels) often works better — compare the two below.",
+          "Coaches, consultants, course creators, agencies and B2B companies with an offer that is easier to sell after teaching something. It is especially effective when buyers need a new way of thinking before they will consider a premium offer. Where a scheduled event is a barrier, an on-demand [VSL funnel](/services/vsl-funnels) often works better, compare the two below.",
         ],
       },
     ],
@@ -344,7 +344,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       },
       {
         q: "How do you improve webinar show-up rates?",
-        a: "With a clear confirmation page, calendar invites, and email and SMS reminders before the start time — plus a replay sequence for people who miss it.",
+        a: "With a clear confirmation page, calendar invites, and email and SMS reminders before the start time, plus a replay sequence for people who miss it.",
       },
       {
         q: "Which platform do you build webinar funnels on?",
@@ -361,10 +361,10 @@ export const SERVICE_PAGES: ServicePage[] = [
     slug: "low-ticket-funnels",
     name: "Low-Ticket Funnels",
     primaryKeyword: "low ticket funnel",
-    metaTitle: "Low-Ticket Funnels: Tripwire & Self-Liquidating Offer Funnels",
+    metaTitle: "Low Ticket Funnels: Tripwire Offers That Fund Your Ads",
     metaDescription:
-      "We build low-ticket (tripwire) funnels with order bumps and upsells that pay for ad spend and feed your high-ticket offer — 13,630 sales in one coaching case study.",
-    eyebrow: "( Service ) — Low-Ticket Funnels",
+      "Low ticket (tripwire) funnels with order bumps and upsells that help pay for ads and feed your main offer. One coaching funnel sold 13,630 times.",
+    eyebrow: "( Service ) · Low-Ticket Funnels",
     h1: "Low-Ticket Funnels That Pay for Your Ads and Feed High-Ticket Sales",
     stats: [
       { value: "13,630", label: "Low-ticket sales, one client" },
@@ -378,7 +378,7 @@ export const SERVICE_PAGES: ServicePage[] = [
       {
         heading: "What a low-ticket funnel is",
         body: [
-          "A low-ticket funnel (also called a tripwire funnel) starts with a low-priced product — a mini-course, template, challenge or workshop — sold on a simple sales page. At checkout the buyer is offered an order bump; after purchase, one or more upsells or downsells. Then a follow-up sequence introduces the core or high-ticket offer.",
+          "A low-ticket funnel (also called a tripwire funnel) starts with a low-priced product, a mini-course, template, challenge or workshop, sold on a simple sales page. At checkout the buyer is offered an order bump; after purchase, one or more upsells or downsells. Then a follow-up sequence introduces the core or high-ticket offer.",
           "The goal is not profit on the first sale. It is to turn strangers into buyers as cheaply as possible, because a buyer is much easier to sell to again than a lead. In [sales funnel stages](/blog/sales-funnel-stages) terms, the low-ticket offer sits between the top and the bottom of the funnel.",
         ],
       },
@@ -386,7 +386,7 @@ export const SERVICE_PAGES: ServicePage[] = [
         heading: "Results from our low-ticket installs",
         kind: "proof",
         body: [
-          "For one coaching client stuck chasing high-ticket sales, we rebuilt the backend and tracking around a low-ticket front end: 13,630 low-ticket sales, $847,307 in revenue and 3.32 ROAS — read the [coaching low-ticket case study](/cases/coaching-lto). Another install closed 1,650 low-ticket buyers in 20 days for $77,460 in revenue, shown on our [Work Proof page](/work-proof).",
+          "For one coaching client stuck chasing high-ticket sales, we rebuilt the backend and tracking around a low-ticket front end: 13,630 low-ticket sales, $847,307 in revenue and 3.32 ROAS, read the [coaching low-ticket case study](/cases/coaching-lto). Another install closed 1,650 low-ticket buyers in 20 days for $77,460 in revenue, shown on our [Work Proof page](/work-proof).",
         ],
       },
       {
@@ -422,7 +422,7 @@ export const SERVICE_PAGES: ServicePage[] = [
     faq: [
       {
         q: "What is a low-ticket offer?",
-        a: "An inexpensive product — often a mini-course, template, challenge or workshop — sold to cold traffic to turn strangers into buyers before introducing a bigger offer.",
+        a: "An inexpensive product, often a mini-course, template, challenge or workshop, sold to cold traffic to turn strangers into buyers before introducing a bigger offer.",
       },
       {
         q: "What is a self-liquidating offer?",

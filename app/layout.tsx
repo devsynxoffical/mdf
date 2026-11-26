@@ -11,11 +11,11 @@ import { SEO, SITE_URL, siteJsonLd } from "@/lib/seo";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Million Dollar Funnel™ — Predictable High-Ticket Client Acquisition",
+    default: "Million Dollar Funnel™, Predictable High-Ticket Client Acquisition",
     template: "%s",
   },
   description:
-    "We build you a predictable high-ticket client acquisition system with the Million Dollar Funnel™ — without raising ad spend, hiring setters, or touching the tech yourself.",
+    "We build you a predictable high-ticket client acquisition system with the Million Dollar Funnel™, without raising ad spend, hiring setters, or touching the tech yourself.",
   applicationName: SEO.name,
   keywords: SEO.keywords,
   authors: [{ name: SEO.name, url: SITE_URL }],
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: SEO.name,
-    title: "Million Dollar Funnel™ — Predictable High-Ticket Client Acquisition",
+    title: "Million Dollar Funnel™, Predictable High-Ticket Client Acquisition",
     description: SEO.description,
     images: [{ url: SEO.ogImage, width: 1200, height: 630, alt: SEO.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Million Dollar Funnel™ — Predictable High-Ticket Client Acquisition",
+    title: "Million Dollar Funnel™, Predictable High-Ticket Client Acquisition",
     description: SEO.description,
     images: [SEO.ogImage],
   },

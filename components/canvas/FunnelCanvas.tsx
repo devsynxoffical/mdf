@@ -16,7 +16,7 @@ if (typeof window !== "undefined") {
 
 /**
  * The single site-wide canvas. Fixed behind all content, pointer-events none.
- * Mobile / low-memory / reduced-motion get the static composed poster instead —
+ * Mobile / low-memory / reduced-motion get the static composed poster instead,
  * no WebGL context is ever created there.
  */
 export default function FunnelCanvas() {

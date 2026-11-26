@@ -167,7 +167,7 @@ function windStart() {
   const whistleG = actx.createGain();
   whistleG.gain.value = 0.35;
 
-  // Gain stays at 0 until playWindMove — no continuous flutter/modulation
+  // Gain stays at 0 until playWindMove, no continuous flutter/modulation
   windGain = actx.createGain();
   windGain.gain.value = 0;
 
@@ -190,7 +190,7 @@ function windStart() {
 }
 
 /**
- * Wind whoosh — only while the cursor is moving (volume follows velocity).
+ * Wind whoosh, only while the cursor is moving (volume follows velocity).
  * Stays silent when the pointer is idle.
  */
 export function playWindMove(speed: number, panNorm = 0) {

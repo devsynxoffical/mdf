@@ -18,7 +18,7 @@ const HIRES = [
     tag: "01",
     label: "Hire 01",
     skill: "Acquisition",
-    // Left — peeks beside the hero
+    // Left, peeks beside the hero
     rest: { x: "-42%", y: 8, r: -8 },
   },
   {
@@ -27,7 +27,7 @@ const HIRES = [
     tag: "02",
     label: "Hire 02",
     skill: "Conversion",
-    // Right — peeks beside the hero
+    // Right, peeks beside the hero
     rest: { x: "42%", y: -4, r: 8 },
   },
   {
@@ -36,13 +36,13 @@ const HIRES = [
     tag: "03",
     label: "Hire 03",
     skill: "Retention",
-    // Top center — sits ABOVE the hero so it stays visible
+    // Top center, sits ABOVE the hero so it stays visible
     rest: { x: "0%", y: -56, r: -2 },
   },
 ];
 
 /**
- * (03) The Headcount — three hire cards land into place,
+ * (03) The Headcount, three hire cards land into place,
  * then the unified “one team” card resolves the story.
  */
 export default function UFHeadcount() {
@@ -51,7 +51,7 @@ export default function UFHeadcount() {
   const heroRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
 
-  // Cursor wind — only while the pointer is actively moving over this section
+  // Cursor wind, only while the pointer is actively moving over this section
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -99,7 +99,7 @@ export default function UFHeadcount() {
     };
   }, []);
 
-  // Landing + float + hero reveal + pointer parallax — replays on every enter
+  // Landing + float + hero reveal + pointer parallax, replays on every enter
   useEffect(() => {
     const stage = stageRef.current;
     const hero = heroRef.current;
@@ -277,7 +277,7 @@ export default function UFHeadcount() {
         overwrite: false,
       });
 
-      // Keep hero from fighting float — only nudge x from parallax;
+      // Keep hero from fighting float, only nudge x from parallax;
       // y is owned by intro/float. Use a small additional y via CSS var? skip y.
       void ny;
 
@@ -339,7 +339,7 @@ export default function UFHeadcount() {
 
       <div className="relative z-10 mx-auto max-w-[1200px] px-4 sm:px-6 md:px-10">
         <p className="uf-eyebrow font-sans font-bold tracking-[0.16em] text-cobalt">
-          ( 03 ) — The Headcount
+          ( 03 ) · The Headcount
         </p>
 
         <h2 className="mt-4 leading-[0.92] text-[#070B1E]">
@@ -366,7 +366,7 @@ export default function UFHeadcount() {
             aria-hidden
           />
 
-          {/* Scattered hire cards — fan around the hero so all three stay readable */}
+          {/* Scattered hire cards, fan around the hero so all three stay readable */}
           <div className="relative h-[360px] w-full pt-16 sm:h-[400px] sm:pt-20">
             {HIRES.map((h, i) => (
               <article
@@ -415,7 +415,7 @@ export default function UFHeadcount() {
             ))}
           </div>
 
-          {/* Central resolution card — overlaps lower half only */}
+          {/* Central resolution card, overlaps lower half only */}
           <div
             ref={heroRef}
             className="relative z-20 mx-auto -mt-24 max-w-[680px] sm:-mt-28"
@@ -440,7 +440,7 @@ export default function UFHeadcount() {
 
               <p className="relative z-[1] font-sans text-[13px] leading-relaxed text-slate-400 sm:text-[14px]">
                 Three invoices. Three timelines. Everyone pointing at someone
-                else&apos;s step. Or —
+                else&apos;s step. Or:
               </p>
 
               <h3 className="relative z-[1] mt-5 font-sans text-[clamp(28px,4.4vw,50px)] font-black leading-[1.08] tracking-[-0.03em] text-white">
@@ -482,7 +482,7 @@ export default function UFHeadcount() {
                 revenue number you&apos;re looking at.
               </p>
 
-              {/* Cursor pixel shatter — Unick-style */}
+              {/* Cursor pixel shatter, Unick-style */}
               <PixelShatter className="z-[2]" />
             </div>
           </div>

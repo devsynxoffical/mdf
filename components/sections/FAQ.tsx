@@ -14,7 +14,7 @@ const QA = [
   },
   {
     q: "Do you handle the technical side?",
-    a: "Yes — all of it. Integrations, tracking, deliverability, CRM. You don't touch tech.",
+    a: "Yes, all of it. Integrations, tracking, deliverability, CRM. You don't touch tech.",
   },
   {
     q: "Can you help me get more bookings with ad funnels?",
@@ -62,7 +62,7 @@ export default function FAQ() {
                 >
                   {item.q}
                 </span>
-                {/* 20px square toggle — plus rotates 45° to × */}
+                {/* 20px square toggle, plus rotates 45° to × */}
                 <span
                   aria-hidden
                   className="flex h-5 w-5 shrink-0 items-center justify-center border border-mute/40 transition-transform duration-[250ms]"

@@ -11,7 +11,7 @@ type Props = {
 };
 
 /**
- * Reusable photo layouts — images use object-contain so the full frame shows in the box.
+ * Reusable photo layouts, images use object-contain so the full frame shows in the box.
  */
 export default function PagePhotos({
   items,

@@ -12,7 +12,7 @@ if (typeof window !== "undefined") {
 }
 
 /**
- * Funnel Systems — Lusion-style featured work grid:
+ * Funnel Systems, Lusion-style featured work grid:
  * two columns, category line, title, hover arrow + image scale.
  */
 export default function UFLeaks() {
@@ -121,7 +121,7 @@ export default function UFLeaks() {
               data-funnel-fade
               className="uf-eyebrow tracking-[0.18em] text-cobalt"
             >
-              ( 02 ) — Funnel Systems
+              ( 02 ) · Funnel Systems
             </p>
             <h2 className="mt-5 font-sans text-[clamp(40px,6vw,72px)] font-extrabold leading-[0.96] tracking-[-0.04em] text-[#070B1E]">
               <span className="block overflow-hidden">
@@ -135,7 +135,7 @@ export default function UFLeaks() {
             data-funnel-fade
             className="max-w-[36ch] font-sans text-[14px] leading-[1.7] text-slate-500 lg:mb-2 lg:max-w-none lg:text-right"
           >
-            Real client architectures — each screen auto-scrolls through the full
+            Real client architectures, each screen auto-scrolls through the full
             build. Hover a title to open it.
           </p>
         </div>
@@ -171,7 +171,7 @@ export default function UFLeaks() {
           className="mt-16 flex items-baseline justify-between gap-6 border-t border-[#070B1E]/10 pt-8 sm:mt-20"
         >
           <p className="font-sans text-[14px] text-slate-500">
-            Six featured — eight in the full library.
+            Six featured, eight in the full library.
           </p>
           <Link
             href="/funnels"

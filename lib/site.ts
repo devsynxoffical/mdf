@@ -8,11 +8,11 @@ export const SITE = {
 export const SITE_FAQ = [
   {
     q: "Who do you help with the Million Dollar Funnel™ System?",
-    a: "High-ticket service providers, coaches, consultants, and agencies already generating revenue who need a predictable acquisition system — not referrals and word of mouth. Best fit: teams ready to sell a low-ticket offer consistently so high-ticket can scale on a real foundation.",
+    a: "High-ticket service providers, coaches, consultants, and agencies already generating revenue who need a predictable acquisition system, not referrals and word of mouth. Best fit: teams ready to sell a low-ticket offer consistently so high-ticket can scale on a real foundation.",
   },
   {
     q: "What’s included in your Million Dollar Funnel™ System?",
-    a: "Landing architecture, offer & path mapping, A2P compliance, AI automations, SMS & email sequences, voicemail drops, CRM setup, tracking, and launch support — built, launched, and managed by our team so you never touch the tech.",
+    a: "Landing architecture, offer & path mapping, A2P compliance, AI automations, SMS & email sequences, voicemail drops, CRM setup, tracking, and launch support, built, launched, and managed by our team so you never touch the tech.",
   },
   {
     q: "Do you handle the technical side of the funnel?",
@@ -20,7 +20,7 @@ export const SITE_FAQ = [
   },
   {
     q: "Can you help me get more bookings with ad funnels?",
-    a: "Yes — that’s the point. Ads feed the funnel; the funnel qualifies and books. We prefer managing both sides so traffic, offer, and backend are built for each other instead of bolted together later.",
+    a: "Yes, that’s the point. Ads feed the funnel; the funnel qualifies and books. We prefer managing both sides so traffic, offer, and backend are built for each other instead of bolted together later.",
   },
   {
     q: "Do you provide customized funnels on existing platforms?",
@@ -32,15 +32,15 @@ export const SITE_FAQ = [
   },
   {
     q: "Do I need a low-ticket offer first?",
-    a: "If you’re stuck in high-ticket hype with inconsistent front-end sales, yes — we usually start by making the low-ticket convert reliably. That volume funds ads and feeds high-ticket closes.",
+    a: "If you’re stuck in high-ticket hype with inconsistent front-end sales, yes, we usually start by making the low-ticket convert reliably. That volume funds ads and feeds high-ticket closes.",
   },
   {
     q: "What does a strategy call cover?",
-    a: "A 15–20 minute session: we review your offer, current funnel/stack, where revenue is leaking, and whether Million Dollar Funnel™ is the right fit. Clear next step — only if we’re aligned.",
+    a: "A 15–20 minute session: we review your offer, current funnel/stack, where revenue is leaking, and whether Million Dollar Funnel™ is the right fit. Clear next step, only if we’re aligned.",
   },
   {
     q: "Is this performance-backed / risk-free?",
-    a: "Engagements are scoped in writing. We stand behind the system architecture and execution standards. Specific guarantees (if any) are defined per agreement — never vague social-media promises.",
+    a: "Engagements are scoped in writing. We stand behind the system architecture and execution standards. Specific guarantees (if any) are defined per agreement, never vague social-media promises.",
   },
   {
     q: "Who is this not for?",
@@ -52,7 +52,7 @@ export const PROCESS_STEPS = [
   {
     num: "01",
     title: "Map The Offer",
-    body: "Who it’s for, what it promises, and the one action it must cause — before a single page is designed.",
+    body: "Who it’s for, what it promises, and the one action it must cause, before a single page is designed.",
     details: [
       "Ideal client & exclusion criteria",
       "Low-ticket vs high-ticket ladder",
@@ -85,7 +85,7 @@ export const PROCESS_STEPS = [
   {
     num: "04",
     title: "Wire The Follow-Up",
-    body: "A2P, SMS, email, voicemail — answering in seconds so revenue stops leaking between clicks.",
+    body: "A2P, SMS, email, voicemail, answering in seconds so revenue stops leaking between clicks.",
     details: [
       "AI + human handoff timing",
       "SMS / email / voicemail sequences",
@@ -109,7 +109,7 @@ export const PROCESS_STEPS = [
 export const SERVICES = [
   {
     title: "Landing Architecture",
-    body: "High-converting pages built for your offer, traffic source, and ticket size — not generic templates.",
+    body: "High-converting pages built for your offer, traffic source, and ticket size, not generic templates.",
   },
   {
     title: "A2P Compliance & Setup",
@@ -129,7 +129,7 @@ export const SERVICES = [
   },
   {
     title: "CRM Management",
-    body: "Clean pipeline, clear tracking, and stages your team can run — no more guessing where revenue leaked.",
+    body: "Clean pipeline, clear tracking, and stages your team can run, no more guessing where revenue leaked.",
   },
 ];
 
@@ -140,7 +140,7 @@ export const ABOUT_PRINCIPLES = [
   },
   {
     title: "Backend is the product",
-    body: "Tracking, conversion, and follow-up are one machine — not three disconnected tools.",
+    body: "Tracking, conversion, and follow-up are one machine, not three disconnected tools.",
   },
   {
     title: "Tight niches win",
@@ -171,6 +171,6 @@ export const ABOUT_TIMELINE = [
   {
     year: "Today",
     label: "MDF™",
-    body: "Million Dollar Funnel™ — the repeatable install for predictable client acquisition.",
+    body: "Million Dollar Funnel™, the repeatable install for predictable client acquisition.",
   },
 ];

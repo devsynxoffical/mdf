@@ -78,7 +78,7 @@ export const SERVICES: { id: number; title: string; desc: string; category: "bui
 ];
 
 /**
- * ( 03 ) What we do — ported from Funnels That Print and re-themed for MDF.
+ * ( 03 ) What we do, ported from Funnels That Print and re-themed for MDF.
  * Styles live in app/ftp-sections.css, scoped under `.mdf-ftp`.
  */
 const CYCLE_MS = 5200;
@@ -517,7 +517,7 @@ export default function MDFServicesSection() {
     <section ref={revealRef} className="sec box" id="services">
       <div className="mhead">
         <div className="rv">
-          <div className="eyebrow mono">( 03 ) — What we do</div>
+          <div className="eyebrow mono">( 03 ) · What we do</div>
           <h2 className="mh2">
             <span>Traffic In.</span>
             <span className="sky">Customers Out.</span>

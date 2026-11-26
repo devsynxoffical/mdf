@@ -65,7 +65,7 @@ export default function LeadForm({
       `Message: ${lead.notes || "None"}`,
       `Page: ${lead.page}`,
     ].join("\n");
-    window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(`Lead plan request — ${industry ?? source}`)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(`Lead plan request, ${industry ?? source}`)}&body=${encodeURIComponent(body)}`;
     setState("email");
   }
 

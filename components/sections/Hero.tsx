@@ -74,7 +74,7 @@ export default function Hero() {
     >
       <div className="aurora" aria-hidden />
 
-      {/* Headline — top left, light weight, Vesper-style */}
+      {/* Headline, top left, light weight, Vesper-style */}
       <div className="relative mx-auto w-full max-w-[1440px] px-6 md:px-16">
         <Beat delay={300}>
           <p className="bracket-label">High-Ticket Client Acquisition</p>
@@ -103,12 +103,12 @@ export default function Hero() {
 
       {/* The orb breathes in the center of the viewport, behind this content */}
 
-      {/* Bottom row — mono narration left, subhead + CTAs right */}
+      {/* Bottom row, mono narration left, subhead + CTAs right */}
       <div className="relative mx-auto grid w-full max-w-[1440px] items-end gap-10 px-6 md:grid-cols-2 md:px-16">
         <div>
           <Beat delay={760}>
             <p className="max-w-[38ch] font-mono text-s12 uppercase leading-[1.8] tracking-eyebrow text-mute">
-              It reads your traffic — clicks, replies, bookings — and answers
+              It reads your traffic, clicks, replies, bookings, and answers
               in revenue. 6% survive the funnel.
             </p>
           </Beat>
@@ -127,7 +127,7 @@ export default function Hero() {
           <Beat delay={820}>
             <p className="max-w-[40ch] font-body text-[16px] leading-[1.6] text-mute md:ml-auto">
               A predictable high-ticket acquisition system, built and run for
-              you — without raising ad spend, hiring setters, or touching the
+              you, without raising ad spend, hiring setters, or touching the
               tech yourself.
             </p>
           </Beat>

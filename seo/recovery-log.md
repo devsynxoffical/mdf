@@ -558,3 +558,44 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Changes:** none.
   - Every page receiving queries changed in the last 7 days.
   - The scheduled rows start on 30 Nov and 1 Dec.
+
+### C17: 2026-11-26 · Two-day SEO, AEO and GEO work, day 1 (owner request: metadata, titles and slugs proper, page and technical work)
+- **Metadata audit of all 47 pages.** Before: 13 titles or descriptions over the length limits, and em dashes in 6 titles or descriptions. After: every title is 60 characters or fewer, every description 155 or fewer, no duplicates and no em dashes.
+  - **Titles aligned with the 25 Nov plan:**
+    - HVAC "HVAC Marketing Agency and Lead Generation"
+    - chiropractic "Chiropractic Marketing and Lead Generation"
+    - home improvement "Home Improvement Marketing and Lead Generation"
+    - pressure washing "Pressure Washing Leads and Marketing"
+    - landing page "Landing Page Design Services and Agency"
+    - missed call "Missed Call Text Back Service and Software Setup"
+    - VSL "VSL Funnels: Done-For-You Video Sales Letter Funnels"
+    - webinar "Webinar Funnels That Fill Seats and Sell"
+    - low ticket "Low Ticket Funnels: Tripwire Offers That Fund Your Ads"
+    - application "Application Funnels for High Ticket Offers"
+    - coaches "Sales Funnels for Coaches: Webinar, VSL and Application"
+    - client acquisition "Client Acquisition System: Ads, Funnel and Follow-Up"
+  - Lead generation funnel guide retitled "Lead Generation Funnel: What It Is, Stages and Examples". It ranks at 40.5 for that keyword.
+  - Homepage "Million Dollar Funnel™: Done-For-You Sales Funnel Agency" (the brand spelling now matches the schema).
+  - /funnels: "Sales Funnel Examples: 8 Live Funnels We Built" → "Funnel Designs: 8 Live Client Funnels We Built". This avoids competing with /blog/sales-funnel-examples.
+  - Client acquisition description no longer uses the roofing receipts (sister-site lane); it uses the $1.52M case instead.
+  - Legal pages: " — Million Dollar Funnel™" → " | Million Dollar Funnel™".
+- **Slugs:** reviewed; all lowercase, hyphenated and descriptive. None changed, to avoid redirects. The retitled ai-appointment-setter, gohighlevel-agency and meta-ads-management keep their URLs, as the owner approved on 25 Nov.
+- **Em dashes:** 108 removed from visible text on 21 pages, mechanically (" — " → ", ", and section labels "( 01 ) — X" → "( 01 ) · X"). One link sentence in the A2P guide was corrected by hand.
+- **Schema:**
+  - AboutPage, ContactPage (/book) and CollectionPage (/cases, /work-proof, /funnels) added, plus a BreadcrumbList on each.
+  - /cases lists its case studies and /funnels its 8 designs.
+  - Blog posts now carry dateModified and og modifiedTime from a new `updated` field.
+- **Sitemap:** lastmod now comes from each page's last git change (blog from published or updated), instead of the build time on every URL.
+- **Headers:** Strict-Transport-Security (max-age one year) added in .htaccess.
+- **AEO refresh** (content unchanged since 16 to 18 Nov; owner asked for page work):
+  - /blog/a2p-10dlc-registration: brand vs campaign table, "What is A2P verification?", "Do you need 10DLC registration for a lead generation funnel?", 3 FAQs (3 → 6). Matches the GSC queries a2p verification, 10dlc registration and 10dlc for lead generation.
+  - /blog/speed-to-lead: speed to lead checklist table, 2 FAQs.
+  - /blog/sales-funnel-stages: "What is a sales funnel?" answer block (1,300/mo keyword in the plan) and 2 FAQs.
+  - All three show "Updated November 26, 2026".
+- **/blog hub** (crawled, not indexed):
+  - H1 "Sales Funnel and Lead Generation Guides", a clearer intro and guides grouped by topic.
+  - Service cards now point to the main money pages.
+- **llms.txt:** the retitled pages now carry their new names; the sister-site wording was removed.
+- **Validation:**
+  - 47 pages: one H1 each, self canonicals, FAQPage answers match the visible text, JSON-LD parses, no em dashes.
+  - 67 internal links return 200. No mobile overflow on the 10 changed templates.

@@ -4,16 +4,51 @@ import ContentShell, { ContentCta, LinkCards } from "@/components/content/Conten
 import JsonLd from "@/components/seo/JsonLd";
 import UFFooter from "@/components/uf/UFFooter";
 import { BLOG_POSTS } from "@/lib/blog";
-import { SERVICE_PAGES } from "@/lib/services";
 import { pageCard } from "@/lib/pageCards";
 import { absoluteUrl, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   path: "/blog",
-  title: "Funnel & Lead Follow-Up Guides | Million Dollar Funnel™",
+  title: "Sales Funnel and Lead Generation Guides | MDF™",
   description:
-    "Practical guides on VSLs, A2P 10DLC registration, speed to lead and the funnels and follow-up systems that turn high-ticket leads into booked calls.",
+    "Guides on sales funnels, lead generation funnels, VSLs, speed to lead and A2P 10DLC, with real results from client accounts and clear next steps.",
 });
+
+const TOPICS: { label: string; links: [string, string][] }[] = [
+  {
+    label: "Sales funnels",
+    links: [
+      ["/blog/sales-funnel-stages", "sales funnel stages"],
+      ["/blog/sales-funnel-examples", "sales funnel examples"],
+      ["/blog/sales-funnel-vs-marketing-funnel", "sales funnel vs marketing funnel"],
+      ["/blog/funnel-builder-vs-agency", "funnel builder vs agency"],
+      ["/blog/what-is-a-vsl", "VSL funnels"],
+    ],
+  },
+  {
+    label: "Lead generation",
+    links: [
+      ["/blog/what-is-a-lead-generation-funnel", "lead generation funnel"],
+      ["/blog/chiropractic-marketing-ideas", "chiropractic marketing ideas"],
+    ],
+  },
+  {
+    label: "Follow-up and texting",
+    links: [
+      ["/blog/speed-to-lead", "speed to lead"],
+      ["/blog/a2p-10dlc-registration", "A2P 10DLC registration"],
+    ],
+  },
+];
+
+const MONEY_PAGES = [
+  "/sales-funnel-agency",
+  "/services/done-for-you-sales-funnels",
+  "/lead-generation",
+  "/services/missed-call-text-back",
+  "/services/landing-page-design",
+  "/services/vsl-funnels",
+];
 
 const fmt = (d: string) =>
   new Date(d + "T00:00:00Z").toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
@@ -33,14 +68,14 @@ export default function BlogIndex() {
         data={{
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: "Funnel & follow-up guides",
+          name: "Sales funnel and lead generation guides",
           itemListElement: posts.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: absoluteUrl(`/blog/${p.slug}`), name: p.title })),
         }}
       />
       <ContentShell
-        eyebrow="( Guides ) — Funnels & follow-up"
-        title="Funnel & Follow-Up Guides"
-        intro="Straight answers on building funnels, following up with leads and getting more booked calls — from the team that builds them every week."
+        eyebrow="( Guides ) · Funnels & follow-up"
+        title="Sales Funnel and Lead Generation Guides"
+        intro="Straight answers on sales funnels, lead generation funnels and lead follow-up, written by the team that builds them every week and backed by real client results."
         crumbs={crumbs}
         aside={false}
       >
@@ -59,7 +94,24 @@ export default function BlogIndex() {
 
         <LinkCards heading="All guides" items={rest.map((p) => pageCard(`/blog/${p.slug}`))} />
 
-        <LinkCards heading="Services these guides cover" items={SERVICE_PAGES.map((s) => pageCard(`/services/${s.slug}`))} />
+        <h2 className="content-h2">Guides by topic</h2>
+        <ul>
+          {TOPICS.map((t) => (
+            <li key={t.label}>
+              <strong>{t.label}:</strong>{" "}
+              {t.links.map(([href, label], i) => (
+                <span key={href}>
+                  {i > 0 && ", "}
+                  <Link href={href} className="rt-link">
+                    {label}
+                  </Link>
+                </span>
+              ))}
+            </li>
+          ))}
+        </ul>
+
+        <LinkCards heading="Services these guides cover" items={MONEY_PAGES.map((h) => pageCard(h))} />
 
         <ContentCta
           heading="Rather have it built for you?"

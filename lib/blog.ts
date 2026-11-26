@@ -20,6 +20,8 @@ export type BlogPost = {
   metaDescription: string;
   primaryKeyword: string;
   published: string; // ISO date
+  /** Last substantive content update (ISO date). Shown as "Updated" and used as dateModified. */
+  updated?: string;
   readMinutes: number;
   summary: string; // short direct answer, shown at the top
   blocks: BlogBlock[];
@@ -43,7 +45,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: "h2", text: "VSL meaning" },
       {
         type: "p",
-        text: "VSL stands for video sales letter. A traditional sales letter is a long piece of persuasive copy; a VSL delivers the same argument as a video, typically a person talking to camera or a sequence of slides with a voice-over. The goal is the same: move the viewer from interest to a single action — apply, book a call or buy.",
+        text: "VSL stands for video sales letter. A traditional sales letter is a long piece of persuasive copy; a VSL delivers the same argument as a video, typically a person talking to camera or a sequence of slides with a voice-over. The goal is the same: move the viewer from interest to a single action, apply, book a call or buy.",
       },
       {
         type: "p",
@@ -84,7 +86,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         type: "p",
-        text: "The video only does part of the work. Viewers who watch but do not act need follow-up by email and SMS, booked calls need reminders so they show up, and every step needs tracking so you can see where people drop off. That is what our [done-for-you VSL funnels](/services/vsl-funnels) include — and how one offer reached [$1.52M in 19 months](/cases/1-52m-case-study).",
+        text: "The video only does part of the work. Viewers who watch but do not act need follow-up by email and SMS, booked calls need reminders so they show up, and every step needs tracking so you can see where people drop off. That is what our [done-for-you VSL funnels](/services/vsl-funnels) include, and how one offer reached [$1.52M in 19 months](/cases/1-52m-case-study).",
       },
       { type: "h2", text: "Metrics that show whether a VSL is working" },
       {
@@ -126,11 +128,12 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "a2p-10dlc-registration",
     title: "A2P 10DLC Registration: What It Is and How to Get Approved",
-    metaTitle: "A2P 10DLC Registration Guide: Requirements, Steps & Rejections",
+    metaTitle: "A2P 10DLC Registration: Requirements, Steps and Approval",
     metaDescription:
-      "What A2P 10DLC registration is, why US carriers filter unregistered business texts, what you need to register a brand and campaign, and how to avoid rejection.",
+      "A2P 10DLC registration explained: why carriers filter business texts, what you need to register a brand and campaign, and how to avoid rejection.",
     primaryKeyword: "a2p 10dlc registration",
     published: "2026-11-16",
+    updated: "2026-11-26",
     readMinutes: 9,
     summary:
       "A2P 10DLC registration is the process of registering your business (the brand) and your texting use case (the campaign) with US mobile carriers through The Campaign Registry before sending business text messages from a standard 10-digit phone number. Unregistered business texts are filtered or blocked by carriers.",
@@ -147,7 +150,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: "h2", text: "Why registration matters" },
       {
         type: "p",
-        text: "Since 2023, US carriers have blocked SMS sent through unregistered 10DLC numbers. For any business that relies on text follow-up — appointment reminders, lead nurture, no-show recovery or an [AI appointment setter](/services/ai-appointment-setter) — an unregistered or rejected campaign means messages silently fail to arrive, which wrecks your [speed to lead](/blog/speed-to-lead).",
+        text: "Since 2023, US carriers have blocked SMS sent through unregistered 10DLC numbers. For any business that relies on text follow-up, appointment reminders, lead nurture, no-show recovery or an [AI appointment setter](/services/ai-appointment-setter), an unregistered or rejected campaign means messages silently fail to arrive, which wrecks your [speed to lead](/blog/speed-to-lead).",
       },
       { type: "h2", text: "What you need before you register" },
       { type: "h3", text: "For the brand" },
@@ -184,6 +187,22 @@ export const BLOG_POSTS: BlogPost[] = [
           "Attach your phone numbers to the approved campaign and send a test message.",
         ],
       },
+      { type: "h2", text: "Brand registration vs campaign registration" },
+      {
+        type: "table",
+        columns: ["", "Brand registration", "Campaign registration"],
+        rows: [
+          ["What it identifies", "Your business", "How you use text messages"],
+          ["Main details", "Legal name, tax ID, address, website, contact", "Use case, description, sample messages, opt-in and opt-out"],
+          ["Reviewed by", "The Campaign Registry (vetting)", "The mobile carriers"],
+          ["Common blocker", "Name and tax ID do not match", "Opt-in or sample messages unclear"],
+        ],
+      },
+      { type: "h2", text: "What is A2P verification?" },
+      {
+        type: "p",
+        text: "A2P verification is the review your brand and campaign go through before carriers accept your texts. The registry checks that your business details are real and match each other, and carriers check that your use case, opt-in and sample messages follow their rules. Once both are approved, your numbers can send at the volume your registration allows.",
+      },
       { type: "h2", text: "Common reasons campaigns are rejected" },
       {
         type: "ul",
@@ -200,6 +219,11 @@ export const BLOG_POSTS: BlogPost[] = [
         type: "p",
         text: "Most rejections come from mismatched or incomplete information rather than from the business itself. Fix the specific reason given, update the website or forms if needed, and resubmit.",
       },
+      { type: "h2", text: "Do you need 10DLC registration for a lead generation funnel?" },
+      {
+        type: "p",
+        text: "Yes, if the funnel texts leads in the US from a local number. Instant text replies, reminders and [missed call text back](/services/missed-call-text-back) all count as business texting. Register before launch, because a [lead generation funnel](/blog/what-is-a-lead-generation-funnel) that cannot text loses most of its speed advantage.",
+      },
       { type: "h2", text: "A2P registration in GoHighLevel and other CRMs" },
       {
         type: "p",
@@ -207,6 +231,18 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
     faq: [
+      {
+        q: "What happens if I send texts without A2P 10DLC registration?",
+        a: "US carriers filter or block business texts from unregistered 10-digit numbers, so most messages never arrive and your sending number can be flagged.",
+      },
+      {
+        q: "What is the difference between brand and campaign registration?",
+        a: "Brand registration identifies your business: legal name, tax ID, address and website. Campaign registration describes how you text: the use case, sample messages, opt-in and opt-out.",
+      },
+      {
+        q: "Do I need A2P 10DLC for missed call text back?",
+        a: "Yes. Missed call text back sends business texts from a 10-digit number, so the number must be attached to an approved A2P 10DLC campaign.",
+      },
       {
         q: "Is A2P 10DLC registration required?",
         a: "Yes, for businesses sending text messages to US numbers from standard 10-digit numbers. US carriers block SMS from unregistered 10DLC numbers.",
@@ -225,11 +261,12 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "speed-to-lead",
     title: "Speed to Lead: Why the First Minutes Decide the Sale",
-    metaTitle: "Speed to Lead: What It Is, Why It Matters & How to Improve It",
+    metaTitle: "Speed to Lead: What It Is and How to Improve It",
     metaDescription:
-      "Speed to lead is how fast you respond to a new lead. See what the research says, why slow follow-up loses sales, and how to answer every lead in under a minute.",
+      "Speed to lead is how fast you reply to a new lead. See what the research says, why slow follow-up loses sales and how to answer every lead in a minute.",
     primaryKeyword: "speed to lead",
     published: "2026-11-16",
+    updated: "2026-11-26",
     readMinutes: 7,
     summary:
       "Speed to lead is the time between a lead's enquiry and your first response. The faster you respond, the more likely you are to reach and qualify the lead; research in Harvard Business Review found that contacting leads within an hour made companies nearly seven times as likely to qualify them.",
@@ -275,15 +312,35 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: "h2", text: "Missed call text back" },
       {
         type: "p",
-        text: "Missed-call text back sends an automatic SMS to anyone whose call goes unanswered, for example: \"Sorry we missed your call — this is (your business). How can we help?\" It turns a lost call into a conversation that you or an assistant can continue by text. In the US, the number sending the text needs to be [registered for A2P 10DLC](/blog/a2p-10dlc-registration) so the message is delivered.",
+        text: "Missed-call text back sends an automatic SMS to anyone whose call goes unanswered, for example: \"Sorry we missed your call, this is (your business). How can we help?\" It turns a lost call into a conversation that you or an assistant can continue by text. In the US, the number sending the text needs to be [registered for A2P 10DLC](/blog/a2p-10dlc-registration) so the message is delivered.",
+      },
+      { type: "h2", text: "Speed to lead checklist" },
+      {
+        type: "table",
+        columns: ["Moment", "What should happen", "Tool"],
+        rows: [
+          ["Form submitted", "Text and email within seconds, with a booking link", "CRM workflow"],
+          ["Call missed", "Text back within seconds", "Missed call text back"],
+          ["No reply in minutes", "A call from the team or an AI assistant", "Call task or AI follow-up"],
+          ["Call booked", "Confirmation and reminders before the call", "Calendar and SMS reminders"],
+          ["No-show", "Same-day text to rebook", "No-show workflow"],
+        ],
       },
       { type: "h2", text: "Speed alone is not enough" },
       {
         type: "p",
-        text: "A fast reply that says nothing useful still loses the lead. The first message should acknowledge what the person asked for, ask one easy question that moves toward qualification, and make the next step obvious — usually booking a time to talk. We build exactly this inside [GoHighLevel](/services/gohighlevel-agency) for our clients.",
+        text: "A fast reply that says nothing useful still loses the lead. The first message should acknowledge what the person asked for, ask one easy question that moves toward qualification, and make the next step obvious, usually booking a time to talk. We build exactly this inside [GoHighLevel](/services/gohighlevel-agency) for our clients.",
       },
     ],
     faq: [
+      {
+        q: "What is speed to lead in sales?",
+        a: "Speed to lead is the time between a new lead coming in and your first reply. The shorter it is, the more likely the lead is to answer, book and buy.",
+      },
+      {
+        q: "How do I improve speed to lead without hiring more staff?",
+        a: "Automate the first reply: an instant text and email with a booking link when a form comes in, missed call text back for unanswered calls, and reminders for booked calls.",
+      },
       {
         q: "What is a good speed to lead?",
         a: "Aim to make meaningful contact within five minutes, and never more than an hour. Automation can respond in seconds, around the clock.",
@@ -304,26 +361,36 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "Sales Funnel Stages: Top, Middle and Bottom of the Funnel Explained",
     metaTitle: "Sales Funnel Stages: TOFU vs MOFU vs BOFU, With Examples",
     metaDescription:
-      "The stages of a sales funnel — awareness, consideration, decision and retention — and how top-of-funnel and bottom-of-funnel content, offers and metrics differ.",
+      "The stages of a sales funnel (awareness, consideration, decision, retention) and how top and bottom of funnel content, offers and metrics differ.",
     primaryKeyword: "sales funnel stages",
     published: "2026-11-18",
+    updated: "2026-11-26",
     readMinutes: 8,
     summary:
       "A sales funnel has four main stages: awareness (top of funnel), consideration (middle of funnel), decision (bottom of funnel) and retention. Top-of-funnel work attracts people who have never heard of you; bottom-of-funnel work converts people who are ready to buy.",
     blocks: [
+      { type: "h2", text: "What is a sales funnel?" },
+      {
+        type: "p",
+        text: "A sales funnel is the path a buyer takes from first hearing about you to paying you. It usually starts with an ad, a post or a search result, moves through a page that explains one offer, and ends with a purchase or a booked call, followed by automated follow-up. Each step loses some people, so you measure every step and fix the weakest one first.",
+      },
+      {
+        type: "p",
+        text: "See real [sales funnel examples](/blog/sales-funnel-examples) with published results, or how a sales funnel differs from a [marketing funnel](/blog/sales-funnel-vs-marketing-funnel).",
+      },
       { type: "h2", text: "The four sales funnel stages" },
       {
         type: "ol",
         items: [
-          "Awareness (top of funnel, TOFU): a potential buyer notices a problem and discovers you exist — through an ad, a post, a video or a search.",
-          "Consideration (middle of funnel, MOFU): they compare ways to solve the problem and decide whether you are credible — through case studies, a webinar, a VSL or a lead magnet.",
-          "Decision (bottom of funnel, BOFU): they choose whether to buy from you — through a sales page, an application, a sales call or a checkout.",
+          "Awareness (top of funnel, TOFU): a potential buyer notices a problem and discovers you exist, through an ad, a post, a video or a search.",
+          "Consideration (middle of funnel, MOFU): they compare ways to solve the problem and decide whether you are credible, through case studies, a webinar, a VSL or a lead magnet.",
+          "Decision (bottom of funnel, BOFU): they choose whether to buy from you, through a sales page, an application, a sales call or a checkout.",
           "Retention and expansion: after the first purchase, onboarding, results and follow-up turn customers into repeat buyers and referrers.",
         ],
       },
       {
         type: "p",
-        text: "Some models split the stages further — for example interest, evaluation and purchase — but every version describes the same journey from stranger to customer. What matters is that each stage has a clear job and a clear next step.",
+        text: "Some models split the stages further, for example interest, evaluation and purchase, but every version describes the same journey from stranger to customer. What matters is that each stage has a clear job and a clear next step.",
       },
       { type: "h2", text: "Top of funnel vs. bottom of funnel" },
       {
@@ -353,7 +420,7 @@ export const BLOG_POSTS: BlogPost[] = [
         items: [
           "Top: Meta or Google ads, or organic content, aimed at one clearly defined buyer.",
           "Middle: a [VSL](/services/vsl-funnels) or [webinar](/services/webinar-funnels) that explains the method and shows proof, or a [low-ticket offer](/services/low-ticket-funnels) that turns strangers into buyers.",
-          "Bottom: an application or booking page, followed by instant SMS and email follow-up and reminders so booked calls show up — see [speed to lead](/blog/speed-to-lead).",
+          "Bottom: an application or booking page, followed by instant SMS and email follow-up and reminders so booked calls show up, see [speed to lead](/blog/speed-to-lead).",
           "After the sale: onboarding, results tracking and a follow-up sequence that produces reviews, referrals and repeat purchases.",
         ],
       },
@@ -374,6 +441,14 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     faq: [
       {
+        q: "What is a sales funnel?",
+        a: "A sales funnel is the path a buyer takes from first hearing about you to paying you: an ad or post, a page with one offer, a purchase or booked call, and follow-up.",
+      },
+      {
+        q: "Who can build a sales funnel for me?",
+        a: "You can build one yourself with funnel builder software, or hire a sales funnel agency to plan, write, build and test it. Our published packages start at $1,497.",
+      },
+      {
         q: "What are the stages of a sales funnel?",
         a: "Awareness (top of funnel), consideration (middle of funnel), decision (bottom of funnel) and retention. Each stage moves a prospect one step closer to buying, then to buying again.",
       },
@@ -393,7 +468,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "Funnel Builder vs. Funnel Agency: Which Do You Need?",
     metaTitle: "Funnel Builder vs. Funnel Agency: Software or Done-for-You?",
     metaDescription:
-      "A funnel builder is software for making sales funnels yourself; a funnel agency builds them for you. Compare cost, time, skills and results to choose the right one.",
+      "A funnel builder is software for building sales funnels yourself; a funnel agency builds them for you. Compare cost, time, skills and results.",
     primaryKeyword: "funnel builder",
     published: "2026-11-23",
     readMinutes: 7,
@@ -503,9 +578,9 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "what-is-a-lead-generation-funnel",
     title: "What Is a Lead Generation Funnel? Stages, Examples and Costs",
-    metaTitle: "What Is a Lead Generation Funnel? Stages, Examples & Costs",
+    metaTitle: "Lead Generation Funnel: What It Is, Stages and Examples",
     metaDescription:
-      "A lead generation funnel turns ad clicks into booked appointments: offer, ads, a qualifying page, instant follow-up and a CRM. See the stages and real cost-per-lead figures.",
+      "A lead generation funnel turns ad clicks into booked appointments: offer, ads, a qualifying page, instant follow-up and CRM. Stages and real costs.",
     primaryKeyword: "what is a lead generation funnel",
     published: "2026-11-23",
     readMinutes: 7,

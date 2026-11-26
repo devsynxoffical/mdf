@@ -113,9 +113,9 @@ export const SERVICE_LANDINGS: Landing[] = [
     slug: "client-acquisition-system",
     name: "Client Acquisition System",
     keyword: "client acquisition system",
-    metaTitle: "Client Acquisition System: Ads, Funnel & Follow-Up Done for You",
+    metaTitle: "Client Acquisition System: Ads, Funnel and Follow-Up",
     metaDescription:
-      "A done-for-you client acquisition system: Meta Ads, funnel, CRM and automated follow-up as one. Real CRM receipts: $111.2K and $77.1K won in about a month.",
+      "A done-for-you client acquisition system: Meta Ads, funnel, CRM and automated follow-up as one. One offer reached $1.52M in 19 months with it.",
     eyebrow: "Client acquisition system",
     h1: "A Client Acquisition System That Runs Without You Chasing Leads",
     intro:
@@ -264,7 +264,7 @@ export const SERVICE_LANDINGS: Landing[] = [
     slug: "missed-call-text-back",
     name: "Missed Call Text Back",
     keyword: "missed call text back",
-    metaTitle: "Missed Call Text Back That Saves Every Lost Lead",
+    metaTitle: "Missed Call Text Back Service and Software Setup",
     metaDescription:
       "Missed call text back sends an instant text when you miss a call, so leads do not call your competitor. See how it works and how we set it up.",
     eyebrow: "Missed call text back",
@@ -336,9 +336,9 @@ export const SERVICE_LANDINGS: Landing[] = [
     slug: "landing-page-design",
     name: "Landing Page Design",
     keyword: "landing page design agency",
-    metaTitle: "Landing Page Design Agency: Pages Built to Convert | MDF™",
+    metaTitle: "Landing Page Design Services and Agency | MDF™",
     metaDescription:
-      "Landing page design agency for paid traffic: conversion copy, fast mobile-first design and tracking. Real result: a 27.01% opt-in rate on a 5,610-visitor page.",
+      "Landing page design services for paid traffic: conversion copy, fast mobile design and tracking. Real result: a 27.01% opt-in rate on 5,610 visitors.",
     eyebrow: "Landing page design agency",
     h1: "Landing Page Design Agency: Pages That Turn Paid Clicks Into Leads",
     intro:
@@ -415,7 +415,7 @@ export const SERVICE_LANDINGS: Landing[] = [
     slug: "sales-funnels-for-coaches",
     name: "Sales Funnels for Coaches",
     keyword: "sales funnel for coaches",
-    metaTitle: "Sales Funnels for Coaches: Webinar, VSL & Application | MDF™",
+    metaTitle: "Sales Funnels for Coaches: Webinar, VSL and Application",
     metaDescription:
       "Sales funnels for coaches and consultants: webinar, VSL, low-ticket and application funnels. Case study: 13,630 low-ticket sales and $847,307 in revenue.",
     eyebrow: "Sales funnels for coaches",
@@ -480,9 +480,9 @@ export const SERVICE_LANDINGS: Landing[] = [
     slug: "application-funnels",
     name: "Application Funnels",
     keyword: "application funnel",
-    metaTitle: "Application Funnels for High-Ticket Offers | MDF™",
+    metaTitle: "Application Funnels for High Ticket Offers | MDF™",
     metaDescription:
-      "Application funnels that qualify high-ticket prospects before the sales call: VSL or sales page, application, scoring, booking and follow-up, built for you.",
+      "Application funnels that qualify high ticket prospects before the call: sales page or VSL, application, scoring, booking and follow-up, built for you.",
     eyebrow: "Application funnels",
     h1: "Application Funnels That Qualify Prospects Before They Reach Your Calendar",
     intro:

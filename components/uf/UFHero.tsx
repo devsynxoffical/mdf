@@ -109,7 +109,7 @@ export default function UFHero() {
         </p>
       </div>
 
-      {/* 6. CAPABILITY BAR — enhanced glass row */}
+      {/* 6. CAPABILITY BAR, enhanced glass row */}
       <div className="relative z-20 border-t border-white/[0.08] bg-[#050508]/90 backdrop-blur-2xl">
         {/* Cobalt shimmer line */}
         <div

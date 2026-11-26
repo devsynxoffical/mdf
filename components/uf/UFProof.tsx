@@ -29,7 +29,7 @@ const LAYERS: SystemLayer[] = [
     step: "Step 01",
     plain: "The front door",
     title: "Landing pages that convert",
-    body: "We build the page that turns ad clicks into real leads — clear offer, strong call-to-action, and a path that qualifies people before they waste your time.",
+    body: "We build the page that turns ad clicks into real leads, clear offer, strong call-to-action, and a path that qualifies people before they waste your time.",
     tags: ["PAGES", "LEADS", "CONVERT"],
     accent: "#38BDF8",
     badgeBg: "rgba(56, 189, 248, 0.12)",
@@ -52,7 +52,7 @@ const LAYERS: SystemLayer[] = [
     step: "Step 02",
     plain: "Instant follow-up",
     title: "AI that replies in seconds",
-    body: "When someone opts in, AI answers right away — asks the right questions, books the call, and keeps warm leads moving without you hiring a setter.",
+    body: "When someone opts in, AI answers right away, asks the right questions, books the call, and keeps warm leads moving without you hiring a setter.",
     tags: ["AI", "SPEED", "BOOKINGS"],
     accent: "#818CF8",
     badgeBg: "rgba(129, 140, 248, 0.12)",
@@ -102,7 +102,7 @@ const LAYERS: SystemLayer[] = [
     step: "Step 04",
     plain: "Stay in the inbox",
     title: "Texts & emails on autopilot",
-    body: "If they don’t book on the first try, smart SMS and email sequences follow up for you — until they schedule or opt out.",
+    body: "If they don’t book on the first try, smart SMS and email sequences follow up for you, until they schedule or opt out.",
     tags: ["SMS", "EMAIL", "FOLLOW-UP"],
     accent: "#C084FC",
     badgeBg: "rgba(192, 132, 252, 0.12)",
@@ -128,7 +128,7 @@ const LAYERS: SystemLayer[] = [
     step: "Step 05",
     plain: "Cut through noise",
     title: "Voicemail drops that get heard",
-    body: "We drop short voicemails into the follow-up so you stand out when texts get ignored — more replies, more booked calls.",
+    body: "We drop short voicemails into the follow-up so you stand out when texts get ignored, more replies, more booked calls.",
     tags: ["VOICE", "REACH", "REPLIES"],
     accent: "#FB923C",
     badgeBg: "rgba(251, 146, 60, 0.12)",
@@ -156,7 +156,7 @@ const LAYERS: SystemLayer[] = [
     step: "Step 06",
     plain: "One scoreboard",
     title: "CRM that shows the whole pipeline",
-    body: "Every lead, message, and booking lives in one place. You see what’s working, what’s stuck, and what’s closed — without digging through tools.",
+    body: "Every lead, message, and booking lives in one place. You see what’s working, what’s stuck, and what’s closed, without digging through tools.",
     tags: ["CRM", "TRACK", "CONTROL"],
     accent: "#60A5FA",
     badgeBg: "rgba(96, 165, 250, 0.12)",
@@ -340,7 +340,7 @@ function SystemBentoCard({
 }
 
 /**
- * ( 04 ) The System — Six Connected Layers in an interactive modern Cards Grid
+ * ( 04 ) The System, Six Connected Layers in an interactive modern Cards Grid
  */
 export default function UFProof() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -381,7 +381,7 @@ export default function UFProof() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-[700px]">
             <p className="uf-eyebrow tracking-[0.18em] text-[#38BDF8] font-mono text-[12px] uppercase font-semibold">
-              ( 04 ) — The System
+              ( 04 ) · The System
             </p>
             <h2 className="mt-4">
               <Reveal as="span">
@@ -396,7 +396,7 @@ export default function UFProof() {
               </Reveal>
             </h2>
             <p className="mt-6 max-w-[50ch] font-sans text-[16px] leading-[1.7] text-slate-300 sm:text-[17px]">
-              The Million Dollar Funnel™ is six connected layers — from the first page click
+              The Million Dollar Funnel™ is six connected layers, from the first page click
               to a booked call on your calendar. We build it. We run it. You close.
             </p>
           </div>
@@ -425,7 +425,7 @@ export default function UFProof() {
         {/* Bottom CTA Footer */}
         <div className="mt-16 sm:mt-20 flex flex-col items-center gap-6 border-t border-white/10 pt-12 text-center">
           <p className="max-w-[44ch] font-sans text-[16px] sm:text-[17px] leading-relaxed text-slate-300">
-            Six steps. One fully managed system. Built and run by our team — so you never touch the tech.
+            Six steps. One fully managed system. Built and run by our team, so you never touch the tech.
           </p>
           <Magnetic strength={0.15}>
             <Link

@@ -28,7 +28,7 @@ const CARDS: Record<string, PageCard> = {
   "/cases": { href: "/cases", title: "Case studies", desc: "Published client results, including 13,630 sales from one funnel and $1.52M in 19 months.", tag: "Proof" },
   "/work-proof": { href: "/work-proof", title: "40 verified ad & CRM receipts", desc: "Live Meta Ads and CRM screenshots, plus cost-per-lead benchmarks by niche.", tag: "Proof" },
   "/work-proof#benchmarks": { href: "/work-proof#benchmarks", title: "Cost-per-lead benchmarks by niche", desc: "What leads actually cost on Meta Ads across our published receipts.", tag: "Data" },
-  "/funnels": { href: "/funnels", title: "Sales funnel examples", desc: "Eight live funnels we built, with the strategy and stack behind each.", tag: "Examples" },
+  "/funnels": { href: "/funnels", title: "Funnel designs we built", desc: "Eight live funnels we built, with the strategy and stack behind each.", tag: "Examples" },
   "/services": { href: "/services", title: "All services", desc: "Every funnel, automation and AI follow-up service we build.", tag: "Services" },
   "/book": { href: "/book", title: "Book a strategy call", desc: "15–20 minutes to review your offer, funnel and follow-up.", tag: "Next step" },
 };

@@ -109,7 +109,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Required earnings disclaimer — do not remove: the site makes
+        {/* Required earnings disclaimer, do not remove: the site makes
             specific revenue claims and runs Meta ads. */}
         <p className="mt-16 max-w-[80ch] font-body text-s12 leading-[1.5] text-mute/70">
           Results shown are from specific client engagements and are not

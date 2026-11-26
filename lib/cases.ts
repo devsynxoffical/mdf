@@ -72,13 +72,13 @@ export const CASE_STUDIES: CaseStudy[] = [
       roasBadge: "Multi-Million Scale",
     },
     beforeCard: {
-      tag: "( 02 ) — Pre-MDF",
+      tag: "( 02 ) · Pre-MDF",
       subtitle: "Fragmented Funnel",
       title: "How The Business Looked Before MDF™",
       footer: "Result: Unpredictable conversion & wasted acquisition spend.",
     },
     afterCard: {
-      tag: "( 03 ) — Post-MDF",
+      tag: "( 03 ) · Post-MDF",
       subtitle: "19 Months Verified Scale",
       title: "The Million Dollar Funnel™ System Did",
       footer: "✓ $1,520,000 Generated in 19 Months · Automated End-To-End",
@@ -111,7 +111,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     jumpIn:
-      "We engineered a complete Million Dollar Funnel™ system from scratch—connecting premium positioning, automated conversion mechanisms, and reliable scaling infrastructure.",
+      "We engineered a complete Million Dollar Funnel™ system from scratch, connecting premium positioning, automated conversion mechanisms, and reliable scaling infrastructure.",
     cameWith: [
       "Struggling with inconsistent conversions from cold traffic",
       "Funnel lacked high-converting VSL structure and clear positioning",
@@ -173,13 +173,13 @@ export const CASE_STUDIES: CaseStudy[] = [
       roasBadge: "3.32x ROAS",
     },
     beforeCard: {
-      tag: "( 02 ) — Pre-MDF",
+      tag: "( 02 ) · Pre-MDF",
       subtitle: "Leaking Funnel",
       title: "This Is How He Came To Us",
       footer: "Result: Inconsistent ad spend & lost conversions.",
     },
     afterCard: {
-      tag: "( 03 ) — Post-MDF",
+      tag: "( 03 ) · Post-MDF",
       subtitle: "3.32x Verified ROAS",
       title: "The Million Dollar Funnel™ System Did",
       footer: "✓ $847,307 Revenue Collected · 13,630 Sales at Scale",
@@ -230,19 +230,19 @@ export const CASE_STUDIES: CaseStudy[] = [
     faq: [
       {
         q: "Who Do You Help With Million Dollar Funnel™ System?",
-        a: "High-ticket service providers and coaches already generating revenue who need a predictable acquisition system — especially teams stuck selling low-ticket offers inconsistently before they can scale.",
+        a: "High-ticket service providers and coaches already generating revenue who need a predictable acquisition system, especially teams stuck selling low-ticket offers inconsistently before they can scale.",
       },
       {
         q: "What’s Included in Your Million Dollar Funnel™ System?",
-        a: "Landing architecture, tracking, A2P, AI automations, SMS and email follow-ups, voicemail drops, and CRM — built so low-ticket volume can fund and feed high-ticket closes.",
+        a: "Landing architecture, tracking, A2P, AI automations, SMS and email follow-ups, voicemail drops, and CRM, built so low-ticket volume can fund and feed high-ticket closes.",
       },
       {
         q: "Do You Handle the Technical Side of the Funnel?",
-        a: "All of it. Strategy, build, integrations, and ongoing systems — you review the work; you don’t touch the tooling.",
+        a: "All of it. Strategy, build, integrations, and ongoing systems, you review the work; you don’t touch the tooling.",
       },
       {
         q: "Can You Help Me Get More Bookings With Ad Funnels?",
-        a: "Yes. We prefer running ads and funnel together so traffic, offer, and backend follow-up are built for each other — not bolted on later.",
+        a: "Yes. We prefer running ads and funnel together so traffic, offer, and backend follow-up are built for each other, not bolted on later.",
       },
       {
         q: "Do You Provide Customized Funnels on Existing Platforms?",

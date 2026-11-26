@@ -21,13 +21,13 @@ const FAQ_DATA: FAQItem[] = [
     id: "faq-1",
     category: "Fit & Target Clients",
     q: "Who do you help with the Million Dollar Funnel™ System?",
-    a: "High-ticket service providers, coaches, consultants, and agencies already generating revenue who need a predictable acquisition system — not just referrals and word of mouth. Best fit: teams ready to sell a low-ticket offer or VSL consistently so high-ticket can scale on a real foundation.",
+    a: "High-ticket service providers, coaches, consultants, and agencies already generating revenue who need a predictable acquisition system, not just referrals and word of mouth. Best fit: teams ready to sell a low-ticket offer or VSL consistently so high-ticket can scale on a real foundation.",
   },
   {
     id: "faq-2",
     category: "Funnel Scope & Tech",
     q: "What’s included in your Million Dollar Funnel™ System?",
-    a: "Everything needed for end-to-end client acquisition: custom landing architecture, offer & path mapping, A2P compliance, AI automations, SMS & email nurture sequences, voicemail drops, CRM setup, tracking pixels, and launch support — engineered and managed so you never touch the tech.",
+    a: "Everything needed for end-to-end client acquisition: custom landing architecture, offer & path mapping, A2P compliance, AI automations, SMS & email nurture sequences, voicemail drops, CRM setup, tracking pixels, and launch support, engineered and managed so you never touch the tech.",
   },
   {
     id: "faq-3",
@@ -39,7 +39,7 @@ const FAQ_DATA: FAQItem[] = [
     id: "faq-4",
     category: "Ads & Conversions",
     q: "Can you help me get more qualified bookings with paid ad funnels?",
-    a: "Yes — that’s our primary core competency. Paid ads feed the funnel; the funnel qualifies and books appointments automatically. We engineer both sides so your ad creative, landing page, and CRM backend work together seamlessly.",
+    a: "Yes, that’s our primary core competency. Paid ads feed the funnel; the funnel qualifies and books appointments automatically. We engineer both sides so your ad creative, landing page, and CRM backend work together seamlessly.",
   },
   {
     id: "faq-5",
@@ -362,7 +362,7 @@ export default function FaqPage() {
                 Have a unique offer or custom funnel question?
               </h3>
               <p className="mt-2 max-w-[46ch] font-sans text-[15px] text-slate-300">
-                Book a 15–20 minute strategy call — we’ll analyze your exact setup live.
+                Book a 15–20 minute strategy call, we’ll analyze your exact setup live.
               </p>
             </div>
             <Magnetic strength={0.2}>

@@ -21,7 +21,7 @@ export function generateMetadata({ params }: Props): Metadata {
   const p = getPostBySlug(params.slug);
   if (!p) return {};
   const meta = pageMetadata({ path: `/blog/${p.slug}`, title: p.metaTitle, description: p.metaDescription });
-  return { ...meta, openGraph: { ...meta.openGraph, type: "article", publishedTime: p.published } };
+  return { ...meta, openGraph: { ...meta.openGraph, type: "article", publishedTime: p.published, modifiedTime: p.updated ?? p.published } };
 }
 
 function Block({ b }: { b: BlogBlock }) {
@@ -115,7 +115,7 @@ export default function BlogPostPage({ params }: Props) {
           description: p.metaDescription,
           abstract: plainText(p.summary),
           datePublished: p.published,
-          dateModified: p.published,
+          dateModified: p.updated ?? p.published,
           mainEntityOfPage: absoluteUrl(path),
           url: absoluteUrl(path),
           image: absoluteUrl(SEO.ogImage),
@@ -126,7 +126,7 @@ export default function BlogPostPage({ params }: Props) {
       <JsonLd data={faqJsonLd(p.faq)} />
       <JsonLd data={breadcrumbJsonLd(crumbs.map((c) => ({ name: c.name, path: c.href })))} />
       <ContentShell
-        eyebrow={p.published >= "2026-11-23" ? "( Guide ) · Funnels & follow-up" : "( Guide ) — Funnels & follow-up"}
+        eyebrow={p.published >= "2026-11-23" ? "( Guide ) · Funnels & follow-up" : "( Guide ) · Funnels & follow-up"}
         title={p.title}
         crumbs={crumbs}
         toc={toc}
@@ -135,6 +135,14 @@ export default function BlogPostPage({ params }: Props) {
             <span>By the {SEO.name} team</span>
             <span aria-hidden>·</span>
             <time dateTime={p.published}>{date}</time>
+            {p.updated && p.updated !== p.published && (
+              <>
+                <span aria-hidden>·</span>
+                <span>
+                  Updated <time dateTime={p.updated}>{new Date(p.updated + "T00:00:00Z").toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })}</time>
+                </span>
+              </>
+            )}
             <span aria-hidden>·</span>
             <span>{p.readMinutes} min read</span>
           </span>

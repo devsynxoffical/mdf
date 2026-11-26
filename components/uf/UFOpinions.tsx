@@ -244,7 +244,7 @@ function BentoVideoCard({
 }
 
 /**
- * ( 05 ) Testimonials Section — High-Ticket Bento Grid Layout
+ * ( 05 ) Testimonials Section, High-Ticket Bento Grid Layout
  */
 export default function UFOpinions() {
   const [activeVideo, setActiveVideo] = useState<BentoTestimonialItem | null>(null);
@@ -278,7 +278,7 @@ export default function UFOpinions() {
         {/* Section Header */}
         <div className="max-w-[740px]">
           <p className="uf-eyebrow tracking-[0.18em] text-sky font-mono text-[11px] uppercase font-semibold">
-            ( 05 ) — Second Opinions
+            ( 05 ) · Second Opinions
           </p>
           <h2 className="mt-4">
             <Reveal as="span">

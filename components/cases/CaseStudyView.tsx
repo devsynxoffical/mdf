@@ -137,7 +137,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
         <div className="relative mx-auto max-w-[1180px] px-4 sm:px-6 md:px-12">
           <div className="max-w-[840px]">
             <p className="uf-eyebrow tracking-[0.18em] text-cyan-400 font-mono text-[12px] uppercase font-semibold">
-              ( 01 ) — The Diagnostic Breakdown
+              ( 01 ) · The Diagnostic Breakdown
             </p>
             <h2 className="mt-4 font-sans text-[clamp(28px,4vw,52px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white">
               {study.problemLead}
@@ -194,7 +194,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
             )}
           </div>
 
-          {/* The Turning Point — Luxury Hero Card */}
+          {/* The Turning Point, Luxury Hero Card */}
           <div className="relative mt-10 overflow-hidden rounded-3xl border border-cyan-400/35 bg-gradient-to-r from-[#03153f]/95 via-[#061f5c]/90 to-[#020d29]/95 p-7 sm:p-10 shadow-[0_25px_70px_rgba(18,84,236,0.35)] backdrop-blur-2xl">
             <div className="pointer-events-none absolute -right-16 -bottom-16 h-72 w-72 rounded-full bg-cyan-400/15 blur-3xl" />
             <div className="pointer-events-none absolute -left-16 -top-16 h-72 w-72 rounded-full bg-blue-600/20 blur-3xl" />
@@ -252,7 +252,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
                 <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-5">
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-500/10 px-3 py-1 font-mono text-[11px] font-bold text-red-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-red-400 animate-pulse" />
-                    {study.beforeCard?.tag || "( 02 ) — Pre-MDF"}
+                    {study.beforeCard?.tag || "( 02 ) · Pre-MDF"}
                   </span>
                   <span className="font-mono text-xs font-semibold text-red-400/80 uppercase">
                     {study.beforeCard?.subtitle || "Leaking Funnel"}
@@ -291,7 +291,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
                 <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-5">
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 font-mono text-[11px] font-bold text-emerald-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    {study.afterCard?.tag || "( 03 ) — Post-MDF"}
+                    {study.afterCard?.tag || "( 03 ) · Post-MDF"}
                   </span>
                   <span className="font-mono text-xs font-semibold text-cyan-300 uppercase">
                     {study.afterCard?.subtitle || "Verified Scale"}
@@ -341,7 +341,7 @@ export default function CaseStudyView({ study }: { study: CaseStudy }) {
             {/* Sticky FAQ Intro */}
             <div className="md:sticky md:top-28 md:self-start">
               <p className="uf-eyebrow font-mono text-[12px] font-bold tracking-[0.18em] text-cyan-400 uppercase">
-                ( 05 ) — The Questions
+                ( 05 ) · The Questions
               </p>
               <h2 className="mt-4 leading-tight">
                 <Reveal as="span">

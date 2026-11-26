@@ -23,7 +23,7 @@ const PILLARS = [
   {
     num: "03",
     title: "AI-Led Automations & Workflows",
-    body: "Workflows that respond to lead behaviour in seconds, not hours — speed is the single biggest lever on close rate.",
+    body: "Workflows that respond to lead behaviour in seconds, not hours, speed is the single biggest lever on close rate.",
     tags: ["AI Workflows", "Speed-to-Lead", "Behaviour Triggers"],
     outcome: "Response in seconds",
   },
@@ -136,7 +136,7 @@ export default function Pillars() {
       </div>
 
       <div className="mt-12 flex gap-16 md:mt-24">
-        {/* Sticky stage rail — left 40% */}
+        {/* Sticky stage rail, left 40% */}
         <div className="hidden w-[38%] md:block">
           <ol className="sticky top-44 relative">
             {/* connecting line */}
@@ -193,7 +193,7 @@ export default function Pillars() {
           </ol>
         </div>
 
-        {/* Right column — glass panels, one per layer */}
+        {/* Right column, glass panels, one per layer */}
         <div className="w-full md:w-[62%]">
           {PILLARS.map((p, i) => {
             const Mini = PILLAR_MINIS[i];

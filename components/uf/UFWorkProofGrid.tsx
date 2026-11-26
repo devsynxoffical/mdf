@@ -58,7 +58,7 @@ function ProofCard({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={item.src}
-          alt={`${item.niche} — ${item.metric} ${item.metricLabel}`}
+          alt={`${item.niche}, ${item.metric} ${item.metricLabel}`}
           className="block h-auto w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.025]"
           loading="lazy"
           decoding="async"
@@ -107,13 +107,13 @@ type Props = {
 };
 
 /**
- * Results — Verified Performance Dual-Track Scroller & Inspector
+ * Results, Verified Performance Dual-Track Scroller & Inspector
  */
 export default function UFWorkProofGrid({
   items,
   showFilters = true,
   hideAllLink = false,
-  eyebrow = "( 03 ) — VERIFIED PERFORMANCE",
+  eyebrow = "( 03 ) · VERIFIED PERFORMANCE",
   compactHeader = false,
 }: Props) {
   const source = items ?? WORK_PROOF;

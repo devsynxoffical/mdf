@@ -48,7 +48,7 @@ type Props = {
 };
 
 /**
- * Shared results metrics + dual logo marquees — used on home + subpages.
+ * Shared results metrics + dual logo marquees, used on home + subpages.
  */
 export default function ResultsLogos({
   tone = "cobalt",

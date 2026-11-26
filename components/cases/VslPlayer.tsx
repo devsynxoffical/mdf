@@ -26,7 +26,7 @@ function getYouTubeId(url: string): string | null {
 }
 
 /**
- * Cinema-style VSL player — supports YouTube embeds and native MP4 with autoplay, scrub, unmute.
+ * Cinema-style VSL player, supports YouTube embeds and native MP4 with autoplay, scrub, unmute.
  */
 export default function VslPlayer({ src, onProgress, autoPlay = false }: Props) {
   const youtubeId = getYouTubeId(src);
@@ -116,7 +116,7 @@ export default function VslPlayer({ src, onProgress, autoPlay = false }: Props) 
         setPlaying(true);
         setShowUnmuteHint(true);
       }).catch(() => {
-        /* Autoplay blocked — user can tap play */
+        /* Autoplay blocked, user can tap play */
       });
     };
 
@@ -188,7 +188,7 @@ export default function VslPlayer({ src, onProgress, autoPlay = false }: Props) 
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(2,9,38,0.55)_100%)]"
       />
 
-      {/* Manual start — only if autoplay didn't start */}
+      {/* Manual start, only if autoplay didn't start */}
       {!started && (
         <button
           type="button"

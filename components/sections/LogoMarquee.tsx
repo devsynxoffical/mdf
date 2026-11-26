@@ -2,7 +2,7 @@
 
 import RiseIn from "@/components/ui/RiseIn";
 
-// Placeholder wordmarks — swap for real client logo SVGs before launch.
+// Placeholder wordmarks, swap for real client logo SVGs before launch.
 const ROW_1 = [
   "Northline Roofing",
   "Apex Coaching Co.",
