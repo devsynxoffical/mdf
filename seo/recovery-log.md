@@ -603,3 +603,19 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - New guide /blog/how-much-does-a-sales-funnel-cost: AEO price table with the published packages, what is included, cost factors, other costs and 5 FAQs (about 1,000 words). Links to /sales-funnel-agency, DFY, A2P, missed call and the coaching case.
   - New guide /blog/hvac-marketing-ideas: 10 ideas, a table and 5 FAQs (about 1,080 words). It states that no HVAC-only result is published; the closest home-service receipt is used. Links to /lead-generation/hvac, missed call and speed to lead.
   - Both are added to the blog topic list and llms.txt.
+
+### C18: 2026-11-26 · Case hub buttons fixed (owner report: eCommerce and DTC buttons did nothing)
+- **Cause:** the eCommerce card on /cases linked to /cases, the page it sits on, so clicking did nothing. All 12 niche chips on both cards were plain text, not links. The eCommerce library (126 cases) was removed from the hub on 31 Oct, but the card was kept.
+- **Fix:**
+  - New page /cases/ecommerce restores the library from the earlier hub: filters by niche and type, search, a load-more grid, and a breakdown modal with video. All 126 images and 79 videos are present.
+  - Page schema: CollectionPage and BreadcrumbList. Title "eCommerce and DTC Case Studies: 126 Brand Results | MDF™".
+  - "View eCommerce Cases" → /cases/ecommerce.
+  - eCommerce chips link to filtered views: Apparel, Supplements, Beauty & Skincare, DTC Brands (by niche); Jewelry and Dropshipping (by search).
+  - Lead generation chips link to their pages: roofing, personal injury, mortgage, chiropractic, home improvement, the coaching case and work proof.
+  - MedSpa (no published proof) was replaced by Chiropractic and Home Services, which have pages and receipts.
+  - The eCommerce card is no longer one big link around the chips (nested links).
+- **Tested in Chromium:**
+  - every chip and button opens the right page;
+  - filters show the expected counts (Dropshipping 54, Beauty 10, Jewelry 1);
+  - the modal opens, plays the video and closes with Esc; load more adds 12 cards;
+  - no mobile overflow.
