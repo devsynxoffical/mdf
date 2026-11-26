@@ -59,6 +59,7 @@ export const STATIC_ROUTES: { path: string; priority: number; changeFrequency: "
   { path: "/lead-generation", priority: 0.9, changeFrequency: "monthly" },
   { path: "/work-proof", priority: 0.9, changeFrequency: "weekly" },
   { path: "/cases", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/cases/ecommerce", priority: 0.6, changeFrequency: "monthly" },
   { path: "/funnels", priority: 0.8, changeFrequency: "monthly" },
   { path: "/book", priority: 0.8, changeFrequency: "monthly" },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
