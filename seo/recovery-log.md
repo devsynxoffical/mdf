@@ -619,3 +619,20 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - filters show the expected counts (Dropshipping 54, Beauty 10, Jewelry 1);
   - the modal opens, plays the video and closes with Esc; load more adds 12 cards;
   - no mobile overflow.
+
+### Results — 12:40 run, 2026-11-26 (GSC data through 2026-11-24, refreshed)
+- **Site:**
+  - Hostinger (LiteSpeed, no x-vercel), lead.php returns 422 on an invalid lead.
+  - 301, 410 and /thank-you checks pass; /cases/ecommerce returns 200.
+  - Audit: 47 pages, no duplicate titles or descriptions, 0 bad links.
+- **Indexed:** 41 / 47 (39 / 44 last run; baseline 13 / 24).
+  - Both guides published today are already indexed (/blog/how-much-does-a-sales-funnel-cost, /blog/hvac-marketing-ideas).
+  - Not indexed: /services, /services/vsl-funnels, /services/application-funnels, /blog, /faq, /cases/ecommerce (new).
+- **Impressions:** 545 / 28d (342 last run), past the 30-day target of 500. 8 clicks; 358 / 7d (155 last run).
+  - 7d: non-brand 275, brand 5.
+- **Target keywords:**
+  - "lead generation funnel" 30 impressions at 36.8 (8 at 40.5 last run), on /blog/what-is-a-lead-generation-funnel;
+  - "vsl funnel" 4 at 53.5;
+  - "done for you sales funnel" 1 at 50.
+- **City queries:** only "home improvement lead generation southern california". No action.
+- **Changes:** none. Every target page was changed today; the scheduled rows start on 30 Nov and 1 Dec.
