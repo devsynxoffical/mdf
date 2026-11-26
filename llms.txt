@@ -62,11 +62,11 @@ Most installs are live on real traffic in three to four weeks.
 - [Sales Funnel Agency](https://milliondollarfunnels.us/sales-funnel-agency): what we build, published prices, builder vs agency vs DIY, case studies
 - [Services](https://milliondollarfunnels.us/services): every funnel, automation and AI follow-up service
 - [VSL Funnels](https://milliondollarfunnels.us/services/vsl-funnels): done-for-you video sales letter funnels
-- [GoHighLevel Agency](https://milliondollarfunnels.us/services/gohighlevel-agency): HighLevel funnels, pipelines, workflows and A2P setup
-- [AI Appointment Setter](https://milliondollarfunnels.us/services/ai-appointment-setter): qualifies and books new leads in under 60 seconds
+- [GoHighLevel Funnel Setup](https://milliondollarfunnels.us/services/gohighlevel-agency): funnels, pipelines, workflows and A2P setup inside your HighLevel account
+- [AI Follow-Up Inside Your Funnel](https://milliondollarfunnels.us/services/ai-appointment-setter): new leads get a text or call within a minute and book a call
 - [Webinar Funnels](https://milliondollarfunnels.us/services/webinar-funnels): registration, reminders, replay and booking flow
 - [Low-Ticket Funnels](https://milliondollarfunnels.us/services/low-ticket-funnels): tripwire and self-liquidating offer funnels
-- [Meta Ads Management](https://milliondollarfunnels.us/services/meta-ads-management): Facebook and Instagram lead-generation campaigns; 10,172 mortgage leads at $8.06, 1,018 webinar sign-ups at $4.50
+- [Meta Ads for Funnels](https://milliondollarfunnels.us/services/meta-ads-management): traffic built for your funnel; 10,172 mortgage leads at $8.06, 1,018 webinar sign-ups at $4.50
 - [Client Acquisition System](https://milliondollarfunnels.us/services/client-acquisition-system): ads, funnel, follow-up and CRM built as one system
 - [Done-For-You Sales Funnels](https://milliondollarfunnels.us/services/done-for-you-sales-funnels): funnels built, launched and optimized by a funnel builder team; one funnel sold 13,630 times; packages from $1,497
 - [Missed Call Text Back](https://milliondollarfunnels.us/services/missed-call-text-back): an automatic text within seconds of a missed call, with replies and booking in GoHighLevel
@@ -77,12 +77,12 @@ Most installs are live on real traffic in three to four weeks.
 - [Home Improvement Lead Generation](https://milliondollarfunnels.us/lead-generation/home-improvement): quote funnels for remodeling and exterior contractors
 - [Chiropractic Marketing](https://milliondollarfunnels.us/lead-generation/chiropractic): 44 prepaid consults, $6,153 revenue on $1,714 ad spend
 - [Pressure Washing Leads](https://milliondollarfunnels.us/lead-generation/pressure-washing): 167 leads at $13.37
-- [Lead Generation Funnels by Industry](https://milliondollarfunnels.us/lead-generation): exclusive lead systems with Meta Ads, funnel and CRM follow-up (roofing is handled by sister brand RoofingSystems.co and legal leads by ScaleWithAds.us)
-- [Mortgage Lead Generation](https://milliondollarfunnels.us/lead-generation/mortgage): 10,172 mortgage leads at $8.06 in April 2026
-- [Solar Lead Generation](https://milliondollarfunnels.us/lead-generation/solar): 300 homeowner solar leads at $14.71
+- [Lead Generation Funnels by Industry](https://milliondollarfunnels.us/lead-generation): exclusive lead systems with Meta Ads, funnel and CRM follow-up for HVAC, chiropractic, home improvement, pressure washing, mortgage and solar
+- [Funnels for Mortgage Brokers](https://milliondollarfunnels.us/lead-generation/mortgage): 10,172 mortgage leads at $8.06 in April 2026
+- [Funnels for Solar Companies](https://milliondollarfunnels.us/lead-generation/solar): 300 homeowner solar leads at $14.71
 - [Work Proof](https://milliondollarfunnels.us/work-proof): verified ad-account and CRM receipts
 - [Case Studies](https://milliondollarfunnels.us/cases): lead generation and eCommerce results
-- [Funnel Designs](https://milliondollarfunnels.us/funnels): live funnels built by the team
+- [Funnel Designs](https://milliondollarfunnels.us/funnels): eight live client funnels we built
 - [About](https://milliondollarfunnels.us/about): the team and principles behind the system
 - [FAQ](https://milliondollarfunnels.us/faq): what is included, timelines and fit
 - [Book a Call](https://milliondollarfunnels.us/book): 15 to 20 minute strategy call
@@ -94,7 +94,7 @@ Most installs are live on real traffic in three to four weeks.
 - [Sales funnel vs marketing funnel](https://milliondollarfunnels.us/blog/sales-funnel-vs-marketing-funnel): the difference, in one comparison table
 - [Funnel builder vs funnel agency](https://milliondollarfunnels.us/blog/funnel-builder-vs-agency): software or done-for-you, and how to choose
 - [What is a lead generation funnel?](https://milliondollarfunnels.us/blog/what-is-a-lead-generation-funnel): stages, examples and cost per lead
-- [What is a VSL?](https://milliondollarfunnels.us/blog/what-is-a-vsl): video sales letter meaning, structure and VSL funnels
+- [VSL funnel: how it works](https://milliondollarfunnels.us/blog/what-is-a-vsl): the video sales letter funnel, its steps and metrics
 - [A2P 10DLC registration](https://milliondollarfunnels.us/blog/a2p-10dlc-registration): requirements, steps and common rejections
 - [Speed to lead](https://milliondollarfunnels.us/blog/speed-to-lead): why response time decides the sale and how to improve it
 - [Sales funnel stages](https://milliondollarfunnels.us/blog/sales-funnel-stages): top, middle and bottom of the funnel explained
