@@ -694,3 +694,27 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
 - **Target keywords** (unchanged from last run): lead generation funnel 54 at 38.4; done for you sales funnel 8 at 28.8; vsl funnel 8 at 48.
 - **City queries:** only "home improvement lead generation southern california". No action.
 - **Changes:** no page edits (7-day rule). IndexNow ping for the de-indexed guide. Schedule note added.
+
+### Results — 12:40 run, 2026-11-28 (GSC data through 2026-11-26, refreshed)
+- **Site:**
+  - Hostinger (LiteSpeed, no x-vercel), lead.php returns 422 on an invalid lead.
+  - 301, 410, /thank-you and /cases/ecommerce checks pass.
+  - Audit: 47 pages, no duplicate titles or descriptions, 0 bad links.
+- **Indexed:** 41 / 47 (40 last run).
+  - /blog/what-is-a-lead-generation-funnel is back to "Submitted and indexed" (same 25 Nov crawl). This morning's drop was a temporary index fluctuation.
+  - /services/vsl-funnels: unknown again.
+  - Also not indexed: /services, application-funnels, /blog, /faq, /cases/ecommerce.
+- **Impressions:** 962 / 28d (754 last run), 7 clicks; 801 / 7d (593). 7d: non-brand 677, brand 4.
+- **Target keywords:**
+  - lead generation funnel: 70 at 38.3 (54 at 38.4);
+  - done for you sales funnel: 10 at 29 (8 at 28.8);
+  - vsl funnel: 9 at 47.3 (8 at 48);
+  - sales funnel agency: 1 at 38 on /sales-funnel-agency (first impression for the new page).
+- **Other queries:**
+  - home improvement lead generation: 41 at 66.1 (8 at 67.2);
+  - lead gen funnel: 27 at 39.7;
+  - funnel lead generation: 19 at 33.8;
+  - lead generation funnels: 17 at 33.6;
+  - lead generation sales funnel: 16 at 31.1.
+- **City queries:** only "home improvement lead generation southern california". No action.
+- **Changes:** none (7-day rule). The scheduled rows start on 30 Nov and 1 Dec.
