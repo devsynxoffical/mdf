@@ -678,3 +678,19 @@ Daily impressions are flat at 1–13/day since launch, so the site has not lost 
   - home improvement leads: 12 at 68.1.
 - **City queries:** only "home improvement lead generation southern california". No action.
 - **Changes:** none. The pages receiving these queries changed on 26 Nov; the scheduled rows start on 30 Nov and 1 Dec.
+
+### Results — 00:40 run, 2026-11-28 (GSC data through 2026-11-26)
+- **Site:**
+  - Hostinger (LiteSpeed, no x-vercel), lead.php returns 422 on an invalid lead.
+  - 301, 410, /thank-you and /cases/ecommerce checks pass.
+  - Audit: 47 pages, no duplicate titles or descriptions, 0 bad links.
+- **Indexed:** 40 / 47 (41 last run).
+  - **Alert:** /blog/what-is-a-lead-generation-funnel moved from "Submitted and indexed" to "Crawled, currently not indexed". Last crawl is unchanged (25 Nov), Google still picks the page itself as canonical, robots is index,follow and the page returns 200.
+    - Likely cause: Google re-evaluating the page, which overlaps /lead-generation on the "lead generation funnel" query.
+    - IndexNow re-sent. Request indexing manually as soon as possible.
+    - The 1 Dec schedule row now separates the guide (informational) from the hub (by industry and services).
+  - /services and /services/vsl-funnels are back to Discovered. Also not indexed: application-funnels, /blog, /faq, /cases/ecommerce.
+- **Impressions:** 754 / 28d (764 last run), 7 clicks; 593 / 7d. 7d: non-brand 490, brand 4.
+- **Target keywords** (unchanged from last run): lead generation funnel 54 at 38.4; done for you sales funnel 8 at 28.8; vsl funnel 8 at 48.
+- **City queries:** only "home improvement lead generation southern california". No action.
+- **Changes:** no page edits (7-day rule). IndexNow ping for the de-indexed guide. Schedule note added.
